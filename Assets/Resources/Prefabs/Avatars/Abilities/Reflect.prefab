@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5297081999356858382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3345866437851789462}
+  - component: {fileID: 3578797770551436819}
+  m_Layer: 7
+  m_Name: Reflect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3345866437851789462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297081999356858382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3578797770551436819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297081999356858382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce27dbc0341abc4e836fe9a02794885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: Reflect
+  abilityTooltip: Bwuda's mighty force flings all nearby saws away from you
+  abilityIcon: {fileID: -44679145, guid: 2b1983218cfff704fb1b88565c0055dd, type: 3}
+  abilityCooldown:
+    startValue: 10
+    upgradeValue: 0
+    upgradeEveryLevel: 0
+    upgradeLevels: 
+  reticle: {fileID: 0}
+  range:
+    startValue: 0
+    upgradeValue: 0
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  radius:
+    startValue: 4
+    upgradeValue: 1
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  reflectSlowMod:
+    startValue: 1
+    upgradeValue: -0.05
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  reflectSlowDuration:
+    startValue: 5
+    upgradeValue: 5
+    upgradeEveryLevel: 0
+    upgradeLevels: 03000000050000000700000009000000

@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5679400414544976806
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: abilityIcon
+      value: 
+      objectReference: {fileID: 2089736299, guid: ba71746f27874a44fa2584c96a888c87, type: 3}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: abilityName
+      value: Shrink Saw
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: bulletSpread
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: abilityTooltip
+      value: Shoot a bullet that makes the first saw it hits smaller for a short
+        period of time
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: projectileSpawn
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: bounce.upgradeValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: bounce.upgradeEveryLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: count.upgradeLevels.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: count.upgradeLevels.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: count.upgradeLevels.Array.data[2]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: onHitTarget.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: onHitTarget.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: onHitTarget.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: onHitTarget.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: onHitTarget.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RpcStatsHealPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: onHitTarget.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerAvatar, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: onHitTarget.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555303925406916637, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_Name
+      value: Spawn Shrink Projectile Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6214177212864496914, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_AssetId
+      value: c49a3946a6a5ff949ae256ffafdefba9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+--- !u!1 &272801937506614203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5555303925406916637, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+  m_PrefabInstance: {fileID: 5679400414544976806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3543234771857336278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272801937506614203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763606bd79df6fe439aa6e6818228121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: Shrink Saw
+  abilityTooltip: Shoot a bullet that makes the first saw it hits smaller for a short
+    period of time
+  abilityIcon: {fileID: 2089736299, guid: ba71746f27874a44fa2584c96a888c87, type: 3}
+  abilityCooldown:
+    startValue: 30
+    upgradeValue: 0
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  projectileSpawn: {fileID: 0}
+  bulletSpread: 50
+  projectilePrefab: {fileID: 9094077811541393589, guid: 2b92fbd7b037f7f4892b0a1d7a6f15c7, type: 3}
+  count:
+    startValue: 1
+    upgradeValue: 2
+    upgradeEveryLevel: 0
+    upgradeLevels: 020000000500000008000000
+  speed: 10
+  bounce:
+    startValue: 0
+    upgradeValue: 0
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  onHitTarget:
+    m_PersistentCalls:
+      m_Calls: []
+  shrinkSize:
+    startValue: 0.75
+    upgradeValue: -0.035
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  shrinkDuration:
+    startValue: 3
+    upgradeValue: 2
+    upgradeEveryLevel: 1
+    upgradeLevels: 

@@ -1,25 +1,87 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityBase : MonoBehaviour
+public abstract class AbilityBase : MonoBehaviour
 {
-    protected AvatarBase controller;
+    protected PlayerAvatar controller;
 
-    [SerializeField] protected string aname;
+    public string abilityName;
+    [SerializeField] private string abilityTooltip;
+    [SerializeField] private Sprite abilityIcon;
+    protected float nextAbility = 0;
+    [SerializeField] private AbilityUpgrade abilityCooldown;
 
-    private int val;
+    protected bool abilityQueued = false;
 
-    public void SetController(AvatarBase controller)
+    //[Header("UI")]
+    protected AbilityCooldown cooldownUI;
+
+    public void SetController(PlayerAvatar controller)
     {
         this.controller = controller;
-        Debug.Log(controller.name+ ": " + aname);
     }
 
-    public  void SetVal(int val)
+    public void LinkUI(AbilityCooldown abilityCooldown, TooltipController tooltip) 
+    { 
+        cooldownUI = abilityCooldown;
+        cooldownUI.abilityImage.sprite = abilityIcon;
+        tooltip.tooltip = abilityTooltip;
+    }
+
+
+    public virtual void QueueAbility(int level)
     {
-        this.val = val;
+        if (level == -1)
+            return;
+
+        abilityQueued = true;
+        UseAbility(level);
     }
 
-    public void PrintVal() { Debug.Log(val); }
+    protected void UseAbility(int level)
+    {
+        if (nextAbility < Time.time || BwudalingNetworkManager.Instance.DEBUG_IgnoreCooldown)
+        {
+            controller.stats?.AddAbility();
+
+            OnUseAbility(level);
+            nextAbility = Time.time + CalcNextAbility(level);
+
+            abilityQueued = false;
+        }
+    }
+    protected abstract void OnUseAbility(int level);
+
+    public virtual void CancelAbility()
+    {
+        abilityQueued = false;
+    }
+
+
+    protected virtual float CalcNextAbility(int level)
+    {
+        return abilityCooldown.CalcValue(level);
+    }
+
+
+    protected void DoServerAbility(int level) { controller.UseAbility(this, level); }
+    [Server]
+    public virtual void OnUseServerAbility(int level)
+    {
+
+    }
+
+    [Client]
+    public virtual void OnUseClientAbility(int level)
+    {
+
+    }
+
+
+    public void UpdateUI(int level)
+    {
+        cooldownUI.SetCooldown(nextAbility - Time.time, CalcNextAbility(level));
+    }
 }

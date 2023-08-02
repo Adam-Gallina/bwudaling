@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9051424289344407501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873770290884996111}
+  - component: {fileID: 1415324497270863502}
+  m_Layer: 7
+  m_Name: Revive
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1873770290884996111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9051424289344407501}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1415324497270863502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9051424289344407501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c70cd306a472f740ad2a1a9cdc4cdb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: Resurrection
+  abilityTooltip: Bwuda is too strong to need someone help him revive
+  abilityIcon: {fileID: 21300000, guid: e4aba87c3fbe8a548bd5fb28ae2f393f, type: 3}
+  abilityCooldown:
+    startValue: 90
+    upgradeValue: -3
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  reticle: {fileID: 0}
+  range:
+    startValue: 0
+    upgradeValue: 0
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  radius:
+    startValue: 0
+    upgradeValue: 0
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  shield:
+    startValue: 1
+    upgradeValue: 0
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  canTargetLiving: 0
+  canTargetDead: 0
