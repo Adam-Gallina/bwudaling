@@ -12,24 +12,20 @@ public abstract class AbilityBase : MonoBehaviour
     [SerializeField] private Sprite abilityIcon;
     protected float nextAbility = 0;
     [SerializeField] private AbilityUpgrade abilityCooldown;
+    public bool canUseWhileDead = false;
 
     protected bool abilityQueued = false;
 
     //[Header("UI")]
     protected AbilityCooldown cooldownUI;
 
-    public void SetController(PlayerAvatar controller)
-    {
-        this.controller = controller;
-    }
-
+    public void SetController(PlayerAvatar controller) { this.controller = controller; }
     public void LinkUI(AbilityCooldown abilityCooldown, TooltipController tooltip) 
     { 
         cooldownUI = abilityCooldown;
         cooldownUI.abilityImage.sprite = abilityIcon;
         tooltip.tooltip = abilityTooltip;
     }
-
 
     public virtual void QueueAbility(int level)
     {
@@ -46,13 +42,13 @@ public abstract class AbilityBase : MonoBehaviour
         {
             controller.stats?.AddAbility();
 
-            OnUseAbility(level);
-            nextAbility = Time.time + CalcNextAbility(level);
+            if (OnUseAbility(level))
+                nextAbility = Time.time + CalcNextAbility(level);
 
             abilityQueued = false;
         }
     }
-    protected abstract void OnUseAbility(int level);
+    protected abstract bool OnUseAbility(int level);
 
     public virtual void CancelAbility()
     {

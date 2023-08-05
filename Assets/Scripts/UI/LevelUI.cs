@@ -133,7 +133,11 @@ public class LevelUI : GameUI
         boostRechargeText.text = "Recharge\nlvl " + activePlayer.abilities.boostRechargeLevel;
 
         string SpecialText(string name, int level) {
-            return level == -1 ? "Unlock " + name : name + ": lvl " + (level + 1);
+            if (level == -1)
+                return $"Unlock {name}";
+            else if (level == AbilityLevels.SpecialAbilityMax)
+                return $"{name}: max";
+            return $"{name}: lvl {level + 1}";
         }
 
         special1Cooldown.gameObject.SetActive(activePlayer.abilities.special1Level > -1);

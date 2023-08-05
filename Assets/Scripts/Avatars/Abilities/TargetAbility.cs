@@ -16,9 +16,6 @@ public abstract class TargetAbility : AbilityBase
 
     private void Update()
     {
-        if (InputController.Instance.altfire.up)
-            showIndicator = false;
-
         if (showIndicator)
         {
             reticle?.SetReticle(true);
@@ -35,9 +32,14 @@ public abstract class TargetAbility : AbilityBase
         if (level == -1)
             return;
 
-        currLevel = level;
-        showIndicator = true;
-        abilityQueued = true;
+        if (abilityQueued)
+            CancelAbility();
+        else
+        {
+            currLevel = level;
+            showIndicator = true;
+            abilityQueued = true;
+        }
     }
 
     public override void CancelAbility()

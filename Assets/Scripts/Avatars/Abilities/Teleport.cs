@@ -5,23 +5,25 @@ using UnityEngine;
 
 public class Teleport : TargetAbility
 {
-    protected override void OnUseAbility(int level)
+    protected override bool OnUseAbility(int level)
     {
         if (!BwudalingNetworkManager.Instance.DEBUG_TpWalls)
         {
             Collider[] colls = Physics.OverlapSphere(currReticlePos, 0.1f, 1 << Constants.TeleportAreaLayer);
             if (colls.Length == 0)
-                return;
+                return false;
             foreach (Collider c in colls)
             {
                 TeleportArea tp = c.GetComponent<TeleportArea>();
                 if (tp && !tp.validTp)
-                    return;
+                    return false;
             }
         }
 
         controller.stats?.AddAbility();
 
         controller.SetPosition(currReticlePos, true);
+
+        return true;
     }
 }

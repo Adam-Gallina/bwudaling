@@ -32,6 +32,7 @@ public class PlayerAvatar : AvatarBase
     [SerializeField] protected AbilityBase ability1;
     [SerializeField] protected AbilityBase ability2;
     [SerializeField] protected AbilityBase ability3;
+    [SerializeField] protected Transform projectileSpawn;
 
 
     //[Header("Debuffs")]
@@ -144,26 +145,18 @@ public class PlayerAvatar : AvatarBase
         if (!hasAuthority)
             return;
 
-        if (dead && Input.GetKeyDown(KeyCode.Backspace) && BwudalingNetworkManager.Instance.DEBUG_AllowKeyCheats)
-        {
-            CmdHealTarget(this, 1);
-        }
-
-        if (dead)
-        {
-            if (Time.time < dragEnd)
-            {
-                transform.Translate(dragSpeed * Time.deltaTime * (dragTarget.position - transform.position).normalized, Space.World);
-            }
-
-            return;
-        }
-
         CheckInput();
 
         ability1?.UpdateUI(player.abilities.special1Level);
         ability2?.UpdateUI(player.abilities.special2Level);
         ability3?.UpdateUI(player.abilities.special3Level);
+
+        if (dead)
+        {
+            if (Time.time < dragEnd)
+                transform.Translate(dragSpeed * Time.deltaTime * (dragTarget.position - transform.position).normalized, Space.World);
+            return;
+        }
 
         if (!inp.boost)
             boost += player.abilities.BoostRechargeVal * Time.deltaTime;
@@ -171,6 +164,12 @@ public class PlayerAvatar : AvatarBase
             boost = player.abilities.BoostMaxVal;
 
         targetPos = GetMovement();
+        Vector3 dir = targetPos - transform.position;
+        if (dir != Vector3.zero)
+        {
+            dir.y = 0;
+            projectileSpawn.forward = dir;
+        }
 
         rb.velocity = (targetPos - transform.position).normalized * CalcSpeed();
         if (Vector3.Distance(transform.position, targetPos) < rb.velocity.magnitude * Time.deltaTime)
@@ -192,25 +191,37 @@ public class PlayerAvatar : AvatarBase
     #region Controls
     protected virtual void CheckInput()
     {
-        if (inp.special1.down)
-            ability1.QueueAbility(player.abilities.special1Level);
-        if (inp.special2.down)
-            ability2.QueueAbility(player.abilities.special2Level);
-        if (inp.special3.down)
-            ability3.QueueAbility(player.abilities.special3Level);
-
         if (BwudalingNetworkManager.Instance.DEBUG_AllowKeyCheats)
         {
-            if (Input.GetKeyDown(KeyCode.Equals)) {
+            if (Input.GetKeyDown(KeyCode.Equals))
+            {
                 player.abilities.talentPoints += AbilityLevels.TalentPointsPerLevel;
                 GameUI.Instance.UpdateDisplay();
             }
-            if (Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (dead && Input.GetKeyDown(KeyCode.Backspace))
             {
-                Debug.Log($"{player.abilities.special1Level} {player.abilities.special2Level} {player.abilities.special3Level}");
+                CmdHealTarget(this, 1);
             }
         }
 
+        if (inp.special1.down && (!dead || ability1.canUseWhileDead))
+        {
+            ability1.QueueAbility(player.abilities.special1Level);
+            ability2.CancelAbility();
+            ability3.CancelAbility();
+        }
+        if (inp.special2.down && (!dead || ability2.canUseWhileDead))
+        {
+            ability1.CancelAbility();
+            ability2.QueueAbility(player.abilities.special2Level);
+            ability3.CancelAbility();
+        }
+        if (inp.special3.down && (!dead || ability3.canUseWhileDead))
+        {
+            ability1.CancelAbility();
+            ability2.CancelAbility();
+            ability3.QueueAbility(player.abilities.special3Level);
+        }
     }
 
     protected bool CheckSpecial(float timer)
@@ -313,6 +324,8 @@ public class PlayerAvatar : AvatarBase
     public void DragEffect(Transform target, float duration, float speed)
     {
         RpcDragEffect(target, duration, speed);
+
+        Debug.Log("[S] PlayerAvatar.DragEffect: " + duration + " " + speed);
     }
 
     [ClientRpc]
@@ -320,6 +333,8 @@ public class PlayerAvatar : AvatarBase
     {
         if (!hasAuthority)
             return;
+
+        Debug.Log(target + " " + duration + " " + speed);
 
         dragTarget = target;
         dragEnd = Time.time + duration;

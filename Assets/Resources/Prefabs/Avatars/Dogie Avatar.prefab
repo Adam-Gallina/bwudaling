@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7159840408252324028}
   - component: {fileID: 7159840408252324029}
   - component: {fileID: 7159840408252324030}
-  - component: {fileID: 7159840408252324026}
+  - component: {fileID: 4262243947944807923}
   - component: {fileID: 7159840408252324000}
   - component: {fileID: 537890439201446547}
   m_Layer: 7
@@ -119,7 +119,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 458003ddc1291b344adfd7bf736e0ef2
   hasSpawned: 0
---- !u!114 &7159840408252324026
+--- !u!114 &4262243947944807923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,14 +128,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7159840408252324002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d98996cf189b9ae4eaa0be1f9cfee42c, type: 3}
+  m_Script: {fileID: 11500000, guid: 344b1e26263f78741909c1baa77e0727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
   dead: 0
   shield: 0
-  shieldDur: 0.5
+  shieldDur: 2
   shieldModel: {fileID: 8527574274244753841}
   stats: {fileID: 0}
   NametagTarget: {fileID: 997307883556672501}
@@ -146,26 +146,14 @@ MonoBehaviour:
   turnSpeed: 360
   turnSpeedMod: 5
   heldItem: {fileID: 0}
-  ability1: {fileID: 831599235554586046}
+  ability1: {fileID: 7515921762131254693}
   ability2: {fileID: 8544745318670152417}
   ability3: {fileID: 5900561605836254654}
+  projectileSpawn: {fileID: 1365740921709373361}
   aliveIcon: {fileID: 4526033427033651315}
   deadIcon: {fileID: 4382201890721043697}
   startWalkAnimSpeed: 0.75
   stepWalkAnimSpeed: 0.05
-  bulletSpawn: {fileID: 1365740921709373361}
-  fetchBullet: {fileID: 5628837008914201456, guid: 1e3bfd05ea9c49643aada26fe004f89a, type: 3}
-  fetchBulletSpeed: 7.5
-  fetchDuration:
-    startValue: 2
-    upgradeValue: 0.5
-    upgradeEveryLevel: 1
-    upgradeLevels: 
-  fetchSpeed:
-    startValue: 2.5
-    upgradeValue: 0.75
-    upgradeEveryLevel: 1
-    upgradeLevels: 
 --- !u!114 &7159840408252324000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,6 +824,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Fetch Projectile
       objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: projectileSpawn
+      value: 
+      objectReference: {fileID: 1365740921709373361}
     - target: {fileID: 4122771552749108120, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -880,28 +872,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8651885391264475048, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
-      propertyPath: projectileSpawn
-      value: 
-      objectReference: {fileID: 1365740921709373361}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
---- !u!114 &831599235554586046 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8651885391264475048, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
-  m_PrefabInstance: {fileID: 8330468493120129558}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e358aa6da972b89449b49a35a213e0ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5380889060765102478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4122771552749108120, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
   m_PrefabInstance: {fileID: 8330468493120129558}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7515921762131254693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+  m_PrefabInstance: {fileID: 8330468493120129558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22c3be212b29e4428922c38503c0b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8480927302467455358
 PrefabInstance:
   m_ObjectHideFlags: 0

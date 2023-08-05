@@ -24,6 +24,7 @@ public class CameraController : MonoBehaviour
     [Header("Zoom")]
     [SerializeField] private float zoomSpeed;
     private float zoomLevel;
+    public float ZoomLevel { get { return zoomLevel; } }
 
     private void Awake()
     {
@@ -45,7 +46,6 @@ public class CameraController : MonoBehaviour
         zoomLevel -= Input.mouseScrollDelta.y * zoomSpeed;
 
         transform.position = target.position + panOffset - Camera.main.transform.forward * zoomLevel;
-
     }
 
     private void CheckInput()

@@ -52,6 +52,7 @@ MonoBehaviour:
     upgradeValue: -3
     upgradeEveryLevel: 1
     upgradeLevels: 
+  canUseWhileDead: 1
   reticle: {fileID: 0}
   range:
     startValue: 0
@@ -59,8 +60,8 @@ MonoBehaviour:
     upgradeEveryLevel: 1
     upgradeLevels: 
   radius:
-    startValue: 0
-    upgradeValue: 0
+    startValue: 300
+    upgradeValue: 200
     upgradeEveryLevel: 1
     upgradeLevels: 
   shield:
@@ -69,4 +70,4 @@ MonoBehaviour:
     upgradeEveryLevel: 1
     upgradeLevels: 
   canTargetLiving: 0
-  canTargetDead: 0
+  canTargetDead: 1

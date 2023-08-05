@@ -215,7 +215,7 @@ MonoBehaviour:
   syncInterval: 0.1
   dead: 0
   shield: 0
-  shieldDur: 1
+  shieldDur: 2
   shieldModel: {fileID: 3239398916403980245}
   stats: {fileID: 0}
   NametagTarget: {fileID: 6938429762080667664}
@@ -229,6 +229,7 @@ MonoBehaviour:
   ability1: {fileID: 4372318215255382777}
   ability2: {fileID: 4970320997518405574}
   ability3: {fileID: 8279731111270306057}
+  projectileSpawn: {fileID: 3549912703959414022}
   aliveIcon: {fileID: 7233657131230504471}
   deadIcon: {fileID: 7384807034067896981}
   startWalkAnimSpeed: 0.75

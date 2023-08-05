@@ -9,16 +9,17 @@ public class BoostAbility : AbilityBase
 
     [SerializeField] protected bool invulnerable = false;
 
-    protected override void OnUseAbility(int level)
+    protected override bool OnUseAbility(int level)
     {
         if (invulnerable)
         {
-            Debug.Log("Invulnerable?");
             controller.SetInvulnerable(true);
             Invoke(nameof(ClearInvulnerable), duration.CalcValue(level));
         }
-        Debug.Log("Speed?");
+        
         controller.CmdApplySpeedMod(speedMod.CalcValue(level), duration.CalcValue(level));
+
+        return true;
     }
 
     private void ClearInvulnerable() { controller.SetInvulnerable(false); }

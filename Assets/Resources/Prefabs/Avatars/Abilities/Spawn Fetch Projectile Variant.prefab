@@ -28,6 +28,10 @@ PrefabInstance:
       value: Launch a projectile that pulls a downed player towards you
       objectReference: {fileID: 0}
     - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 5628837008914201456, guid: 1e3bfd05ea9c49643aada26fe004f89a, type: 3}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
       propertyPath: count.upgradeValue
       value: 0
       objectReference: {fileID: 0}
@@ -69,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5555303925406916637, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
       propertyPath: m_Name
-      value: Spawn Fetch Projectile Variant
+      value: Spawn Fetch Projectile
       objectReference: {fileID: 0}
     - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
       propertyPath: m_RootOrder
@@ -115,5 +119,59 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+--- !u!1 &997347323351979308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5555303925406916637, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+  m_PrefabInstance: {fileID: 4670001261614118193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2005843394939869107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997347323351979308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22c3be212b29e4428922c38503c0b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: Fetch
+  abilityTooltip: Throw a leash and pull a downed player towards you
+  abilityIcon: {fileID: 1289735124, guid: d6042eaa3aad31248a3f5a2eb74982e6, type: 3}
+  abilityCooldown:
+    startValue: 30
+    upgradeValue: 0
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  canUseWhileDead: 0
+  projectileSpawn: {fileID: 0}
+  bulletSpread: 0
+  projectilePrefab: {fileID: 5628837008914201456, guid: 1e3bfd05ea9c49643aada26fe004f89a, type: 3}
+  count:
+    startValue: 1
+    upgradeValue: 0
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  speed: 7.5
+  bounce:
+    startValue: 0
+    upgradeValue: 0
+    upgradeEveryLevel: 0
+    upgradeLevels: 
+  onHitTarget:
+    m_PersistentCalls:
+      m_Calls: []
+  fetchDuration:
+    startValue: 2
+    upgradeValue: 0.5
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  fetchSpeed:
+    startValue: 2.5
+    upgradeValue: 0.75
+    upgradeEveryLevel: 1
+    upgradeLevels: 

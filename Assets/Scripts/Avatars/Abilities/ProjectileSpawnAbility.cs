@@ -19,9 +19,11 @@ public class ProjectileSpawnAbility : AbilityBase
     [SerializeField] protected AbilityUpgrade bounce;
     [SerializeField] protected UnityEvent onHitTarget;
 
-    protected override void OnUseAbility(int level)
+    protected override bool OnUseAbility(int level)
     {
         DoServerAbility(level);
+
+        return true;
     }
 
     [Server]

@@ -10,10 +10,15 @@ public class HealAbility : TargetAbility
     [SerializeField] private bool canTargetLiving;
     [SerializeField] private bool canTargetDead;
 
-    protected override void OnUseAbility(int level)
+    protected override bool OnUseAbility(int level)
     {
-        if (controller.dead)
+        bool hit = false;
+
+        if (controller.dead ? canTargetDead : canTargetLiving)
+        {
             controller.CmdHealTarget(controller, (int)shield.CalcValue(level));
+            hit = true;
+        }
 
         Collider[] players = Physics.OverlapSphere(currReticlePos, radius.CalcValue(level), 1 << Constants.PlayerLayer);
         foreach (Collider c in players)
@@ -25,7 +30,10 @@ public class HealAbility : TargetAbility
                     controller.stats?.AddRescue();
 
                 controller.CmdHealTarget(p, (int)shield.CalcValue(level));
+                hit = true;
             }
         }
+
+        return hit;
     }
 }

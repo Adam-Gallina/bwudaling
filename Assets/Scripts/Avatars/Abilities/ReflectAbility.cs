@@ -8,9 +8,11 @@ public class ReflectAbility : TargetAbility
     [SerializeField] private AbilityUpgrade reflectSlowMod;
     [SerializeField] private AbilityUpgrade reflectSlowDuration;
 
-    protected override void OnUseAbility(int level)
+    protected override bool OnUseAbility(int level)
     {
         DoServerAbility(level);
+
+        return true;
     }
 
 
