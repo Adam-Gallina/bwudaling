@@ -11,7 +11,6 @@ public class FetchProjectile : Projectile
 
     public void SetFetchVals(float duration, float speed)
     {
-        Debug.Log("[S] FetchProjectile.SetFetchVals " + duration + " " + speed);
         fetchDur = duration;
         fetchSpe = speed;
     }

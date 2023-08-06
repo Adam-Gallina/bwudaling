@@ -3838,8 +3838,11 @@ MonoBehaviour:
   boostMaxText: {fileID: 1817762006887306647}
   boostRechargeText: {fileID: 1817762007177998876}
   special1Text: {fileID: 1817762007614945411}
+  special1Name: 
   special2Text: {fileID: 1817762007988494037}
+  special2Name: 
   special3Text: {fileID: 1817762007697452581}
+  special3Name: 
   tooltipObj: {fileID: 8514317084420878888}
   tooltipText: {fileID: 2587289393205248313}
   shieldText: {fileID: 1817762007029013859}
@@ -6237,6 +6240,7 @@ MonoBehaviour:
   abilityType: 4
   cooldownImg: {fileID: 8547907869435656408}
   keyHintText: {fileID: 6774137721918845688}
+  keyHintTextBkgd: {fileID: 4583936308789566556}
   abilityImage: {fileID: 6167871098313943772}
 --- !u!1 &3026500996837097482
 GameObject:
@@ -7115,7 +7119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 5
   cooldownImg: {fileID: 7160344052873532009}
-  keyHintText: {fileID: 0}
+  keyHintText: {fileID: 2549621097649928355}
+  keyHintTextBkgd: {fileID: 8132851827867089375}
   abilityImage: {fileID: 10441814407501719}
 --- !u!1 &5014445499560165677
 GameObject:
@@ -7669,7 +7674,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 6
   cooldownImg: {fileID: 8959485972204560408}
-  keyHintText: {fileID: 0}
+  keyHintText: {fileID: 71900839198175960}
+  keyHintTextBkgd: {fileID: 3665551460295662814}
   abilityImage: {fileID: 6016927698072726775}
 --- !u!1 &5810526253808273380
 GameObject:

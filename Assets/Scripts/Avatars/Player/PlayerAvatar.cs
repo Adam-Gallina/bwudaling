@@ -324,8 +324,6 @@ public class PlayerAvatar : AvatarBase
     public void DragEffect(Transform target, float duration, float speed)
     {
         RpcDragEffect(target, duration, speed);
-
-        Debug.Log("[S] PlayerAvatar.DragEffect: " + duration + " " + speed);
     }
 
     [ClientRpc]
@@ -333,8 +331,6 @@ public class PlayerAvatar : AvatarBase
     {
         if (!hasAuthority)
             return;
-
-        Debug.Log(target + " " + duration + " " + speed);
 
         dragTarget = target;
         dragEnd = Time.time + duration;

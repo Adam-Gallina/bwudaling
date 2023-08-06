@@ -10,9 +10,10 @@ public abstract class TargetAbility : AbilityBase
     protected int currLevel = 0;
 
     [Header("Target Reticle")]
-    [SerializeField] private TargetReticle reticle;
+    [SerializeField] protected TargetReticle reticle;
     [SerializeField] protected AbilityUpgrade range;
     [SerializeField] protected AbilityUpgrade radius;
+    [SerializeField] protected bool forceMaxRange;
 
     private void Update()
     {
@@ -21,7 +22,7 @@ public abstract class TargetAbility : AbilityBase
             reticle?.SetReticle(true);
             SetIndicator(radius.CalcValue(currLevel), range.CalcValue(currLevel));
         }
-        else 
+        else
         {
             reticle?.SetReticle(false);
         }
@@ -60,12 +61,12 @@ public abstract class TargetAbility : AbilityBase
 
         Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100, 1 << Constants.GroundLayer);
         Vector3 toTarget = new Vector3(hit.point.x, 0, hit.point.z) - transform.position;
-        if (range > 0 && toTarget.magnitude > range)
+        if (forceMaxRange ||
+           (range >= 0 && toTarget.magnitude > range))
             toTarget = toTarget.normalized * range;
 
         currReticlePos = transform.position + toTarget;
-        reticle.SetReticleCenter(currReticlePos);
-        reticle.DrawCircle(size);
+        DrawIndicator(size);
 
         if (InputController.Instance.fire.down)
         {
@@ -73,5 +74,11 @@ public abstract class TargetAbility : AbilityBase
             reticle.SetReticle(false);
             showIndicator = false;
         }
+    }
+
+    protected virtual void DrawIndicator(float size)
+    {
+        reticle.SetReticleCenter(currReticlePos);
+        reticle.DrawCircle(size);
     }
 }

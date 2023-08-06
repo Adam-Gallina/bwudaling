@@ -14,8 +14,6 @@ public class FetchProjectileAbility : ProjectileSpawnAbility
     {
         base.OnSpawnProjectile(b, level);
 
-        Debug.Log("[S] FetchProjectileAbility.OnSpawnProjectile " + fetchDuration.CalcValue(level) + " " + fetchSpeed.CalcValue(level));
-
         ((FetchProjectile)b).SetFetchVals(fetchDuration.CalcValue(level), fetchSpeed.CalcValue(level));
     }
 }
