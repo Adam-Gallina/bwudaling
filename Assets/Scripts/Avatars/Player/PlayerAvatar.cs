@@ -140,7 +140,9 @@ public class PlayerAvatar : AvatarBase
     protected virtual void Update()
     {
         aliveIcon.SetActive(!dead);
+        aliveIcon.transform.rotation = Quaternion.identity;
         deadIcon.SetActive(dead);
+        deadIcon.transform.rotation = Quaternion.identity;
 
         if (!hasAuthority)
             return;
@@ -355,50 +357,50 @@ public class PlayerAvatar : AvatarBase
     #endregion
 
     #region Abilities
-    public void UseAbility(AbilityBase ability, int level)
+    public void UseAbility(AbilityBase ability, Vector3 target, int level)
     {
         if (ability == ability1)
-            CmdUseAbility(0, level);
+            CmdUseAbility(0, target, level);
         else if (ability == ability2)
-            CmdUseAbility(1, level);
+            CmdUseAbility(1, target, level);
         else if (ability == ability3)
-            CmdUseAbility(2, level);
+            CmdUseAbility(2, target, level);
         else
             Debug.LogError("Can't use ability " + ability.name, this);
     }
 
     [Command]
-    private void CmdUseAbility(int ability, int level)
+    private void CmdUseAbility(int ability, Vector3 target, int level)
     {
         switch (ability)
         {
             case 0:
-                ability1.OnUseServerAbility(level);
+                ability1.OnUseServerAbility(target, level);
                 break;
             case 1:
-                ability2.OnUseServerAbility(level);
+                ability2.OnUseServerAbility(target, level);
                 break;
             case 2:
-                ability3.OnUseServerAbility(level);
+                ability3.OnUseServerAbility(target, level);
                 break;
         }
 
-        RpcUseAbility(ability, level);
+        RpcUseAbility(ability, target, level);
     }
 
     [ClientRpc]
-    private void RpcUseAbility(int ability, int level)
+    private void RpcUseAbility(int ability, Vector3 target, int level)
     {
         switch (ability)
         {
             case 0:
-                ability1.OnUseClientAbility(level);
+                ability1.OnUseClientAbility(target, level);
                 break;
             case 1:
-                ability2.OnUseClientAbility(level);
+                ability2.OnUseClientAbility(target, level);
                 break;
             case 2:
-                ability3.OnUseClientAbility(level);
+                ability3.OnUseClientAbility(target, level);
                 break;
         }
     }

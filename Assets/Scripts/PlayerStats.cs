@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerStatType { None, Distance, Deaths, Heals, Dodges, Abilities, Haiws }
 public class PlayerStats : MonoBehaviour
 {
     private NetworkPlayer player;
+
+    public PlayerStatValues currStats = new PlayerStatValues();
 
     //[Header("Dist")]
     private Vector3 lastPlayerPos;
@@ -16,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<NetworkPlayer>();
+        currStats.updated = true;
     }
 
     private void Update()
@@ -43,40 +47,61 @@ public class PlayerStats : MonoBehaviour
         }
 
         if (lastPlayerPos != Vector3.zero)
-            player.currPlayerStats.DistTravelled += Vector3.Distance(player.avatar.transform.position, lastPlayerPos);
+            currStats.DistTravelled += Vector3.Distance(player.avatar.transform.position, lastPlayerPos);
         lastPlayerPos = player.avatar.transform.position;
     }
 
     private void OnSawLeftPlayer()
     {
         if (player.avatar && !player.avatar.dead)
-            player.currPlayerStats.Dodges++;
+            currStats.Dodges++;
     }
 
     public void AddDeath()
     {
-        player.currPlayerStats.Deaths++;
+        currStats.Deaths++;
     }
 
     public void AddRescue()
     {
-        player.currPlayerStats.Rescues++;
+        currStats.Rescues++;
     }
 
     public void AddAbility()
     {
-        player.currPlayerStats.Abilities++;
+        currStats.Abilities++;
     }
 
     public void AddHaiw()
     {
-        player.currPlayerStats.HaiwsCollected++;
+        currStats.HaiwsCollected++;
     }
 }
 
 [System.Serializable]
 public struct PlayerStatValues
 {
+    private Dictionary<PlayerStatType, int> statVals;
+    public Dictionary<PlayerStatType, int> StatVals
+    {
+        get { 
+            if (statVals == null)
+            {
+                statVals = new Dictionary<PlayerStatType, int>
+                {
+                    { PlayerStatType.Distance, (int)DistTravelled },
+                    { PlayerStatType.Deaths, Deaths},
+                    { PlayerStatType.Heals, Rescues},
+                    { PlayerStatType.Dodges, Dodges},
+                    { PlayerStatType.Abilities, Abilities},
+                    { PlayerStatType.Haiws, HaiwsCollected}
+                };
+            }
+            return statVals; 
+        }
+    }
+
+    [HideInInspector] public bool updated;
     public float DistTravelled;
     public int Deaths;
     public int Rescues;

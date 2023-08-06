@@ -43,12 +43,12 @@ public class GameUI : MonoBehaviour
 
     public virtual void SetBannerText(string text, float duration = 0)
     {
-        Debug.LogWarning("No Banner set up");
+        Debug.LogWarning($"No Banner set up (text: {text})");
     }
 
     public virtual void SetBossHealthTarget(BossBase boss)
     {
-        Debug.LogWarning("No Healthbar set up");
+        Debug.LogWarning($"No Healthbar set up (boss: {boss.name})");
     }
 
     #region Button Callbacks

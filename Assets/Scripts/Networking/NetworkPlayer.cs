@@ -167,6 +167,16 @@ public class NetworkPlayer : NetworkBehaviour
     {
         GameUI.Instance.UpdateDisplay();
     }
+
+    [ClientRpc] public void RpcGetPlayerStats() 
+    { 
+        if (!hasAuthority) return;
+        CmdSetPlayerStats(GetComponent<PlayerStats>().currStats); 
+    }
+    [Command] public void CmdSetPlayerStats(PlayerStatValues stats)
+    {
+        currPlayerStats = stats;
+    }
     #endregion
 
     #region Avatar

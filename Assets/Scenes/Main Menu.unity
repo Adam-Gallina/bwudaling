@@ -7023,6 +7023,7 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 8041587248071957817, guid: 6ff7c3fd1e0dd6e4b90f85218dfbf853, type: 3}
   - {fileID: 2828206375329979919, guid: fb2c14bbb3288cf4b9378ed163220e5d, type: 3}
+  - {fileID: 8689581857090752031, guid: b4395b274f79f8248a4a8d8e1e6d8fbb, type: 3}
   - {fileID: 4331939092478790293, guid: e6eaf03e2a9778c429d5278268ed54bb, type: 3}
   - {fileID: 7649148463452278256, guid: c49a3946a6a5ff949ae256ffafdefba9, type: 3}
   - {fileID: 4226589465811620916, guid: e9d2fd841ad728b4584490b4c78e6a55, type: 3}
@@ -7045,7 +7046,7 @@ MonoBehaviour:
   minPlayers: 1
   DEBUG_AllowKeyCheats: 1
   DEBUG_IgnoreCooldown: 1
-  DEBUG_TpWalls: 0
+  DEBUG_TpWalls: 1
 --- !u!114 &1812445703
 MonoBehaviour:
   m_ObjectHideFlags: 0

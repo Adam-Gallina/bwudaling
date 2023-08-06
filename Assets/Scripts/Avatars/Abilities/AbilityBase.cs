@@ -62,15 +62,15 @@ public abstract class AbilityBase : MonoBehaviour
     }
 
 
-    protected void DoServerAbility(int level) { controller.UseAbility(this, level); }
+    protected void DoServerAbility(Vector3 target, int level) { controller.UseAbility(this, target, level); }
     [Server]
-    public virtual void OnUseServerAbility(int level)
+    public virtual void OnUseServerAbility(Vector3 target, int level)
     {
 
     }
 
     [Client]
-    public virtual void OnUseClientAbility(int level)
+    public virtual void OnUseClientAbility(Vector3 target, int level)
     {
 
     }
