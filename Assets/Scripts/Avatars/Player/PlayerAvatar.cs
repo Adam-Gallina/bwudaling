@@ -140,9 +140,9 @@ public class PlayerAvatar : AvatarBase
     protected virtual void Update()
     {
         aliveIcon.SetActive(!dead);
-        aliveIcon.transform.rotation = Quaternion.identity;
+        aliveIcon.transform.eulerAngles = Vector3.right * 90;
         deadIcon.SetActive(dead);
-        deadIcon.transform.rotation = Quaternion.identity;
+        deadIcon.transform.eulerAngles = Vector3.right * 90;
 
         if (!hasAuthority)
             return;

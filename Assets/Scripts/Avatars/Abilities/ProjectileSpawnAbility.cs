@@ -21,13 +21,13 @@ public class ProjectileSpawnAbility : AbilityBase
 
     protected override bool OnUseAbility(int level)
     {
-        DoServerAbility(level);
+        DoServerAbility(Vector3.zero, level);
 
         return true;
     }
 
     [Server]
-    public override void OnUseServerAbility(int level)
+    public override void OnUseServerAbility(Vector3 target, int level)
     {
         FireProjectiles(projectilePrefab, projectileSpawn.position, projectileSpawn.eulerAngles, (int)count.CalcValue(level), bulletSpread, level);
     }

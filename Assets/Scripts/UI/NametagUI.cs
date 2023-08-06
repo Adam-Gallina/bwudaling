@@ -8,6 +8,7 @@ public class NametagUI : MonoBehaviour
     [HideInInspector] public NetworkPlayer LinkedPlayer;
 
     [SerializeField] protected TMPro.TMP_Text playerNameText;
+    [SerializeField] protected Image playerColorImg;
 
     [SerializeField] protected Vector3 offsetDir = new Vector3(0, 1, 0);
     [SerializeField] protected RangeF zoomRange;
@@ -26,6 +27,7 @@ public class NametagUI : MonoBehaviour
         LinkedPlayer = player;
 
         playerNameText.text = player.displayName;
+        playerColorImg.color = player.avatarColor;
     }
 
     protected virtual void Update()

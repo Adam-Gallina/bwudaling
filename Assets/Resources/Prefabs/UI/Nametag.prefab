@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 44.595, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 11.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4107952978354782279
@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LinkedPlayer: {fileID: 0}
   playerNameText: {fileID: 4107952978354782278}
+  playerColorImg: {fileID: 4107952979061010857}
   offsetDir: {x: 0, y: 1, z: 0}
   zoomRange:
     minVal: 1
