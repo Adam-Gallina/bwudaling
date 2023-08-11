@@ -141,7 +141,6 @@ MonoBehaviour:
   NametagTarget: {fileID: 997307883556672501}
   AvatarName: Dogie
   body: {fileID: 5101898973472874374}
-  distToTarget: 0.1
   boost: 0
   turnSpeed: 360
   turnSpeedMod: 5
@@ -897,6 +896,70 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7159840408252324001}
     m_Modifications:
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[0]._Target
+      value: 
+      objectReference: {fileID: 2756794062809711225}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[0]._Target
+      value: 
+      objectReference: {fileID: 2756794062809711225}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[0]._MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[0]._MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[1]._Int
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[1]._Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[1]._Int
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._String
+      value: EndBury
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[1]._Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._String
+      value: DoBury
+      objectReference: {fileID: 0}
     - target: {fileID: 6124466045957285382, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: m_RootOrder
       value: 1

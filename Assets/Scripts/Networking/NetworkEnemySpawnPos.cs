@@ -8,6 +8,9 @@ public class NetworkEnemySpawnPos : MonoBehaviour
     public bool spawn = true;
     public NetworkIdentity enemyPrefab;
     [SerializeField] protected float spawnSize;
+    [SerializeField] protected float hazardRange;
+    [SerializeField] protected bool useSpawnerOrigin;
+    [SerializeField] protected bool useSpawnerRange;
 
     [SerializeField] private GameObject model;
 
@@ -32,9 +35,12 @@ public class NetworkEnemySpawnPos : MonoBehaviour
         GameObject newEnemy = Instantiate(enemyPrefab.gameObject, pos, Quaternion.Euler(dir));
         NetworkServer.Spawn(newEnemy);
 
-        newEnemy.GetComponent<BasicSaw>().SetSpeed(MapController.Instance.hazardSpeed);
-        //newEnemy.GetComponent<BasicSaw>().SetMaxBounces(-1);
-        newEnemy.GetComponent<BasicSaw>().SetSpawnLocation(pos);
+        BasicSaw newSaw = newEnemy.GetComponent<BasicSaw>();
+        newSaw.SetSpeed(MapController.Instance.hazardSpeed);
+        newSaw.SetOriginLocation(
+            useSpawnerOrigin ? transform.position : MapController.Instance.mapCenter, 
+            useSpawnerRange ? hazardRange : MapController.Instance.hazardRange);
+        newSaw.SetSpawnLocation(pos);
 
         return true;
     }

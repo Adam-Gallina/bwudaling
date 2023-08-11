@@ -20,6 +20,8 @@ public class CameraController : MonoBehaviour
     private float maxCursorDist;
     [SerializeField] private float maxPanSpeed = 2;
     private Vector3 panOffset;
+    private Vector3 targetPanOffset;
+    [SerializeField] private float panSmoothingSpeed = 10;
 
     [Header("Zoom")]
     [SerializeField] private float zoomSpeed;
@@ -35,13 +37,21 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+        if (panOffset != targetPanOffset)
+        {
+            if (panSmoothingSpeed > 0)
+                panOffset = Vector3.MoveTowards(panOffset, targetPanOffset, panSmoothingSpeed * Time.deltaTime);
+            else
+                panOffset = targetPanOffset;
+        }
+
         if (!target)
             return;
 
         CheckInput();
 
         if (Input.GetKeyDown(KeyCode.Space))
-            panOffset = Vector3.zero;
+            panOffset = targetPanOffset = Vector3.zero;
 
         zoomLevel -= Input.mouseScrollDelta.y * zoomSpeed;
 
@@ -69,21 +79,14 @@ public class CameraController : MonoBehaviour
             yt = (maxCursorDist - (Camera.main.pixelHeight - Input.mousePosition.y)) / maxCursorDist;
 
         panOffset += new Vector3(xt * maxPanSpeed, 0, yt * maxPanSpeed) * Time.deltaTime;
+        targetPanOffset += new Vector3(xt * maxPanSpeed, 0, yt * maxPanSpeed) * Time.deltaTime;
 
     }
 
-    /*private void FixedUpdate()
+    public void FocusOnPoint(Vector3 point)
     {
-        if (!target)
-            return;
-
-        if (Vector3.Distance(transform.position, target.position) > maxDistance)
-            transform.position = (transform.position - target.position).normalized * maxDistance;
-        else
-            transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed);
-
-        transform.position = target.position + panOffset;
-    }*/
+        targetPanOffset = point - target.position;
+    }
 
     public void SetTarget(Transform t, int importance = 0)
     {

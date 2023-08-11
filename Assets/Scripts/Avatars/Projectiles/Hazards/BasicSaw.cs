@@ -8,6 +8,8 @@ public class BasicSaw : RicochetProjectile
     [SerializeField] protected Transform model;
 
     protected Vector3 spawnPos;
+    protected Vector3 origin;
+    protected float maxRange = -1;
 
     [SerializeField] protected float spinSpeed = 720;
     protected int spinDir;
@@ -37,6 +39,13 @@ public class BasicSaw : RicochetProjectile
     public virtual void SetSpawnLocation(Vector3 spawnLocation)
     {
         spawnPos = spawnLocation;
+    }
+
+    [Server]
+    public virtual void SetOriginLocation(Vector3 origin, float maxRange = -1)
+    {
+        this.origin = origin;
+        this.maxRange = maxRange;
     }
 
     [ServerCallback]

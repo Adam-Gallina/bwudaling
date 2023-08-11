@@ -2,6 +2,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UltEvents;
 
 public abstract class AbilityBase : MonoBehaviour
 {
@@ -11,13 +12,17 @@ public abstract class AbilityBase : MonoBehaviour
     [SerializeField] private string abilityTooltip;
     [SerializeField] private Sprite abilityIcon;
     protected float nextAbility = 0;
-    [SerializeField] private AbilityUpgrade abilityCooldown;
+    [SerializeField] protected AbilityUpgrade abilityCooldown;
     public bool canUseWhileDead = false;
 
     protected bool abilityQueued = false;
 
     //[Header("UI")]
     protected AbilityCooldown cooldownUI;
+
+    [Header("Callbacks")]
+    [SerializeField] protected UltEvent abilityStart;
+    [SerializeField] protected UltEvent abilityEnd;
 
     public void SetController(PlayerAvatar controller) { this.controller = controller; }
     public void LinkUI(AbilityCooldown abilityCooldown, TooltipController tooltip) 
@@ -40,6 +45,7 @@ public abstract class AbilityBase : MonoBehaviour
     {
         if (nextAbility < Time.time || BwudalingNetworkManager.Instance.DEBUG_IgnoreCooldown)
         {
+            abilityStart?.Invoke();
             controller.stats?.AddAbility();
 
             if (OnUseAbility(level))
@@ -49,6 +55,11 @@ public abstract class AbilityBase : MonoBehaviour
         }
     }
     protected abstract bool OnUseAbility(int level);
+
+    protected virtual void OnEndAbility()
+    {
+        abilityEnd?.Invoke();
+    }
 
     public virtual void CancelAbility()
     {
@@ -76,7 +87,7 @@ public abstract class AbilityBase : MonoBehaviour
     }
 
 
-    public void UpdateUI(int level)
+    public virtual void UpdateUI(int level)
     {
         cooldownUI.SetCooldown(nextAbility - Time.time, CalcNextAbility(level));
     }

@@ -36,8 +36,8 @@ public class ProjectileSpawnAbility : AbilityBase
     [Server]
     protected void FireProjectiles(Projectile prefab, Vector3 spawnPos, Vector3 spawnRot, int count, float spread, int level)
     {
-        float startAng = count > 1 ? -spread / 2 : 0;
-        float angStep = count > 1 ? spread / (count - 1) : 0;
+        float startAng = count / 2 * -spread;
+        float angStep = spread;
 
         for (int i = 0; i < count; i++)
         {
@@ -52,7 +52,7 @@ public class ProjectileSpawnAbility : AbilityBase
     protected virtual void OnSpawnProjectile(Projectile b, int level)
     {
         b.SetSource(controller);
-        b.SetSpeed(speed);//.CalcValue(level));
+        b.SetSpeed(speed);
         int bounces = (int)bounce.CalcValue(level);
         if (bounces > 0) 
             ((RicochetProjectile)b).SetMaxBounces(bounces);

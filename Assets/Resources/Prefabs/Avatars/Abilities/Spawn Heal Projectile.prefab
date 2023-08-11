@@ -52,8 +52,13 @@ MonoBehaviour:
     upgradeValue: 0
     upgradeEveryLevel: 1
     upgradeLevels: 
+  canUseWhileDead: 0
+  abilityStart:
+    _PersistentCalls: []
+  abilityEnd:
+    _PersistentCalls: []
   projectileSpawn: {fileID: 0}
-  bulletSpread: 45
+  bulletSpread: 10
   projectilePrefab: {fileID: 6582726752849921700, guid: e9d2fd841ad728b4584490b4c78e6a55, type: 3}
   count:
     startValue: 1
@@ -65,7 +70,7 @@ MonoBehaviour:
     startValue: 0
     upgradeValue: 1
     upgradeEveryLevel: 0
-    upgradeLevels: 050000000a000000
+    upgradeLevels: 0500000009000000
   onHitTarget:
     m_PersistentCalls:
       m_Calls: []

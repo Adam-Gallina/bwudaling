@@ -11,6 +11,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Smack Projectile Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: bulletSpread
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: count.upgradeValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: bounce.upgradeValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: count.upgradeEveryLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: count.upgradeLevels.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: count.upgradeLevels.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: count.upgradeLevels.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: count.upgradeLevels.Array.data[2]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: count.upgradeLevels.Array.data[3]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.data[2]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.data[3]
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4122771552749108120, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -139,5 +195,53 @@ PrefabInstance:
       propertyPath: bounce.upgradeLevels.Array.data[3]
       value: 9
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+--- !u!1 &6349276291140394655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 997347323351979308, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+  m_PrefabInstance: {fileID: 6181862559213112243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5780801143025503411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349276291140394655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e358aa6da972b89449b49a35a213e0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: Smack
+  abilityTooltip: Let loose Bwuda's mighty hand and show everlasting love
+  abilityIcon: {fileID: 21300000, guid: 50563cbff5e31c644be328e55554387f, type: 3}
+  abilityCooldown:
+    startValue: 40
+    upgradeValue: 1
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  canUseWhileDead: 0
+  abilityStart:
+    _PersistentCalls: []
+  abilityEnd:
+    _PersistentCalls: []
+  projectileSpawn: {fileID: 0}
+  bulletSpread: 10
+  projectilePrefab: {fileID: 428607066485991448, guid: 70a8f6970adc1724b9611282518ed8fa, type: 3}
+  count:
+    startValue: 1
+    upgradeValue: 2
+    upgradeEveryLevel: 0
+    upgradeLevels: 02000000040000000600000008000000
+  speed: 7.5
+  bounce:
+    startValue: 0
+    upgradeValue: 1
+    upgradeEveryLevel: 0
+    upgradeLevels: 01000000030000000500000007000000
+  onHitTarget:
+    m_PersistentCalls:
+      m_Calls: []

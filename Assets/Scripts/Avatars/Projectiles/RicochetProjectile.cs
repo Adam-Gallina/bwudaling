@@ -28,6 +28,7 @@ public class RicochetProjectile : Projectile
     {
         if (bounces > -1)
             this.bounces = bounces - (maxBounces - this.bounces);
+        
         maxBounces = bounces;
     }
 
@@ -40,7 +41,10 @@ public class RicochetProjectile : Projectile
             rb.velocity = currVelocity.normalized * speed;
 
             if (((1 << collision.collider.gameObject.layer) & costRicochetLayers.value) > 0)
+            {
+                --bounces;
                 OnHitWall(collision.GetContact(0).otherCollider);
+            }
         }
     }
 
@@ -58,13 +62,12 @@ public class RicochetProjectile : Projectile
             currVelocity = rb.velocity;
     }
 
+    [Server]
     protected override void OnHitWall(Collider other)
     {
-        if (maxBounces == -1)
+        if (maxBounces == -1 || bounces >= 0)
             return;
 
-        bounces -= 1;
-        if (bounces < 0)
-            base.OnHitWall(other);
+        base.OnHitWall(other);
     }
 }

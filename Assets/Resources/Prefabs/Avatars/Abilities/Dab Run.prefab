@@ -52,6 +52,11 @@ MonoBehaviour:
     upgradeValue: 0
     upgradeEveryLevel: 0
     upgradeLevels: 
+  canUseWhileDead: 0
+  abilityStart:
+    _PersistentCalls: []
+  abilityEnd:
+    _PersistentCalls: []
   speedMod:
     startValue: 1
     upgradeValue: 0.1
@@ -59,7 +64,7 @@ MonoBehaviour:
     upgradeLevels: 
   duration:
     startValue: 5
-    upgradeValue: 2.5
+    upgradeValue: 1
     upgradeEveryLevel: 1
     upgradeLevels: 
   invulnerable: 1

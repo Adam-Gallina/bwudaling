@@ -51,6 +51,7 @@ MonoBehaviour:
   moveSpeed: 2
   maxCursorPercent: 0.1
   maxPanSpeed: 10
+  panSmoothingSpeed: 0
   zoomSpeed: 1
 --- !u!1 &119257024952397108
 GameObject:

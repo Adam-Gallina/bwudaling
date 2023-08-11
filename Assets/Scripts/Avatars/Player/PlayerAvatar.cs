@@ -18,7 +18,6 @@ public class PlayerAvatar : AvatarBase
     protected Color bodyCol;
 
     [Header("Movement")]
-    [SerializeField] private float distToTarget = 0.1f;
     private bool useMouse = false;
     protected Vector3 targetPos;
     [HideInInspector] public float boost;
@@ -164,6 +163,7 @@ public class PlayerAvatar : AvatarBase
             boost += player.abilities.BoostRechargeVal * Time.deltaTime;
         if (boost > player.abilities.BoostMaxVal)
             boost = player.abilities.BoostMaxVal;
+        anim.SetBool("Running", inp.boost);
 
         targetPos = GetMovement();
         Vector3 dir = targetPos - transform.position;

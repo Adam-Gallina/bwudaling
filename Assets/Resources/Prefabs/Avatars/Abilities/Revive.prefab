@@ -53,6 +53,10 @@ MonoBehaviour:
     upgradeEveryLevel: 1
     upgradeLevels: 
   canUseWhileDead: 1
+  abilityStart:
+    _PersistentCalls: []
+  abilityEnd:
+    _PersistentCalls: []
   reticle: {fileID: 0}
   range:
     startValue: 0
@@ -64,10 +68,11 @@ MonoBehaviour:
     upgradeValue: 200
     upgradeEveryLevel: 1
     upgradeLevels: 
+  forceMaxRange: 0
   shield:
-    startValue: 1
+    startValue: 0
     upgradeValue: 0
-    upgradeEveryLevel: 1
-    upgradeLevels: 
+    upgradeEveryLevel: 0
+    upgradeLevels: 05000000
   canTargetLiving: 0
   canTargetDead: 1

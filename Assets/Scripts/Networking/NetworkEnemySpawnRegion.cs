@@ -15,6 +15,11 @@ public class NetworkEnemySpawnRegion : NetworkEnemySpawnPos
         Gizmos.DrawWireCube(transform.position, new Vector3(spawnBounds.x, 0, spawnBounds.y) * 2);
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, new Vector3(spawnBounds.x - spawnSize, 0, spawnBounds.y - spawnSize) * 2);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(
+            useSpawnerOrigin ? transform.position : GetComponentInParent<MapController>().mapCenter,
+            useSpawnerRange ? hazardRange : GetComponentInParent<MapController>().hazardRange);
     }
 
     [Server]
