@@ -19,6 +19,7 @@ public class BwudalingNetworkManager : NetworkManager
     [SerializeField] private int minPlayers = 2;
 
     [Header("Debug")]
+    public bool DEBUG_AllowMapSkip;
     public bool DEBUG_AllowKeyCheats;
     public bool DEBUG_IgnoreCooldown;
     public bool DEBUG_TpWalls;
@@ -155,6 +156,23 @@ public class BwudalingNetworkManager : NetworkManager
         }
 
         return true;
+    }
+
+    private void Update()
+    {
+        if (DEBUG_AllowMapSkip && Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.S))
+        {
+            foreach (NetworkPlayer p in Players)
+            {
+                if (p.hasAuthority)
+                {
+                    if (p.IsLeader)
+                        NextMap();
+
+                    break;
+                }
+            }
+        }
     }
 
     public void ReturnToLobby()
