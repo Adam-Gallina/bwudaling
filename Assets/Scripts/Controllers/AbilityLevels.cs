@@ -123,16 +123,6 @@ public class Abilities
     public float BoostRechargeVal { get { return AbilityLevels.CalcBoostRecharge(boostRechargeLevel); } }
     public int boostRechargeLevel;
 
-    public string special1Name;
-    public string special1Tooltip;
-    public Sprite special1Image;
-    public string special2Name;
-    public string special2Tooltip;
-    public Sprite special2Image;
-    public string special3Name;
-    public string special3Tooltip;
-    public Sprite special3Image;
-
     public int special1Level;
     public int special2Level;
     public int special3Level;
@@ -241,6 +231,8 @@ public class AbilityUpgrade
     {
         if (upgradeEveryLevel)
             return level;
+        else if (upgradeLevels == null || upgradeLevels.Length == 0)
+            return 0;
 
         if (level < upgradeLevels[0])
             return 0;

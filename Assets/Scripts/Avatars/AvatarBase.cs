@@ -13,7 +13,10 @@ public class AvatarBase : NetworkBehaviour
     [SerializeField] protected float shieldDur;
     [SerializeField] protected GameObject shieldModel;
     protected float nextHit;
-    public bool canDamage { get; protected set; }  = true;
+    public bool canDamage { get; protected set; } = true;
+    [SyncVar]
+    protected bool invulnerable = false;
+
 
     protected Rigidbody rb;
 
@@ -34,6 +37,9 @@ public class AvatarBase : NetworkBehaviour
     {
         shieldModel.SetActive(shield > 0);
     }
+
+    [Command]
+    public void SetInvulnerable(bool invulnerable) { this.invulnerable = invulnerable; }
 
     [Server]
     public virtual void SetShield(int shieldCount)
@@ -60,7 +66,7 @@ public class AvatarBase : NetworkBehaviour
         if (dead)
             return;
 
-        if (!canDamage)
+        if (!canDamage || invulnerable)
             return;
 
         if (Time.time <= nextHit)

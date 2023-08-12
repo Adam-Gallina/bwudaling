@@ -4,11 +4,11 @@ using UnityEngine;
 using Mirror;
 using System;
 
-public abstract class PlayerAvatar : AvatarBase
+public class PlayerAvatar : AvatarBase
 {
     [SyncVar]
     protected NetworkPlayer player;
-    protected PlayerStats stats;
+    [HideInInspector] public PlayerStats stats;
 
     public Transform NametagTarget;
     public string AvatarName;
@@ -18,7 +18,6 @@ public abstract class PlayerAvatar : AvatarBase
     protected Color bodyCol;
 
     [Header("Movement")]
-    [SerializeField] private float distToTarget = 0.1f;
     private bool useMouse = false;
     protected Vector3 targetPos;
     [HideInInspector] public float boost;
@@ -29,28 +28,18 @@ public abstract class PlayerAvatar : AvatarBase
     [HideInInspector] public ItemBase heldItem;
 
     [Header("Specials")]
-    [SerializeField] private string special1Name;
-    [SerializeField] private string special1Tooltip;
-    [SerializeField] protected float special1Cooldown;
-    [SerializeField] private Sprite special1Icon;
-    protected float nextSpecial1 = 0;
-    [SerializeField] private string special2Name;
-    [SerializeField] private string special2Tooltip;
-    [SerializeField] protected float special2Cooldown;
-    [SerializeField] private Sprite special2Icon;
-    protected float nextSpecial2 = 0;
-    [SerializeField] private string special3Name;
-    [SerializeField] private string special3Tooltip;
-    [SerializeField] protected float special3Cooldown;
-    [SerializeField] private Sprite special3Icon;
-    protected float nextSpecial3 = 0;
-    protected bool showingIndicator = false;
-    protected Vector3 currReticlePos;
+    [SerializeField] protected AbilityBase ability1;
+    [SerializeField] protected AbilityBase ability2;
+    [SerializeField] protected AbilityBase ability3;
+    [SerializeField] protected Transform projectileSpawn;
+
 
     //[Header("Debuffs")]
     protected Transform dragTarget;
     protected float dragEnd;
     protected float dragSpeed;
+    protected float currSpeedMod;
+    protected float speedDebuffEnd;
 
     [Header("Map Icons")]
     [SerializeField] private GameObject aliveIcon;
@@ -62,7 +51,6 @@ public abstract class PlayerAvatar : AvatarBase
 
     protected InputController inp;
     protected Animator anim;
-    protected TargetReticle reticle;
 
     #region Getters/Setters
     public void SetNetworkPlayer(NetworkPlayer player)
@@ -75,16 +63,6 @@ public abstract class PlayerAvatar : AvatarBase
         stats = player.GetComponent<PlayerStats>();
 
         CmdSetBodyColor(player.avatarColor);
-
-        player.abilities.special1Name = special1Name;
-        player.abilities.special1Image = special1Icon;
-        player.abilities.special1Tooltip = special1Tooltip;
-        player.abilities.special2Name = special2Name;
-        player.abilities.special2Image = special2Icon;
-        player.abilities.special2Tooltip = special2Tooltip;
-        player.abilities.special3Name = special3Name;
-        player.abilities.special3Image = special3Icon;
-        player.abilities.special3Tooltip = special3Tooltip;
 
         boost = player.abilities.BoostMaxVal;
 
@@ -106,7 +84,10 @@ public abstract class PlayerAvatar : AvatarBase
         base.Awake();
 
         anim = GetComponentInChildren<Animator>();
-        reticle = GetComponentInChildren<TargetReticle>();
+
+        ability1?.SetController(this);
+        ability2?.SetController(this);
+        ability3?.SetController(this);
     }
 
     public override void OnStartAuthority()
@@ -114,6 +95,13 @@ public abstract class PlayerAvatar : AvatarBase
         inp = gameObject.AddComponent<InputController>();
 
         CameraController.Instance.SetTarget(transform);
+
+        ability1?.LinkUI(((LevelUI)GameUI.Instance).special1Cooldown, ((LevelUI)GameUI.Instance).special1Text.transform.parent.GetComponent<TooltipController>());
+        ((LevelUI)GameUI.Instance).special1Name = ability1.abilityName;
+        ability2?.LinkUI(((LevelUI)GameUI.Instance).special2Cooldown, ((LevelUI)GameUI.Instance).special2Text.transform.parent.GetComponent<TooltipController>());
+        ((LevelUI)GameUI.Instance).special2Name = ability2.abilityName;
+        ability3?.LinkUI(((LevelUI)GameUI.Instance).special3Cooldown, ((LevelUI)GameUI.Instance).special3Text.transform.parent.GetComponent<TooltipController>());
+        ((LevelUI)GameUI.Instance).special3Name = ability3.abilityName;
     }
 
     [ServerCallback]
@@ -136,7 +124,7 @@ public abstract class PlayerAvatar : AvatarBase
     }
 
     [ClientRpc]
-    protected void RpcStatsHealPlayer() { if (hasAuthority) stats?.AddRescue(); }
+    public void RpcStatsHealPlayer() { if (hasAuthority) stats?.AddRescue(); }
 
     [ClientRpc]
     public void RpcStatsHaiwCollected() { if (hasAuthority) stats?.AddHaiw(); }
@@ -151,41 +139,39 @@ public abstract class PlayerAvatar : AvatarBase
     protected virtual void Update()
     {
         aliveIcon.SetActive(!dead);
+        aliveIcon.transform.eulerAngles = Vector3.right * 90;
         deadIcon.SetActive(dead);
+        deadIcon.transform.eulerAngles = Vector3.right * 90;
 
         if (!hasAuthority)
             return;
 
-        if (dead && Input.GetKeyDown(KeyCode.Backspace) && BwudalingNetworkManager.Instance.DEBUG_AllowKeyCheats)
-        {
-            CmdHealTarget(this, 1);
-        }
+        CheckInput();
+
+        ability1?.UpdateUI(player.abilities.special1Level);
+        ability2?.UpdateUI(player.abilities.special2Level);
+        ability3?.UpdateUI(player.abilities.special3Level);
 
         if (dead)
         {
             if (Time.time < dragEnd)
-            {
                 transform.Translate(dragSpeed * Time.deltaTime * (dragTarget.position - transform.position).normalized, Space.World);
-            }
-
             return;
         }
-
-        CheckInput();
-
-        ((LevelUI)GameUI.Instance).special1Cooldown.SetCooldown(nextSpecial1 - Time.time, special1Cooldown);
-        ((LevelUI)GameUI.Instance).special2Cooldown.SetCooldown(nextSpecial2 - Time.time, special2Cooldown);
-        ((LevelUI)GameUI.Instance).special3Cooldown.SetCooldown(nextSpecial3 - Time.time, special3Cooldown);
 
         if (!inp.boost)
             boost += player.abilities.BoostRechargeVal * Time.deltaTime;
         if (boost > player.abilities.BoostMaxVal)
             boost = player.abilities.BoostMaxVal;
+        anim.SetBool("Running", inp.boost);
 
         targetPos = GetMovement();
-
-        //transform.position = Vector3.MoveTowards(transform.position, targetPos, CalcSpeed() * Time.deltaTime);
-        //bool walking = Vector3.Distance(transform.position, targetPos) > distToTarget;
+        Vector3 dir = targetPos - transform.position;
+        if (dir != Vector3.zero)
+        {
+            dir.y = 0;
+            projectileSpawn.forward = dir;
+        }
 
         rb.velocity = (targetPos - transform.position).normalized * CalcSpeed();
         if (Vector3.Distance(transform.position, targetPos) < rb.velocity.magnitude * Time.deltaTime)
@@ -200,6 +186,7 @@ public abstract class PlayerAvatar : AvatarBase
             Vector3 newVec = targetPos - transform.position;
             newVec.y = 0;
             transform.forward = Vector3.RotateTowards(transform.forward, newVec.normalized, (turnSpeed + player.abilities.speedLevel * turnSpeedMod) * Mathf.Deg2Rad * Time.deltaTime, 0);
+            anim.SetBool("Dancing", false);
         }
         anim?.SetBool("Walking", walking);
     }
@@ -207,27 +194,46 @@ public abstract class PlayerAvatar : AvatarBase
     #region Controls
     protected virtual void CheckInput()
     {
-        if (inp.special1.down && player.abilities.special1Level != -1)
-            DoSpecial1(player.abilities.special1Level);
-
-        if (inp.special2.down && player.abilities.special2Level != -1)
-            DoSpecial2(player.abilities.special2Level);
-
-        if (inp.special3.down && player.abilities.special3Level != -1)
-            DoSpecial3(player.abilities.special3Level);
-
         if (BwudalingNetworkManager.Instance.DEBUG_AllowKeyCheats)
         {
-            if (Input.GetKeyDown(KeyCode.Equals)) {
+            if (Input.GetKeyDown(KeyCode.Equals))
+            {
                 player.abilities.talentPoints += AbilityLevels.TalentPointsPerLevel;
                 GameUI.Instance.UpdateDisplay();
             }
-            if (Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (dead && Input.GetKeyDown(KeyCode.Backspace))
             {
-                Debug.Log($"{player.abilities.special1Level} {player.abilities.special2Level} {player.abilities.special3Level}");
+                CmdHealTarget(this, 1);
             }
         }
 
+        if (!dead && inp.dance1.down)
+        {
+            anim.SetBool("Dancing", true);
+            anim.SetInteger("Dance", 1);
+        }
+
+        if (inp.special1.down && (!dead || ability1.canUseWhileDead))
+        {
+            ability1.QueueAbility(player.abilities.special1Level);
+            ability2.CancelAbility();
+            ability3.CancelAbility();
+            anim.SetBool("Dancing", false);
+        }
+        if (inp.special2.down && (!dead || ability2.canUseWhileDead))
+        {
+            ability1.CancelAbility();
+            ability2.QueueAbility(player.abilities.special2Level);
+            ability3.CancelAbility();
+            anim.SetBool("Dancing", false);
+        }
+        if (inp.special3.down && (!dead || ability3.canUseWhileDead))
+        {
+            ability1.CancelAbility();
+            ability2.CancelAbility();
+            ability3.QueueAbility(player.abilities.special3Level);
+            anim.SetBool("Dancing", false);
+        }
     }
 
     protected bool CheckSpecial(float timer)
@@ -235,16 +241,12 @@ public abstract class PlayerAvatar : AvatarBase
         return Time.time >= timer;
     }
 
-    protected abstract void DoSpecial1(int level);
-    protected abstract void DoSpecial2(int level);
-    protected abstract void DoSpecial3(int level);
-
     private Vector3 GetMovement()
     {
         if (inp.left || inp.right || inp.up || inp.down)
             useMouse = false;
 
-        if ((inp.altfire.down || inp.altfire.held) && !showingIndicator)
+        if ((inp.altfire.down || inp.altfire.held))
         {
             useMouse = true;
             Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100, 1 << Constants.GroundLayer);
@@ -270,12 +272,22 @@ public abstract class PlayerAvatar : AvatarBase
 
     protected virtual float CalcSpeed()
     {
+        if (currSpeedMod != 1 && Time.time > speedDebuffEnd)
+            currSpeedMod = 1;
+
         if (inp.boost && boost > 0)
             boost -= Time.deltaTime;
 
         anim.SetFloat("WalkSpeed", startWalkAnimSpeed + player.abilities.speedLevel * stepWalkAnimSpeed);
 
-        return player.abilities.SpeedVal * (inp.boost && boost > 0 ? player.abilities.BoostSpeedVal : 1);
+        return player.abilities.SpeedVal * (inp.boost && boost > 0 ? player.abilities.BoostSpeedVal : 1) * currSpeedMod;
+    }
+
+    public void SetPosition(Vector3 pos, bool updateTargetPos = false)
+    {
+        transform.position = pos;
+        if (updateTargetPos)
+            targetPos = transform.position;
     }
     #endregion
 
@@ -301,12 +313,12 @@ public abstract class PlayerAvatar : AvatarBase
 
     #region Network Commands
     [Command]
-    protected void CmdHealTarget(PlayerAvatar target)
+    public void CmdHealTarget(PlayerAvatar target)
     {
         target.Heal();
     }
     [Command]
-    protected void CmdHealTarget(PlayerAvatar target, int shield)
+    public void CmdHealTarget(PlayerAvatar target, int shield)
     {
         target.SetShield(shield);
         target.Heal();
@@ -336,51 +348,70 @@ public abstract class PlayerAvatar : AvatarBase
         dragEnd = Time.time + duration;
         dragSpeed = speed;
     }
+
+    [Command]
+    public void CmdApplySpeedMod(float newSpeedMod, float duration)
+    {
+        RpcApplySpeedMod(newSpeedMod, duration);
+    }
+    [ClientRpc]
+    private void RpcApplySpeedMod(float newSpeedMod, float duration)
+    {
+        if (!hasAuthority) return;
+
+        speedDebuffEnd = Time.time + duration;
+
+        if (newSpeedMod > currSpeedMod)
+            currSpeedMod = newSpeedMod;
+    }
     #endregion
 
-    #region Helper Functions
-    protected bool CheckShowIndicator()
+    #region Abilities
+    public void UseAbility(AbilityBase ability, Vector3 target, int level)
     {
-        if (inp.altfire.up)
-            return false;
-
-        return true;
+        if (ability == ability1)
+            CmdUseAbility(0, target, level);
+        else if (ability == ability2)
+            CmdUseAbility(1, target, level);
+        else if (ability == ability3)
+            CmdUseAbility(2, target, level);
+        else
+            Debug.LogError("Can't use ability " + ability.name, this);
     }
-    protected void ShowIndicator(bool show, float size, float range, Action useCallback)
+
+    [Command]
+    private void CmdUseAbility(int ability, Vector3 target, int level)
     {
-        showingIndicator = show;
-        reticle.SetReticle(show);
-        if (!show)
-            return;
-
-        Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100, 1 << Constants.GroundLayer);
-        Vector3 toTarget = new Vector3(hit.point.x, 0, hit.point.z) - transform.position;
-        if (range > 0 && toTarget.magnitude > range)
-            toTarget = toTarget.normalized * range;
-
-        currReticlePos = transform.position + toTarget;
-        reticle.SetReticleCenter(currReticlePos);
-        reticle.DrawCircle(size);
-
-        if (inp.fire)
+        switch (ability)
         {
-            useCallback?.Invoke();
-            reticle.SetReticle(false);
+            case 0:
+                ability1.OnUseServerAbility(target, level);
+                break;
+            case 1:
+                ability2.OnUseServerAbility(target, level);
+                break;
+            case 2:
+                ability3.OnUseServerAbility(target, level);
+                break;
         }
+
+        RpcUseAbility(ability, target, level);
     }
 
-    [Server]
-    protected void FireProjectiles(Projectile prefab, Vector3 spawnPos, Vector3 spawnRot, int count, float spread, int level, Action<Projectile, int> spawnCallback)
+    [ClientRpc]
+    private void RpcUseAbility(int ability, Vector3 target, int level)
     {
-        float startAng = count > 1 ? -spread / 2 : 0;
-        float angStep = count > 1 ? spread / (count - 1) : 0;
-
-        for (int i = 0; i < count; i++)
+        switch (ability)
         {
-            Projectile b = Instantiate(prefab, spawnPos, Quaternion.Euler(new Vector3(0, spawnRot.y + startAng + angStep * i, 0)));
-            NetworkServer.Spawn(b.gameObject);
-
-            spawnCallback?.Invoke(b, level);
+            case 0:
+                ability1.OnUseClientAbility(target, level);
+                break;
+            case 1:
+                ability2.OnUseClientAbility(target, level);
+                break;
+            case 2:
+                ability3.OnUseClientAbility(target, level);
+                break;
         }
     }
     #endregion

@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7867659347483465586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 589083658457533908}
+  - component: {fileID: 5524931469494904103}
+  m_Layer: 7
+  m_Name: Teleport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &589083658457533908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7867659347483465586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8626916986156478310}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5524931469494904103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7867659347483465586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e400ea6c004cda4ebdaed4480d0851b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: Teleport
+  abilityTooltip: Do you really need a tooltip for this one... (you teleport a short
+    distance)
+  abilityIcon: {fileID: 21300000, guid: 0f5463aa3cb4cdf429fa54477ba605c8, type: 3}
+  abilityCooldown:
+    startValue: 10
+    upgradeValue: -0.6
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  reticle: {fileID: 4053324672533835306}
+  range:
+    startValue: 3
+    upgradeValue: 1
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  radius:
+    startValue: 0.5
+    upgradeValue: 0
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+--- !u!1001 &4043520721893066775
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 589083658457533908}
+    m_Modifications:
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6569581041063637275, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+      propertyPath: m_Name
+      value: Ability Indicator
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+--- !u!114 &4053324672533835306 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 26236530354464317, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+  m_PrefabInstance: {fileID: 4043520721893066775}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ff53996cae6d14aaaf507144395702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8626916986156478310 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+  m_PrefabInstance: {fileID: 4043520721893066775}
+  m_PrefabAsset: {fileID: 0}

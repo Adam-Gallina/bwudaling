@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using System;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : NetworkBehaviour
@@ -13,7 +14,7 @@ public class Projectile : NetworkBehaviour
 
     //[SerializeField] protected GameObject hitEffect;
 
-    [HideInInspector] public event Action HitTarget;
+    [HideInInspector] public UnityEvent HitTarget;
 
     protected float speed = 250;
 
@@ -53,6 +54,8 @@ public class Projectile : NetworkBehaviour
         }
     }
 
+    [Server]
+    public void SetSource(AvatarBase spawner) { SetSource(spawner, targetLayer); }
     [Server]
     public void SetSource(AvatarBase spawner, LayerMask targetLayer)
     {

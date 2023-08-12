@@ -1,25 +1,94 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UltEvents;
 
-public class AbilityBase : MonoBehaviour
+public abstract class AbilityBase : MonoBehaviour
 {
-    protected AvatarBase controller;
+    protected PlayerAvatar controller;
 
-    [SerializeField] protected string aname;
+    public string abilityName;
+    [SerializeField] private string abilityTooltip;
+    [SerializeField] private Sprite abilityIcon;
+    protected float nextAbility = 0;
+    [SerializeField] protected AbilityUpgrade abilityCooldown;
+    public bool canUseWhileDead = false;
 
-    private int val;
+    protected bool abilityQueued = false;
 
-    public void SetController(AvatarBase controller)
-    {
-        this.controller = controller;
-        Debug.Log(controller.name+ ": " + aname);
+    //[Header("UI")]
+    protected AbilityCooldown cooldownUI;
+
+    [Header("Callbacks")]
+    [SerializeField] protected UltEvent abilityStart;
+    [SerializeField] protected UltEvent abilityEnd;
+
+    public void SetController(PlayerAvatar controller) { this.controller = controller; }
+    public void LinkUI(AbilityCooldown abilityCooldown, TooltipController tooltip) 
+    { 
+        cooldownUI = abilityCooldown;
+        cooldownUI.abilityImage.sprite = abilityIcon;
+        tooltip.tooltip = abilityTooltip;
     }
 
-    public  void SetVal(int val)
+    public virtual void QueueAbility(int level)
     {
-        this.val = val;
+        if (level == -1)
+            return;
+
+        abilityQueued = true;
+        UseAbility(level);
     }
 
-    public void PrintVal() { Debug.Log(val); }
+    protected void UseAbility(int level)
+    {
+        if (nextAbility < Time.time || BwudalingNetworkManager.Instance.DEBUG_IgnoreCooldown)
+        {
+            abilityStart?.Invoke();
+            controller.stats?.AddAbility();
+
+            if (OnUseAbility(level))
+                nextAbility = Time.time + CalcNextAbility(level);
+
+            abilityQueued = false;
+        }
+    }
+    protected abstract bool OnUseAbility(int level);
+
+    protected virtual void OnEndAbility()
+    {
+        abilityEnd?.Invoke();
+    }
+
+    public virtual void CancelAbility()
+    {
+        abilityQueued = false;
+    }
+
+
+    protected virtual float CalcNextAbility(int level)
+    {
+        return abilityCooldown.CalcValue(level);
+    }
+
+
+    protected void DoServerAbility(Vector3 target, int level) { controller.UseAbility(this, target, level); }
+    [Server]
+    public virtual void OnUseServerAbility(Vector3 target, int level)
+    {
+
+    }
+
+    [Client]
+    public virtual void OnUseClientAbility(Vector3 target, int level)
+    {
+
+    }
+
+
+    public virtual void UpdateUI(int level)
+    {
+        cooldownUI.SetCooldown(nextAbility - Time.time, CalcNextAbility(level));
+    }
 }

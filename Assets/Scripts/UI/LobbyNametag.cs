@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class LobbyNametag : NametagUI
 {
-    [SerializeField] private Image playerColorImg;
     [SerializeField] private TMPro.TMP_Text playerReadyText;
     [SerializeField] private TMPro.TMP_Text playerLevelText;
     [SerializeField] private TMPro.TMP_Text playerCharText;

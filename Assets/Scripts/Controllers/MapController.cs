@@ -34,11 +34,6 @@ public class MapController : MonoBehaviour
                 Gizmos.DrawLine(t.position, t.position + t.forward * 2);
             }
         }
-
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(mapCenter, 5);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(mapCenter, hazardRange);
     }
 
     private void Awake()
@@ -48,18 +43,6 @@ public class MapController : MonoBehaviour
 
         Instance = this;
     }
-    /*
-    private void Start()
-    {
-        Physics.IgnoreLayerCollision(Constants.HazardBoundaryLayer, Constants.PlayerLayer);
-        Physics.IgnoreLayerCollision(Constants.HazardLayer, Constants.PlayerLayer);
-        Physics.IgnoreLayerCollision(Constants.HazardLayer, Constants.GroundLayer);
-        Physics.IgnoreLayerCollision(Constants.PlayerLayer, Constants.PlayerProjectileLayer);
-        Physics.IgnoreLayerCollision(Constants.PlayerProjectileLayer, Constants.HazardBoundaryLayer);
-        Physics.IgnoreLayerCollision(Constants.PlayerProjectileLayer, Constants.PlayerProjectileLayer);
-        Physics.IgnoreLayerCollision(Constants.PlayerProjectileLayer, Constants.HazardLayer);
-        Physics.IgnoreLayerCollision(Constants.PlayerProjectileLayer, Constants.GroundLayer);
-    }*/
 
     private void OnDestroy()
     {

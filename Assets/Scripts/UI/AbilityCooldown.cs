@@ -9,6 +9,7 @@ public class AbilityCooldown : MonoBehaviour
 
     [SerializeField] private Image cooldownImg;
     [SerializeField] private TMPro.TMP_Text keyHintText;
+    [SerializeField] private TMPro.TMP_Text keyHintTextBkgd;
     public Image abilityImage;
 
     public void UpdateKeySet(bool mainKeys = true)
@@ -30,6 +31,7 @@ public class AbilityCooldown : MonoBehaviour
     private void SetKeyHintText(string text)
     {
         keyHintText.text = text;
+        keyHintTextBkgd.text = text;
     }
 
     public void SetCooldown(float remaining, float duration)

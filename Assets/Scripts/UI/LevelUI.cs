@@ -18,9 +18,12 @@ public class LevelUI : GameUI
     [SerializeField] private TMPro.TMP_Text boostSpeedText;
     [SerializeField] private TMPro.TMP_Text boostMaxText;
     [SerializeField] private TMPro.TMP_Text boostRechargeText;
-    [SerializeField] private TMPro.TMP_Text special1Text;
-    [SerializeField] private TMPro.TMP_Text special2Text;
-    [SerializeField] private TMPro.TMP_Text special3Text;
+    public TMPro.TMP_Text special1Text;
+    [HideInInspector] public string special1Name;
+    public TMPro.TMP_Text special2Text;
+    [HideInInspector] public string special2Name;
+    public TMPro.TMP_Text special3Text;
+    [HideInInspector] public string special3Name;
     [SerializeField] private RectTransform tooltipObj;
     [SerializeField] private TMPro.TMP_Text tooltipText;
 
@@ -130,23 +133,21 @@ public class LevelUI : GameUI
         boostRechargeText.text = "Recharge\nlvl " + activePlayer.abilities.boostRechargeLevel;
 
         string SpecialText(string name, int level) {
-            return level == -1 ? "Unlock " + name : name + ": lvl " + (level + 1);
+            if (level == -1)
+                return $"Unlock {name}";
+            else if (level == AbilityLevels.SpecialAbilityMax)
+                return $"{name}: max";
+            return $"{name}: lvl {level + 1}";
         }
 
         special1Cooldown.gameObject.SetActive(activePlayer.abilities.special1Level > -1);
-        special1Text.text = SpecialText(activePlayer.abilities.special1Name, activePlayer.abilities.special1Level);
-        special1Cooldown.abilityImage.sprite = activePlayer.abilities.special1Image;
-        special1Text.transform.parent.GetComponent<TooltipController>().tooltip = activePlayer.abilities.special1Tooltip;
+        special1Text.text = SpecialText(special1Name, activePlayer.abilities.special1Level);
 
         special2Cooldown.gameObject.SetActive(activePlayer.abilities.special2Level > -1);
-        special2Text.text = SpecialText(activePlayer.abilities.special2Name, activePlayer.abilities.special2Level);
-        special2Cooldown.abilityImage.sprite = activePlayer.abilities.special2Image;
-        special2Text.transform.parent.GetComponent<TooltipController>().tooltip = activePlayer.abilities.special2Tooltip;
+        special2Text.text = SpecialText(special2Name, activePlayer.abilities.special2Level);
 
         special3Cooldown.gameObject.SetActive(activePlayer.abilities.special3Level > -1);
-        special3Text.text = SpecialText(activePlayer.abilities.special3Name, activePlayer.abilities.special3Level);
-        special3Cooldown.abilityImage.sprite = activePlayer.abilities.special3Image;
-        special3Text.transform.parent.GetComponent<TooltipController>().tooltip = activePlayer.abilities.special3Tooltip;
+        special3Text.text = SpecialText(special3Name, activePlayer.abilities.special3Level);
     }
 
     public void ShowTooltip(Vector3 pos, string text)

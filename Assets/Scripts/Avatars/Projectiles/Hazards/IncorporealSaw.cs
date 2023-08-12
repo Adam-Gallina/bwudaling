@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class IncorporealSaw : BasicSaw
 {
+    [SerializeField] private bool destroyWhenOOB = true;
+
     protected override void Update()
     {
-        if (Vector3.Distance(transform.position, MapController.Instance.mapCenter) > MapController.Instance.hazardRange)
+        if (maxRange > -1 && destroyWhenOOB && Vector3.Distance(transform.position, origin) > maxRange)
         {
             DestroyObject();
             return;

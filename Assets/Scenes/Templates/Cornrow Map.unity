@@ -398,6 +398,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
   spawnCount: 13
@@ -2084,6 +2087,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 74}
   spawnCount: 16
@@ -2826,6 +2832,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
   spawnCount: 12
@@ -2947,6 +2956,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 74}
   spawnCount: 10
@@ -3692,6 +3704,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
   spawnCount: 17
@@ -4253,6 +4268,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65165d04c998e3142a1372f8bb4f8923, type: 3}
+--- !u!1 &1576490576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 119257024754371906, guid: 65165d04c998e3142a1372f8bb4f8923, type: 3}
+  m_PrefabInstance: {fileID: 1576490575}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1576490577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576490576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c636a67abc3b34ea39e45af758ad7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 75
 --- !u!1 &1625243420
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,6 +4333,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 39}
   spawnCount: 6
@@ -4421,6 +4457,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
   spawnCount: 15
@@ -4472,6 +4511,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
   spawnCount: 14
@@ -4523,6 +4565,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
   spawnCount: 14
@@ -4574,6 +4619,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
   spawnCount: 11
@@ -5155,6 +5203,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 35}
   spawnCount: 6
@@ -5330,6 +5381,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardRange: 0
+  useSpawnerOrigin: 0
+  useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
   spawnCount: 16

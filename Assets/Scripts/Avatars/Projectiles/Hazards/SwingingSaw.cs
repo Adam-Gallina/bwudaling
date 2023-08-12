@@ -5,8 +5,7 @@ using UnityEngine.PlayerLoop;
 
 public class SwingingSaw : IncorporealSaw
 {
-    [SerializeField] protected float minRange;
-    [SerializeField] protected float maxRange;
+    [SerializeField] protected RangeF travelRange;
     protected Vector3 endPos;
 
     [Header("Smoothing")]
@@ -15,10 +14,9 @@ public class SwingingSaw : IncorporealSaw
     protected bool smoothing = false;
     protected float prevSpeed;
 
-    protected override void Awake()
+    public override void SetSpawnLocation(Vector3 spawnLocation)
     {
-        base.Awake();
-
+        base.SetSpawnLocation(spawnLocation);
         endPos = GetNewEndPos();
     }
 
@@ -65,12 +63,18 @@ public class SwingingSaw : IncorporealSaw
 
     private Vector3 GetNewEndPos()
     {
-        Vector2 dir = Random.insideUnitCircle.normalized;
-        Vector3 pos = transform.position + new Vector3(dir.x, 0, dir.y) * Random.Range(minRange, maxRange);
+        Vector2 dir = Random.insideUnitCircle.normalized * travelRange.RandomVal;
 
-        if (Vector3.Distance(MapController.Instance.mapCenter, pos) < MapController.Instance.hazardRange)
-            return pos;
+        int i = 0;
+        while (i++ < 4)
+        {
+            Vector3 pos = transform.position + new Vector3(dir.x, 0, dir.y);
+            if (maxRange > -1 && Vector3.Distance(origin, pos) < maxRange)
+                return pos;
 
-        return (MapController.Instance.mapCenter - transform.position).normalized * Random.Range(minRange, maxRange);
+            dir = MyMath.Rotate(dir, 90);
+        }
+
+        return transform.position + (origin - transform.position).normalized * travelRange.RandomVal;
     }
 }
