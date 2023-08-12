@@ -32,6 +32,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
+      propertyPath: canUseWhileDead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
       propertyPath: range.startValue
       value: 2
       objectReference: {fileID: 0}

@@ -110,7 +110,6 @@ MonoBehaviour:
   NametagTarget: {fileID: 3908349563113358204}
   AvatarName: Bwuda Wuva
   body: {fileID: 411924581593541832}
-  distToTarget: 0.1
   boost: 0
   turnSpeed: 360
   turnSpeedMod: 20
@@ -338,6 +337,18 @@ PrefabInstance:
     - target: {fileID: 2596311486187190042, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+      propertyPath: abilityIcon
+      value: 
+      objectReference: {fileID: -1282668979, guid: 7a5ace1a759b17d41906965ce64bb422, type: 3}
+    - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+      propertyPath: abilityName
+      value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+      propertyPath: abilityTooltip
+      value: Bwuda's might hands protect you and allies from harm
       objectReference: {fileID: 0}
     - target: {fileID: 4871229877759646936, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
       propertyPath: m_Name

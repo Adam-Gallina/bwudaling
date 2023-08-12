@@ -914,19 +914,19 @@ PrefabInstance:
       objectReference: {fileID: 2756794062809711225}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._MethodName
-      value: SetTrigger
+      value: SetBool
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._MethodName
-      value: SetTrigger
+      value: SetBool
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[1]._Int
@@ -946,7 +946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._String
-      value: EndBury
+      value: Buried
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._Type
@@ -958,7 +958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._String
-      value: DoBury
+      value: Buried
       objectReference: {fileID: 0}
     - target: {fileID: 6124466045957285382, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: m_RootOrder

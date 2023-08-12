@@ -52,6 +52,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4038616510507343695, guid: 9a87bcb52efa48c40ba479323f0ea3db, type: 3}
+      propertyPath: abilityIcon
+      value: 
+      objectReference: {fileID: -819102327, guid: c2a346c202f81b244a1864a59f90bfb4, type: 3}
+    - target: {fileID: 4038616510507343695, guid: 9a87bcb52efa48c40ba479323f0ea3db, type: 3}
       propertyPath: canTargetDead
       value: 0
       objectReference: {fileID: 0}
