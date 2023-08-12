@@ -8,11 +8,17 @@ public class Minimap : MonoBehaviour
 
     private RectTransform rt;
     private RectTransform prt;
+    private RectTransform crt;
 
     private void Awake()
     {
         rt = GetComponent<RectTransform>();
         prt = transform.parent.GetComponent<RectTransform>();
+    }
+
+    private void Start()
+    {
+        crt = GameUI.Instance.GetComponent<RectTransform>();
     }
 
     public void HoverStart() { hovered = true; }
@@ -25,11 +31,17 @@ public class Minimap : MonoBehaviour
         Vector2 mousePos = Input.mousePosition;
 
         Vector2 scaledMousePos = new Vector2(
-            (mousePos.x - rt.position.x) / prt.sizeDelta.x,
-            (mousePos.y - rt.position.y) / prt.sizeDelta.y);
+            (mousePos.x - rt.position.x) / (rt.rect.size.x * crt.localScale.x),
+            (mousePos.y - rt.position.y) / (rt.rect.size.y * crt.localScale.y));
+        scaledMousePos *= 2; // [-.5, .5] > [-1, 1]
 
-        Vector3 mapPos = MapCam.Instance.transform.position + new Vector3(scaledMousePos.x, 0, scaledMousePos.y) * MapCam.Instance.size;
+        Vector3 mapPos = MapCam.Instance.transform.position + new Vector3(scaledMousePos.x, 0, scaledMousePos.y) * MapCam.Cam.orthographicSize;
         mapPos.y = 0;
+
+        Debug.Log($"{mousePos} / {rt.position} = {scaledMousePos} ({prt.sizeDelta}, {rt.rect.size}, {rt.sizeDelta})");
+
+        Debug.DrawLine(mapPos + Vector3.forward * 3, mapPos + Vector3.forward * -3, Color.white);
+        Debug.DrawLine(mapPos + Vector3.right * 3, mapPos + Vector3.right * -3, Color.white);
 
         CameraController.Instance.FocusOnPoint(mapPos);
     }
