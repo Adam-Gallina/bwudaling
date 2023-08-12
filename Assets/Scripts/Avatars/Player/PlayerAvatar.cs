@@ -186,6 +186,7 @@ public class PlayerAvatar : AvatarBase
             Vector3 newVec = targetPos - transform.position;
             newVec.y = 0;
             transform.forward = Vector3.RotateTowards(transform.forward, newVec.normalized, (turnSpeed + player.abilities.speedLevel * turnSpeedMod) * Mathf.Deg2Rad * Time.deltaTime, 0);
+            anim.SetBool("Dancing", false);
         }
         anim?.SetBool("Walking", walking);
     }
@@ -206,23 +207,32 @@ public class PlayerAvatar : AvatarBase
             }
         }
 
+        if (!dead && inp.dance1.down)
+        {
+            anim.SetBool("Dancing", true);
+            anim.SetInteger("Dance", 1);
+        }
+
         if (inp.special1.down && (!dead || ability1.canUseWhileDead))
         {
             ability1.QueueAbility(player.abilities.special1Level);
             ability2.CancelAbility();
             ability3.CancelAbility();
+            anim.SetBool("Dancing", false);
         }
         if (inp.special2.down && (!dead || ability2.canUseWhileDead))
         {
             ability1.CancelAbility();
             ability2.QueueAbility(player.abilities.special2Level);
             ability3.CancelAbility();
+            anim.SetBool("Dancing", false);
         }
         if (inp.special3.down && (!dead || ability3.canUseWhileDead))
         {
             ability1.CancelAbility();
             ability2.CancelAbility();
             ability3.QueueAbility(player.abilities.special3Level);
+            anim.SetBool("Dancing", false);
         }
     }
 

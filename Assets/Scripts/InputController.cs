@@ -20,35 +20,17 @@ public class InputController : MonoBehaviour
     public Key special2 = new Key("E", "X");
     public Key special3 = new Key("F", "C");
 
+    public Key dance1 = new Key(KeyCode.Alpha1);
+
     public Key pause = KeyCode.Escape;
 
     [HideInInspector] public bool UsingTargetKeys = true;
 
-    private static Key[] keys;
+    public static List<Key> keys { get; } = new List<Key>();
 
     private void Awake()
     {
         Instance = this;
-
-        UpdateKeys();
-    }
-
-    private void UpdateKeys()
-    {
-        keys = new Key[]
-        {
-            left,
-            right,
-            up,
-            down,
-            fire,
-            altfire,
-            boost,
-            special1,
-            special2,
-            special3,
-            pause
-        };
     }
 
     private void Update()
@@ -71,12 +53,14 @@ public class Key
     public Key(KeyCode targetKey)
     {
         this.targetKey = targetKey;
+        InputController.keys.Add(this);
     }
 
     public Key(string targetKey, string altKey)
     {
         this.targetKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), targetKey);
         this.alternateKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), altKey);
+        InputController.keys.Add(this);
     }
 
     public Key(KeyCode targetKey, KeyCode alternateKey)
