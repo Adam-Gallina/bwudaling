@@ -8,13 +8,16 @@ public class IncorporealSaw : BasicSaw
 
     protected override void Update()
     {
+        base.Update();
+
+        if (!hasAuthority)
+            return;
+
         if (maxRange > -1 && destroyWhenOOB && Vector3.Distance(transform.position, origin) > maxRange)
         {
             DestroyObject();
             return;
         }
-
-        base.Update();
     }
 
     protected override void OnHitWall(Collider other)

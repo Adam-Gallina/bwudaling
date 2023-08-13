@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -33,6 +34,9 @@ public class SwingingSaw : IncorporealSaw
     private new void Update()
     {
         base.Update();
+
+        if (!hasAuthority)
+            return;
 
         float t = (transform.position.x - spawnPos.x) / (endPos.x - spawnPos.x);
 

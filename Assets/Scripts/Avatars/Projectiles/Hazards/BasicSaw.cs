@@ -15,6 +15,7 @@ public class BasicSaw : RicochetProjectile
     protected int spinDir;
 
     protected float size = 1;
+    [SyncVar(hook = nameof(OnSizeChanged))]
     protected float currSize = 1;
     protected float sizeDebuffEnd;
 
@@ -28,10 +29,6 @@ public class BasicSaw : RicochetProjectile
         base.Awake();
 
         size = currSize = model.localScale.x;
-    }
-
-    public override void OnStartServer()
-    {
         spinDir = Random.Range(0, 2) == 0 ? 1 : -1;
     }
 
@@ -48,18 +45,20 @@ public class BasicSaw : RicochetProjectile
         this.maxRange = maxRange;
     }
 
-    [ServerCallback]
     protected override void Update()
     {
-        if (currSize != size && Time.time > sizeDebuffEnd && Physics.OverlapSphere(transform.position, currSize, 1 << Constants.EnvironmentLayer | 1 << Constants.HazardBoundaryLayer | 1 << Constants.HazardLayer).Length == 1)
-            currSize = size;
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y + spinSpeed * spinDir * Time.deltaTime, 0);
+
+        if (!hasAuthority)
+            return;
+
+        if (currSize != size && Time.time > sizeDebuffEnd
+            && Physics.OverlapSphere(transform.position, currSize, 1 << Constants.EnvironmentLayer | 1 << Constants.HazardBoundaryLayer | 1 << Constants.HazardLayer).Length == 1)
+                currSize = size;
         if (currSpeedMod != 1 && Time.time > speedDebuffEnd)
             currSpeedMod = 1;
 
         rb.velocity = currVelocity.normalized * speed * currSpeedMod;
-        model.localScale = new Vector3(currSize, currSize, currSize);
-
-        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y + spinSpeed * spinDir * Time.deltaTime, 0);
     }
 
     [Server]
@@ -80,6 +79,12 @@ public class BasicSaw : RicochetProjectile
 
         if (size * newSizeMod < currSize)
             currSize = size * newSizeMod;
+            
+    }
+    
+    private void OnSizeChanged(float _, float newSize)
+    {
+        model.localScale = new Vector3(newSize, newSize, newSize);
     }
 
     [Server]
