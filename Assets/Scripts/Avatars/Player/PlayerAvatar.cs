@@ -304,6 +304,10 @@ public class PlayerAvatar : AvatarBase
         targetPos = transform.position;
         rb.velocity = Vector3.zero;
 
+        ability1.CancelAbility();
+        ability2.CancelAbility();
+        ability3.CancelAbility();
+
         anim?.SetBool("Dead", true);
 
         if (isServer)

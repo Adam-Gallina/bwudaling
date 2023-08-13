@@ -7046,8 +7046,8 @@ MonoBehaviour:
   sceneChanging: 0
   minPlayers: 1
   DEBUG_AllowMapSkip: 1
-  DEBUG_AllowKeyCheats: 0
-  DEBUG_IgnoreCooldown: 0
+  DEBUG_AllowKeyCheats: 1
+  DEBUG_IgnoreCooldown: 1
   DEBUG_TpWalls: 0
 --- !u!114 &1812445703
 MonoBehaviour:

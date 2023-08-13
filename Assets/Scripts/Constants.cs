@@ -124,7 +124,7 @@ public class Constants
     public static GameScene Stats = new GameScene(10, "Stats Screen");
 
     public static GameScene[] Maps = new GameScene[] { Level1_1, Level1_2, Level1_3, SiwyCwab, Level2_1, Level2_2, Level2_3, Twenty };
-    public static GameScene[] DebugMaps = new GameScene[] { Level1_1, Level1_2, Level1_3 };
+    public static GameScene[] DebugMaps = new GameScene[] { SiwyCwab, Twenty };
     public static GameScene EndScreen = Stats;
     #endregion
 }

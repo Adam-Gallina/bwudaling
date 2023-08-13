@@ -70,7 +70,7 @@ public static class AbilityLevels
 
     #region Speed
     public const float BaseSpeed = 5;
-    public const float SpeedPerLevel = 0.5f;
+    public const float SpeedPerLevel = 0.25f;
 
     public static float CalcSpeed(int level)
     {

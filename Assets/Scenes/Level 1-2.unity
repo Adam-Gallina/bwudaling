@@ -1085,7 +1085,7 @@ MonoBehaviour:
   safeZoneXp: 8
   endZoneXp: 30
   winXp: 10
-  hazardSpeed: 20
+  hazardSpeed: 14
   hazardRange: 150
   mapCenter: {x: 0, y: 0, z: 0}
 --- !u!4 &373380049
@@ -1809,7 +1809,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   amountPerSpawn: 5
-  spawnRate: 0.4
+  spawnRate: 0.6
   minTurnAng: 10
   maxTurnAng: 45
 --- !u!1001 &645241528

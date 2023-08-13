@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  maxHealth: 100
+  maxHealth: 10
   currHealth: 0
   spawnAnimDuration: 2
   deathAnimDuration: 3.5

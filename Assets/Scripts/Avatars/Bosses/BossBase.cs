@@ -186,6 +186,11 @@ public abstract class BossBase : NetworkBehaviour
     {
         yield return new WaitForSeconds(deathAnimDuration);
     }
+    [ClientRpc]
+    protected void RpcSetAnimTrigger(string trigger)
+    {
+        anim.SetTrigger(trigger);
+    }
 }
 
 [System.Serializable]

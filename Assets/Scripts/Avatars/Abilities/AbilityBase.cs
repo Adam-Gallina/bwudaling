@@ -32,9 +32,17 @@ public abstract class AbilityBase : MonoBehaviour
         tooltip.tooltip = abilityTooltip;
     }
 
-    public virtual void QueueAbility(int level)
+    protected virtual bool CanUseAbility(int level)
     {
         if (level == -1)
+            return false;
+
+        return Time.time >= nextAbility || BwudalingNetworkManager.Instance.DEBUG_IgnoreCooldown;
+    }
+
+    public virtual void QueueAbility(int level)
+    {
+        if (!CanUseAbility(level))
             return;
 
         abilityQueued = true;
@@ -43,7 +51,7 @@ public abstract class AbilityBase : MonoBehaviour
 
     protected void UseAbility(int level)
     {
-        if (nextAbility < Time.time || BwudalingNetworkManager.Instance.DEBUG_IgnoreCooldown)
+        if (CanUseAbility(level))
         {
             abilityStart?.Invoke();
             controller.stats?.AddAbility();

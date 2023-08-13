@@ -659,7 +659,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 841611424596563, guid: c59452e77dcb3424aab6883a0d27b41c, type: 3}
       propertyPath: m_Name
-      value: Reflect
+      value: Bark
       objectReference: {fileID: 0}
     - target: {fileID: 7489238514346109643, guid: c59452e77dcb3424aab6883a0d27b41c, type: 3}
       propertyPath: m_RootOrder
@@ -704,6 +704,14 @@ PrefabInstance:
     - target: {fileID: 7489238514346109643, guid: c59452e77dcb3424aab6883a0d27b41c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659165272510641230, guid: c59452e77dcb3424aab6883a0d27b41c, type: 3}
+      propertyPath: radius.startValue
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659165272510641230, guid: c59452e77dcb3424aab6883a0d27b41c, type: 3}
+      propertyPath: radius.upgradeValue
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c59452e77dcb3424aab6883a0d27b41c, type: 3}
@@ -827,6 +835,14 @@ PrefabInstance:
       propertyPath: projectileSpawn
       value: 
       objectReference: {fileID: 1365740921709373361}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: fetchDuration.startValue
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: fetchDuration.upgradeValue
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4122771552749108120, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
       propertyPath: m_RootOrder
       value: 0

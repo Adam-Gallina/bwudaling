@@ -50,12 +50,12 @@ public class SwingingSaw : IncorporealSaw
             smoothing = true;
             float t3 = (1 - t2) / (1 - smoothingRange);
             float mod = minSpeedMod + (1 - minSpeedMod) * t3;
-            SetSpeed(prevSpeed * mod);
+            SetSpeed(prevSpeed * mod * currSpeedMod);
             smoothing = false;
         }
         else
         {
-            SetSpeed(prevSpeed);
+            SetSpeed(prevSpeed * currSpeedMod);
         }
         
         SetDirection(endPos - transform.position);

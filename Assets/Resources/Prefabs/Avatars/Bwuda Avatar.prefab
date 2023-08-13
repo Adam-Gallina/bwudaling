@@ -221,7 +221,6 @@ MonoBehaviour:
   NametagTarget: {fileID: 6938429762080667664}
   AvatarName: Bwuda
   body: {fileID: 7069179543150120790}
-  distToTarget: 0.1
   boost: 0
   turnSpeed: 360
   turnSpeedMod: 20
@@ -754,6 +753,14 @@ PrefabInstance:
       propertyPath: canTargetLiving
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
+      propertyPath: radius.startValue
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
+      propertyPath: radius.upgradeValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -839,6 +846,18 @@ PrefabInstance:
       propertyPath: projectileSpawn
       value: 
       objectReference: {fileID: 3549912703959414022}
+    - target: {fileID: 5780801143025503411, guid: 6ee08b6617158ae449eed4f217afdf6a, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780801143025503411, guid: 6ee08b6617158ae449eed4f217afdf6a, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780801143025503411, guid: 6ee08b6617158ae449eed4f217afdf6a, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.data[1]
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6349276291140394655, guid: 6ee08b6617158ae449eed4f217afdf6a, type: 3}
       propertyPath: m_Name
       value: Spawn Smack Projectile
@@ -912,6 +931,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4331939092478790322}
     m_Modifications:
+    - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: duration.startValue
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: duration.upgradeValue
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: speedMod.upgradeValue
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: abilityCooldown.startValue
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.size
       value: 1

@@ -77,7 +77,7 @@ public class Twenty : BossBase
             yield return new WaitForEndOfFrame();
         }
 
-        anim.SetTrigger("Attack");
+        RpcSetAnimTrigger("Attack");
         yield return new WaitForSeconds(1);
 
         float da = sawSpreadAng / (sawWaveCount * 2);
@@ -112,7 +112,7 @@ public class Twenty : BossBase
         attacking = true;
         canMove = false;
 
-        anim.SetTrigger("Attack2");
+        RpcSetAnimTrigger("Attack2");
         yield return new WaitForSeconds(1);
 
         for (int _ = meteorCount.RandomVal; _ > 0; _--)
@@ -158,7 +158,7 @@ public class Twenty : BossBase
 
         canMove = false;
 
-        anim.SetTrigger("Killed");
+        RpcSetAnimTrigger("Killed");
 
         yield return base.DeathAnim();
     }

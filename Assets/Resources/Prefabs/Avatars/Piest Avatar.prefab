@@ -159,7 +159,6 @@ MonoBehaviour:
   NametagTarget: {fileID: 7649148463986514996}
   AvatarName: Piest
   body: {fileID: 5113377748789028082}
-  distToTarget: 0.1
   boost: 0
   turnSpeed: 360
   turnSpeedMod: 20
@@ -560,6 +559,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7649148464497823035}
     - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: bounce.upgradeLevels.Array.data[1]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
       propertyPath: onHitTarget.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -708,6 +715,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5524931469494904103, guid: 9f9c9bb10f5fe1c498ea7f161bdef7fb, type: 3}
+      propertyPath: range.startValue
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524931469494904103, guid: 9f9c9bb10f5fe1c498ea7f161bdef7fb, type: 3}
+      propertyPath: abilityCooldown.startValue
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524931469494904103, guid: 9f9c9bb10f5fe1c498ea7f161bdef7fb, type: 3}
+      propertyPath: abilityCooldown.upgradeValue
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7867659347483465586, guid: 9f9c9bb10f5fe1c498ea7f161bdef7fb, type: 3}
       propertyPath: m_Name
       value: Teleport
@@ -831,6 +850,10 @@ PrefabInstance:
       propertyPath: projectileSpawn
       value: 
       objectReference: {fileID: 7649148464497823035}
+    - target: {fileID: 3543234771857336278, guid: 9a9f286e612a9424195b18be1cd2c227, type: 3}
+      propertyPath: shrinkSize.upgradeValue
+      value: -0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 3974817082854888719, guid: 9a9f286e612a9424195b18be1cd2c227, type: 3}
       propertyPath: m_RootOrder
       value: 2

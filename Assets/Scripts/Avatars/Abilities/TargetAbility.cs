@@ -30,7 +30,7 @@ public abstract class TargetAbility : AbilityBase
 
     public override void QueueAbility(int level)
     {
-        if (level == -1)
+        if (!CanUseAbility(level))
             return;
 
         if (abilityQueued)

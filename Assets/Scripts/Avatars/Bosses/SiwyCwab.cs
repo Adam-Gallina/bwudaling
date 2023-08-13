@@ -109,7 +109,7 @@ public class SiwyCwab : BossBase
             for (int _ = 0; _ < Random.Range(minHaiwSpawns, maxHaiwSpawns); _++)
                 SpawnHaiw();
 
-            anim.SetTrigger("Attack");
+            RpcSetAnimTrigger("Attack");
 
             yield return new WaitForSeconds(timeBetweenStomps);
         }
@@ -124,7 +124,7 @@ public class SiwyCwab : BossBase
     {
         yield return new WaitForSeconds(1);
 
-        anim.SetTrigger("Spawn");
+        RpcSetAnimTrigger("Spawn");
 
         yield return new WaitForSeconds(.5f);
 
@@ -138,7 +138,7 @@ public class SiwyCwab : BossBase
 
         canMove = false;
 
-        anim.SetTrigger("Killed");
+        RpcSetAnimTrigger("Killed");
 
         yield return base.DeathAnim();
     }
