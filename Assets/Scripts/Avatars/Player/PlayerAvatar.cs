@@ -21,6 +21,7 @@ public class PlayerAvatar : AvatarBase
     private bool useMouse = false;
     protected Vector3 targetPos;
     [HideInInspector] public float boost;
+    private bool boostRecharging = false;
     [SerializeField] protected float turnSpeed = 360;
     [SerializeField] protected float turnSpeedMod;
 
@@ -160,11 +161,13 @@ public class PlayerAvatar : AvatarBase
             return;
         }
 
-        if (!inp.boost)
+        if (!inp.boost || boostRecharging)
             boost += player.abilities.BoostRechargeVal * Time.deltaTime;
         if (boost > player.abilities.BoostMaxVal)
             boost = player.abilities.BoostMaxVal;
-        anim.SetBool("Running", inp.boost);
+        if (boostRecharging && inp.boost.up)
+            boostRecharging = false;
+        anim.SetBool("Running", (inp.boost.down || inp.boost.held) && !boostRecharging);
 
         targetPos = GetMovement();
         Vector3 dir = targetPos - transform.position;
@@ -276,12 +279,23 @@ public class PlayerAvatar : AvatarBase
         if (currSpeedMod != 1 && Time.time > speedDebuffEnd)
             currSpeedMod = 1;
 
-        if (inp.boost && boost > 0)
+        if (inp.boost && !boostRecharging && boost > 0)
+        {
             boost -= Time.deltaTime;
+            if (boost <= 0)
+            {
+                boostRecharging = true;
+                boost = 0;
+            }
+        }
 
         anim.SetFloat("WalkSpeed", startWalkAnimSpeed + player.abilities.speedLevel * stepWalkAnimSpeed);
 
-        return player.abilities.SpeedVal * (inp.boost && boost > 0 ? player.abilities.BoostSpeedVal : 1) * currSpeedMod;
+        float boostMod = 1;
+        if (inp.boost && !boostRecharging && boost > 0)
+            boostMod = player.abilities.BoostSpeedVal;
+
+        return player.abilities.SpeedVal * boostMod * currSpeedMod;
     }
 
     public void SetPosition(Vector3 pos, bool updateTargetPos = false)
