@@ -134,7 +134,7 @@ public class LevelUI : GameUI
             if (level == -1)
                 return $"Unlock {name}";
             else if (level == AbilityLevels.SpecialAbilityMax)
-                return $"{name}: max";
+                return $"{name}: Max";
             return $"{name}: lvl {level + 1}";
         }
 

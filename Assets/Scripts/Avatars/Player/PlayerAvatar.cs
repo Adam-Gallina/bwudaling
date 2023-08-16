@@ -50,6 +50,8 @@ public class PlayerAvatar : AvatarBase
     [SerializeField] private float startWalkAnimSpeed;
     [SerializeField] private float stepWalkAnimSpeed;
 
+    private List<Collider> currSafeZones = new List<Collider>();
+
     protected InputController inp;
     protected Animator anim;
 
@@ -106,6 +108,12 @@ public class PlayerAvatar : AvatarBase
         ((LevelUI)GameUI.Instance).special3Name = ability3.abilityName;
     }
 
+    [ClientRpc]
+    public void RpcStatsHealPlayer() { if (hasAuthority) stats?.AddRescue(); }
+
+    [ClientRpc]
+    public void RpcStatsHaiwCollected() { if (hasAuthority) stats?.AddHaiw(); }
+
     [ServerCallback]
     private void OnTriggerEnter(Collider other)
     {
@@ -120,22 +128,20 @@ public class PlayerAvatar : AvatarBase
                 }
                 break;
             case Constants.SafeAreaLayer:
+                currSafeZones.Add(other);
                 canDamage = false;
                 break;
         }
     }
 
-    [ClientRpc]
-    public void RpcStatsHealPlayer() { if (hasAuthority) stats?.AddRescue(); }
-
-    [ClientRpc]
-    public void RpcStatsHaiwCollected() { if (hasAuthority) stats?.AddHaiw(); }
-
     [ServerCallback]
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == Constants.SafeAreaLayer)
-            canDamage = true;
+        {
+            currSafeZones.Remove(other);
+            canDamage = currSafeZones.Count == 0;
+        }
     }
 
     protected virtual void Update()

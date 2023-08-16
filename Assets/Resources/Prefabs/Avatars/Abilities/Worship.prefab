@@ -1,153 +1,101 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3145819797165287873
-PrefabInstance:
+--- !u!1 &4158637078527349556
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: reticle
-      value: 
-      objectReference: {fileID: 4389075185075814691}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: abilityIcon
-      value: 
-      objectReference: {fileID: -819102327, guid: c2a346c202f81b244a1864a59f90bfb4, type: 3}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: abilityName
-      value: Worship
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: canTargetDead
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: abilityTooltip
-      value: Call upon your faith in Bwuda to revive all players in a small radius
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: abilityCooldown
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: canUseWhileDead
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: range.startValue
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: radius.startValue
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: shield.startValue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: range.upgradeValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: radius.upgradeValue
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: shield.upgradeValue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: cooldownMod.startValue
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: cooldownMod.upgradeValue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: shield.upgradeEveryLevel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: abilityCooldown.startValue
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: abilityCooldown.upgradeValue
-      value: -1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: shield.upgradeLevels.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: shield.upgradeLevels.Array.data[0]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9051424289344407501, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-      propertyPath: m_Name
-      value: Worship
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e60f84a756c59c941827024dbfd73906, type: 3}
---- !u!4 &3578332378211075534 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1873770290884996111, guid: e60f84a756c59c941827024dbfd73906, type: 3}
-  m_PrefabInstance: {fileID: 3145819797165287873}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4374144624525551390
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6785680171945048310}
+  - component: {fileID: 6785680171945048309}
+  m_Layer: 7
+  m_Name: Worship
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6785680171945048310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4158637078527349556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2058924336261414231}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6785680171945048309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4158637078527349556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b0b63d6f83e0941915b174d394d4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: Worship
+  abilityTooltip: Call upon your faith in Bwuda to create a temporary safe zone
+  abilityUpgradesTooltip:
+  - Duration
+  - Size
+  abilityIcon: {fileID: -819102327, guid: c2a346c202f81b244a1864a59f90bfb4, type: 3}
+  abilityCooldown:
+    startValue: 45
+    upgradeValue: -1
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  canUseWhileDead: 0
+  abilityStart:
+    _PersistentCalls: []
+  abilityEnd:
+    _PersistentCalls: []
+  projectileSpawn: {fileID: 0}
+  bulletSpread: 0
+  projectilePrefab: {fileID: 211128631651542397, guid: ef8aa327b37ddb14990a5fcefd6f9997, type: 3}
+  count:
+    startValue: 1
+    upgradeValue: 0
+    upgradeEveryLevel: 0
+    upgradeLevels: 
+  speed: 4
+  bounce:
+    startValue: 0
+    upgradeValue: 0
+    upgradeEveryLevel: 0
+    upgradeLevels: 
+  onHitTarget:
+    m_PersistentCalls:
+      m_Calls: []
+  zoneDiameter:
+    startValue: 5
+    upgradeValue: 0.25
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  zoneDuration:
+    startValue: 5
+    upgradeValue: 1
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  projectileDespawnTime: 1
+  projectileDespawnOffset: -0.75
+--- !u!1001 &5996344032341088806
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3578332378211075534}
+    m_TransformParent: {fileID: 6785680171945048310}
     m_Modifications:
     - target: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
       propertyPath: m_RootOrder
@@ -199,14 +147,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
---- !u!114 &4389075185075814691 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 26236530354464317, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
-  m_PrefabInstance: {fileID: 4374144624525551390}
+--- !u!4 &2058924336261414231 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5739151522134878065, guid: f550a369513c3924e9028f2083c51ebe, type: 3}
+  m_PrefabInstance: {fileID: 5996344032341088806}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06ff53996cae6d14aaaf507144395702, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
