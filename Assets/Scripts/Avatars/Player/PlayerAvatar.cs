@@ -95,6 +95,7 @@ public class PlayerAvatar : AvatarBase
         inp = gameObject.AddComponent<InputController>();
 
         CameraController.Instance.SetTarget(transform);
+        PlayerUI.Instance.SetTarget(transform);
 
         ability1?.LinkUI(((LevelUI)GameUI.Instance).special1Cooldown, ((LevelUI)GameUI.Instance).special1Text.transform.parent.GetComponent<TooltipController>());
         ((LevelUI)GameUI.Instance).special1Name = ability1.abilityName;
@@ -311,7 +312,7 @@ public class PlayerAvatar : AvatarBase
         anim?.SetBool("Dead", true);
 
         if (isServer)
-            GameController.Instance.RpcSendServerBannerMessage($"{player.displayName} {Constants.RandomDeathPhrase}", Constants.DeathBannerDuration);
+            GameController.Instance.RpcSendServerBannerMessage($"{player.displayName}{Constants.RandomDeathPhrase}", player.avatarColor, Constants.DeathBannerDuration);
 
     }
 

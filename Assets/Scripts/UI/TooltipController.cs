@@ -11,6 +11,7 @@ public class TooltipController : MonoBehaviour
     private bool mouseOver = false;
 
     public string tooltip;
+    public string[] upgrades;
 
     public void MouseEntered()
     {
@@ -28,7 +29,7 @@ public class TooltipController : MonoBehaviour
     {
         if (mouseOver && Time.time > lastMouseOver + showDelay)
         {
-            ((LevelUI)GameUI.Instance).ShowTooltip(Input.mousePosition, tooltip);
+            ((LevelUI)GameUI.Instance).ShowTooltip(Input.mousePosition, tooltip, upgrades);
             updatedTipbox = false;
         }
         else if (!updatedTipbox)

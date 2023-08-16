@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Dab Run
   abilityTooltip: Employ your dab powers to get a burst of speed and invulnerability
+  abilityUpgradesTooltip:
+  - Duration
   abilityIcon: {fileID: 2090495449, guid: dcab6f60022dfff4abc41324e5a01edc, type: 3}
   abilityCooldown:
     startValue: 15
@@ -68,3 +70,4 @@ MonoBehaviour:
     upgradeEveryLevel: 1
     upgradeLevels: 
   invulnerable: 1
+  invulnerabilityPadding: 0.75

@@ -45,7 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityName: Resurrection
-  abilityTooltip: Bwuda is too strong to need someone help him revive
+  abilityTooltip: Bwuda is too strong to need someone help him revive. Also revives
+    nearby Wuvas
+  abilityUpgradesTooltip:
+  - Cooldown
+  - Effect radius
   abilityIcon: {fileID: 21300000, guid: e4aba87c3fbe8a548bd5fb28ae2f393f, type: 3}
   abilityCooldown:
     startValue: 90

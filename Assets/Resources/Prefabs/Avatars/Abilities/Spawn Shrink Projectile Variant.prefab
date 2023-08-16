@@ -155,6 +155,9 @@ MonoBehaviour:
   abilityName: Shrink Saw
   abilityTooltip: Shoot a bullet that makes the first saw it hits smaller for a short
     period of time
+  abilityUpgradesTooltip:
+  - Effect size
+  - Effect duration
   abilityIcon: {fileID: 2089736299, guid: ba71746f27874a44fa2584c96a888c87, type: 3}
   abilityCooldown:
     startValue: 30

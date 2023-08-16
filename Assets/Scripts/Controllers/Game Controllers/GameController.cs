@@ -80,4 +80,15 @@ public abstract class GameController : NetworkBehaviour
 
         GameUI.Instance.SetBannerText(message, duration);
     }
+    [ClientRpc]
+    public void RpcSendServerBannerMessage(string message, Color col, float duration)
+    {
+        if (!GameUI.Instance)
+        {
+            Debug.LogWarning("Trying to send message '" + message + "' to players, but no GameUI exists");
+            return;
+        }
+
+        GameUI.Instance.SetBannerText(message, col, duration);
+    }
 }

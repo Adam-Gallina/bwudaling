@@ -10,6 +10,7 @@ public abstract class AbilityBase : MonoBehaviour
 
     public string abilityName;
     [SerializeField] private string abilityTooltip;
+    [SerializeField] private string[] abilityUpgradesTooltip;
     [SerializeField] private Sprite abilityIcon;
     protected float nextAbility = 0;
     [SerializeField] protected AbilityUpgrade abilityCooldown;
@@ -30,6 +31,7 @@ public abstract class AbilityBase : MonoBehaviour
         cooldownUI = abilityCooldown;
         cooldownUI.abilityImage.sprite = abilityIcon;
         tooltip.tooltip = abilityTooltip;
+        tooltip.upgrades = abilityUpgradesTooltip;
     }
 
     protected virtual bool CanUseAbility(int level)

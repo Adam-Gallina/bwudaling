@@ -26,10 +26,12 @@ public class LevelUI : GameUI
     [HideInInspector] public string special3Name;
     [SerializeField] private RectTransform tooltipObj;
     [SerializeField] private TMPro.TMP_Text tooltipText;
+    [SerializeField] private GameObject tooltipUpgradesObj;
+    [SerializeField] private TMPro.TMP_Text tooltipUpgradesText;
 
     [Header("Player Skills")]
-    [SerializeField] private TMPro.TMP_Text shieldText;
-    [SerializeField] private Slider boostSlider;
+    //[SerializeField] private TMPro.TMP_Text shieldText;
+    //[SerializeField] private Slider boostSlider;
     public AbilityCooldown special1Cooldown;
     public AbilityCooldown special2Cooldown;
     public AbilityCooldown special3Cooldown;
@@ -55,20 +57,15 @@ public class LevelUI : GameUI
     {
         restartBtn.SetActive(false);
 
-        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
+        NetworkPlayer p = BwudalingNetworkManager.Instance.ActivePlayer;
+        if (p != null)
         {
-            if (p.hasAuthority)
-            {
-                activePlayer = p;
-                activePlayer.abilities.OnAddXp += UpdateDisplay;
-                activePlayer.abilities.OnLevelUp += UpdateDisplay;
-                activePlayer.abilities.OnUpgrade += UpdateDisplay;
+            activePlayer = p;
+            activePlayer.abilities.OnAddXp += UpdateDisplay;
+            activePlayer.abilities.OnLevelUp += UpdateDisplay;
+            activePlayer.abilities.OnUpgrade += UpdateDisplay;
 
-                if (p.IsLeader)
-                    restartBtn.SetActive(true);
-
-                break;
-            }
+            restartBtn.SetActive(p.IsLeader);
         }
     }
 
@@ -97,8 +94,9 @@ public class LevelUI : GameUI
     {
         if (activePlayer.avatar)
         {
-            shieldText.text = "Shield: " + activePlayer.avatar.shield;
-            boostSlider.value = activePlayer.avatar.boost / activePlayer.abilities.BoostMaxVal;
+            //shieldText.text = "Shield: " + activePlayer.avatar.shield;
+            PlayerUI.Instance.SetStaminaBar(activePlayer.avatar.boost < activePlayer.abilities.BoostMaxVal);
+            PlayerUI.Instance.SetStaminaBarFillAmount(activePlayer.avatar.boost / activePlayer.abilities.BoostMaxVal);
         }
 
         if (healthbarTarget)
@@ -150,11 +148,21 @@ public class LevelUI : GameUI
         special3Text.text = SpecialText(special3Name, activePlayer.abilities.special3Level);
     }
 
-    public void ShowTooltip(Vector3 pos, string text)
+    public void ShowTooltip(Vector3 pos, string text, string[] upgrades = null)
     {
         tooltipObj.gameObject.SetActive(true);
         tooltipObj.position = pos;
         tooltipText.text = text;
+
+        if (upgrades != null && upgrades.Length > 0)
+        {
+            tooltipUpgradesObj.SetActive(true);
+            tooltipUpgradesText.text = "Upgrades:";
+            foreach (string s in upgrades)
+                tooltipUpgradesText.text += "\n" + s;
+        }
+        else
+            tooltipUpgradesObj.SetActive(false);
     }
     public void HideTooltip()
     {
@@ -163,11 +171,12 @@ public class LevelUI : GameUI
 
     #region Banner
     protected Coroutine currBanner;
-    public override void SetBannerText(string text, float duration = 0)
+    public override void SetBannerText(string text, Color col, float duration = 0)
     {
         bannerParent.SetActive(!string.IsNullOrEmpty(text));
 
         bannerText.text = text;
+        bannerText.color = col;
         bannerTextBkgd.text = text;
 
         if (duration > 0)

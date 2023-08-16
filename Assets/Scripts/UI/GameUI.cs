@@ -8,6 +8,7 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] protected NametagUI nametagPrefab;
     [SerializeField] private Transform nametagParent;
+    [SerializeField] private Color defaultBannerCol;
 
     protected virtual void Awake()
     {
@@ -41,7 +42,8 @@ public class GameUI : MonoBehaviour
 
     }
 
-    public virtual void SetBannerText(string text, float duration = 0)
+    public void SetBannerText(string text, float duration = 0) { SetBannerText(text, defaultBannerCol, duration); }
+    public virtual void SetBannerText(string text, Color col, float duration = 0)
     {
         Debug.LogWarning($"No Banner set up (text: {text})");
     }

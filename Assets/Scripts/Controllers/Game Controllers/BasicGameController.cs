@@ -88,11 +88,8 @@ public class BasicGameController : GameController
     {
         RpcSetCamera(p, 1);
 
-        //foreach (string m in endBannerMessages)
-        //{
-            RpcSendServerBannerMessage(p.displayName + " won!", 0);//\n"); + m, 0);
-            yield return new WaitForSeconds(messageTime);
-        //}
+        RpcSendServerBannerMessage(p.displayName + " won!", p.avatarColor, 0);
+        yield return new WaitForSeconds(messageTime);
 
         RpcSendServerBannerMessage(string.Empty, 0);
         yield return null;

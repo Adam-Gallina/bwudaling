@@ -68,8 +68,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: abilityCooldown.startValue
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: reflectSlowMod.upgradeValue
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: abilityCooldown.upgradeValue
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: reflectSlowDuration.startValue
@@ -77,15 +85,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: reflectSlowDuration.upgradeValue
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: reflectSlowMod.upgradeEveryLevel
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: abilityCooldown.upgradeEveryLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: abilityUpgradesTooltip.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: abilityUpgradesTooltip.Array.data[0]
+      value: Stun duration
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: abilityUpgradesTooltip.Array.data[1]
+      value: Effect radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: abilityUpgradesTooltip.Array.data[2]
+      value: Cooldown
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: reflectSlowDuration.upgradeEveryLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: reflectSlowDuration.upgradeLevels.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5297081999356858382, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: m_Name
-      value: Reflect
+      value: Bark
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}

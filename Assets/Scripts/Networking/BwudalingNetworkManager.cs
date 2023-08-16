@@ -16,6 +16,24 @@ public class BwudalingNetworkManager : NetworkManager
     [HideInInspector] public bool sceneChanging = false;
 
     public List<NetworkPlayer> Players { get; } = new List<NetworkPlayer>();
+    private NetworkPlayer activePlayer;
+    public NetworkPlayer ActivePlayer { 
+        get {
+            if (!activePlayer || !activePlayer.hasAuthority)
+            {
+                foreach (NetworkPlayer p in Players)
+                {
+                    if (p.hasAuthority)
+                    {
+                        activePlayer = p;
+                        break;
+                    }
+                }
+            }
+
+            return activePlayer;
+        } 
+    }
     [SerializeField] private int minPlayers = 2;
 
     [Header("Debug")]
@@ -160,7 +178,7 @@ public class BwudalingNetworkManager : NetworkManager
 
     private void Update()
     {
-        if (DEBUG_AllowMapSkip && Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.S))
+        if (DEBUG_AllowMapSkip && Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.S))
         {
             foreach (NetworkPlayer p in Players)
             {

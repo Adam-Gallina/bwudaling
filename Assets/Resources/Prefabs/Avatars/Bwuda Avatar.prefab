@@ -948,6 +948,14 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: abilityUpgradesTooltip.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: abilityUpgradesTooltip.Array.data[1]
+      value: Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.size
       value: 1
       objectReference: {fileID: 0}

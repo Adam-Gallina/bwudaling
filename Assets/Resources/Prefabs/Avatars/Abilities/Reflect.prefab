@@ -47,6 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Reflect
   abilityTooltip: Bwuda's mighty force flings all nearby saws away from you
+  abilityUpgradesTooltip:
+  - Slow duration
+  - Slow amount
+  - Effect radius
   abilityIcon: {fileID: -44679145, guid: 2b1983218cfff704fb1b88565c0055dd, type: 3}
   abilityCooldown:
     startValue: 10
@@ -54,6 +58,10 @@ MonoBehaviour:
     upgradeEveryLevel: 0
     upgradeLevels: 
   canUseWhileDead: 0
+  abilityStart:
+    _PersistentCalls: []
+  abilityEnd:
+    _PersistentCalls: []
   reticle: {fileID: 5955126555253354208}
   range:
     startValue: 0

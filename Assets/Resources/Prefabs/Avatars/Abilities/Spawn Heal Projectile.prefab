@@ -46,10 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Bwuda Spit
   abilityTooltip: Fires a ball of spit that heals any it touches
+  abilityUpgradesTooltip:
+  - Cooldown
+  - Bullet count (every 3 levels)
   abilityIcon: {fileID: 21300000, guid: e78ac8a83d321d9429837d0e7c0c5275, type: 3}
   abilityCooldown:
-    startValue: 30
-    upgradeValue: 0
+    startValue: 35
+    upgradeValue: -1.5
     upgradeEveryLevel: 1
     upgradeLevels: 
   canUseWhileDead: 0
@@ -64,7 +67,7 @@ MonoBehaviour:
     startValue: 1
     upgradeValue: 2
     upgradeEveryLevel: 0
-    upgradeLevels: 04000000070000000a000000
+    upgradeLevels: 030000000600000009000000
   speed: 10
   bounce:
     startValue: 0
