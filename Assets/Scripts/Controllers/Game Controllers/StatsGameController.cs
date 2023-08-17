@@ -46,25 +46,51 @@ public class StatsGameController : GameController
         ShowStat(PlayerStatType.Dodges);
         ShowStat(PlayerStatType.Haiws);
 
-        //RpcSendServerBannerMessage("Stats loaded!", 0);
+        Dictionary<NetworkPlayer, int> wins = new Dictionary<NetworkPlayer, int>();
+        void AddWin(NetworkPlayer p) 
+        { 
+            if (!wins.ContainsKey(p))
+                wins.Add(p, 0);
+            wins[p]++;
+        }
+        AddWin(GetStatWinner(PlayerStatType.Distance));
+        AddWin(GetStatWinner(PlayerStatType.Abilities));
+        AddWin(GetStatWinner(PlayerStatType.Deaths, true));
+        AddWin(GetStatWinner(PlayerStatType.Heals));
+        AddWin(GetStatWinner(PlayerStatType.Dodges));
+        AddWin(GetStatWinner(PlayerStatType.Haiws));
+
+        int mostWins = 0;
+        NetworkPlayer f = null;
+        foreach (NetworkPlayer p in wins.Keys)
+        {
+            if (wins[p] > mostWins)
+            {
+                mostWins = wins[p];
+                f = p;
+            }
+        }
+        RpcShowStat(PlayerStatType.Best, f.displayName, 0, "", 0, false);
+
         yield break;
     }
 
     [Server]
-    private void ShowStat(PlayerStatType stat, bool doMin=false)
+    private void ShowStat(PlayerStatType stat, bool lowestWins=false)
     {
-        NetworkPlayer p = GetStatWinner(stat, doMin);
-        RpcShowStat(stat, p.displayName, p.currPlayerStats.StatVals[stat]);
+        NetworkPlayer w = GetStatWinner(stat, lowestWins);
+        NetworkPlayer l= GetStatWinner(stat, !lowestWins);
+        RpcShowStat(stat, w.displayName, w.currPlayerStats.StatVals[stat], l.displayName, l.currPlayerStats.StatVals[stat], true);
     }
 
-    private NetworkPlayer GetStatWinner(PlayerStatType stat, bool doMin=false)
+    private NetworkPlayer GetStatWinner(PlayerStatType stat, bool lowestWins=false)
     {
         NetworkPlayer player = BwudalingNetworkManager.Instance.Players[0];
-        int winningVal = doMin ? int.MaxValue : 0;
+        int winningVal = lowestWins ? int.MaxValue : 0;
 
         foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
         {
-            if (doMin ? p.currPlayerStats.StatVals[stat] < winningVal : p.currPlayerStats.StatVals[stat] > winningVal)
+            if (lowestWins ? p.currPlayerStats.StatVals[stat] < winningVal : p.currPlayerStats.StatVals[stat] > winningVal)
             {
                 player = p;
                 winningVal = p.currPlayerStats.StatVals[stat];
@@ -75,13 +101,14 @@ public class StatsGameController : GameController
     }
 
     [ClientRpc] 
-    private void RpcShowStat(PlayerStatType stat, string winningPlayer, int winningVal)
+    private void RpcShowStat(PlayerStatType stat, string winningPlayer, int winningVal, string losingPlayer, int losingVal, bool showLocalPlayer)
     {
         foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
         {
             if (p.hasAuthority)
             {
-                StatsUI.SetStatDisplay(stat, winningPlayer, winningVal, p.GetComponent<PlayerStats>().currStats.StatVals[stat]);
+                int pVal = showLocalPlayer ? p.GetComponent<PlayerStats>().currStats.StatVals[stat] : 0;
+                StatsUI.SetStatDisplay(stat, winningPlayer, winningVal, losingPlayer, losingVal, pVal);
                 break;
             }
         }

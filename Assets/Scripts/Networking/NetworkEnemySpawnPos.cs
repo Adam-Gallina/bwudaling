@@ -8,7 +8,10 @@ public class NetworkEnemySpawnPos : MonoBehaviour
     public bool spawn = true;
     public NetworkIdentity enemyPrefab;
     [SerializeField] protected float spawnSize;
+
+    [SerializeField] protected float hazardSpeed;
     [SerializeField] protected float hazardRange;
+    [SerializeField] protected bool useSpawnerSpeed;
     [SerializeField] protected bool useSpawnerOrigin;
     [SerializeField] protected bool useSpawnerRange;
 
@@ -36,7 +39,7 @@ public class NetworkEnemySpawnPos : MonoBehaviour
         NetworkServer.Spawn(newEnemy);
 
         BasicSaw newSaw = newEnemy.GetComponent<BasicSaw>();
-        newSaw.SetSpeed(MapController.Instance.hazardSpeed);
+        newSaw.SetSpeed(useSpawnerSpeed ? hazardSpeed : MapController.Instance.hazardSpeed);
         newSaw.SetOriginLocation(
             useSpawnerOrigin ? transform.position : MapController.Instance.mapCenter, 
             useSpawnerRange ? hazardRange : MapController.Instance.hazardRange);

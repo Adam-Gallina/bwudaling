@@ -120,11 +120,20 @@ public class Constants
     public static GameScene Level2_1 = new GameScene(6, "Level 2-1");
     public static GameScene Level2_2 = new GameScene(7, "Level 2-2");
     public static GameScene Level2_3 = new GameScene(8, "Level 2-3");
+    public static GameScene BigWed = new GameScene(9, "Twenty Boss");
+    public static GameScene Level3_1 = new GameScene(11, "Level 3-1");
+    public static GameScene Level3_2 = new GameScene(12, "Level 3-2");
+    public static GameScene Level3_3 = new GameScene(13, "Level 3-3");
     public static GameScene Twenty = new GameScene(9, "Twenty Boss");
     public static GameScene Stats = new GameScene(10, "Stats Screen");
 
-    public static GameScene[] Maps = new GameScene[] { Level1_1, Level1_2, Level1_3, SiwyCwab, Level2_1, Level2_2, Level2_3, Twenty };
-    public static GameScene[] DebugMaps = new GameScene[] { SiwyCwab, Twenty };
+    public static GameScene[] Maps = new GameScene[] 
+    { 
+        Level1_1, Level1_2, Level1_3, SiwyCwab, 
+        Level2_1, Level2_2, Level2_3, BigWed, 
+        Level3_1, Level3_2, Level3_3, Twenty 
+    };
+    public static GameScene[] DebugMaps = new GameScene[] { Level3_1 };
     public static GameScene EndScreen = Stats;
     #endregion
 }

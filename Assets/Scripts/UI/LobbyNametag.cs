@@ -67,6 +67,7 @@ public class LobbyNametag : NametagUI
 
     public void ToggleReady()
     {
+        menu.readyButton.GetComponentInChildren<TMPro.TMP_Text>().text = !LinkedPlayer.IsReady ? "Unready" : "Ready";
         LinkedPlayer.CmdSetIsReady(!LinkedPlayer.IsReady);
     }
 

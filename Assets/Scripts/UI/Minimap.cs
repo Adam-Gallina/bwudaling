@@ -38,11 +38,6 @@ public class Minimap : MonoBehaviour
         Vector3 mapPos = MapCam.Instance.transform.position + new Vector3(scaledMousePos.x, 0, scaledMousePos.y) * MapCam.Cam.orthographicSize;
         mapPos.y = 0;
 
-        Debug.Log($"{mousePos} / {rt.position} = {scaledMousePos} ({prt.sizeDelta}, {rt.rect.size}, {rt.sizeDelta})");
-
-        Debug.DrawLine(mapPos + Vector3.forward * 3, mapPos + Vector3.forward * -3, Color.white);
-        Debug.DrawLine(mapPos + Vector3.right * 3, mapPos + Vector3.right * -3, Color.white);
-
         CameraController.Instance.FocusOnPoint(mapPos);
     }
 }

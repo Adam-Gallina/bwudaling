@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerStatType { None, Distance, Deaths, Heals, Dodges, Abilities, Haiws }
+public enum PlayerStatType { None, Distance, Deaths, Heals, Dodges, Abilities, Haiws, Best }
 public class PlayerStats : MonoBehaviour
 {
     private NetworkPlayer player;

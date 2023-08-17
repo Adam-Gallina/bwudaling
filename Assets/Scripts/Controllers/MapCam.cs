@@ -6,7 +6,6 @@ public class MapCam : MonoBehaviour
 {
     public static MapCam Instance;
     public static Camera Cam;
-    public float size = 75;
 
     private void Awake()
     {
