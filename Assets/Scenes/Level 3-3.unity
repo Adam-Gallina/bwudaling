@@ -544,7 +544,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 63383904}
-  m_Layer: 0
+  - component: {fileID: 63383905}
+  m_Layer: 15
   m_Name: Spawn zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,6 +568,19 @@ Transform:
   m_Father: {fileID: 431153099}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &63383905
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63383903}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14, y: 1, z: 14}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &76806321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,6 +1411,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 996323775089578417, guid: 6dd950518fca7114ab4ef696662492c0, type: 3}
   m_PrefabInstance: {fileID: 310134856}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &311627201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 311627202}
+  m_Layer: 0
+  m_Name: Swinging Saw Spawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &311627202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311627201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2117393772}
+  - {fileID: 865581227}
+  - {fileID: 738536886}
+  - {fileID: 786973801}
+  - {fileID: 1921510703}
+  - {fileID: 862293251}
+  - {fileID: 506698628}
+  - {fileID: 1612153987}
+  - {fileID: 516685078}
+  - {fileID: 2026550842}
+  - {fileID: 2047904091}
+  - {fileID: 1231485063}
+  - {fileID: 1048253335}
+  - {fileID: 1473949786}
+  - {fileID: 1299174734}
+  - {fileID: 890785370}
+  - {fileID: 2139277654}
+  m_Father: {fileID: 373380049}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &322417717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1788,9 +1850,9 @@ MonoBehaviour:
   - {fileID: 289800350}
   - {fileID: 1276581929}
   startWall: {fileID: 1006059389}
-  safeZoneXp: 5
-  endZoneXp: 20
-  winXp: 10
+  safeZoneXp: 30
+  endZoneXp: 150
+  winXp: 60
   hazardSpeed: 5
   hazardRange: 150
   mapCenter: {x: 0, y: 0, z: 0}
@@ -1811,6 +1873,7 @@ Transform:
   - {fileID: 341184901}
   - {fileID: 431153099}
   - {fileID: 584766601}
+  - {fileID: 311627202}
   - {fileID: 839147438}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -2090,6 +2153,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484083310}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &506698627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 506698628}
+  - component: {fileID: 506698629}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (22)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &506698628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506698627}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 108.8, y: 0, z: -114.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &506698629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506698627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1 &511399936
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,6 +2321,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511399936}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &516685077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 516685078}
+  - component: {fileID: 516685079}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (24)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &516685078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516685077}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 30, y: 0, z: -32.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &516685079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516685077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1 &521029806
 GameObject:
   m_ObjectHideFlags: 0
@@ -3231,6 +3406,62 @@ Transform:
   m_Father: {fileID: 1101866948}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &738536885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 738536886}
+  - component: {fileID: 738536887}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (18)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &738536886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738536885}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 38, y: 0, z: 106.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &738536887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738536885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1 &740887152
 GameObject:
   m_ObjectHideFlags: 0
@@ -3561,6 +3792,62 @@ Transform:
   m_Father: {fileID: 373380049}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &786973800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 786973801}
+  - component: {fileID: 786973802}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &786973801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786973800}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 108.8, y: 0, z: 106.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &786973802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786973800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1 &789281658
 GameObject:
   m_ObjectHideFlags: 0
@@ -3880,7 +4167,7 @@ Transform:
   - {fileID: 1792842866}
   - {fileID: 310134857}
   m_Father: {fileID: 373380049}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &846210091
 GameObject:
@@ -3994,6 +4281,174 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!1 &862293250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 862293251}
+  - component: {fileID: 862293252}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (21)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &862293251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862293250}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 108.8, y: 0, z: -34.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &862293252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862293250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
+--- !u!1 &865581226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 865581227}
+  - component: {fileID: 865581228}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (17)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &865581227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865581226}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -36.6, y: 0, z: 106.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &865581228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865581226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
+--- !u!1 &890785369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 890785370}
+  - component: {fileID: 890785371}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (31)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &890785370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890785369}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -107.7, y: 0, z: 37.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &890785371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890785369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1 &897512286
 GameObject:
   m_ObjectHideFlags: 0
@@ -4885,6 +5340,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038603352}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1048253334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048253335}
+  - component: {fileID: 1048253336}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (28)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1048253335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048253334}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -34.6, y: 0, z: -111.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1048253336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048253334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1 &1060632695
 GameObject:
   m_ObjectHideFlags: 0
@@ -5920,6 +6431,62 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!1 &1231485062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231485063}
+  - component: {fileID: 1231485064}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (27)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1231485063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231485062}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -34.6, y: 0, z: -36.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1231485064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231485062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1001 &1239165934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6196,6 +6763,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279412029}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1299174733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1299174734}
+  - component: {fileID: 1299174735}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (30)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1299174734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299174733}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -107.7, y: 0, z: -38.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1299174735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299174733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1 &1305883592
 GameObject:
   m_ObjectHideFlags: 0
@@ -6564,6 +7187,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440272565}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1473949785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1473949786}
+  - component: {fileID: 1473949787}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (29)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1473949786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473949785}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -107.7, y: 0, z: -111.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1473949787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473949785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1 &1519100269
 GameObject:
   m_ObjectHideFlags: 0
@@ -6788,6 +7467,62 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530338967}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1612153986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1612153987}
+  - component: {fileID: 1612153988}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (23)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1612153987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612153986}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 30, y: 0, z: -114.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1612153988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612153986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1 &1642764360
 GameObject:
   m_ObjectHideFlags: 0
@@ -7785,6 +8520,62 @@ Transform:
   m_Father: {fileID: 1101866948}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1921510702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1921510703}
+  - component: {fileID: 1921510704}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (20)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1921510703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921510702}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 108.8, y: 0, z: 40.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1921510704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921510702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1 &1930446165
 GameObject:
   m_ObjectHideFlags: 0
@@ -8332,6 +9123,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 996323775089578417, guid: 6dd950518fca7114ab4ef696662492c0, type: 3}
   m_PrefabInstance: {fileID: 2026524100}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2026550841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026550842}
+  - component: {fileID: 2026550843}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (25)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2026550842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026550841}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 30, y: 0, z: 29.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2026550843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026550841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1001 &2045979176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8406,6 +9253,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7674197359380249724, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
   m_PrefabInstance: {fileID: 2045979176}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2047904090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2047904091}
+  - component: {fileID: 2047904092}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (26)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2047904091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047904090}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -34.6, y: 0, z: 29.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2047904092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047904090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
 --- !u!1001 &2054014376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8591,6 +9494,118 @@ MonoBehaviour:
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
   spawnCount: 22
+  spawnTries: 10
+--- !u!1 &2117393771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2117393772}
+  - component: {fileID: 2117393773}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (16)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2117393772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117393771}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -106.9, y: 0, z: 106.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2117393773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117393771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 60
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
+  spawnTries: 10
+--- !u!1 &2139277653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2139277654}
+  - component: {fileID: 2139277655}
+  m_Layer: 0
+  m_Name: Saw Spawn Field (32)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2139277654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139277653}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -112, y: 0, z: -32.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 311627202}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2139277655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139277653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
+  spawnSize: 9
+  hazardSpeed: 15
+  hazardRange: 110.44
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
+  model: {fileID: 0}
+  spawnBounds: {x: 45, y: 45}
+  spawnCount: 15
   spawnTries: 10
 --- !u!1001 &1817762007941453838
 PrefabInstance:

@@ -10,7 +10,7 @@ public class IncorporealSaw : BasicSaw
     {
         base.Update();
 
-        if (!hasAuthority)
+        if (!isServer)
             return;
 
         if (maxRange > -1 && destroyWhenOOB && Vector3.Distance(transform.position, origin) > maxRange)

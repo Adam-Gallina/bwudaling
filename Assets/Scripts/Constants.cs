@@ -133,7 +133,7 @@ public class Constants
         Level2_1, Level2_2, Level2_3, BigWed, 
         Level3_1, Level3_2, Level3_3, Twenty 
     };
-    public static GameScene[] DebugMaps = new GameScene[] { Level3_1 };
+    public static GameScene[] DebugMaps = new GameScene[] { Level3_2 };
     public static GameScene EndScreen = Stats;
     #endregion
 }

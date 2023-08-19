@@ -49,7 +49,7 @@ public class BasicSaw : RicochetProjectile
     {
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y + spinSpeed * spinDir * Time.deltaTime, 0);
 
-        if (!hasAuthority)
+        if (!isServer)
             return;
 
         if (currSize != size && Time.time > sizeDebuffEnd

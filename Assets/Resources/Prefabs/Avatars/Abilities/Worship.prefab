@@ -88,6 +88,12 @@ MonoBehaviour:
     upgradeValue: 1
     upgradeEveryLevel: 1
     upgradeLevels: 
+  zoneTravelDist:
+    startValue: 10
+    upgradeValue: 1
+    upgradeEveryLevel: 1
+    upgradeLevels: 
+  minSpeed: 1
   projectileDespawnTime: 1
   projectileDespawnOffset: -0.75
 --- !u!1001 &5996344032341088806

@@ -35,7 +35,7 @@ public class SwingingSaw : IncorporealSaw
     {
         base.Update();
 
-        if (!hasAuthority)
+        if (!isServer)
             return;
 
         float t = (transform.position.x - spawnPos.x) / (endPos.x - spawnPos.x);

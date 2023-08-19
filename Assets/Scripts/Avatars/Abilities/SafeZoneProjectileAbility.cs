@@ -8,6 +8,8 @@ public class SafeZoneProjectileAbility : ProjectileSpawnAbility
     [Header("Safe Zone Projectile")]
     [SerializeField] private AbilityUpgrade zoneDiameter;
     [SerializeField] private AbilityUpgrade zoneDuration;
+    [SerializeField] private AbilityUpgrade zoneTravelDist;
+    [SerializeField] private float minSpeed;
     [SerializeField] private float projectileDespawnTime = 1;
     [SerializeField] private float projectileDespawnOffset = -10;
 
@@ -19,13 +21,34 @@ public class SafeZoneProjectileAbility : ProjectileSpawnAbility
         float s = zoneDiameter.CalcValue(level);
         b.transform.localScale = new Vector3(s, s, s);
 
-        StartCoroutine(DespawnProjectile(b.gameObject, level));
+        StartCoroutine(DespawnProjectile(b, level));
     }
 
     [Server]
-    private IEnumerator DespawnProjectile(GameObject b, int level)
+    private IEnumerator DespawnProjectile(Projectile b, int level)
     {
-        yield return new WaitForSeconds(zoneDuration.CalcValue(level));
+        float zoneStart = Time.time;
+
+        float dist = 0;
+        Vector3 lastPos = b.transform.position;
+        do
+        {
+            dist += Vector3.Distance(b.transform.position, lastPos);
+
+            float t = dist / zoneTravelDist.CalcValue(level);
+
+            b.SetSpeed(minSpeed + (speed - minSpeed) * (1 - t) );
+
+            lastPos = b.transform.position;
+
+            yield return new WaitForEndOfFrame();
+
+        } while (dist < zoneTravelDist.CalcValue(level));
+
+        b.SetSpeed(0);
+
+        Debug.Log("Waiting for " + (zoneDuration.CalcValue(level) - (Time.time - zoneStart)));
+        yield return new WaitForSeconds(zoneDuration.CalcValue(level) - (Time.time - zoneStart));
 
         float start = Time.time;
         float startOffset = b.transform.GetChild(0).localPosition.y;
@@ -40,7 +63,7 @@ public class SafeZoneProjectileAbility : ProjectileSpawnAbility
         // Allow collisions to update
         b.transform.position = new Vector3(0, -100, 0);
         yield return new WaitForEndOfFrame();
-        NetworkServer.Destroy(b);
+        NetworkServer.Destroy(b.gameObject);
     }
 
 
