@@ -240,7 +240,7 @@ MonoBehaviour:
     upgradeValue: 2
     upgradeEveryLevel: 0
     upgradeLevels: 02000000040000000600000008000000
-  speed: 7.5
+  speedMod: 2.5
   bounce:
     startValue: 0
     upgradeValue: 1

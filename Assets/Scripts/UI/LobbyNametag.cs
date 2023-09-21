@@ -28,11 +28,10 @@ public class LobbyNametag : NametagUI
             SetDisplayName(MainMenu.DisplayName);
 
         menu.startGameButton.gameObject.SetActive(player.IsLeader);
-        menu.debugGameButton.gameObject.SetActive(player.IsLeader);
+        menu.mapPackSelect.gameObject.SetActive(player.IsLeader);
 
         menu.readyButton.onClick.AddListener(ToggleReady);
         menu.startGameButton.onClick.AddListener(StartGame);
-        menu.debugGameButton.onClick.AddListener(StartDebug);
     }
 
     protected override void Update()
@@ -52,7 +51,6 @@ public class LobbyNametag : NametagUI
         {
             menu.readyButton.onClick.RemoveListener(ToggleReady);
             menu.startGameButton.onClick.RemoveListener(StartGame);
-            menu.debugGameButton.onClick.RemoveListener(StartDebug);
         }
 
         ColorSelect.Instance.PlayerSelectedColor(LinkedPlayer.avatarColor, Color.white);
@@ -67,6 +65,9 @@ public class LobbyNametag : NametagUI
 
     public void ToggleReady()
     {
+        if (!LinkedPlayer.CanReady())
+            return;
+
         menu.readyButton.GetComponentInChildren<TMPro.TMP_Text>().text = !LinkedPlayer.IsReady ? "Unready" : "Ready";
         LinkedPlayer.CmdSetIsReady(!LinkedPlayer.IsReady);
     }
@@ -75,14 +76,9 @@ public class LobbyNametag : NametagUI
     {
         if (!LinkedPlayer.IsLeader) return;
 
-        BwudalingNetworkManager.Instance.StartGame(0, Constants.Maps, Constants.EndScreen);
-    }
 
-    public void StartDebug()
-    {
-        if (!LinkedPlayer.IsLeader) return;
-
-        BwudalingNetworkManager.Instance.StartGame(0, Constants.DebugMaps, Constants.EndScreen);
+        MapPack pack = Constants.Maps[menu.mapPackSelect.value];
+        BwudalingNetworkManager.Instance.StartGame(0, pack, Constants.EndScreen);
     }
 
     #region Getters/Setters

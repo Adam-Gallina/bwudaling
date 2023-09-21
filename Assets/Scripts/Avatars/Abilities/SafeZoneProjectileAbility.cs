@@ -37,7 +37,7 @@ public class SafeZoneProjectileAbility : ProjectileSpawnAbility
 
             float t = dist / zoneTravelDist.CalcValue(level);
 
-            b.SetSpeed(minSpeed + (speed - minSpeed) * (1 - t) );
+            b.SetSpeed(minSpeed + (controller.GetBaseMoveSpeed() + speedMod - minSpeed) * (1 - t) );
 
             lastPos = b.transform.position;
 

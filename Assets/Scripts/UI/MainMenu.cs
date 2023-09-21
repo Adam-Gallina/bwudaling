@@ -20,7 +20,8 @@ public class MainMenu : GameUI
     [Header("Lobby")]
     public Button readyButton;
     public Button startGameButton;
-    public Button debugGameButton;
+    public TMPro.TMP_Dropdown mapPackSelect;
+    public Sprite[] difficultyIndicators;
 
     public static string DisplayName { get; private set; }
 
@@ -29,7 +30,7 @@ public class MainMenu : GameUI
         base.Awake();
 
         startGameButton.gameObject.SetActive(false);
-        debugGameButton.gameObject.SetActive(false);
+        mapPackSelect.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -37,6 +38,16 @@ public class MainMenu : GameUI
         nameInputField.text = PlayerPrefs.GetString(Constants.PlayerNamePref, "Player");
         if (PlayerPrefs.HasKey(Constants.LastIpPref))
             ipAddressField.text = PlayerPrefs.GetString(Constants.LastIpPref);
+
+        mapPackSelect.options.Clear();
+        foreach (MapPack maps in Constants.Maps)
+        {
+            TMPro.TMP_Dropdown.OptionData data = new TMPro.TMP_Dropdown.OptionData(maps.name);
+            if (difficultyIndicators.Length > maps.difficulty && maps.difficulty >= 0)
+                data.image = difficultyIndicators[maps.difficulty];
+
+            mapPackSelect.AddOptions(new List<TMPro.TMP_Dropdown.OptionData> { data });
+        }
 
         if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
         {

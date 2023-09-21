@@ -15,7 +15,8 @@ public class ProjectileSpawnAbility : AbilityBase
     [SerializeField] protected Projectile projectilePrefab;
     [SerializeField] protected AbilityUpgrade count;
     //[SerializeField] protected AbilityUpgrade speed;
-    [SerializeField] protected float speed;
+    [Tooltip("Value added to players base speed")]
+    [SerializeField] protected float speedMod;
     [SerializeField] protected AbilityUpgrade bounce;
     [SerializeField] protected UnityEvent onHitTarget;
 
@@ -52,7 +53,7 @@ public class ProjectileSpawnAbility : AbilityBase
     protected virtual void OnSpawnProjectile(Projectile b, int level)
     {
         b.SetSource(controller);
-        b.SetSpeed(speed);
+        b.SetSpeed(controller.GetBaseMoveSpeed() + speedMod);
         int bounces = (int)bounce.CalcValue(level);
         if (bounces > 0) 
             ((RicochetProjectile)b).SetMaxBounces(bounces);

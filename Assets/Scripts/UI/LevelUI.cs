@@ -128,7 +128,7 @@ public class LevelUI : GameUI
         speedText.text = "Speed\nlvl " + activePlayer.abilities.speedLevel;
         boostSpeedText.text = "Boost\nlvl " + activePlayer.abilities.boostSpeedLevel;
         boostMaxText.text = "Duration\nlvl " + activePlayer.abilities.boostMaxLevel;
-        boostRechargeText.text = "Recharge\nlvl " + activePlayer.abilities.boostRechargeLevel;
+        //boostRechargeText.text = "Recharge\nlvl " + activePlayer.abilities.boostRechargeLevel;
 
         string SpecialText(string name, int level) {
             if (level == -1)

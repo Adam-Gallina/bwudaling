@@ -177,11 +177,9 @@ public class PlayerAvatar : AvatarBase
 
         targetPos = GetMovement();
         Vector3 dir = targetPos - transform.position;
+        dir.y = 0;
         if (dir != Vector3.zero)
-        {
-            dir.y = 0;
             projectileSpawn.forward = dir;
-        }
 
         rb.velocity = (targetPos - transform.position).normalized * CalcSpeed();
         if (Vector3.Distance(transform.position, targetPos) < rb.velocity.magnitude * Time.deltaTime)
@@ -303,6 +301,8 @@ public class PlayerAvatar : AvatarBase
 
         return player.abilities.SpeedVal * boostMod * currSpeedMod;
     }
+
+    public float GetBaseMoveSpeed() { return player.abilities.SpeedVal; }
 
     public void SetPosition(Vector3 pos, bool updateTargetPos = false)
     {

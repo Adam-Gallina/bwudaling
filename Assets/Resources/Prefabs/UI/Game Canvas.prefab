@@ -4113,9 +4113,6 @@ MonoBehaviour:
   tooltipText: {fileID: 2587289393205248313}
   tooltipUpgradesObj: {fileID: 5107570337307000515}
   tooltipUpgradesText: {fileID: 3659260305002524324}
-  staminaBarObj: {fileID: 2421305676572051180}
-  staminaBar: {fileID: 6578311544177333213}
-  staminaBarOffset: {x: 0, y: -5, z: 0}
   special1Cooldown: {fileID: 8446603005167422518}
   special2Cooldown: {fileID: 2525129680996550455}
   special3Cooldown: {fileID: 4934428683008059347}
@@ -4613,7 +4610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1817762007884371724
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5829,7 +5826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1817762008411173244
 RectTransform:
   m_ObjectHideFlags: 0

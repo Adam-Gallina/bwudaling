@@ -11,7 +11,7 @@ public class BwudalingNetworkManager : NetworkManager
     private GameController gc;
 
     [HideInInspector] public int currLevel = 0;
-    private GameScene[] currMaps;
+    private MapPack currMaps;
     private GameScene currEndScene;
     [HideInInspector] public bool sceneChanging = false;
 
@@ -208,7 +208,7 @@ public class BwudalingNetworkManager : NetworkManager
         ChangeToLevel(currLevel);
     }
 
-    public void StartGame(int level, GameScene[] mapSet, GameScene endScene)
+    public void StartGame(int level, MapPack mapSet, GameScene endScene)
     {
         if (SceneManager.GetActiveScene().buildIndex == Constants.MainMenu.buildIndex)
             if (!IsReadyToStart())
@@ -227,13 +227,13 @@ public class BwudalingNetworkManager : NetworkManager
             ServerChangeScene(Constants.TestMap.name);
             return;
         }
-        else if (level >= currMaps.Length)
+        else if (level >= currMaps.maps.Length)
         {
             ServerChangeScene(currEndScene.name);
             return;
         }
 
-        ServerChangeScene(currMaps[level].name);
+        ServerChangeScene(currMaps.maps[level].name);
         currLevel = level;
     }
     #endregion

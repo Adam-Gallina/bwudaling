@@ -138,10 +138,14 @@ public class NetworkPlayer : NetworkBehaviour
     {
         this.displayName = displayName;
     }
+    public bool CanReady()
+    {
+        return gameAvatarClass != AvatarClass.None;
+    }
     [Command]
     public void CmdSetIsReady(bool isReady)
     {
-        if (gameAvatarClass == AvatarClass.None)
+        if (!CanReady())
             return;
 
         IsReady = isReady;

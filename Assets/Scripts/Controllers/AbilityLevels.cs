@@ -15,7 +15,7 @@ public static class AbilityLevels
                              PlayerPrefs.GetInt(prefsName + Constants.SpeedLvlPref,         0),
                              PlayerPrefs.GetInt(prefsName + Constants.BoostLvlPref,         0),
                              PlayerPrefs.GetInt(prefsName + Constants.BoostMaxLvlPref,      0),
-                             PlayerPrefs.GetInt(prefsName + Constants.BoostRechargeLvlPref, 0),
+                             //PlayerPrefs.GetInt(prefsName + Constants.BoostRechargeLvlPref, 0),
                              PlayerPrefs.GetInt(prefsName + Constants.Special1LvlPref,      -1),
                              PlayerPrefs.GetInt(prefsName + Constants.Special2LvlPref,      -1),
                              PlayerPrefs.GetInt(prefsName + Constants.Special3LvlPref,      -1));
@@ -29,7 +29,7 @@ public static class AbilityLevels
         PlayerPrefs.SetInt(prefsName + Constants.SpeedLvlPref,      abilities.speedLevel);
         PlayerPrefs.SetInt(prefsName + Constants.BoostLvlPref,      abilities.boostSpeedLevel);
         PlayerPrefs.SetInt(prefsName + Constants.BoostMaxLvlPref,   abilities.boostMaxLevel);
-        PlayerPrefs.SetInt(prefsName + Constants.BoostRechargeLvlPref, abilities.boostRechargeLevel);
+        //PlayerPrefs.SetInt(prefsName + Constants.BoostRechargeLvlPref, abilities.boostRechargeLevel);
         PlayerPrefs.SetInt(prefsName + Constants.Special1LvlPref,   abilities.special1Level);
         PlayerPrefs.SetInt(prefsName + Constants.Special2LvlPref,   abilities.special2Level);
         PlayerPrefs.SetInt(prefsName + Constants.Special3LvlPref,   abilities.special3Level);
@@ -43,7 +43,7 @@ public static class AbilityLevels
         PlayerPrefs.SetInt(prefsName + Constants.SpeedLvlPref,      0);
         PlayerPrefs.SetInt(prefsName + Constants.BoostLvlPref,      0);
         PlayerPrefs.SetInt(prefsName + Constants.BoostMaxLvlPref,   0);
-        PlayerPrefs.SetInt(prefsName + Constants.BoostRechargeLvlPref, 0);
+        //PlayerPrefs.SetInt(prefsName + Constants.BoostRechargeLvlPref, 0);
         PlayerPrefs.SetInt(prefsName + Constants.Special1LvlPref,   -1);
         PlayerPrefs.SetInt(prefsName + Constants.Special2LvlPref,   -1);
         PlayerPrefs.SetInt(prefsName + Constants.Special3LvlPref,   -1);
@@ -98,7 +98,7 @@ public static class AbilityLevels
 
     #region Boost Recharge
     public const float BaseBoostRecharge = .5f;
-    public const float BoostRechargePerLevel = .1f;
+    public const float BoostRechargePerLevel = .05f;
     public static float CalcBoostRecharge(int level)
     {
         return BaseBoostRecharge + BoostRechargePerLevel * level;
@@ -116,12 +116,13 @@ public class Abilities
 
     public float SpeedVal { get { return AbilityLevels.CalcSpeed(speedLevel); } }
     public int speedLevel;
+
     public float BoostSpeedVal { get { return AbilityLevels.CalcBoostSpeed(boostSpeedLevel); } }
     public int boostSpeedLevel;
     public float BoostMaxVal { get { return AbilityLevels.CalcBoostMax(boostMaxLevel); } }
     public int boostMaxLevel;
-    public float BoostRechargeVal { get { return AbilityLevels.CalcBoostRecharge(boostRechargeLevel); } }
-    public int boostRechargeLevel;
+    public float BoostRechargeVal { get { return AbilityLevels.CalcBoostRecharge(boostMaxLevel); } }
+    //public int boostRechargeLevel;
 
     public int special1Level;
     public int special2Level;
@@ -131,7 +132,7 @@ public class Abilities
     public event Action OnLevelUp;
     public event Action OnUpgrade;
 
-    public Abilities(int level, int talentPoints, int currXp, int speedLevel, int boostLevel, int boostMaxLevel, int boostRechargeLevel, int special1Level, int special2Level, int special3Level)
+    public Abilities(int level, int talentPoints, int currXp, int speedLevel, int boostLevel, int boostMaxLevel, /*int boostRechargeLevel,*/ int special1Level, int special2Level, int special3Level)
     {
         this.level = level;
         this.talentPoints = talentPoints;
@@ -142,7 +143,7 @@ public class Abilities
 
         this.boostSpeedLevel = boostLevel;
         this.boostMaxLevel = boostMaxLevel;
-        this.boostRechargeLevel = boostRechargeLevel;
+        //this.boostRechargeLevel = boostRechargeLevel;
 
         this.special1Level = special1Level;
         this.special2Level = special2Level;
@@ -195,7 +196,8 @@ public class Abilities
                 boostMaxLevel += SpendTalentPoints(AbilityLevels.BasicAbilityCost) ? 1 : 0;
                 break;
             case AbilityType.boostRecharge:
-                boostRechargeLevel += SpendTalentPoints(AbilityLevels.BasicAbilityCost) ? 1 : 0;
+                //boostRechargeLevel += SpendTalentPoints(AbilityLevels.BasicAbilityCost) ? 1 : 0;
+                Debug.LogWarning("Trying to upgrade unused ability");
                 break;
             case AbilityType.special1:
                 if (special1Level == AbilityLevels.SpecialAbilityMax)

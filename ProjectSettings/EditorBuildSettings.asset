@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 3-3.unity
     guid: 6d7665866a59bce4593a70f516abf754
+  - enabled: 1
+    path: Assets/Scenes/Big Wed Boss.unity
+    guid: 81abfb21d4237604d81a8194f0aec78e
   m_configObjects: {}

@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5555303925406916637, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
       propertyPath: m_Name
-      value: Spawn Fetch Projectile
+      value: Spawn Fetch Projectile Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8788822526677520041, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
       propertyPath: m_RootOrder
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Fetch
   abilityTooltip: Throw a leash and pull a downed player towards you
+  abilityUpgradesTooltip: []
   abilityIcon: {fileID: 1289735124, guid: d6042eaa3aad31248a3f5a2eb74982e6, type: 3}
   abilityCooldown:
     startValue: 30
@@ -148,6 +149,10 @@ MonoBehaviour:
     upgradeEveryLevel: 1
     upgradeLevels: 
   canUseWhileDead: 0
+  abilityStart:
+    _PersistentCalls: []
+  abilityEnd:
+    _PersistentCalls: []
   projectileSpawn: {fileID: 0}
   bulletSpread: 0
   projectilePrefab: {fileID: 5628837008914201456, guid: 1e3bfd05ea9c49643aada26fe004f89a, type: 3}
@@ -156,7 +161,7 @@ MonoBehaviour:
     upgradeValue: 0
     upgradeEveryLevel: 1
     upgradeLevels: 
-  speed: 7.5
+  speedMod: 2.5
   bounce:
     startValue: 0
     upgradeValue: 0
