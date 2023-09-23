@@ -152,7 +152,7 @@ MonoBehaviour:
   aliveIcon: {fileID: 4526033427033651315}
   deadIcon: {fileID: 4382201890721043697}
   startWalkAnimSpeed: 0.75
-  stepWalkAnimSpeed: 0.05
+  stepWalkAnimSpeed: 0.025
 --- !u!114 &7159840408252324000
 MonoBehaviour:
   m_ObjectHideFlags: 0

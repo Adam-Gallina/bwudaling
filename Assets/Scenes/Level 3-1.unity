@@ -274,7 +274,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 26
+  spawnCount: 18
   spawnTries: 10
 --- !u!1 &19265179
 GameObject:
@@ -428,7 +428,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 27}
-  spawnCount: 14
+  spawnCount: 12
   spawnTries: 10
 --- !u!1 &47941893
 GameObject:
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 21
+  spawnCount: 13
   spawnTries: 10
 --- !u!1 &280600426
 GameObject:
@@ -1805,7 +1805,7 @@ MonoBehaviour:
   safeZoneXp: 25
   endZoneXp: 120
   winXp: 40
-  hazardSpeed: 5
+  hazardSpeed: 7
   hazardRange: 250
   mapCenter: {x: 0, y: 0, z: 0}
 --- !u!4 &373380049
@@ -1826,6 +1826,7 @@ Transform:
   - {fileID: 431153099}
   - {fileID: 584766601}
   - {fileID: 839147438}
+  - {fileID: 2007957279}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1931,7 +1932,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 26.6, y: 12}
-  spawnCount: 9
+  spawnCount: 4
   spawnTries: 10
 --- !u!1001 &469246366
 PrefabInstance:
@@ -2382,7 +2383,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 26
+  spawnCount: 20
   spawnTries: 10
 --- !u!1001 &543081125
 PrefabInstance:
@@ -2764,7 +2765,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 26.6, y: 12}
-  spawnCount: 6
+  spawnCount: 2
   spawnTries: 10
 --- !u!1 &591464342
 GameObject:
@@ -3014,7 +3015,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 25
+  spawnCount: 11
   spawnTries: 10
 --- !u!1 &699197927
 GameObject:
@@ -3655,7 +3656,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 22
+  spawnCount: 14
   spawnTries: 10
 --- !u!1 &809208056
 GameObject:
@@ -4088,7 +4089,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 24
+  spawnCount: 11
   spawnTries: 10
 --- !u!1 &907080389
 GameObject:
@@ -4241,7 +4242,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 23
+  spawnCount: 15
   spawnTries: 10
 --- !u!4 &937297316 stripped
 Transform:
@@ -5387,7 +5388,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 20
+  spawnCount: 12
   spawnTries: 10
 --- !u!1 &1132710844
 GameObject:
@@ -5734,7 +5735,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 20
+  spawnCount: 12
   spawnTries: 10
 --- !u!1 &1199760348
 GameObject:
@@ -6387,7 +6388,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 21
+  spawnCount: 13
   spawnTries: 10
 --- !u!1 &1325211676
 GameObject:
@@ -6443,7 +6444,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 25
+  spawnCount: 18
   spawnTries: 10
 --- !u!1 &1361043961
 GameObject:
@@ -7607,7 +7608,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 23
+  spawnCount: 10
   spawnTries: 10
 --- !u!1 &1841613161
 GameObject:
@@ -8167,6 +8168,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 996323775089578417, guid: 6dd950518fca7114ab4ef696662492c0, type: 3}
   m_PrefabInstance: {fileID: 1987799150}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2007957279 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+  m_PrefabInstance: {fileID: 287573971837048294}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2008126514
 GameObject:
   m_ObjectHideFlags: 0
@@ -8222,7 +8228,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 27}
-  spawnCount: 19
+  spawnCount: 16
   spawnTries: 10
 --- !u!1001 &2013727218
 PrefabInstance:
@@ -8574,7 +8580,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 24
+  spawnCount: 10
   spawnTries: 10
 --- !u!1 &2077696349
 GameObject:
@@ -8630,8 +8636,65 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 35, y: 35}
-  spawnCount: 22
+  spawnCount: 14
   spawnTries: 10
+--- !u!1001 &287573971837048294
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 373380049}
+    m_Modifications:
+    - target: {fileID: 287573969896221432, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_Name
+      value: Blocks
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 287573969896221433, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9a46aa4c655e4f0488ef075b1b09180f, type: 3}
 --- !u!1001 &1817762007941453838
 PrefabInstance:
   m_ObjectHideFlags: 0

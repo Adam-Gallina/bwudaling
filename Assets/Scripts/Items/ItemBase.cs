@@ -29,4 +29,12 @@ public class ItemBase : NetworkBehaviour
         targetPlayer = p;
         targetPlayer.heldItem = this;
     }
+
+    [Server]
+    public virtual void Drop()
+    {
+        if (targetPlayer)
+            targetPlayer.heldItem = null;
+        targetPlayer = null;
+    }
 }

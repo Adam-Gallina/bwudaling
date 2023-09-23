@@ -205,6 +205,41 @@ MonoBehaviour:
   chargePerHaiw: 2
   deliveryXp: 25
   damageAnim: {fileID: 1917659704063562953}
+  depositAnim:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3160143
+      value: -0.037193052
+      inSlope: 0.03849071
+      outSlope: 0.03849071
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.32867333
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  depositAnimTime: 1.25
+  depositAnimTarget: {fileID: 2211252754273294278}
 --- !u!65 &63383906
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3038,3 +3073,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e814be4f7c72dec4b97ba2c2a0cdd990, type: 3}
+--- !u!4 &2211252754273294278 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7399767438647106763, guid: e814be4f7c72dec4b97ba2c2a0cdd990, type: 3}
+  m_PrefabInstance: {fileID: 2211252754273294277}
+  m_PrefabAsset: {fileID: 0}

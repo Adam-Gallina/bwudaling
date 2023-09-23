@@ -412,12 +412,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
-  spawnCount: 13
+  spawnCount: 11
   spawnTries: 10
 --- !u!1001 &174782884
 PrefabInstance:
@@ -2158,12 +2160,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 74}
-  spawnCount: 16
+  spawnCount: 14
   spawnTries: 10
 --- !u!1 &846210091
 GameObject:
@@ -2903,12 +2907,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
-  spawnCount: 13
+  spawnCount: 11
   spawnTries: 10
 --- !u!1001 &1136541358
 PrefabInstance:
@@ -3124,12 +3130,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 74}
-  spawnCount: 12
+  spawnCount: 10
   spawnTries: 10
 --- !u!1 &1220444185
 GameObject:
@@ -3872,12 +3880,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
-  spawnCount: 15
+  spawnCount: 13
   spawnTries: 10
 --- !u!1 &1474546201
 GameObject:
@@ -4426,12 +4436,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 39}
-  spawnCount: 8
+  spawnCount: 4
   spawnTries: 10
 --- !u!1001 &1676557546
 PrefabInstance:
@@ -4550,12 +4562,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
-  spawnCount: 14
+  spawnCount: 12
   spawnTries: 10
 --- !u!1 &1700934676
 GameObject:
@@ -4604,12 +4618,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
-  spawnCount: 14
+  spawnCount: 12
   spawnTries: 10
 --- !u!1 &1737284296
 GameObject:
@@ -4658,12 +4674,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
-  spawnCount: 16
+  spawnCount: 12
   spawnTries: 10
 --- !u!1 &1759298733
 GameObject:
@@ -4712,12 +4730,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
-  spawnCount: 12
+  spawnCount: 10
   spawnTries: 10
 --- !u!1001 &1778335272
 PrefabInstance:
@@ -5168,7 +5188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c636a67abc3b34ea39e45af758ad7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 75
 --- !u!1 &1935538232
 GameObject:
   m_ObjectHideFlags: 0
@@ -5310,12 +5329,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 35}
-  spawnCount: 8
+  spawnCount: 6
   spawnTries: 10
 --- !u!1001 &1958926191
 PrefabInstance:
@@ -5488,12 +5509,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 6.5, y: 74}
-  spawnCount: 15
+  spawnCount: 13
   spawnTries: 10
 --- !u!1 &2112575738
 GameObject:

@@ -132,7 +132,7 @@ public class Constants
         new MapPack("Debug", 0, new GameScene[] { BigWed }),
         new MapPack("Siwy Cwab", 1, new GameScene[] { Level1_1, Level1_2, Level1_3, SiwyCwab }),
         new MapPack("Big Wed", 2, new GameScene[] { Level2_1, Level2_2, Level2_3, BigWed }),
-        new MapPack("Twent", 3, new GameScene[] { Level3_1, Level3_2, Level3_3, Twenty })
+        new MapPack("Twent", 3, new GameScene[] { Level3_2, Level3_1, Level3_3, Twenty })
     };
     public static GameScene EndScreen = Stats;
     #endregion

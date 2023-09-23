@@ -10,9 +10,11 @@ public class BwudaHaiw : ItemBase
     [Header("Animation")]
     [SerializeField] private Transform model;
     [SerializeField] private float bobSpeed;
+    [SerializeField] private float rotSpeed;
     [SerializeField] private float bobMaxDelta;
     private float currBob;
     private float bobDir = 1;
+    private float currRot;
 
     [Header("Map Icon")]
     [SerializeField] private Transform icon;
@@ -20,6 +22,11 @@ public class BwudaHaiw : ItemBase
     [SerializeField] private float iconTurnMaxDelta;
     private float currIconRot;
     private int iconDir = 1;
+
+    private void Awake()
+    {
+        currRot = Random.Range(0, 359);
+    }
 
     [ServerCallback]
     protected override void OnTriggerEnter(Collider other)
@@ -37,12 +44,14 @@ public class BwudaHaiw : ItemBase
         if (isClient)
         {
             currBob += bobDir * bobSpeed * Time.deltaTime;
+            currRot += rotSpeed * Time.deltaTime;
             if (currBob < -bobMaxDelta || currBob > bobMaxDelta)
             {
                 bobDir *= -1;
                 currBob = Mathf.Clamp(currBob, -bobMaxDelta, bobMaxDelta);
             }
             model.transform.localPosition = new Vector3(0, currBob, 0);
+            model.transform.localEulerAngles = new Vector3(0, currRot, 0);
 
             currIconRot += iconDir * iconTurnSpeed * Time.deltaTime;
             if (currIconRot < -iconTurnMaxDelta || currIconRot > iconTurnMaxDelta)

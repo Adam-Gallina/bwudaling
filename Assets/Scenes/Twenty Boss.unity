@@ -204,7 +204,42 @@ MonoBehaviour:
   damageSpeed: 5
   chargePerHaiw: 2
   deliveryXp: 25
-  damageAnim: {fileID: 1877227274}
+  damageAnim: {fileID: 1877227275}
+  depositAnim:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3160143
+      value: -0.037193052
+      inSlope: 0.03849071
+      outSlope: 0.03849071
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.32867333
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  depositAnimTime: 1.25
+  depositAnimTarget: {fileID: 1877227270}
 --- !u!65 &63383906
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1756,7 +1791,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 18
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -2675,7 +2712,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 302611976362279681, guid: e814be4f7c72dec4b97ba2c2a0cdd990, type: 3}
   m_PrefabInstance: {fileID: 1877227268}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1877227274 stripped
+--- !u!4 &1877227270 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7399767438647106763, guid: e814be4f7c72dec4b97ba2c2a0cdd990, type: 3}
+  m_PrefabInstance: {fileID: 1877227268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1877227275 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3927170026348930525, guid: e814be4f7c72dec4b97ba2c2a0cdd990, type: 3}
   m_PrefabInstance: {fileID: 1877227268}
