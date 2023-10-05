@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
+using UnityEditor;
 
 public class BwudalingNetworkManager : NetworkManager
 {
@@ -94,9 +95,10 @@ public class BwudalingNetworkManager : NetworkManager
 
     public override void OnClientError(TransportError error, string reason)
     {
-        base.OnClientError(error, reason);
-        
-        if (error == TransportError.DnsResolve) { OnClientJoinFailed?.Invoke(); }
+        if (error == TransportError.DnsResolve) 
+            OnClientJoinFailed?.Invoke();
+        else
+            base.OnClientError(error, reason);
     }
 
     public override void OnStopServer()

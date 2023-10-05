@@ -180,6 +180,8 @@ public class MainMenu : GameUI
 
         startPagePanel.SetActive(true);
         lobbyPanel.SetActive(false);
+
+        readyButton.GetComponentInChildren<TMPro.TMP_Text>().text = "Ready";
     }
 
     private void HandleClientJoinFailed()
