@@ -21,10 +21,7 @@ public class ColorSelect : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
 
-    private void Start()
-    {
         SpawnButtons();
     }
 
@@ -56,7 +53,10 @@ public class ColorSelect : MonoBehaviour
         foreach (Color c in colorOptions)
         {
             if (colorBtns[c].available)
+            {
+                colorBtns[c].Disable();
                 return c;
+            }
         }
 
         return Color.white;
