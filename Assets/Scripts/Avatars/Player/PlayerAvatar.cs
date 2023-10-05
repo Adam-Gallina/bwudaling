@@ -24,6 +24,7 @@ public class PlayerAvatar : AvatarBase
     private bool boostRecharging = false;
     [SerializeField] protected float turnSpeed = 360;
     [SerializeField] protected float turnSpeedMod;
+    [HideInInspector] [SyncVar] public float currSpeed;
 
     //[Header("Items")]
     [HideInInspector] public ItemBase heldItem;
@@ -187,6 +188,7 @@ public class PlayerAvatar : AvatarBase
             rb.velocity = Vector3.zero;
             rb.MovePosition(targetPos);
         }
+        currSpeed = rb.velocity.magnitude;
 
         bool walking = rb.velocity.magnitude > 0;
         if (walking)
@@ -301,8 +303,6 @@ public class PlayerAvatar : AvatarBase
 
         return player.abilities.SpeedVal * boostMod * currSpeedMod;
     }
-
-    public float GetBaseMoveSpeed() { return player.abilities.SpeedVal; }
 
     public void SetPosition(Vector3 pos, bool updateTargetPos = false)
     {

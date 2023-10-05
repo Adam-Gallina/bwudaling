@@ -28,6 +28,7 @@ public class SafeZoneProjectileAbility : ProjectileSpawnAbility
     private IEnumerator DespawnProjectile(Projectile b, int level)
     {
         float zoneStart = Time.time;
+        float calcSpeedMod = controller.currSpeed + speedMod - minSpeed;
 
         float dist = 0;
         Vector3 lastPos = b.transform.position;
@@ -37,7 +38,7 @@ public class SafeZoneProjectileAbility : ProjectileSpawnAbility
 
             float t = dist / zoneTravelDist.CalcValue(level);
 
-            b.SetSpeed(minSpeed + (controller.GetBaseMoveSpeed() + speedMod - minSpeed) * (1 - t) );
+            b.SetSpeed(minSpeed + calcSpeedMod * (1 - t));
 
             lastPos = b.transform.position;
 
@@ -47,7 +48,6 @@ public class SafeZoneProjectileAbility : ProjectileSpawnAbility
 
         b.SetSpeed(0);
 
-        Debug.Log("Waiting for " + (zoneDuration.CalcValue(level) - (Time.time - zoneStart)));
         yield return new WaitForSeconds(zoneDuration.CalcValue(level) - (Time.time - zoneStart));
 
         float start = Time.time;

@@ -53,7 +53,8 @@ public class ProjectileSpawnAbility : AbilityBase
     protected virtual void OnSpawnProjectile(Projectile b, int level)
     {
         b.SetSource(controller);
-        b.SetSpeed(controller.GetBaseMoveSpeed() + speedMod);
+        
+        b.SetSpeed(controller.currSpeed + speedMod);
         int bounces = (int)bounce.CalcValue(level);
         if (bounces > 0) 
             ((RicochetProjectile)b).SetMaxBounces(bounces);

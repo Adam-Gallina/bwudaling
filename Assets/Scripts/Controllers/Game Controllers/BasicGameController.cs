@@ -86,7 +86,7 @@ public class BasicGameController : GameController
     [Server]
     protected virtual IEnumerator EndSequence(NetworkPlayer p)
     {
-        RpcSetCamera(p, 1);
+        RpcSetCamera(p.avatar, 1);
 
         RpcSendServerBannerMessage(p.displayName + " won!", p.avatarColor, 0);
         yield return new WaitForSeconds(messageTime);
