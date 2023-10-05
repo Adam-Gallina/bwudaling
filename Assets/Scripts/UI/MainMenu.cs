@@ -16,6 +16,7 @@ public class MainMenu : GameUI
 
     [SerializeField] private Button hostButton;
     [SerializeField] private Button joinButton;
+    [SerializeField] private GameObject joinFailedText;
 
     [Header("Lobby")]
     public Button readyButton;
@@ -66,12 +67,14 @@ public class MainMenu : GameUI
     {
         BwudalingNetworkManager.OnClientConnected += HandleClientConnected;
         BwudalingNetworkManager.OnClientDisconnected += HandleClientDisconnected;
+        BwudalingNetworkManager.OnClientJoinFailed += HandleClientJoinFailed;
     }
 
     private void OnDisable()
     {
         BwudalingNetworkManager.OnClientConnected -= HandleClientConnected;
         BwudalingNetworkManager.OnClientDisconnected -= HandleClientDisconnected;
+        BwudalingNetworkManager.OnClientJoinFailed -= HandleClientJoinFailed;
     }
 
     public void SetPlayerName(string name)
@@ -164,7 +167,6 @@ public class MainMenu : GameUI
 
         startPagePanel.SetActive(false);
         lobbyPanel.SetActive(true);
-        //LobbyUI.LInstance.gameObject.SetActive(true);
 
         PlayerPrefs.SetString(Constants.LastIpPref, ipAddressField.text);
         PlayerPrefs.SetString(Constants.PlayerNamePref, DisplayName);
@@ -178,9 +180,12 @@ public class MainMenu : GameUI
 
         startPagePanel.SetActive(true);
         lobbyPanel.SetActive(false);
-        //LobbyUI.LInstance.gameObject.SetActive(false);
+    }
 
-        //LobbyUI.LInstance.ClearPlayers();
+    private void HandleClientJoinFailed()
+    {
+        joinButton.interactable = true;
+        joinFailedText.SetActive(true);
     }
     #endregion
 }

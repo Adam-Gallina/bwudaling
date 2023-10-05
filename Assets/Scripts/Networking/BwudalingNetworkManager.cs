@@ -45,6 +45,7 @@ public class BwudalingNetworkManager : NetworkManager
 
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
+    public static event Action OnClientJoinFailed;
     public static event Action<NetworkConnection, int> OnServerReadied;
 
     public override void Awake()
@@ -89,6 +90,13 @@ public class BwudalingNetworkManager : NetworkManager
         }
 
         base.OnServerDisconnect(conn);
+    }
+
+    public override void OnClientError(TransportError error, string reason)
+    {
+        base.OnClientError(error, reason);
+        
+        if (error == TransportError.DnsResolve) { OnClientJoinFailed?.Invoke(); }
     }
 
     public override void OnStopServer()
