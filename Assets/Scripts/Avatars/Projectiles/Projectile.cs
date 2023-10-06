@@ -38,9 +38,11 @@ public class Projectile : NetworkBehaviour
         rb.velocity = direction.normalized * speed;
     }
 
-    [ServerCallback]
-    private void OnTriggerStay(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
+        if (!isServer)
+            return;
+
         if (spawner && other.GetComponentInParent<AvatarBase>() == spawner)
             return;
 

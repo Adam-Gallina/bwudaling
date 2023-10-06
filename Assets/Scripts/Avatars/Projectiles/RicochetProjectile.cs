@@ -40,6 +40,8 @@ public class RicochetProjectile : Projectile
             currVelocity = Vector3.Reflect(currVelocity, collision.contacts[0].normal);
             rb.velocity = currVelocity.normalized * speed;
 
+            OnCollision(collision);
+
             if (((1 << collision.collider.gameObject.layer) & costRicochetLayers.value) > 0)
             {
                 --bounces;
@@ -60,6 +62,12 @@ public class RicochetProjectile : Projectile
     {
         if (rb.velocity != Vector3.zero)
             currVelocity = rb.velocity;
+    }
+
+    [Server]
+    protected virtual void OnCollision(Collision other)
+    {
+
     }
 
     [Server]
