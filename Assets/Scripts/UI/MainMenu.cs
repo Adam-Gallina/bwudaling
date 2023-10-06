@@ -34,8 +34,10 @@ public class MainMenu : GameUI
         mapPackSelect.gameObject.SetActive(false);
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         nameInputField.text = PlayerPrefs.GetString(Constants.PlayerNamePref, "Player");
         if (PlayerPrefs.HasKey(Constants.LastIpPref))
             ipAddressField.text = PlayerPrefs.GetString(Constants.LastIpPref);

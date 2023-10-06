@@ -10,9 +10,16 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Transform nametagParent;
     [SerializeField] private Color defaultBannerCol;
 
+    [HideInInspector] public bool start = false;
+
     protected virtual void Awake()
     {
         Instance = this;
+    }
+
+    protected virtual void Start()
+    {
+        start = true;
     }
 
     private void OnDestroy()

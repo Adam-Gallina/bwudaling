@@ -126,7 +126,7 @@ public class NetworkPlayer : NetworkBehaviour
     private IEnumerator WaitForMapController()
     {
         if (!GameUI.Instance)
-            yield return new WaitUntil(() => GameUI.Instance);
+            yield return new WaitUntil(() => { return GameUI.Instance && GameUI.Instance.start; });
 
         currNametag = GameUI.Instance?.SpawnNametag();
         currNametag?.SetLinkedPlayer(this);

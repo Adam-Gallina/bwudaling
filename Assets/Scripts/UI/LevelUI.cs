@@ -50,12 +50,16 @@ public class LevelUI : GameUI
 
     [Header("Pause Menu")]
     [SerializeField] private GameObject restartBtn;
+    [SerializeField] private GameObject returnBtn;
 
     private NetworkPlayer activePlayer;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         restartBtn.SetActive(false);
+        returnBtn.SetActive(false);
 
         NetworkPlayer p = BwudalingNetworkManager.Instance.ActivePlayer;
         if (p != null)
@@ -66,6 +70,7 @@ public class LevelUI : GameUI
             activePlayer.abilities.OnUpgrade += UpdateDisplay;
 
             restartBtn.SetActive(p.IsLeader);
+            returnBtn.SetActive(p.IsLeader);
         }
     }
 
@@ -242,6 +247,11 @@ public class LevelUI : GameUI
     public void RestartLevel()
     {
         BwudalingNetworkManager.Instance.RestartMap();
+    }
+
+    public void ReturnToLobby()
+    {
+        BwudalingNetworkManager.Instance.ReturnToLobby();
     }
     #endregion
 }

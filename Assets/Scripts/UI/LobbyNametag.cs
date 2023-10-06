@@ -10,6 +10,10 @@ public class LobbyNametag : NametagUI
     [SerializeField] private TMPro.TMP_Text playerCharText;
 
     private MainMenu menu;
+    private MainMenu Menu { get { 
+            if (menu == null) menu = (MainMenu)GameUI.Instance; 
+            return menu;
+    } }
 
     private void Awake()
     {
@@ -27,11 +31,11 @@ public class LobbyNametag : NametagUI
         if (string.IsNullOrEmpty(player.displayName) || player.displayName.Equals("Unnamed Player"))
             SetDisplayName(MainMenu.DisplayName);
 
-        menu.startGameButton.gameObject.SetActive(player.IsLeader);
-        menu.mapPackSelect.gameObject.SetActive(player.IsLeader);
+        Menu.startGameButton.gameObject.SetActive(player.IsLeader);
+        Menu.mapPackSelect.gameObject.SetActive(player.IsLeader);
 
-        menu.readyButton.onClick.AddListener(ToggleReady);
-        menu.startGameButton.onClick.AddListener(StartGame);
+        Menu.readyButton.onClick.AddListener(ToggleReady);
+        Menu.startGameButton.onClick.AddListener(StartGame);
     }
 
     protected override void Update()
@@ -45,12 +49,12 @@ public class LobbyNametag : NametagUI
 
     private void OnDestroy()
     {
-        menu.RemoveNametag(this);
+        Menu.RemoveNametag(this);
 
         if (LinkedPlayer.hasAuthority)
         {
-            menu.readyButton.onClick.RemoveListener(ToggleReady);
-            menu.startGameButton.onClick.RemoveListener(StartGame);
+            Menu.readyButton.onClick.RemoveListener(ToggleReady);
+            Menu.startGameButton.onClick.RemoveListener(StartGame);
         }
 
         ColorSelect.Instance.PlayerSelectedColor(LinkedPlayer.avatarColor, Color.white);
@@ -68,7 +72,7 @@ public class LobbyNametag : NametagUI
         if (!LinkedPlayer.CanReady())
             return;
 
-        menu.readyButton.GetComponentInChildren<TMPro.TMP_Text>().text = !LinkedPlayer.IsReady ? "Unready" : "Ready";
+        Menu.readyButton.GetComponentInChildren<TMPro.TMP_Text>().text = !LinkedPlayer.IsReady ? "Unready" : "Ready";
         LinkedPlayer.CmdSetIsReady(!LinkedPlayer.IsReady);
     }
 

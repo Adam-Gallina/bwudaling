@@ -13,6 +13,7 @@ public class ColorSelect : MonoBehaviour
 
     [SerializeField] private Color[] colorOptions;
     private Dictionary<Color, ColorOption> colorBtns;
+    private bool spawnedBtns = false;
 
     [SerializeField] private float btnSize;
     [SerializeField] private float btnOffset;
@@ -21,13 +22,24 @@ public class ColorSelect : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
+        
         SpawnButtons();
+
+        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
+        {
+            if (p.avatarColor != Color.white)
+                PlayerSelectedColor(Color.white, p.avatarColor);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
     }
 
     private void SpawnButtons()
     {
-        if (colorBtns != null)
+        if (spawnedBtns)
         {
             colorBtns.Values.ToList().ForEach((ColorOption o) => { o.Enable(); });
             return;
@@ -43,6 +55,8 @@ public class ColorSelect : MonoBehaviour
             b.Enable();
             colorBtns.Add(colorOptions[c], b);
         }
+
+        spawnedBtns = true;
     }
 
     public Color GetNextAvailableColor()
