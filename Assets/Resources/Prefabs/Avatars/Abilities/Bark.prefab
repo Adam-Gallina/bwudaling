@@ -119,6 +119,18 @@ PrefabInstance:
       propertyPath: reflectSlowDuration.upgradeLevels.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3894581310957522439, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3894581310957522439, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.5663458
+      objectReference: {fileID: 0}
+    - target: {fileID: 3894581310957522439, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5297081999356858382, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: m_Name
       value: Bark

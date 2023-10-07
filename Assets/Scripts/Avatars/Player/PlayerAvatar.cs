@@ -51,6 +51,10 @@ public class PlayerAvatar : AvatarBase
     [SerializeField] private float startWalkAnimSpeed;
     [SerializeField] private float stepWalkAnimSpeed;
 
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem splatSystem;
+    [SerializeField] private ParticleSystem healedSystem;
+
     private List<Collider> currSafeZones = new List<Collider>();
 
     protected InputController inp;
@@ -314,6 +318,8 @@ public class PlayerAvatar : AvatarBase
 
     protected override void OnHeal()
     {
+        if (anim?.GetBool("Dead") == true)
+            healedSystem?.Play();
         anim?.SetBool("Dead", false);
     }
 
@@ -329,6 +335,8 @@ public class PlayerAvatar : AvatarBase
         ability2.CancelAbility();
         ability3.CancelAbility();
 
+        if (anim?.GetBool("Dead") == false)
+            splatSystem?.Play();
         anim?.SetBool("Dead", true);
 
         if (isServer)
@@ -436,6 +444,39 @@ public class PlayerAvatar : AvatarBase
                 break;
             case 2:
                 ability3.OnUseClientAbility(target, level);
+                break;
+        }
+    }
+
+    public void DoEffect(AbilityBase ability, Vector3 target, int level)
+    {
+        if (ability == ability1)
+            CmdDoAbilityEffect(0, target, level);
+        else if (ability == ability2)
+            CmdDoAbilityEffect(1, target, level);
+        else if (ability == ability3)
+            CmdDoAbilityEffect(2, target, level);
+        else
+            Debug.LogError("Can't use ability effect " + ability.name, this);
+    }
+    [Command]
+    private void CmdDoAbilityEffect(int ability, Vector3 target, int level)
+    {
+        RpcDoAbilityEffect(ability, target, level);
+    }
+    [ClientRpc]
+    private void RpcDoAbilityEffect(int ability, Vector3 target, int level)
+    {
+        switch (ability)
+        {
+            case 0:
+                ability1.OnDoClientEffect(target, level);
+                break;
+            case 1:
+                ability2.OnDoClientEffect(target, level);
+                break;
+            case 2:
+                ability3.OnDoClientEffect(target, level);
                 break;
         }
     }

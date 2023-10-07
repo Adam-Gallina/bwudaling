@@ -5,16 +5,7 @@ using Mirror;
 using UnityEngine.Rendering.VirtualTexturing;
 
 public class BasicSaw : RicochetProjectile
-{
-    [SerializeField] protected Transform model;
-    [SerializeField] protected ParticleSystem sparkPrefab;
-    [SerializeField] protected float sparkRadius;
-    [SerializeField] protected float sparkHeight;
-    private List<ParticleSystem> spawnedSparks = new List<ParticleSystem>();
-    private Dictionary<Collider, ParticleSystem> activeCollisions = new Dictionary<Collider, ParticleSystem>();
-    [SerializeField] private float sparkDespawwnTime = 0.15f;
-
-    protected Vector3 spawnPos;
+{    protected Vector3 spawnPos;
     protected Vector3 origin;
     protected float maxRange = -1;
 
@@ -30,6 +21,16 @@ public class BasicSaw : RicochetProjectile
     protected float speedDebuffEnd;
 
     protected bool canHitPlayer = true;
+
+    [Header("Effects")]
+    [SerializeField] protected Transform model;
+    [SerializeField] protected ParticleSystem sparkPrefab;
+    [SerializeField] protected float sparkRadius;
+    [SerializeField] protected float sparkHeight;
+    private List<ParticleSystem> spawnedSparks = new List<ParticleSystem>();
+    private Dictionary<Collider, ParticleSystem> activeCollisions = new Dictionary<Collider, ParticleSystem>();
+    [SerializeField] private float sparkDespawwnTime = 0.15f;
+
 
     protected override void Awake()
     {
@@ -130,7 +131,9 @@ public class BasicSaw : RicochetProjectile
 
         AvatarBase target = other.gameObject.GetComponentInParent<AvatarBase>();
         if (target)
+        {
             target.Damage();
+        }
     }
 
     [Server]

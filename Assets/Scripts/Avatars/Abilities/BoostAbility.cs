@@ -19,6 +19,8 @@ public class BoostAbility : AbilityBase
         }
         
         controller.CmdApplySpeedMod(speedMod.CalcValue(level), duration.CalcValue(level));
+        if (effect != null)
+            Invoke(nameof(EndEffect), duration.CalcValue(level) - .75f);
         if (abilityEnd != null)
             Invoke(nameof(OnEndAbility), duration.CalcValue(level) - invulnerabilityPadding);
 
@@ -26,6 +28,7 @@ public class BoostAbility : AbilityBase
     }
 
     private void EndInvulnerability() { controller.SetInvulnerable(false); }
+    private void EndEffect() { DoServerEffect(transform.position, -1); }
 
     protected override float CalcNextAbility(int level)
     {

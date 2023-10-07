@@ -21,6 +21,9 @@ public abstract class AbilityBase : MonoBehaviour
     //[Header("UI")]
     protected AbilityCooldown cooldownUI;
 
+    [Header("Effects")]
+    [SerializeField] protected ParticleSystem effect;
+
     [Header("Callbacks")]
     [SerializeField] protected UltEvent abilityStart;
     [SerializeField] protected UltEvent abilityEnd;
@@ -58,10 +61,12 @@ public abstract class AbilityBase : MonoBehaviour
             abilityStart?.Invoke();
             controller.stats?.AddAbility();
 
+            DoEffect(level);
             if (OnUseAbility(level))
                 nextAbility = Time.time + CalcNextAbility(level);
 
             abilityQueued = false;
+
         }
     }
     protected abstract bool OnUseAbility(int level);
@@ -96,6 +101,25 @@ public abstract class AbilityBase : MonoBehaviour
 
     }
 
+    protected virtual void DoEffect(int level)
+    {
+        DoServerEffect(transform.position, level);
+    }
+    protected void DoServerEffect(Vector3 target, int level) 
+    {
+        controller.DoEffect(this, target, level); 
+    }
+    [Client]
+    public virtual void OnDoClientEffect(Vector3 target, int level)
+    {
+        if (effect)
+            PlaceEffect(effect, target, level);
+    }
+
+    protected virtual void PlaceEffect(ParticleSystem effect, Vector3 target, int level)
+    {
+        effect.Play();
+    }
 
     public virtual void UpdateUI(int level)
     {

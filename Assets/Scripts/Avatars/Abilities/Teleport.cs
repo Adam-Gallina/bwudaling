@@ -26,4 +26,9 @@ public class Teleport : TargetAbility
 
         return true;
     }
+
+    protected override void DoEffect(int level)
+    {
+        DoServerEffect(transform.position, level);
+    }
 }

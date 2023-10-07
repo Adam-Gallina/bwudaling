@@ -57,6 +57,7 @@ MonoBehaviour:
     upgradeEveryLevel: 1
     upgradeLevels: 
   canUseWhileDead: 1
+  effect: {fileID: 0}
   abilityStart:
     _PersistentCalls: []
   abilityEnd:
@@ -73,6 +74,7 @@ MonoBehaviour:
     upgradeEveryLevel: 1
     upgradeLevels: 
   forceMaxRange: 0
+  splashEffect: {fileID: 0}
   shield:
     startValue: 0
     upgradeValue: 0

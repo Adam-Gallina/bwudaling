@@ -1,5 +1,75 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2581450835394175974
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3578332378211075534}
+    m_Modifications:
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.50000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385925458214915315, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733048711681529999, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733048711681529999, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.14719832
+      objectReference: {fileID: 0}
+    - target: {fileID: 6134559764427836327, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+      propertyPath: m_Name
+      value: Splash
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+--- !u!198 &7096561829210225513 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4733048711681529999, guid: 286b682d739fa7a45befb0aa2a41596b, type: 3}
+  m_PrefabInstance: {fileID: 2581450835394175974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3145819797165287873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19,6 +89,10 @@ PrefabInstance:
       propertyPath: abilityName
       value: Worship
       objectReference: {fileID: 0}
+    - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
+      propertyPath: splashEffect
+      value: 
+      objectReference: {fileID: 7096561829210225513}
     - target: {fileID: 1415324497270863502, guid: e60f84a756c59c941827024dbfd73906, type: 3}
       propertyPath: canTargetDead
       value: 1
@@ -133,7 +207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9051424289344407501, guid: e60f84a756c59c941827024dbfd73906, type: 3}
       propertyPath: m_Name
-      value: Worship
+      value: Mass Heal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e60f84a756c59c941827024dbfd73906, type: 3}

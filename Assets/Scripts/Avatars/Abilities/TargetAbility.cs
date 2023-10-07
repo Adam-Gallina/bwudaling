@@ -15,6 +15,8 @@ public abstract class TargetAbility : AbilityBase
     [SerializeField] protected AbilityUpgrade radius;
     [SerializeField] protected bool forceMaxRange;
 
+    [SerializeField] protected ParticleSystem splashEffect;
+
     private void Update()
     {
         if (showIndicator)
@@ -80,5 +82,35 @@ public abstract class TargetAbility : AbilityBase
     {
         reticle.SetReticleCenter(currReticlePos);
         reticle.DrawCircle(size);
+    }
+
+    protected override void DoEffect(int level)
+    {
+        DoServerEffect(currReticlePos, level);
+    }
+
+    public override void OnDoClientEffect(Vector3 target, int level)
+    {
+        ParticleSystem.ShapeModule shape;
+        if (effect)
+        {
+            shape = effect.shape;
+            shape.radius = radius.CalcValue(level);
+        }
+
+        base.OnDoClientEffect(target, level);
+
+        if (!splashEffect) return;
+
+        shape = splashEffect.shape;
+        shape.radius = radius.CalcValue(level) - 2.5f;
+        PlaceEffect(splashEffect, target + Vector3.up * .1f, level);
+    }
+
+    protected override void PlaceEffect(ParticleSystem effect, Vector3 target, int level)
+    {
+        effect.transform.parent = null;
+        effect.transform.position = target;
+        base.PlaceEffect(effect, target, level);
     }
 }
