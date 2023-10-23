@@ -20,8 +20,6 @@ public class BasicSaw : RicochetProjectile
     protected float currSpeedMod;
     protected float speedDebuffEnd;
 
-    protected bool canHitPlayer = true;
-
     [Header("Effects")]
     [SerializeField] protected Transform model;
     [SerializeField] protected ParticleSystem sparkPrefab;
@@ -126,9 +124,6 @@ public class BasicSaw : RicochetProjectile
     [Server]
     protected override void OnHitTarget(Collider other)
     {
-        if (!canHitPlayer)
-            return;
-
         AvatarBase target = other.gameObject.GetComponentInParent<AvatarBase>();
         if (target)
         {
