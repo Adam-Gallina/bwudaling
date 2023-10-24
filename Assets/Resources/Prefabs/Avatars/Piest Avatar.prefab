@@ -991,7 +991,7 @@ PrefabInstance:
       objectReference: {fileID: 7649148464497823035}
     - target: {fileID: 3543234771857336278, guid: 9a9f286e612a9424195b18be1cd2c227, type: 3}
       propertyPath: shrinkSize.upgradeValue
-      value: -0.05
+      value: -0.0375
       objectReference: {fileID: 0}
     - target: {fileID: 3974817082854888719, guid: 9a9f286e612a9424195b18be1cd2c227, type: 3}
       propertyPath: m_RootOrder

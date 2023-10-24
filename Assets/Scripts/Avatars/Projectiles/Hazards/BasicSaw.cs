@@ -34,7 +34,7 @@ public class BasicSaw : RicochetProjectile
     {
         base.Awake();
 
-        size = currSize = model.localScale.x;
+        size = currSize = transform.localScale.x;
         spinDir = Random.Range(0, 2) == 0 ? 1 : -1;
     }
 
@@ -143,7 +143,7 @@ public class BasicSaw : RicochetProjectile
     
     private void OnSizeChanged(float _, float newSize)
     {
-        model.localScale = new Vector3(newSize, newSize, newSize);
+        transform.localScale = new Vector3(newSize, newSize, newSize);
     }
 
     [Server]
