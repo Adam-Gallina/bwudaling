@@ -50,9 +50,11 @@ public class RicochetProjectile : Projectile
         }
     }
 
-    [ServerCallback]
+    //[ServerCallback]
     protected virtual void Update()
     {
+        if (!isServer) return;
+
         if (currVelocity != Vector3.zero)
             rb.velocity = currVelocity.normalized * speed;
     }
