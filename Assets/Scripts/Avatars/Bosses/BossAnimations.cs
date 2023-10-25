@@ -6,6 +6,7 @@ public class BossAnimations : MonoBehaviour
 {
     [SerializeField] private ParticleSystem system1;
     [SerializeField] private ParticleSystem system2;
+    [SerializeField] private ParticleSystem system3;
     [SerializeField] private GameObject obj1;
 
     public void StartSystem1() {
@@ -18,7 +19,7 @@ public class BossAnimations : MonoBehaviour
         if (!system1)
             return;
         system1.Stop(); 
-        system1.gameObject.SetActive(false); 
+        //system1.gameObject.SetActive(false); 
     }
 
     public void StartSystem2() {
@@ -31,7 +32,22 @@ public class BossAnimations : MonoBehaviour
         if (!system2)
             return;
         system2.Stop();
-        system2.gameObject.SetActive(false); 
+        //system2.gameObject.SetActive(false); 
+    }
+
+    public void StartSystem3()
+    {
+        if (!system3)
+            return;
+        system3.Play();
+        system3.gameObject.SetActive(true);
+    }
+    public void StopSystem3()
+    {
+        if (!system3)
+            return;
+        system3.Stop();
+        //system3.gameObject.SetActive(false); 
     }
 
     public void ShowObj1()
