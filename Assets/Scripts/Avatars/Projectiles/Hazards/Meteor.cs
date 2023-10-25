@@ -14,6 +14,7 @@ public class Meteor : BasicSaw
     [SerializeField] protected float spawnDelay;
     [SerializeField] protected float spawnDuration;
     [SerializeField] protected float spawnHeight;
+    [SerializeField] protected ParticleSystem spawnAnim;
 
     public override void SetSpawnLocation(Vector3 spawnLocation)
     {
@@ -39,11 +40,11 @@ public class Meteor : BasicSaw
     {
         transform.position = spawnPos + Vector3.up * spawnHeight;
 
-        RpcSetVisibility(false);
-        yield return new WaitForSeconds(spawnDelay);
+        //RpcSetVisibility(false);
         RpcSetVisibility(true);
+        yield return new WaitForSeconds(spawnDelay);
 
-        float start = Time.time;
+        /*float start = Time.time;
         while (Time.time < start + spawnDuration) 
         {
             float t = (Time.time - start) / spawnDuration;
@@ -52,11 +53,22 @@ public class Meteor : BasicSaw
             yield return null;
         }
 
-        transform.position = spawnPos;
+        transform.position = spawnPos;*/
+
+
+        RpcOnLand();
+        spawnAnim.Play();
+
+        yield return new WaitForSeconds(spawnDuration);
 
         SpawnPayload();
-        RpcOnLand();
 
+        yield return new WaitUntil(() => !spawnAnim.isPlaying);
+        ParticleSystem ps = model.gameObject.GetComponent<ParticleSystem>();
+        ps.Stop();
+        yield return new WaitForSeconds(ps.main.startLifetime.constantMax);
+
+        //Invoke(nameof(DestroyObject), 5);
         DestroyObject();
 
         yield return null;
@@ -92,6 +104,7 @@ public class Meteor : BasicSaw
     [ClientRpc]
     protected void RpcOnLand()
     {
-
+        if (!isServer)
+            spawnAnim.Play();
     }
 }

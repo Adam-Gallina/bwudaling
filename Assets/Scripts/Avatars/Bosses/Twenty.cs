@@ -152,6 +152,18 @@ public class Twenty : BossBase
 
 
     [Server]
+    public override IEnumerator SpawnAnim()
+    {
+        yield return new WaitForSeconds(1);
+
+        RpcSetAnimTrigger("Spawn");
+
+        yield return new WaitForSeconds(.5f);
+
+        yield return base.SpawnAnim();
+    }
+
+    [Server]
     public override IEnumerator DeathAnim()
     {
         yield return new WaitForSeconds(1);

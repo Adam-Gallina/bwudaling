@@ -111,8 +111,12 @@ MonoBehaviour:
     m_Bits: 0
   maxBounces: 0
   bounces: 0
-  model: {fileID: 8557217403277398462}
   spinSpeed: 180
+  model: {fileID: 1515357289728542283}
+  sparkPrefab: {fileID: 0}
+  sparkRadius: 0
+  sparkHeight: 0
+  sparkDespawwnTime: 0.15
   destroyWhenOOB: 0
   travelRange:
     minVal: 30

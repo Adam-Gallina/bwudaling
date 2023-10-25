@@ -111,8 +111,12 @@ MonoBehaviour:
     m_Bits: 0
   maxBounces: 0
   bounces: 0
-  model: {fileID: 1864926263753650573}
   spinSpeed: 180
+  model: {fileID: 8802138139778311800}
+  sparkPrefab: {fileID: 0}
+  sparkRadius: 0
+  sparkHeight: 0
+  sparkDespawwnTime: 0.15
   destroyWhenOOB: 1
 --- !u!114 &2836376719650468906
 MonoBehaviour:
