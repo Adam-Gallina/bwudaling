@@ -48,13 +48,14 @@ MonoBehaviour:
   abilityTooltip: Employ your dab powers to get a burst of speed and invulnerability
   abilityUpgradesTooltip:
   - Duration
-  abilityIcon: {fileID: 2090495449, guid: dcab6f60022dfff4abc41324e5a01edc, type: 3}
+  abilityIcon: {fileID: 1964145534, guid: af7d8d15180adf8489e71bf86a767427, type: 3}
   abilityCooldown:
     startValue: 15
     upgradeValue: 0
     upgradeEveryLevel: 0
     upgradeLevels: 
   canUseWhileDead: 0
+  effect: {fileID: 0}
   abilityStart:
     _PersistentCalls: []
   abilityEnd:

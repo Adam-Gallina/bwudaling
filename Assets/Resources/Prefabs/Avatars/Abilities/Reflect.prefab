@@ -52,7 +52,7 @@ MonoBehaviour:
   - Slow duration
   - Slow amount
   - Effect radius
-  abilityIcon: {fileID: -44679145, guid: 2b1983218cfff704fb1b88565c0055dd, type: 3}
+  abilityIcon: {fileID: 1815258335, guid: 0a6a86fdc53a7294abf20eb188aa5fd6, type: 3}
   abilityCooldown:
     startValue: 10
     upgradeValue: 0

@@ -50,13 +50,14 @@ MonoBehaviour:
   abilityUpgradesTooltip:
   - Duration
   - Size
-  abilityIcon: {fileID: -819102327, guid: c2a346c202f81b244a1864a59f90bfb4, type: 3}
+  abilityIcon: {fileID: -1389157751, guid: ab7efa8d0708f4343a2b10e2ac97c74c, type: 3}
   abilityCooldown:
     startValue: 45
     upgradeValue: -1
     upgradeEveryLevel: 1
     upgradeLevels: 
   canUseWhileDead: 0
+  effect: {fileID: 0}
   abilityStart:
     _PersistentCalls: []
   abilityEnd:

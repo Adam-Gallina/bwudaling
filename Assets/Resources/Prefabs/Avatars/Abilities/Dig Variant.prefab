@@ -4826,7 +4826,7 @@ PrefabInstance:
     - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
       propertyPath: abilityIcon
       value: 
-      objectReference: {fileID: -842014609, guid: eb047ebaf51dc5048beb7be2f1b1e72d, type: 3}
+      objectReference: {fileID: -1409733254, guid: 4e1c434a72e8c8247b1e93828681590d, type: 3}
     - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
       propertyPath: abilityName
       value: Dig

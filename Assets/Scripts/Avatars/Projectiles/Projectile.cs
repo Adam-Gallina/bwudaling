@@ -79,7 +79,7 @@ public class Projectile : NetworkBehaviour
     }
 
     [Server]
-    protected virtual void DestroyObject()
+    public virtual void DestroyObject()
     {
         NetworkServer.Destroy(gameObject);
     }

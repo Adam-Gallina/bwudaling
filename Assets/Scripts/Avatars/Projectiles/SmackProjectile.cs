@@ -18,7 +18,7 @@ public class SmackProjectile : RicochetProjectile
         BasicSaw s = other.GetComponentInParent<BasicSaw>();
         if (s)
         {
-            NetworkServer.Destroy(s.gameObject);
+            s.DestroyObject();
         }
 
         base.OnHitTarget(other);

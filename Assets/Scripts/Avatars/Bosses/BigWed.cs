@@ -22,6 +22,19 @@ public class BigWed : BossBase
     [SerializeField] protected int spawnCount = 3;
     [SerializeField] private int whirlHaiwSpawnCount;
 
+    [Header("Spawn Anim")]
+    [SerializeField] private Transform model;
+    [SerializeField] private ParticleSystem flames;
+    [SerializeField] private Vector3 modelOffset;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Debug.Log("Bye");
+        model.gameObject.SetActive(false);
+    }
+
     protected override void CheckBossMovement()
     {
         anim.SetBool("Walking", canMove);
@@ -172,23 +185,42 @@ public class BigWed : BossBase
     [Server]
     public override IEnumerator SpawnAnim()
     {
-        /*yield return new WaitForSeconds(1);
-
-        RpcSetAnimTrigger("Spawn");
-
-        yield return new WaitForSeconds(.5f);*/
+        StartAnim();
 
         yield return base.SpawnAnim();
+    }
+
+    [ClientRpc] 
+    private void StartAnim() { StartCoroutine(Anim()); }
+    private IEnumerator Anim()
+    {
+        Debug.Log("Hi");
+        model.gameObject.SetActive(true);
+        flames.Play();
+
+        float startTime = Time.time;
+        while (Time.time < startTime + spawnAnimDuration - 2)
+        {
+            float t = (Time.time - startTime) / (spawnAnimDuration - 2);
+
+            model.localPosition = modelOffset * (1 - t);
+
+            yield return new WaitForEndOfFrame();
+        }
+        currHealth = maxHealth;
+
+        flames.Stop();
+        model.localPosition = Vector3.zero;
     }
 
     [Server]
     public override IEnumerator DeathAnim()
     {
-        /*yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1);
 
         canMove = false;
 
-        RpcSetAnimTrigger("Killed");*/
+        RpcSetAnimTrigger("Killed");
 
         yield return base.DeathAnim();
     }

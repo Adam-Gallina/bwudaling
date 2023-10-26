@@ -4870,7 +4870,7 @@ PrefabInstance:
     - target: {fileID: 4038616510507343695, guid: 9a87bcb52efa48c40ba479323f0ea3db, type: 3}
       propertyPath: abilityIcon
       value: 
-      objectReference: {fileID: -1282668979, guid: 7a5ace1a759b17d41906965ce64bb422, type: 3}
+      objectReference: {fileID: 377890187, guid: 5f03e078bf724fe4aa7fe4614cbd1c5e, type: 3}
     - target: {fileID: 4038616510507343695, guid: 9a87bcb52efa48c40ba479323f0ea3db, type: 3}
       propertyPath: splashEffect
       value: 

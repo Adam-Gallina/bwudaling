@@ -50,7 +50,7 @@ MonoBehaviour:
   abilityUpgradesTooltip:
   - Cooldown
   - Effect radius
-  abilityIcon: {fileID: 21300000, guid: e4aba87c3fbe8a548bd5fb28ae2f393f, type: 3}
+  abilityIcon: {fileID: 1378014207, guid: eebc26c50be4edc4c8385626b26d73cd, type: 3}
   abilityCooldown:
     startValue: 90
     upgradeValue: -3

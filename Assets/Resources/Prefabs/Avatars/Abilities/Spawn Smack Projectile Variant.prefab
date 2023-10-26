@@ -221,13 +221,14 @@ MonoBehaviour:
   - Cooldown
   - Bullet count (odd levels)
   - Bullet bounce (even levels)
-  abilityIcon: {fileID: 21300000, guid: 50563cbff5e31c644be328e55554387f, type: 3}
+  abilityIcon: {fileID: -130369069, guid: 16862c6f71f08bd45a55d48c3b84700c, type: 3}
   abilityCooldown:
     startValue: 40
     upgradeValue: 1
     upgradeEveryLevel: 1
     upgradeLevels: 
   canUseWhileDead: 0
+  effect: {fileID: 0}
   abilityStart:
     _PersistentCalls: []
   abilityEnd:

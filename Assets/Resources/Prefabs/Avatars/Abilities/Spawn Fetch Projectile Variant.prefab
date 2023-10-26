@@ -142,13 +142,14 @@ MonoBehaviour:
   abilityName: Fetch
   abilityTooltip: Throw a leash and pull a downed player towards you
   abilityUpgradesTooltip: []
-  abilityIcon: {fileID: 1289735124, guid: d6042eaa3aad31248a3f5a2eb74982e6, type: 3}
+  abilityIcon: {fileID: 242510585, guid: 1efdeea52b45fb141b93246ad04de85f, type: 3}
   abilityCooldown:
     startValue: 30
     upgradeValue: 0
     upgradeEveryLevel: 1
     upgradeLevels: 
   canUseWhileDead: 0
+  effect: {fileID: 0}
   abilityStart:
     _PersistentCalls: []
   abilityEnd:

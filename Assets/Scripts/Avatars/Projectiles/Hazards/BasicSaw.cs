@@ -28,6 +28,7 @@ public class BasicSaw : RicochetProjectile
     private List<ParticleSystem> spawnedSparks = new List<ParticleSystem>();
     private Dictionary<Collider, ParticleSystem> activeCollisions = new Dictionary<Collider, ParticleSystem>();
     [SerializeField] private float sparkDespawwnTime = 0.15f;
+    [SerializeField] private ParticleSystem deathPrefab;
 
 
     protected override void Awake()
@@ -153,5 +154,23 @@ public class BasicSaw : RicochetProjectile
 
         if (newSpeedMod < currSpeedMod)
             currSpeedMod = newSpeedMod;
+    }
+
+    [Server]
+    public override void DestroyObject()
+    {
+        OnDestroyObject();
+    }
+
+    [ClientRpc]
+    protected virtual void OnDestroyObject()
+    {
+        if (deathPrefab)
+            Instantiate(deathPrefab, transform.position, Quaternion.identity).Play();
+
+        if (isServer)
+        {
+            NetworkServer.Destroy(gameObject);
+        }
     }
 }

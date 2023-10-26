@@ -54,7 +54,7 @@ PrefabInstance:
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: abilityIcon
       value: 
-      objectReference: {fileID: 1552498500, guid: aebd5ddbde372774aab60368b9fc7141, type: 3}
+      objectReference: {fileID: 2073568175, guid: b734b261df98e5645ba98afa4aece9f0, type: 3}
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: abilityName
       value: Bark

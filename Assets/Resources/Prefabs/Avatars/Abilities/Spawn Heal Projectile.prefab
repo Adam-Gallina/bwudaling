@@ -49,13 +49,14 @@ MonoBehaviour:
   abilityUpgradesTooltip:
   - Cooldown
   - Bullet count (every 3 levels)
-  abilityIcon: {fileID: 21300000, guid: e78ac8a83d321d9429837d0e7c0c5275, type: 3}
+  abilityIcon: {fileID: 1363431637, guid: b04d9e45074768042923b8700c4f00b6, type: 3}
   abilityCooldown:
     startValue: 35
     upgradeValue: -1.5
     upgradeEveryLevel: 1
     upgradeLevels: 
   canUseWhileDead: 0
+  effect: {fileID: 0}
   abilityStart:
     _PersistentCalls: []
   abilityEnd:
