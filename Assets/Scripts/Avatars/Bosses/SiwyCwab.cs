@@ -6,7 +6,7 @@ using Mirror;
 public class SiwyCwab : BossBase
 {
     [Header("Charge Attack")]
-    [SerializeField] protected BossAttack chargeStats;
+    [SerializeField] protected BossAttackStats chargeStats;
     [SerializeField] protected float distBetweenChargeSpawns = 7;
     [SerializeField] protected float chargeSawSpawnOffset = 1;
     [SerializeField] protected float chargeSpeed;
@@ -14,7 +14,7 @@ public class SiwyCwab : BossBase
     [SerializeField] protected float maxChargeDist;
 
     [Header("Stomp Attack")]
-    [SerializeField] protected BossAttack stompStats;
+    [SerializeField] protected BossAttackStats stompStats;
     [SerializeField] protected float timeBetweenStomps;
     [SerializeField] protected int stompWaves;
     [SerializeField] protected int sawsPerWave;
@@ -33,17 +33,18 @@ public class SiwyCwab : BossBase
         }
     }
 
-    protected override void CheckBossAttacks()
+    protected override void FillAttackBucket()
     {
-        if (Time.time > nextAttack && !attacking)
-        {
-            int n = Random.Range(0, chargeStats.chance + stompStats.chance);
+        for (int i = 0; i < chargeStats.bucketCount; i++)
+            attackBucket.Add(BossAttack.Attack1);
+        for (int i = 0; i < stompStats.bucketCount; i++)
+            attackBucket.Add(BossAttack.Attack2);
+    }
 
-            if (n < chargeStats.chance)
-                StartCoroutine(ChargeAttack());
-            else if (n < stompStats.chance + chargeStats.chance)
-                StartCoroutine(StompAttack());
-        }
+
+    protected override void DoAttack1()
+    {
+        StartCoroutine(ChargeAttack());
     }
 
     private IEnumerator ChargeAttack()
@@ -86,6 +87,10 @@ public class SiwyCwab : BossBase
         nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
     }
 
+    protected override void DoAttack2()
+    {
+        StartCoroutine(StompAttack());
+    }
     protected IEnumerator StompAttack()
     {
         attacking = true;
@@ -117,6 +122,10 @@ public class SiwyCwab : BossBase
         attacking = false;
         canMove = true;
         nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+    }
+    protected override void DoAttack3()
+    {
+        throw new System.NotImplementedException();
     }
 
     [Server]

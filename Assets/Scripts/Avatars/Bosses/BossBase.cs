@@ -5,6 +5,8 @@ using Mirror;
 
 public abstract class BossBase : NetworkBehaviour
 {
+    protected enum BossAttack { Attack1, Attack2, Attack3 };
+
     public float maxHealth;
     [SyncVar]
     [HideInInspector] public float currHealth;
@@ -34,6 +36,8 @@ public abstract class BossBase : NetworkBehaviour
     [SerializeField] protected float maxTimeBetweenAttacks;
     [SerializeField] protected float startAttackDelayMod = 2;
     protected float nextAttack;
+
+    protected List<BossAttack> attackBucket = new List<BossAttack>();
 
     protected Animator anim;
 
@@ -122,9 +126,38 @@ public abstract class BossBase : NetworkBehaviour
         Debug.LogWarning(name + " couldn't find a valid move direction :(");
         return transform.position;
     }
-    protected abstract void CheckBossAttacks();
+
+    protected abstract void FillAttackBucket();
+    protected virtual void CheckBossAttacks()
+    {
+        if (Time.time < nextAttack)
+            return;
+
+        nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+
+        if (attackBucket.Count == 0)
+            FillAttackBucket();
+
+        int i = Random.Range(0, attackBucket.Count);
+        BossAttack attack = attackBucket[i];
+        attackBucket.RemoveAt(i);
+
+        switch (attack)
+        {
+            case BossAttack.Attack1: DoAttack1(); break;
+            case BossAttack.Attack2: DoAttack2(); break;
+            case BossAttack.Attack3: DoAttack3(); break;
+        }
+    }
+
+    protected abstract void DoAttack1();
+    protected abstract void DoAttack2();
+    protected abstract void DoAttack3();
 
 
+
+
+    #region Haiw Spawning
     [Server]
     protected void SpawnHaiw()
     {
@@ -160,6 +193,7 @@ public abstract class BossBase : NetworkBehaviour
     {
 
     }
+    #endregion
 
     [Server]
     protected BasicSaw SpawnSaw(BasicSaw prefab, Vector3 pos, Vector3 dir, float speedMod = 1)
@@ -194,9 +228,9 @@ public abstract class BossBase : NetworkBehaviour
 }
 
 [System.Serializable]
-public struct BossAttack
+public struct BossAttackStats
 {
     public BasicSaw hazardPrefab;
     public float hazardSpeedMod;
-    public int chance;
+    public int bucketCount;
 }

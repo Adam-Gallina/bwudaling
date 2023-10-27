@@ -6,7 +6,7 @@ using UnityEngine;
 public class BigWed : BossBase
 {
     [Header("Spicy Attack")]
-    [SerializeField] protected BossAttack spicyStats;
+    [SerializeField] protected BossAttackStats spicyStats;
     [SerializeField] private float[] spawnDelays;
     [SerializeField] private float sawSpreadAng;
     [SerializeField] protected float turnSpeed;
@@ -14,7 +14,7 @@ public class BigWed : BossBase
     [SerializeField] private int spicyHaiwSpawnCount;
 
     [Header("Whirl Attack")]
-    [SerializeField] protected BossAttack whirlStats;
+    [SerializeField] protected BossAttackStats whirlStats;
     [SerializeField] protected RangeF whirlSpeed;
     [SerializeField] protected float chargeDuration;
     [SerializeField] protected RangeF whirlDuration;
@@ -45,19 +45,18 @@ public class BigWed : BossBase
         }
     }
 
-    protected override void CheckBossAttacks()
+    protected override void FillAttackBucket()
     {
-        if (Time.time > nextAttack && !attacking)
-        {
-            int n = Random.Range(0, spicyStats.chance + whirlStats.chance);
-
-            if (n < spicyStats.chance)
-                StartCoroutine(SpicyAttack());
-            else if (n < whirlStats.chance + spicyStats.chance)
-                StartCoroutine(WhirlAttack());
-        }
+        for (int i = 0; i < spicyStats.bucketCount; i++)
+            attackBucket.Add(BossAttack.Attack1);
+        for (int i = 0; i < whirlStats.bucketCount; i++)
+            attackBucket.Add(BossAttack.Attack2);
     }
 
+    protected override void DoAttack1()
+    {
+        StartCoroutine(SpicyAttack());
+    }
     private IEnumerator SpicyAttack()
     {
         attacking = true;
@@ -105,6 +104,10 @@ public class BigWed : BossBase
         nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
     }
 
+    protected override void DoAttack2()
+    {
+        StartCoroutine(WhirlAttack());
+    }
     protected IEnumerator WhirlAttack()
     {
         attacking = true;
@@ -180,6 +183,11 @@ public class BigWed : BossBase
         attacking = false;
         canMove = true;
         nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+    }
+
+    protected override void DoAttack3()
+    {
+        throw new System.NotImplementedException();
     }
 
     [Server]

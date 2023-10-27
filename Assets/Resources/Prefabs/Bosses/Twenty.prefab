@@ -19479,7 +19479,7 @@ MonoBehaviour:
   waveStats:
     hazardPrefab: {fileID: 8497255055041174812, guid: b65c7f696edc84f458121bdc93801880, type: 3}
     hazardSpeedMod: 6
-    chance: 10
+    bucketCount: 2
   sawWaveCount: 7
   sawSpreadAng: 35
   turnSpeed: 15
@@ -19491,7 +19491,7 @@ MonoBehaviour:
   meteorStats:
     hazardPrefab: {fileID: 7905868092653266221, guid: cc1b5ca62b1e39b42ad9c994afc30cec, type: 3}
     hazardSpeedMod: 2
-    chance: 10
+    bucketCount: 1
   meteorCount:
     minVal: 4
     maxVal: 6

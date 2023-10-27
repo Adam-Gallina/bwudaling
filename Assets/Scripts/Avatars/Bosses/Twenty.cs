@@ -6,7 +6,7 @@ using UnityEngine;
 public class Twenty : BossBase
 {
     [Header("Wave Attack")]
-    [SerializeField] protected BossAttack waveStats;
+    [SerializeField] protected BossAttackStats waveStats;
     [SerializeField] protected int sawWaveCount;
     [SerializeField] protected float sawSpreadAng;
     [SerializeField] protected float turnSpeed;
@@ -16,7 +16,7 @@ public class Twenty : BossBase
 
 
     [Header("Meteor Shower")]
-    [SerializeField] protected BossAttack meteorStats;
+    [SerializeField] protected BossAttackStats meteorStats;
     [SerializeField] protected RangeI meteorCount;
     [SerializeField] protected int chanceToTargetPlayer;
     [SerializeField] protected float maxDistFromPlayer;
@@ -35,17 +35,17 @@ public class Twenty : BossBase
         }
     }
 
-    protected override void CheckBossAttacks()
+    protected override void FillAttackBucket()
     {
-        if (Time.time > nextAttack && !attacking)
-        {
-            int n = Random.Range(0, waveStats.chance + meteorStats.chance);
+        for (int i = 0; i < waveStats.bucketCount; i++)
+            attackBucket.Add(BossAttack.Attack1);
+        for (int i = 0; i < meteorStats.bucketCount; i++)
+            attackBucket.Add(BossAttack.Attack2);
+    }
 
-            if (n < waveStats.chance)
-                StartCoroutine(WaveAttack());
-            else if (n < meteorStats.chance + waveStats.chance)
-                StartCoroutine(MeteorAttack());
-        }
+    protected override void DoAttack1()
+    {
+        StartCoroutine(WaveAttack());
     }
 
     protected IEnumerator WaveAttack()
@@ -107,6 +107,11 @@ public class Twenty : BossBase
         nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
     }
 
+    protected override void DoAttack2()
+    {
+        StartCoroutine(MeteorAttack());
+    }
+
     protected IEnumerator MeteorAttack()
     {
         attacking = true;
@@ -148,6 +153,11 @@ public class Twenty : BossBase
         attacking = false;
         canMove = true;
         nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+    }
+
+    protected override void DoAttack3()
+    {
+        throw new System.NotImplementedException();
     }
 
 
