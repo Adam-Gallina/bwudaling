@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System.Net.Sockets;
+using static UnityEngine.GraphicsBuffer;
 
 public class SiwyCwab : BossBase
 {
@@ -23,6 +25,16 @@ public class SiwyCwab : BossBase
     [SerializeField] protected int minHaiwSpawns;
     [SerializeField] protected int maxHaiwSpawns;
 
+    [Header("Leap Attack")]
+    [SerializeField] protected BossAttackStats leapStats;
+    [SerializeField] protected RangeI leapCount;
+    [SerializeField] protected float leapDelay;
+    [SerializeField] protected float leapTurnSpeed;
+    [SerializeField] protected float leapTime;
+    [SerializeField] protected RangeF leapDist;
+    [SerializeField] protected RangeI leapSaws;
+    [SerializeField][Range(0,100)] protected int leapHaiwChance;
+
     protected override void CheckBossMovement()
     {
         anim.SetBool("Walking", canMove);
@@ -39,14 +51,14 @@ public class SiwyCwab : BossBase
             attackBucket.Add(BossAttack.Attack1);
         for (int i = 0; i < stompStats.bucketCount; i++)
             attackBucket.Add(BossAttack.Attack2);
+        for (int i = 0; i < leapStats.bucketCount; i++)
+            attackBucket.Add(BossAttack.Attack3);
     }
-
 
     protected override void DoAttack1()
     {
         StartCoroutine(ChargeAttack());
     }
-
     private IEnumerator ChargeAttack()
     {
         attacking = true;
@@ -123,10 +135,68 @@ public class SiwyCwab : BossBase
         canMove = true;
         nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
     }
+
     protected override void DoAttack3()
     {
-        throw new System.NotImplementedException();
+        StartCoroutine(LeapAttack());
     }
+    protected IEnumerator LeapAttack()
+    {
+        attacking = true;
+        canMove = false;
+
+        for (int _ = leapCount.RandomVal; _ > 0; _--)
+        {
+            Vector3 target = GetBossMoveTarget(leapDist.RandomVal);
+            if (target == transform.position)
+            {
+                yield return new WaitForSeconds(leapDelay);
+            }
+            else 
+            {
+                float sa = transform.eulerAngles.y;
+                float ang = Vector3.SignedAngle(transform.forward, target - transform.position, Vector3.up);
+
+                float turnEnd = Time.time + leapDelay;
+                while (Time.time < turnEnd)
+                {
+                    float t = 1 - ((turnEnd - Time.time) / leapDelay);
+                    transform.eulerAngles = new Vector3(0, sa + ang * t, 0);
+                    yield return new WaitForEndOfFrame();
+                }
+            }
+
+            GetComponent<BoxCollider>().enabled = false;
+
+            Vector3 start = transform.position;
+            float end = Time.time + leapTime;
+            while (Time.time < end)
+            {
+                float t = 1 - ((end - Time.time) / leapTime);
+                transform.position = start + (target - start) * t;
+                yield return new WaitForEndOfFrame();
+            }
+
+            GetComponent<BoxCollider>().enabled = true;
+
+            if (Random.Range(0, 100) < leapHaiwChance)
+                SpawnHaiw();
+
+            Vector3 dir = transform.forward;
+            int spawnCount = leapSaws.RandomVal;
+            float da = 360 / spawnCount;
+            for (int i = 0; i < spawnCount; i++)
+            {
+                SpawnSaw(leapStats.hazardPrefab, transform.position, dir, leapStats.hazardSpeedMod);
+                dir = MyMath.RotateAboutY(dir, da);
+            }
+        }
+
+        attacking = false;
+        canMove = true;
+        nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+    }
+
 
     [Server]
     public override IEnumerator SpawnAnim()

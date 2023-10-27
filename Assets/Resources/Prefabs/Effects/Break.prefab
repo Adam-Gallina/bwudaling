@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 585729871315470914}
   - component: {fileID: 5891828284998075207}
   - component: {fileID: 7761620474396581276}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4892,7 +4892,7 @@ GameObject:
   - component: {fileID: 6991091427987888815}
   - component: {fileID: 8751886387404465107}
   - component: {fileID: 2721908145931750068}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Break
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9776,7 +9776,7 @@ GameObject:
   - component: {fileID: 7142766701643322969}
   - component: {fileID: 334747021819473073}
   - component: {fileID: 9206507570822002892}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}

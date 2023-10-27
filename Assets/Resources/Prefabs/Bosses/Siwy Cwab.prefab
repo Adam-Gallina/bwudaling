@@ -261,7 +261,7 @@ MonoBehaviour:
   chargeStats:
     hazardPrefab: {fileID: 4324063724539361144, guid: 14bca602f0a9faf4f80c676f5b513531, type: 3}
     hazardSpeedMod: 3
-    chance: 10
+    bucketCount: 1
   distBetweenChargeSpawns: 8
   chargeSawSpawnOffset: 2
   chargeSpeed: 30
@@ -270,7 +270,7 @@ MonoBehaviour:
   stompStats:
     hazardPrefab: {fileID: 9034004231605145009, guid: d1d6474b97f8b3d418851550b9de216a, type: 3}
     hazardSpeedMod: 3
-    chance: 10
+    bucketCount: 2
   timeBetweenStomps: 1.75
   stompWaves: 3
   sawsPerWave: 7
@@ -281,6 +281,23 @@ MonoBehaviour:
   - {fileID: 3331132743273563953}
   minHaiwSpawns: 1
   maxHaiwSpawns: 3
+  leapStats:
+    hazardPrefab: {fileID: 4324063724539361144, guid: 14bca602f0a9faf4f80c676f5b513531, type: 3}
+    hazardSpeedMod: 3
+    bucketCount: 1
+  leapCount:
+    minVal: 3
+    maxVal: 5
+  leapDelay: 0.5
+  leapTurnSpeed: 15
+  leapTime: 2.5
+  leapDist:
+    minVal: 20
+    maxVal: 60
+  leapSaws:
+    minVal: 4
+    maxVal: 8
+  leapHaiwChance: 30
 --- !u!114 &3758201705292906776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   system1: {fileID: 7204552957678230326}
   system2: {fileID: 5586692687180290942}
+  system3: {fileID: 0}
   obj1: {fileID: 6052286304876695884}
 --- !u!95 &241180365317681956 stripped
 Animator:

@@ -53,20 +53,7 @@ public class Twenty : BossBase
         attacking = true;
         canMove = false;
 
-        Transform target = BwudalingNetworkManager.Instance.Players[0].avatar.transform;
-        float dist = Mathf.Infinity;
-        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
-        {
-            if (p.avatar.dead)
-                continue;
-
-            float d = Vector3.Distance(transform.position, p.avatar.transform.position);
-            if (d < dist)
-            {
-                target = p.avatar.transform;
-                dist = d;
-            }
-        }
+        Transform target = GetClosestValidPlayer();
 
         transform.forward = target.position - transform.position;
 
@@ -122,27 +109,18 @@ public class Twenty : BossBase
 
         for (int _ = meteorCount.RandomVal; _ > 0; _--)
         {
-            Vector2 c = Random.insideUnitCircle;
-            Vector3 spawnPos = transform.position + new Vector3(c.x, 0, c.y) * meteorRange.RandomVal;
+            Vector3 spawnPos;
 
             int n = Random.Range(0, chanceToTargetPlayer + chanceForRandomDrop);
             if (n < chanceToTargetPlayer)
             {
-                int tries = BwudalingNetworkManager.Instance.Players.Count;
-                int p = Random.Range(0, BwudalingNetworkManager.Instance.Players.Count);
-
-                while (tries-- > 0)
-                {
-                    PlayerAvatar pa = BwudalingNetworkManager.Instance.Players[p].avatar;
-                    if (!pa.dead && pa.canDamage)
-                    {
-                        Vector2 dir = Random.insideUnitCircle * Random.Range(0, maxDistFromPlayer);
-                        spawnPos = BwudalingNetworkManager.Instance.Players[p].avatar.transform.position + new Vector3(dir.x, 0, dir.y);
-                        break;
-                    }
-
-                    p = (p + 1) % BwudalingNetworkManager.Instance.Players.Count;
-                }
+                Vector2 dir = Random.insideUnitCircle * Random.Range(0, maxDistFromPlayer);
+                spawnPos = GetRandomValidPlayer().position + new Vector3(dir.x, 0, dir.y);
+            }
+            else
+            {
+                Vector2 c = Random.insideUnitCircle;
+                spawnPos = transform.position + new Vector3(c.x, 0, c.y) * meteorRange.RandomVal;
             }
 
             SpawnSaw(meteorStats.hazardPrefab, spawnPos, Vector3.zero, meteorStats.hazardSpeedMod);

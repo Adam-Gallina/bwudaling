@@ -9749,7 +9749,7 @@ GameObject:
   - component: {fileID: 2856229270232335741}
   - component: {fileID: 5408083770734558650}
   - component: {fileID: 7288488634296648747}
-  - component: {fileID: 8497255055041174812}
+  - component: {fileID: 2257859223576959170}
   - component: {fileID: 7508418601129177054}
   m_Layer: 0
   m_Name: Twenty Wave Saw
@@ -9821,7 +9821,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: b65c7f696edc84f458121bdc93801880
   hasSpawned: 0
---- !u!114 &8497255055041174812
+--- !u!114 &2257859223576959170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9830,7 +9830,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6236953288699046523}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98796b31ee457140b32e74e78b10d2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 61e1dbff505e92d44adbb67d32ce5ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
@@ -9843,11 +9843,11 @@ MonoBehaviour:
       m_Calls: []
   costRicochetLayers:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 0
   freeRicochetLayers:
     serializedVersion: 2
     m_Bits: 0
-  maxBounces: 1
+  maxBounces: 0
   bounces: 0
   spinSpeed: 0
   model: {fileID: 3143382672771604149}
@@ -9856,6 +9856,7 @@ MonoBehaviour:
   sparkHeight: 0
   sparkDespawwnTime: 0.15
   deathPrefab: {fileID: 8931764709556245169}
+  destroyWhenOOB: 1
 --- !u!114 &7508418601129177054
 MonoBehaviour:
   m_ObjectHideFlags: 0

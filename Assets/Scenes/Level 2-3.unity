@@ -298,7 +298,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 0
+  hazardSpeed: 0
   hazardRange: 47.2
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 1
   useSpawnerRange: 1
   model: {fileID: 0}
@@ -523,7 +525,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 0
+  hazardSpeed: 0
   hazardRange: 47.2
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 1
   useSpawnerRange: 1
   model: {fileID: 0}
@@ -670,7 +674,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 0
+  hazardSpeed: 0
   hazardRange: 47.2
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 1
   useSpawnerRange: 1
   model: {fileID: 0}
@@ -887,7 +893,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 0
+  hazardSpeed: 0
   hazardRange: 47.2
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 1
   useSpawnerRange: 1
   model: {fileID: 0}
@@ -1050,7 +1058,7 @@ MonoBehaviour:
   endZoneXp: 95
   winXp: 20
   hazardSpeed: 15
-  hazardRange: 120
+  hazardRange: 150
   mapCenter: {x: 90, y: 0, z: -74}
 --- !u!4 &373380049
 Transform:
@@ -1286,7 +1294,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 0
+  hazardSpeed: 0
   hazardRange: 47.2
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 1
   useSpawnerRange: 1
   model: {fileID: 0}
@@ -1698,7 +1708,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 3047387448124383199, guid: 5c558c72afad34b4386d1ee92a4b4112, type: 3}
   spawnSize: 0
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -3255,7 +3267,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 0
+  hazardSpeed: 0
   hazardRange: 47.2
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 1
   useSpawnerRange: 1
   model: {fileID: 0}
@@ -4934,7 +4948,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 0
+  hazardSpeed: 0
   hazardRange: 47.2
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 1
   useSpawnerRange: 1
   model: {fileID: 0}
@@ -5029,7 +5045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c636a67abc3b34ea39e45af758ad7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 75
 --- !u!1 &1923060249
 GameObject:
   m_ObjectHideFlags: 0
@@ -5077,7 +5092,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 0
+  hazardSpeed: 0
   hazardRange: 47.2
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 1
   useSpawnerRange: 1
   model: {fileID: 0}
@@ -5446,7 +5463,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 0
+  hazardSpeed: 0
   hazardRange: 47.2
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 1
   useSpawnerRange: 1
   model: {fileID: 0}

@@ -127,13 +127,15 @@ public abstract class BossBase : NetworkBehaviour
         return transform.position;
     }
 
+    #region Attacks
     protected abstract void FillAttackBucket();
     protected virtual void CheckBossAttacks()
     {
-        if (Time.time < nextAttack)
+        if (Time.time < nextAttack || attacking)
             return;
 
-        nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+        // nextAttack set when attack completes
+        //nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
 
         if (attackBucket.Count == 0)
             FillAttackBucket();
@@ -154,8 +156,51 @@ public abstract class BossBase : NetworkBehaviour
     protected abstract void DoAttack2();
     protected abstract void DoAttack3();
 
+    // Returns the closest living player able to be hit, or a random one if none exist
+    protected Transform GetClosestValidPlayer()
+    {
+        Transform target = null;
+        float dist = Mathf.Infinity;
+        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
+        {
+            if (p.avatar.dead || !p.avatar.canDamage)
+                continue;
 
+            float d = Vector3.Distance(transform.position, p.avatar.transform.position);
+            if (d < dist)
+            {
+                target = p.avatar.transform;
+                dist = d;
+            }
+        }
 
+        if (target == null)
+            return BwudalingNetworkManager.Instance.Players[Random.Range(0, BwudalingNetworkManager.Instance.Players.Count)].avatar.transform;
+
+        return target;
+    }
+
+    // Returns a random living player able to be hit, or a random one if none exist
+    protected Transform GetRandomValidPlayer()
+    {
+        int tries = BwudalingNetworkManager.Instance.Players.Count;
+        int p = Random.Range(0, BwudalingNetworkManager.Instance.Players.Count);
+        Transform target = null;
+
+        while (tries-- > 0)
+        {
+            PlayerAvatar pa = BwudalingNetworkManager.Instance.Players[p].avatar;
+            target = BwudalingNetworkManager.Instance.Players[p].avatar.transform;
+
+            if (!pa.dead && pa.canDamage)
+                break;
+
+            p = (p + 1) % BwudalingNetworkManager.Instance.Players.Count;
+        }
+
+        return target;
+    }
+    #endregion
 
     #region Haiw Spawning
     [Server]
@@ -201,6 +246,7 @@ public abstract class BossBase : NetworkBehaviour
         BasicSaw saw = Instantiate(prefab, pos, Quaternion.identity);
         NetworkServer.Spawn(saw.gameObject);
         saw.SetSpawnLocation(pos);
+        saw.SetOriginLocation(MapController.Instance.mapCenter, MapController.Instance.hazardRange);
         saw.SetSpeed(MapController.Instance.hazardSpeed * speedMod);
         saw.SetDirection(dir);
 

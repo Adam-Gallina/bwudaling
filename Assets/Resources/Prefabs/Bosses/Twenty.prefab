@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4615119227355346648}
   - component: {fileID: 7181435271937447233}
   - component: {fileID: 1798220232319454198}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SmokeTrail R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4836,7 +4836,7 @@ GameObject:
   - component: {fileID: 2647763411274909355}
   - component: {fileID: 66614539813457784}
   - component: {fileID: 9181894729146094019}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9658,7 +9658,7 @@ GameObject:
   - component: {fileID: 7153804704542593308}
   - component: {fileID: 3281179296160479685}
   - component: {fileID: 2325626659150721914}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14479,7 +14479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 814532517649481940}
   - component: {fileID: 3576688867001128353}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14531,7 +14531,7 @@ GameObject:
   - component: {fileID: 6866047384904236444}
   - component: {fileID: 7051960496691760367}
   - component: {fileID: 6950574942625283354}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SmokeTrail M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19477,7 +19477,7 @@ MonoBehaviour:
   maxTimeBetweenAttacks: 5
   startAttackDelayMod: 2
   waveStats:
-    hazardPrefab: {fileID: 8497255055041174812, guid: b65c7f696edc84f458121bdc93801880, type: 3}
+    hazardPrefab: {fileID: 2257859223576959170, guid: b65c7f696edc84f458121bdc93801880, type: 3}
     hazardSpeedMod: 6
     bucketCount: 2
   sawWaveCount: 7
@@ -19600,7 +19600,7 @@ GameObject:
   - component: {fileID: 5785509532132578840}
   - component: {fileID: 8804905378820084612}
   - component: {fileID: 9156726252004821547}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24422,7 +24422,7 @@ GameObject:
   - component: {fileID: 379791826206663256}
   - component: {fileID: 2822942197153885930}
   - component: {fileID: 4168172625374019438}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SmokeTrail L
   m_TagString: Untagged
   m_Icon: {fileID: 0}

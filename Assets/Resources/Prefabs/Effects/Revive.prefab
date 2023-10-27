@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5810628397323616299}
   - component: {fileID: 7430531640233289542}
   - component: {fileID: 8324386777557390716}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Revive
   m_TagString: Untagged
   m_Icon: {fileID: 0}

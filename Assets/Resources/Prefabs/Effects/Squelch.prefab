@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8120442873323903398}
   - component: {fileID: 742028406448994062}
   - component: {fileID: 6675253971974827197}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Spray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4882,7 +4882,7 @@ GameObject:
   - component: {fileID: 705772851505777975}
   - component: {fileID: 1467908820328901986}
   - component: {fileID: 9157494976917012209}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Squelch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

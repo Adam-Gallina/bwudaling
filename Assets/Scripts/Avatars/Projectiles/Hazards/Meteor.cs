@@ -40,21 +40,8 @@ public class Meteor : BasicSaw
     {
         transform.position = spawnPos + Vector3.up * spawnHeight;
 
-        //RpcSetVisibility(false);
         RpcSetVisibility(true);
         yield return new WaitForSeconds(spawnDelay);
-
-        /*float start = Time.time;
-        while (Time.time < start + spawnDuration) 
-        {
-            float t = (Time.time - start) / spawnDuration;
-            transform.position = spawnPos + Vector3.up * spawnHeight * (1 - t);
-
-            yield return null;
-        }
-
-        transform.position = spawnPos;*/
-
 
         RpcOnLand();
         spawnAnim.Play();
@@ -68,7 +55,6 @@ public class Meteor : BasicSaw
         ps.Stop();
         yield return new WaitForSeconds(ps.main.startLifetime.constantMax);
 
-        //Invoke(nameof(DestroyObject), 5);
         DestroyObject();
 
         yield return null;
@@ -88,6 +74,7 @@ public class Meteor : BasicSaw
                 saw.SetSpawnLocation(spawnPos);
                 saw.SetSpeed(speed);
                 saw.SetDirection(new Vector3(nextDir.x, 0, nextDir.y));
+                saw.SetOriginLocation(MapController.Instance.mapCenter, MapController.Instance.hazardRange);
 
                 nextDir = MyMath.Rotate(nextDir, da);
             }
@@ -105,6 +92,11 @@ public class Meteor : BasicSaw
     protected void RpcOnLand()
     {
         if (!isServer)
+        {
             spawnAnim.Play();
+
+            ParticleSystem ps = model.gameObject.GetComponent<ParticleSystem>();
+            Invoke(nameof(ps.Stop), spawnDuration);
+        }
     }
 }

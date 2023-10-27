@@ -9751,7 +9751,8 @@ MonoBehaviour:
   sparkRadius: 0
   sparkHeight: 0
   sparkDespawwnTime: 0.15
-  spawnedSawPrefab: {fileID: 8497255055041174812, guid: b65c7f696edc84f458121bdc93801880, type: 3}
+  deathPrefab: {fileID: 0}
+  spawnedSawPrefab: {fileID: 2257859223576959170, guid: b65c7f696edc84f458121bdc93801880, type: 3}
   spawnCount: 6
   haiwPrefab: {fileID: 4846144297331035326, guid: 7f2db83ea33ba564c886eefd9511ed51, type: 3}
   spawnDelay: 3

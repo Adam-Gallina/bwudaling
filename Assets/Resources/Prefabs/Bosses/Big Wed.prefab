@@ -101,9 +101,9 @@ MonoBehaviour:
   maxTimeBetweenAttacks: 7
   startAttackDelayMod: 2
   spicyStats:
-    hazardPrefab: {fileID: 5838326742092922747, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
+    hazardPrefab: {fileID: 5929012255989091144, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
     hazardSpeedMod: 4
-    chance: 50
+    bucketCount: 2
   spawnDelays:
   - 0.4
   - 1
@@ -117,14 +117,14 @@ MonoBehaviour:
   - 0.1
   - 0.1
   - 0.1
-  sawSpreadAng: 20
+  maxSawSpreadAng: 20
   turnSpeed: 15
-  aimTime: 1
+  turnTime: 1
   spicyHaiwSpawnCount: 4
   whirlStats:
-    hazardPrefab: {fileID: 5838326742092922747, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
+    hazardPrefab: {fileID: 5929012255989091144, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
     hazardSpeedMod: 3
-    chance: 50
+    bucketCount: 1
   whirlSpeed:
     minVal: 10
     maxVal: 350
@@ -137,6 +137,18 @@ MonoBehaviour:
     maxVal: 1
   spawnCount: 3
   whirlHaiwSpawnCount: 4
+  overheatStats:
+    hazardPrefab: {fileID: 5929012255989091144, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
+    hazardSpeedMod: 4
+    bucketCount: 2
+  sawWaveCount: 4
+  sawsPerWave: 3
+  waveDelay: 1
+  sawSpreadAng: 40
+  aimSpeed: 15
+  aimTime: 1
+  sawLaunchDelay: 0.3
+  haiwSpawnChancePerWave: 30
   model: {fileID: 3400783330348960330}
   flames: {fileID: 169856843104684709}
   modelOffset: {x: 0, y: 0, z: -10}
@@ -215,9 +227,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3956190749813975772}
     m_Modifications:
+    - target: {fileID: 1063051830369628, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1901245927194888, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
       propertyPath: m_Name
       value: LargeFlames
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901245927194888, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4430340635691708, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
       propertyPath: m_RootOrder
@@ -380,9 +400,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 41946189166714041}
     m_Modifications:
+    - target: {fileID: 1063051830369628, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1901245927194888, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
       propertyPath: m_Name
       value: LargeFlames (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901245927194888, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4430340635691708, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
       propertyPath: m_RootOrder
@@ -473,9 +501,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 41946189166714041}
     m_Modifications:
+    - target: {fileID: 1063051830369628, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1901245927194888, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
       propertyPath: m_Name
       value: LargeFlames (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901245927194888, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4430340635691708, guid: bb98861c48ad2024ca93498c7dd93a6c, type: 3}
       propertyPath: m_RootOrder
@@ -727,9 +763,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3728963330781093481}
     m_Modifications:
+    - target: {fileID: 1593591274471360, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1973075987484898, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
       propertyPath: m_Name
       value: FlameStream
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973075987484898, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4317874184272834, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
       propertyPath: m_RootOrder
@@ -812,9 +856,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 41946189166714041}
     m_Modifications:
+    - target: {fileID: 1593591274471360, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1973075987484898, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
       propertyPath: m_Name
       value: FlameStream (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973075987484898, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4317874184272834, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
       propertyPath: m_RootOrder
@@ -902,9 +954,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3728963330781093481}
     m_Modifications:
+    - target: {fileID: 1593591274471360, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1973075987484898, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
       propertyPath: m_Name
       value: FlameStream (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973075987484898, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4317874184272834, guid: bccc7a794e75b2a44a4b0dac69160b7b, type: 3}
       propertyPath: m_RootOrder

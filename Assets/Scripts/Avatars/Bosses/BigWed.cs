@@ -8,9 +8,9 @@ public class BigWed : BossBase
     [Header("Spicy Attack")]
     [SerializeField] protected BossAttackStats spicyStats;
     [SerializeField] private float[] spawnDelays;
-    [SerializeField] private float sawSpreadAng;
+    [SerializeField] private float maxSawSpreadAng;
     [SerializeField] protected float turnSpeed;
-    [SerializeField] private float aimTime;
+    [SerializeField] private float turnTime;
     [SerializeField] private int spicyHaiwSpawnCount;
 
     [Header("Whirl Attack")]
@@ -22,6 +22,17 @@ public class BigWed : BossBase
     [SerializeField] protected int spawnCount = 3;
     [SerializeField] private int whirlHaiwSpawnCount;
 
+    [Header("Overheat Attack")]
+    [SerializeField] protected BossAttackStats overheatStats;
+    [SerializeField] protected int sawWaveCount;
+    [SerializeField] protected int sawsPerWave;
+    [SerializeField] protected float waveDelay;
+    [SerializeField] protected float sawSpreadAng;
+    [SerializeField] protected float aimSpeed;
+    [SerializeField] protected float aimTime;
+    [SerializeField] protected float sawLaunchDelay;
+    [SerializeField][Range(0, 100)] protected int haiwSpawnChancePerWave;
+
     [Header("Spawn Anim")]
     [SerializeField] private Transform model;
     [SerializeField] private ParticleSystem flames;
@@ -31,7 +42,6 @@ public class BigWed : BossBase
     {
         base.Awake();
 
-        Debug.Log("Bye");
         model.gameObject.SetActive(false);
     }
 
@@ -51,6 +61,8 @@ public class BigWed : BossBase
             attackBucket.Add(BossAttack.Attack1);
         for (int i = 0; i < whirlStats.bucketCount; i++)
             attackBucket.Add(BossAttack.Attack2);
+        for (int i = 0; i < overheatStats.bucketCount; i++)
+            attackBucket.Add(BossAttack.Attack3);
     }
 
     protected override void DoAttack1()
@@ -62,26 +74,13 @@ public class BigWed : BossBase
         attacking = true;
         canMove = false;
 
-        Transform target = BwudalingNetworkManager.Instance.Players[0].avatar.transform;
-        float dist = Mathf.Infinity;
-        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
-        {
-            if (p.avatar.dead)
-                continue;
-
-            float d = Vector3.Distance(transform.position, p.avatar.transform.position);
-            if (d < dist)
-            {
-                target = p.avatar.transform;
-                dist = d;
-            }
-        }
+        Transform target = GetClosestValidPlayer();
 
         RpcSetAnimTrigger("Attack");
 
         transform.forward = target.position - transform.position;
 
-        float end = Time.time + aimTime;
+        float end = Time.time + turnTime;
         while (Time.time < end)
         {
             transform.forward = Vector3.RotateTowards(transform.forward, (target.position - transform.position).normalized, turnSpeed * Time.deltaTime * Mathf.Deg2Rad, 0);
@@ -92,7 +91,7 @@ public class BigWed : BossBase
         for (int i = 0; i < spawnDelays.Length; i++)
         {
             yield return new WaitForSeconds(spawnDelays[i]);
-            Vector3 dir = MyMath.RotateAboutY(transform.forward, Random.Range(-sawSpreadAng, sawSpreadAng));
+            Vector3 dir = MyMath.RotateAboutY(transform.forward, Random.Range(-maxSawSpreadAng, maxSawSpreadAng));
             SpawnSaw(spicyStats.hazardPrefab, transform.position, dir, spicyStats.hazardSpeedMod);
 
             if (i % haiwDelta == 0)
@@ -187,8 +186,55 @@ public class BigWed : BossBase
 
     protected override void DoAttack3()
     {
-        throw new System.NotImplementedException();
+        StartCoroutine(Overheat());
     }
+
+    private IEnumerator Overheat()
+    {
+        attacking = true;
+        canMove = false;
+
+        Transform target = GetClosestValidPlayer();
+
+        transform.forward = target.position - transform.position;
+
+        float nextSpawn = Time.time + turnTime;
+        float attackEnd = nextSpawn + sawWaveCount * waveDelay + sawsPerWave * sawLaunchDelay;
+        float da = sawSpreadAng / (sawWaveCount * 2);
+        while (Time.time < attackEnd)
+        {
+            transform.forward = Vector3.RotateTowards(transform.forward, (target.position - transform.position).normalized, aimSpeed * Time.deltaTime * Mathf.Deg2Rad, 0);
+
+            if (Time.time >= nextSpawn)
+            {
+                //RpcSetAnimTrigger("Attack3");
+                //yield return new WaitForSeconds(1);
+
+                int d = (int)Mathf.Sign(Random.Range(-1, 1));
+                Vector2 dir = MyMath.Rotate(new Vector2(transform.forward.x, transform.forward.z), d * maxSawSpreadAng / 2);
+
+                if (Random.Range(0, 100) < haiwSpawnChancePerWave)
+                    SpawnHaiw();
+
+                for (int _ = 0; _ < sawsPerWave; _++)
+                {
+                    SpawnSaw(overheatStats.hazardPrefab, transform.position, new Vector3(dir.x, 0, dir.y), overheatStats.hazardSpeedMod);
+                    dir = MyMath.Rotate(dir, -d * da);
+
+                    yield return new WaitForSeconds(sawLaunchDelay);
+                }
+
+                nextSpawn = Time.time + waveDelay;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        attacking = false;
+        canMove = true;
+        nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+    }
+
 
     [Server]
     public override IEnumerator SpawnAnim()
@@ -202,7 +248,6 @@ public class BigWed : BossBase
     private void StartAnim() { StartCoroutine(Anim()); }
     private IEnumerator Anim()
     {
-        Debug.Log("Hi");
         model.gameObject.SetActive(true);
         flames.Play();
 
