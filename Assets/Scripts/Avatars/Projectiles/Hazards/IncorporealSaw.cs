@@ -15,7 +15,7 @@ public class IncorporealSaw : BasicSaw
 
         if (maxRange > -1 && destroyWhenOOB && Vector3.Distance(transform.position, origin) > maxRange)
         {
-            DestroyObject();
+            DestroyObject(false);
             return;
         }
     }

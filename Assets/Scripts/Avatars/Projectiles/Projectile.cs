@@ -79,7 +79,7 @@ public class Projectile : NetworkBehaviour
     }
 
     [Server]
-    public virtual void DestroyObject()
+    public virtual void DestroyObject(bool playDeathAnim=true)
     {
         NetworkServer.Destroy(gameObject);
     }

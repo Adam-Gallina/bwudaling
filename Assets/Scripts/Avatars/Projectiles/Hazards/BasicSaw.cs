@@ -157,15 +157,15 @@ public class BasicSaw : RicochetProjectile
     }
 
     [Server]
-    public override void DestroyObject()
+    public override void DestroyObject(bool playDeathAnim=true)
     {
-        OnDestroyObject();
+        OnDestroyObject(playDeathAnim);
     }
 
     [ClientRpc]
-    protected virtual void OnDestroyObject()
+    protected virtual void OnDestroyObject(bool playDeathAnim)
     {
-        if (deathPrefab)
+        if (deathPrefab && playDeathAnim)
             Instantiate(deathPrefab, transform.position, Quaternion.identity).Play();
 
         if (isServer)
