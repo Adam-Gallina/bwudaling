@@ -72,7 +72,11 @@ public class Twenty : BossBase
         float end = Time.time + aimTime;
         while (Time.time < end)
         {
-            transform.forward = Vector3.RotateTowards(transform.forward, (target.position - transform.position).normalized, turnSpeed * Time.deltaTime * Mathf.Deg2Rad, 0);
+            float ang = -Vector3.SignedAngle(transform.forward, target.position - transform.position, Vector3.up);
+            float a = Mathf.Min(Mathf.Sign(ang) * turnSpeed * Time.deltaTime, ang);
+            if (a != 0)
+                transform.forward = MyMath.RotateAboutY(transform.forward, a);
+
             yield return new WaitForEndOfFrame();
         }
 

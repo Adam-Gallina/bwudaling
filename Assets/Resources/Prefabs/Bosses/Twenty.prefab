@@ -19515,7 +19515,7 @@ MonoBehaviour:
   startArcDelay: 2
   arcDelay: 1
   maxArcOffset: 40
-  arcSpawnOffset: 60
+  arcSpawnOffset: 80
   arcSawDelay: 0.75
   haiwChance: 30
 --- !u!114 &6373117362493061630

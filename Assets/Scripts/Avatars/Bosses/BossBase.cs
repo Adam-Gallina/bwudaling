@@ -134,6 +134,18 @@ public abstract class BossBase : NetworkBehaviour
         if (Time.time < nextAttack || attacking)
             return;
 
+        if (BwudalingNetworkManager.Instance.DEBUG_ForceBossAttack != 0)
+        {
+            switch (BwudalingNetworkManager.Instance.DEBUG_ForceBossAttack)
+            {
+                case 1: DoAttack1(); break;
+                case 2: DoAttack2(); break;
+                case 3: DoAttack3(); break;
+            }
+
+            return;
+        }
+
         // nextAttack set when attack completes
         //nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
 

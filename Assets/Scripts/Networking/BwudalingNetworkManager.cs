@@ -42,6 +42,7 @@ public class BwudalingNetworkManager : NetworkManager
     public bool DEBUG_AllowKeyCheats;
     public bool DEBUG_IgnoreCooldown;
     public bool DEBUG_TpWalls;
+    public int DEBUG_ForceBossAttack = 0;
 
 
     public static event Action OnClientConnected;

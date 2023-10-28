@@ -145,7 +145,7 @@ MonoBehaviour:
   sawsPerWave: 3
   waveDelay: 1
   sawSpreadAng: 40
-  aimSpeed: 15
+  aimSpeed: 45
   aimTime: 1
   sawLaunchDelay: 0.3
   haiwSpawnChancePerWave: 30
