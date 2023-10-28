@@ -33,7 +33,7 @@ public class AvatarBase : NetworkBehaviour
             OnHeal();
     }
 
-    private void OnShieldChanged(int _, int shield)
+    protected virtual void OnShieldChanged(int _, int shield)
     {
         shieldModel.SetActive(shield > 0);
     }

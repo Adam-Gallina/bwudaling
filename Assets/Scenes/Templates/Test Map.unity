@@ -2466,7 +2466,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7.14, y: 23.84}
-  spawnCount: 7
+  spawnCount: 0
   spawnTries: 10
 --- !u!1 &1658079816
 GameObject:

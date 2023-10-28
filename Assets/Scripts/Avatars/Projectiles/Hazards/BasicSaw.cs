@@ -5,7 +5,8 @@ using Mirror;
 using UnityEngine.Rendering.VirtualTexturing;
 
 public class BasicSaw : RicochetProjectile
-{    protected Vector3 spawnPos;
+{    
+    protected Vector3 spawnPos;
     protected Vector3 origin;
     protected float maxRange = -1;
 
@@ -29,6 +30,8 @@ public class BasicSaw : RicochetProjectile
     private Dictionary<Collider, ParticleSystem> activeCollisions = new Dictionary<Collider, ParticleSystem>();
     [SerializeField] private float sparkDespawwnTime = 0.15f;
     [SerializeField] private ParticleSystem deathPrefab;
+    [SerializeField] private AudioSource sawWhine;
+    [SerializeField] private float distForWhine;
 
 
     protected override void Awake()
@@ -110,6 +113,19 @@ public class BasicSaw : RicochetProjectile
     {
         model.localEulerAngles = new Vector3(0, model.localEulerAngles.y + spinSpeed * spinDir * Time.deltaTime, 0);
 
+        if (sawWhine)
+        {
+            float dist = Vector3.Distance(transform.position, BwudalingNetworkManager.Instance.ActivePlayer.avatar.transform.position);
+            if (dist <= distForWhine)
+            {
+                sawWhine.volume = 1 - ((dist - 2) / (distForWhine - 2));
+                if (!sawWhine.isPlaying)
+                    sawWhine.Play();
+            }
+            else if (sawWhine.isPlaying)
+                sawWhine.Stop();
+        }
+
         if (!isServer)
             return;
 
@@ -166,11 +182,13 @@ public class BasicSaw : RicochetProjectile
     protected virtual void OnDestroyObject(bool playDeathAnim)
     {
         if (deathPrefab && playDeathAnim)
-            Instantiate(deathPrefab, transform.position, Quaternion.identity).Play();
+        {
+            ParticleSystem ps = Instantiate(deathPrefab, transform.position, Quaternion.identity);
+            ps.gameObject.SetActive(true);
+            ps.Play();
+        }
 
         if (isServer)
-        {
             NetworkServer.Destroy(gameObject);
-        }
     }
 }

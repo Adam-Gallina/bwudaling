@@ -129,7 +129,7 @@ public class Constants
 
     public static MapPack[] Maps = new MapPack[]
     {
-        new MapPack("Debug", 0, new GameScene[] { BigWed }),
+        new MapPack("Debug", 0, new GameScene[] { TestMap }),
         new MapPack("Debug Cwab", 0, new GameScene[] { SiwyCwab }),
         new MapPack("Debug Wed", 0, new GameScene[] { BigWed }),
         new MapPack("Debug Twent", 0, new GameScene[] { Twenty }),

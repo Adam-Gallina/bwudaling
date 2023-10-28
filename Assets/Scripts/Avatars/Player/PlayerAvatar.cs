@@ -54,6 +54,8 @@ public class PlayerAvatar : AvatarBase
     [Header("Effects")]
     [SerializeField] private ParticleSystem splatSystem;
     [SerializeField] private ParticleSystem healedSystem;
+    [SerializeField] private AudioSource shieldBreak;
+    [SerializeField] private ParticleSystem shatterSystem;
 
     private List<Collider> currSafeZones = new List<Collider>();
 
@@ -111,6 +113,19 @@ public class PlayerAvatar : AvatarBase
         ((LevelUI)GameUI.Instance).special2Name = ability2.abilityName;
         ability3?.LinkUI(((LevelUI)GameUI.Instance).special3Cooldown, ((LevelUI)GameUI.Instance).special3Text.transform.parent.GetComponent<TooltipController>());
         ((LevelUI)GameUI.Instance).special3Name = ability3.abilityName;
+    }
+
+    protected override void OnShieldChanged(int _, int shield)
+    {
+        base.OnShieldChanged(_, shield);
+
+        if (_ > 0 && shield == 0)
+        {
+            shatterSystem.Play();
+
+            if (hasAuthority)
+                shieldBreak.Play();
+        }
     }
 
     [ClientRpc]

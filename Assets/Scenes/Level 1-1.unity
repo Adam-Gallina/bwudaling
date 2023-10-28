@@ -247,7 +247,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -301,7 +303,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -520,7 +524,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -671,7 +677,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -950,7 +958,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -1101,7 +1111,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -1409,7 +1421,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -1750,7 +1764,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -1878,7 +1894,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -2341,7 +2359,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -2395,7 +2415,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -3129,7 +3151,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -3183,7 +3207,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -4361,7 +4387,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -4749,7 +4777,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -5284,7 +5314,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -6021,7 +6053,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -6534,7 +6568,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -6930,7 +6966,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
@@ -7025,7 +7063,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c636a67abc3b34ea39e45af758ad7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 75
 --- !u!1 &1877661406
 GameObject:
   m_ObjectHideFlags: 0
@@ -7575,7 +7612,9 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
+  hazardSpeed: 0
   hazardRange: 0
+  useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 0
   model: {fileID: 0}
