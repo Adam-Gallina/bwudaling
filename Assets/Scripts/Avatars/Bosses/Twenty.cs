@@ -1,6 +1,7 @@
  using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Twenty : BossBase
@@ -14,7 +15,6 @@ public class Twenty : BossBase
     [SerializeField] protected float sawLaunchDelay;
     [SerializeField] protected RangeI haiwSpawns;
 
-
     [Header("Meteor Shower")]
     [SerializeField] protected BossAttackStats meteorStats;
     [SerializeField] protected RangeI meteorCount;
@@ -24,6 +24,16 @@ public class Twenty : BossBase
     [SerializeField] protected RangeF meteorRange;
     [SerializeField] protected RangeF timeBetweenMeteors;
 
+    [Header("Arc Attack")]
+    [SerializeField] private BossAttackStats arcStats;
+    [SerializeField] private RangeI arcCount;
+    [SerializeField] protected float arcDuration;
+    [SerializeField] protected float startArcDelay;
+    [SerializeField] protected float arcDelay;
+    [SerializeField] protected float maxArcOffset;
+    [SerializeField] protected float arcSpawnOffset;
+    [SerializeField] protected float arcSawDelay;
+    [SerializeField] [Range(0, 100)] protected int haiwChance;
 
     protected override void CheckBossMovement()
     {
@@ -41,6 +51,8 @@ public class Twenty : BossBase
             attackBucket.Add(BossAttack.Attack1);
         for (int i = 0; i < meteorStats.bucketCount; i++)
             attackBucket.Add(BossAttack.Attack2);
+        for (int i = 0; i < arcStats.bucketCount; i++)
+            attackBucket.Add(BossAttack.Attack3);
     }
 
     protected override void DoAttack1()
@@ -135,9 +147,65 @@ public class Twenty : BossBase
 
     protected override void DoAttack3()
     {
-        throw new System.NotImplementedException();
+        StartCoroutine(ArcAttack());
     }
+    private IEnumerator ArcAttack()
+    {
+        attacking = true;
 
+        targetPos = MapController.Instance.mapCenter;
+        yield return new WaitUntil(() => Vector3.Distance(transform.position, targetPos) < targetPosAccuracy);
+
+        canMove = false;
+
+        yield return new WaitForSeconds(startArcDelay);
+
+        int count = arcCount.RandomVal;
+        float remaining = count * arcDelay + arcDuration;
+        for (int i = 0; i < count; i++)
+        {
+            float offset = Random.Range(-maxArcOffset, maxArcOffset);
+            if (i % 2 == 0)
+            {
+                float dir = Mathf.Sign(Random.Range(-1, 1));
+                StartCoroutine(ArcController(
+                    MapController.Instance.mapCenter + Vector3.forward * offset + Vector3.right * arcSpawnOffset * -dir,
+                    Vector3.right * dir,
+                    remaining
+                ));
+            }
+            else
+            {
+                StartCoroutine(ArcController(
+                    MapController.Instance.mapCenter + Vector3.right * offset - Vector3.forward * arcSpawnOffset,
+                    Vector3.forward,
+                    remaining
+                ));
+            }
+
+            if (Random.Range(0, 100) < haiwChance)
+                SpawnHaiw();
+
+            yield return new WaitForSeconds(arcDelay);
+            remaining -= arcDelay;
+        }
+
+        yield return new WaitForSeconds(remaining);
+
+        canMove = true;
+        attacking = false;
+        nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+    }
+    private IEnumerator ArcController(Vector3 origin, Vector3 direction, float duration)
+    {
+        float end = Time.time + duration;
+
+        while (Time.time < end)
+        {
+            SpawnSaw(arcStats.hazardPrefab, origin, direction, arcStats.hazardSpeedMod);
+            yield return new WaitForSeconds(arcSawDelay);
+        }
+    }
 
     [Server]
     public override IEnumerator SpawnAnim()
