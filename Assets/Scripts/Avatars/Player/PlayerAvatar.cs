@@ -192,7 +192,8 @@ public class PlayerAvatar : AvatarBase
             rb.velocity = Vector3.zero;
             rb.MovePosition(targetPos);
         }
-        currSpeed = rb.velocity.magnitude;
+        
+        UpdateCurrSpeed(rb.velocity.magnitude > 0 ? rb.velocity.magnitude : CalcSpeed());
 
         bool walking = rb.velocity.magnitude > 0;
         if (walking)
@@ -203,6 +204,16 @@ public class PlayerAvatar : AvatarBase
             anim.SetBool("Dancing", false);
         }
         anim?.SetBool("Walking", walking);
+    }
+
+    private void UpdateCurrSpeed(float newSpeed)
+    {
+        if (newSpeed == currSpeed) return;
+        CmdUpdateCurrSpeed(newSpeed);
+    }
+    [Command] private void CmdUpdateCurrSpeed(float newSpeed)
+    {
+        currSpeed = newSpeed;
     }
 
     #region Controls
