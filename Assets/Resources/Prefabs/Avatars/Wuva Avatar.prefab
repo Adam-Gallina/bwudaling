@@ -131,6 +131,7 @@ MonoBehaviour:
   healedSystem: {fileID: 2036487143616893863}
   shieldBreak: {fileID: 4213224776633172910}
   shatterSystem: {fileID: 4808396678058948494}
+  deathAudio: {fileID: 7131907939802169915}
 --- !u!114 &1140294442760899446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +549,11 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1467908820328901986, guid: 71d8811c4039ca842b86609996372d2e, type: 3}
   m_PrefabInstance: {fileID: 2505139102875159042}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &7131907939802169915 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4629043741559277625, guid: 71d8811c4039ca842b86609996372d2e, type: 3}
+  m_PrefabInstance: {fileID: 2505139102875159042}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2709398489671941599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -932,27 +938,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0122dfdac9402984189171e0f14a3ac4, type: 3}
   m_PrefabInstance: {fileID: 5079614555943669603}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2914671955369468649
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5386027353549845042}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2fc9b23578d1b2240b535c715fbd1ac5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &8634537115154334191
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1049,6 +1034,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2914671955369468649
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386027353549845042}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2fc9b23578d1b2240b535c715fbd1ac5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1526003925958919414
 MonoBehaviour:
   m_ObjectHideFlags: 0

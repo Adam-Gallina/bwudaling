@@ -242,6 +242,7 @@ MonoBehaviour:
   healedSystem: {fileID: 3862496327823876429}
   shieldBreak: {fileID: 4403458530869875970}
   shatterSystem: {fileID: 5281740960523678607}
+  deathAudio: {fileID: 5796063155286968001}
 --- !u!114 &4331939092478790171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +559,11 @@ ParticleSystem:
 --- !u!4 &1844508621369705423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 705772851505777975, guid: 71d8811c4039ca842b86609996372d2e, type: 3}
+  m_PrefabInstance: {fileID: 1176119528203931384}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &5796063155286968001 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4629043741559277625, guid: 71d8811c4039ca842b86609996372d2e, type: 3}
   m_PrefabInstance: {fileID: 1176119528203931384}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2437534715685940477

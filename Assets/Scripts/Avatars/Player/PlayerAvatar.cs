@@ -56,6 +56,7 @@ public class PlayerAvatar : AvatarBase
     [SerializeField] private ParticleSystem healedSystem;
     [SerializeField] private AudioSource shieldBreak;
     [SerializeField] private ParticleSystem shatterSystem;
+    [SerializeField] private AudioSource deathAudio;
 
     private List<Collider> currSafeZones = new List<Collider>();
 
@@ -362,7 +363,20 @@ public class PlayerAvatar : AvatarBase
         ability3.CancelAbility();
 
         if (anim?.GetBool("Dead") == false)
+        {
             splatSystem?.Play();
+
+            if (hasAuthority)
+            {
+                deathAudio.volume = 1;
+                deathAudio?.Play();
+            }
+            else if (GetComponent<Renderer>().isVisible)
+            {
+                deathAudio.volume = .75f;
+                deathAudio?.Play();
+            }
+        }
         anim?.SetBool("Dead", true);
 
         if (isServer)

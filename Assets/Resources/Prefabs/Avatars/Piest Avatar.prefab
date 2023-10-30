@@ -180,6 +180,7 @@ MonoBehaviour:
   healedSystem: {fileID: 3950198893408347892}
   shieldBreak: {fileID: 2767597393447695723}
   shatterSystem: {fileID: 8944811863940415244}
+  deathAudio: {fileID: 8633211897542915214}
 --- !u!114 &7649148463452278258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,27 +627,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0122dfdac9402984189171e0f14a3ac4, type: 3}
   m_PrefabInstance: {fileID: 378095967942707033}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &805664747980018435
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 720063114576837128}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2fc9b23578d1b2240b535c715fbd1ac5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &4855141441266506056
 AudioSource:
   m_ObjectHideFlags: 0
@@ -743,6 +723,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &805664747980018435
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720063114576837128}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2fc9b23578d1b2240b535c715fbd1ac5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6302196394249026997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,6 +1017,11 @@ ParticleSystem:
 --- !u!4 &4483779901446926720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 705772851505777975, guid: 71d8811c4039ca842b86609996372d2e, type: 3}
+  m_PrefabInstance: {fileID: 4031564696616860855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &8633211897542915214 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4629043741559277625, guid: 71d8811c4039ca842b86609996372d2e, type: 3}
   m_PrefabInstance: {fileID: 4031564696616860855}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5698421462777188208
