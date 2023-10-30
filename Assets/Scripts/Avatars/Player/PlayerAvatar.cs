@@ -57,6 +57,8 @@ public class PlayerAvatar : AvatarBase
     [SerializeField] private AudioSource shieldBreak;
     [SerializeField] private ParticleSystem shatterSystem;
     [SerializeField] private AudioSource deathAudio;
+    [SerializeField] private float timeBeforeIdleAnim;
+    private float idleStart;
 
     private List<Collider> currSafeZones = new List<Collider>();
 
@@ -114,6 +116,8 @@ public class PlayerAvatar : AvatarBase
         ((LevelUI)GameUI.Instance).special2Name = ability2.abilityName;
         ability3?.LinkUI(((LevelUI)GameUI.Instance).special3Cooldown, ((LevelUI)GameUI.Instance).special3Text.transform.parent.GetComponent<TooltipController>());
         ((LevelUI)GameUI.Instance).special3Name = ability3.abilityName;
+
+        idleStart = Time.time;
     }
 
     protected override void OnShieldChanged(int _, int shield)
@@ -252,6 +256,7 @@ public class PlayerAvatar : AvatarBase
         {
             anim.SetBool("Dancing", true);
             anim.SetInteger("Dance", 1);
+            idleStart = Time.time;
         }
 
         if (inp.special1.down && (!dead || ability1.canUseWhileDead))
@@ -260,6 +265,7 @@ public class PlayerAvatar : AvatarBase
             ability2.CancelAbility();
             ability3.CancelAbility();
             anim.SetBool("Dancing", false);
+            idleStart = Time.time;
         }
         if (inp.special2.down && (!dead || ability2.canUseWhileDead))
         {
@@ -267,6 +273,7 @@ public class PlayerAvatar : AvatarBase
             ability2.QueueAbility(player.abilities.special2Level);
             ability3.CancelAbility();
             anim.SetBool("Dancing", false);
+            idleStart = Time.time;
         }
         if (inp.special3.down && (!dead || ability3.canUseWhileDead))
         {
@@ -274,7 +281,10 @@ public class PlayerAvatar : AvatarBase
             ability2.CancelAbility();
             ability3.QueueAbility(player.abilities.special3Level);
             anim.SetBool("Dancing", false);
+            idleStart = Time.time;
         }
+
+        anim.SetBool("Idling", Time.time >= idleStart + timeBeforeIdleAnim);
     }
 
     protected bool CheckSpecial(float timer)
@@ -291,6 +301,7 @@ public class PlayerAvatar : AvatarBase
         {
             useMouse = true;
             Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100, 1 << Constants.GroundLayer);
+            idleStart = Time.time;
             return new Vector3(hit.point.x, 0, hit.point.z);
         }
         else if (useMouse)
@@ -307,6 +318,9 @@ public class PlayerAvatar : AvatarBase
             dir.z -= 1;
         if (inp.up)
             dir.z += 1;
+
+        if (dir != Vector3.zero)
+            idleStart = Time.time;
 
         return transform.position + dir;
     }
