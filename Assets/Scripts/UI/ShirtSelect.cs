@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShirtSelect : MonoBehaviour
@@ -14,7 +15,26 @@ public class ShirtSelect : MonoBehaviour
     {
         availableShirts = AchievmentController.Instance.GetUnlockedShirts();
 
-        shirtData = AchievmentController.Shirts[AchievmentController.DefaultShirtId];
+        if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
+        {
+            if (BwudalingNetworkManager.Instance.ActivePlayer.shirtTextureId == "")
+                shirtData = AchievmentController.Shirts[AchievmentController.DefaultShirtId];
+            else
+                shirtData = AchievmentController.Shirts[BwudalingNetworkManager.Instance.ActivePlayer.shirtTextureId];
+
+            for (int i = 0; i < availableShirts.Length; i++)
+            {
+                if (availableShirts[i] == shirtData.id)
+                {
+                    currShirt = i;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            shirtData = AchievmentController.Shirts[AchievmentController.DefaultShirtId];
+        }
         UpdateShirtDisplay();
     }
 

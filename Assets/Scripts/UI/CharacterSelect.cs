@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CharacterSelect : MonoBehaviour
 {
-    private bool b, w, u, d;
+    private bool b, w, u, d, a;
 
     [SerializeField] private GameObject wuvaButton;
     [SerializeField] private GameObject dogieButton;
@@ -14,6 +14,8 @@ public class CharacterSelect : MonoBehaviour
 
     [SerializeField] private Color selectedCol = new Color(1, 155/255, 0, 1);
     [SerializeField] private Color unselectedCol = Color.white;
+
+    [SerializeField] private Button nextBtn;
 
     void Awake()
     {
@@ -25,6 +27,32 @@ public class CharacterSelect : MonoBehaviour
         bwudaButton.transform.GetChild(1).GetComponent<TMPro.TMP_Text>().text = "Level " + (AbilityLevels.LoadAbilities(AvatarClass.Bwuda.ToString()).level + 1);
     }
 
+    private void Start()
+    {
+        if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
+        {
+            switch (BwudalingNetworkManager.Instance.ActivePlayer.avatar.AvatarName)
+            {
+                case "Bwuda Wuva":
+                    SelectCharBtn(1);
+                    break;
+                case "Dogie":
+                    SelectCharBtn(2);
+                    break;
+                case "Piest":
+                    SelectCharBtn(3);
+                    break;
+                case "Bwuda":
+                    b = w = u = d = a = true;
+                    SelectCharBtn(4);
+                    break;
+                default:
+                    Debug.LogWarning("Failed to set previously selected class " + BwudalingNetworkManager.Instance.ActivePlayer.avatar.AvatarName);
+                    break;
+            }
+        }
+    }
+
     public void SelectCharBtn(int avatar)
     {
         foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
@@ -33,11 +61,13 @@ public class CharacterSelect : MonoBehaviour
             {
                 p.SetAvatar((AvatarClass)avatar);
 
-                for (int i = 1; i < transform.childCount; i++) {
+                for (int i = 0; i < transform.childCount; i++) {
                     ColorBlock cols = transform.GetChild(i).GetComponent<Button>().colors;
-                    cols.normalColor = i == avatar ? selectedCol : unselectedCol;
+                    cols.normalColor = i+1 == avatar ? selectedCol : unselectedCol;
                     transform.GetChild(i).GetComponent<Button>().colors = cols;
                 }
+
+                nextBtn.interactable = true;
 
                 break;
             }
@@ -82,7 +112,10 @@ public class CharacterSelect : MonoBehaviour
         }
         else if (d && Input.GetKeyDown(KeyCode.A))
         {
-            bwudaButton.SetActive(true);
+            a = true;
         }
+
+        if (b && w && u && d && a)
+            bwudaButton.SetActive(true);
     }
 }

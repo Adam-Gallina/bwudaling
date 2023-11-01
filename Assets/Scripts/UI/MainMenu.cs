@@ -8,9 +8,6 @@ public class MainMenu : GameUI
 {
     private List<NametagUI> lobbyPlayers = new List<NametagUI>();
 
-    [SerializeField] public GameObject startPagePanel;
-    [SerializeField] public GameObject lobbyPanel;
-
     [Header("Main Menu")]
     [SerializeField] private TMPro.TMP_InputField nameInputField;
     [SerializeField] private TMPro.TMP_InputField ipAddressField;
@@ -59,13 +56,11 @@ public class MainMenu : GameUI
 
         if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
         {
-            //startPagePanel.SetActive(false);
-            //lobbyPanel.SetActive(true);
+            anim.SetTrigger("RejoinLobby");
+            anim.SetBool("InLobby", true);
         }
         else
         {
-            //startPagePanel.SetActive(true);
-            //lobbyPanel.SetActive(false);
             SetPlayerName(nameInputField.text);
         }
     }
@@ -177,9 +172,6 @@ public class MainMenu : GameUI
     {
         joinButton.interactable = true;
 
-        //startPagePanel.SetActive(false);
-        //lobbyPanel.SetActive(true);
-
         anim.SetBool("InLobby", true);
 
         PlayerPrefs.SetString(Constants.LastIpPref, ipAddressField.text);
@@ -192,8 +184,7 @@ public class MainMenu : GameUI
 
         UpdateButtons();
 
-        startPagePanel.SetActive(true);
-        lobbyPanel.SetActive(false);
+        anim.SetBool("InLobby", false);
 
         readyButton.GetComponentInChildren<TMPro.TMP_Text>().text = "Ready";
     }

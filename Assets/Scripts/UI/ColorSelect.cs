@@ -26,6 +26,14 @@ public class ColorSelect : MonoBehaviour
         SpawnButtons();
     }
 
+    private void Start()
+    {
+        if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
+        {
+            HideUsedColors();
+        }
+    }
+
     private void OnDestroy()
     {
         Instance = null;
@@ -44,6 +52,7 @@ public class ColorSelect : MonoBehaviour
     {
         foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
         {
+            Debug.Log(p.displayName + " " + p.avatarColor);
             if (p.avatarColor != Color.white)
                 PlayerSelectedColor(Color.white, p.avatarColor);
         }
