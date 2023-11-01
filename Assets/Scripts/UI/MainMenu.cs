@@ -118,8 +118,6 @@ public class MainMenu : GameUI
             ((LobbyNametag)lobbyPlayers[i])?.UpdateUI();
         }
 
-        Rect r = nametagParent.GetComponent<RectTransform>().rect;
-        //r.height = lobbyPlayers.Count * 50 + 10;
         nametagParent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, lobbyPlayers.Count * 50 + 10);
     }
 

@@ -14,8 +14,11 @@ public class PlayerAvatar : AvatarBase
     public string AvatarName;
 
     [SerializeField] protected SkinnedMeshRenderer body;
+    [SerializeField] protected SkinnedMeshRenderer shirt;
     [SyncVar(hook = nameof(OnBodyColChanged))]
     protected Color bodyCol;
+    [SyncVar(hook = nameof(OnShirtChanged))]
+    protected string shirtId;
 
     [Header("Movement")]
     private bool useMouse = false;
@@ -76,6 +79,7 @@ public class PlayerAvatar : AvatarBase
         stats = player.GetComponent<PlayerStats>();
 
         CmdSetBodyColor(player.avatarColor);
+        CmdSetShirtId(player.shirtTextureId);
 
         boost = player.abilities.BoostMaxVal;
 
@@ -89,6 +93,12 @@ public class PlayerAvatar : AvatarBase
         body.material.color = col;
         aliveIcon.GetComponent<SpriteRenderer>().color = col;
         deadIcon.GetComponent<SpriteRenderer>().color = col;
+    }
+    [Command]
+    private void CmdSetShirtId(string id) { shirtId = id; }
+    private void OnShirtChanged(string _, string id)
+    {
+        shirt.material = AchievmentController.Shirts[id].mat;
     }
     #endregion
 

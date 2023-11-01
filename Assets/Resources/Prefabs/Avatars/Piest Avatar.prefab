@@ -163,6 +163,7 @@ MonoBehaviour:
   NametagTarget: {fileID: 7649148463986514996}
   AvatarName: Piest
   body: {fileID: 1436086570725039010}
+  shirt: {fileID: 16961336540367430}
   boost: 0
   turnSpeed: 360
   turnSpeedMod: 20
@@ -1103,6 +1104,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
+--- !u!137 &16961336540367430 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3451065039372504497, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
+  m_PrefabInstance: {fileID: 5775612120184469513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &1436086570725039010 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4884463582928921515, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}

@@ -20,6 +20,8 @@ public class NetworkPlayer : NetworkBehaviour
     public string displayName = "Unnamed Player";
     [SyncVar(hook = nameof(OnAvatarColorChanged))]
     public Color avatarColor = Color.white;
+    [SyncVar(hook = nameof(OnAvatarShirtChanged))]
+    public string shirtTextureId;
     [SyncVar(hook = nameof(OnReadyChanged))]
     public bool IsReady = false;
 
@@ -62,13 +64,26 @@ public class NetworkPlayer : NetworkBehaviour
     [Client]
     public void SetAvatarColor(Color col)
     {
-        CmdSetAvatarColor(col);
+        if (hasAuthority)
+            CmdSetAvatarColor(col);
     }
 
     [Command]
     private void CmdSetAvatarColor(Color col)
     {
         avatarColor = col;
+    }
+
+    [Client]
+    public void SetAvatarShirt(string shirtId)
+    {
+        if (hasAuthority)
+            CmdSetShirtColor(shirtId);
+    }
+    [Command]
+    private void CmdSetShirtColor(string shirtId)
+    {
+        shirtTextureId = shirtId;
     }
 
     [Client]
@@ -138,6 +153,7 @@ public class NetworkPlayer : NetworkBehaviour
     {
         this.displayName = displayName;
     }
+    
     public bool CanReady()
     {
         return gameAvatarClass != AvatarClass.None;
@@ -160,6 +176,10 @@ public class NetworkPlayer : NetworkBehaviour
     private void OnAvatarColorChanged(Color o, Color n)
     {
         ColorSelect.Instance?.PlayerSelectedColor(o, n);
+        OnPlayerInfoChanged();
+    }
+    private void OnAvatarShirtChanged(string _, string newval)
+    {
         OnPlayerInfoChanged();
     }
     private void OnReadyChanged(bool _, bool newval)

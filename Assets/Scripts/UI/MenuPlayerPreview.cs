@@ -11,13 +11,25 @@ public class MenuPlayerPreview : MonoBehaviour
 
     [SerializeField] private SkinnedMeshRenderer body;
 
+    [SerializeField] private SkinnedMeshRenderer shirt;
+
+    [SerializeField] private float spinSpeed = 180;
+
     private Animator anim;
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
-        anim.SetBool("Dancing", true);
-        anim.SetInteger("Dance", 1);
+        //anim.SetBool("Walking", true);
+        //anim.SetBool("Dancing", true);
+        //anim.SetInteger("Dance", 1);
+    }
+
+    float rot = 0;
+    private void Update()
+    {
+        rot += spinSpeed * Time.deltaTime;
+        transform.GetChild(0).localEulerAngles = Vector3.up * rot;
     }
 
     public void SetClass(int c)
@@ -54,5 +66,10 @@ public class MenuPlayerPreview : MonoBehaviour
     public void SetColor(Color col)
     {
         body.material.color = col;
+    }
+
+    public void SetMaterial(Material mat)
+    {
+        shirt.material = mat;
     }
 }

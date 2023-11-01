@@ -225,6 +225,7 @@ MonoBehaviour:
   NametagTarget: {fileID: 6938429762080667664}
   AvatarName: Bwuda
   body: {fileID: 4252722393661640456}
+  shirt: {fileID: 2942811408140394220}
   boost: 0
   turnSpeed: 360
   turnSpeedMod: 20
@@ -1542,6 +1543,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
+--- !u!137 &2942811408140394220 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3451065039372504497, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
+  m_PrefabInstance: {fileID: 8704804711435496611}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &4252722393661640456 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4884463582928921515, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}

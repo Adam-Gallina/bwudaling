@@ -145,6 +145,7 @@ MonoBehaviour:
   NametagTarget: {fileID: 997307883556672501}
   AvatarName: Dogie
   body: {fileID: 4786064735715573016}
+  shirt: {fileID: 5888957454183066876}
   boost: 0
   turnSpeed: 360
   turnSpeedMod: 5
@@ -912,6 +913,11 @@ MonoBehaviour:
 --- !u!137 &4786064735715573016 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4884463582928921515, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
+  m_PrefabInstance: {fileID: 117829417372671667}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5888957454183066876 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3451065039372504497, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
   m_PrefabInstance: {fileID: 117829417372671667}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &745056402661380258

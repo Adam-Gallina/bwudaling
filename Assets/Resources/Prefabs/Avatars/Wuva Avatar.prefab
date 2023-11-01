@@ -145,6 +145,7 @@ MonoBehaviour:
   NametagTarget: {fileID: 3908349563113358204}
   AvatarName: Bwuda Wuva
   body: {fileID: 3287756977943131017}
+  shirt: {fileID: 4499718983351362157}
   boost: 0
   turnSpeed: 360
   turnSpeedMod: 20
@@ -1263,6 +1264,11 @@ PrefabInstance:
 --- !u!137 &3287756977943131017 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4884463582928921515, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
+  m_PrefabInstance: {fileID: 7956009181697527842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &4499718983351362157 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3451065039372504497, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
   m_PrefabInstance: {fileID: 7956009181697527842}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7108938485743938931 stripped
