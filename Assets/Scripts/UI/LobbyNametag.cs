@@ -45,6 +45,10 @@ public class LobbyNametag : NametagUI
             playerLevelText.text = "Level " + (LinkedPlayer.avatarLevel + 1);
             playerCharText.text = Constants.LoadAvatarPrefab(LinkedPlayer.gameAvatarClass).AvatarName;
         }
+
+        if (!LinkedPlayer.IsLeader) return;
+
+        Menu.startGameButton.interactable = BwudalingNetworkManager.Instance.IsReadyToStart();
     }
 
     private void OnDestroy()
@@ -57,7 +61,7 @@ public class LobbyNametag : NametagUI
             Menu.startGameButton.onClick.RemoveListener(StartGame);
         }
 
-        ColorSelect.Instance.PlayerSelectedColor(LinkedPlayer.avatarColor, Color.white);
+        ColorSelect.Instance?.PlayerSelectedColor(LinkedPlayer.avatarColor, Color.white);
     }
 
     public void UpdateUI()
@@ -79,7 +83,6 @@ public class LobbyNametag : NametagUI
     public void StartGame()
     {
         if (!LinkedPlayer.IsLeader) return;
-
 
         MapPack pack = Constants.Maps[menu.mapPackSelect.value];
         BwudalingNetworkManager.Instance.StartGame(0, pack, Constants.EndScreen);

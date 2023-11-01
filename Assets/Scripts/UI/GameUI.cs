@@ -7,7 +7,7 @@ public class GameUI : MonoBehaviour
     public static GameUI Instance;
 
     [SerializeField] protected NametagUI nametagPrefab;
-    [SerializeField] private Transform nametagParent;
+    [SerializeField] protected Transform nametagParent;
     [SerializeField] private Color defaultBannerCol;
 
     [HideInInspector] public bool start = false;

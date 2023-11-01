@@ -24,17 +24,29 @@ public class ColorSelect : MonoBehaviour
         Instance = this;
         
         SpawnButtons();
-
-        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
-        {
-            if (p.avatarColor != Color.white)
-                PlayerSelectedColor(Color.white, p.avatarColor);
-        }
     }
 
     private void OnDestroy()
     {
         Instance = null;
+    }
+
+    private void OnEnable()
+    {
+        BwudalingNetworkManager.OnClientConnected += HideUsedColors;
+    }
+
+    private void OnDisable()
+    {
+        BwudalingNetworkManager.OnClientConnected -= HideUsedColors;
+    }
+    private void HideUsedColors()
+    {
+        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
+        {
+            if (p.avatarColor != Color.white)
+                PlayerSelectedColor(Color.white, p.avatarColor);
+        }
     }
 
     private void SpawnButtons()
@@ -50,7 +62,7 @@ public class ColorSelect : MonoBehaviour
         for (int c = 0; c < colorOptions.Length; c++)
         {
             ColorOption b = Instantiate(colorBtnPrefab, btnParent);
-            b.GetComponent<RectTransform>().anchoredPosition = new Vector2((c % 2 == 0 ? -1 : 1) * btnOffset, -btnHeight * (c / 2));
+            b.GetComponent<RectTransform>().anchoredPosition = new Vector2((c % 2 == 0 ? -1 : 1) * (btnHeight/2 + btnOffset), -btnHeight * (c / 2));
             b.SetColor(colorOptions[c]);
             b.Enable();
             colorBtns.Add(colorOptions[c], b);
@@ -81,6 +93,9 @@ public class ColorSelect : MonoBehaviour
         if (o != Color.white)
             colorBtns[o].Enable();
         if (colorBtns.ContainsKey(n))
+        {
             colorBtns[n].Disable();
+            GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetColor(n);
+        }
     }
 }

@@ -171,7 +171,7 @@ public class BwudalingNetworkManager : NetworkManager
         gc?.HandleReadyToStart(IsReadyToStart());
     }
 
-    private bool IsReadyToStart()
+    public bool IsReadyToStart()
     {
         if (numPlayers < minPlayers)
             return false;

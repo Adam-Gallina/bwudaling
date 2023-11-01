@@ -12,6 +12,9 @@ public class CharacterSelect : MonoBehaviour
     [SerializeField] private GameObject piestButton;
     [SerializeField] private GameObject bwudaButton;
 
+    [SerializeField] private Color selectedCol = new Color(1, 155/255, 0, 1);
+    [SerializeField] private Color unselectedCol = Color.white;
+
     void Awake()
     {
         bwudaButton.SetActive(false);
@@ -29,6 +32,15 @@ public class CharacterSelect : MonoBehaviour
             if (p.hasAuthority)
             {
                 p.SetAvatar((AvatarClass)avatar);
+
+                for (int i = 1; i < transform.childCount; i++) {
+                    ColorBlock cols = transform.GetChild(i).GetComponent<Button>().colors;
+                    cols.normalColor = i == avatar ? selectedCol : unselectedCol;
+                    transform.GetChild(i).GetComponent<Button>().colors = cols;
+                    if (i == avatar)
+                        Debug.Log(i);
+                }
+
                 break;
             }
         }

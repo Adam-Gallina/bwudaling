@@ -17,7 +17,10 @@ public class RandomAudio : MonoBehaviour
 
     public void Play()
     {
-        GetComponent<AudioSource>().clip = clips[Random.Range(0, clips.Length)];
-        GetComponent<AudioSource>().Play();
+        if (clips.Length > 0)
+        {
+            GetComponent<AudioSource>().clip = clips[Random.Range(0, clips.Length)];
+            GetComponent<AudioSource>().Play();
+        }
     }
 }

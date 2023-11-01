@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,12 +27,16 @@ public class MainMenu : GameUI
 
     public static string DisplayName { get; private set; }
 
+    private Animator anim;
+
     protected override void Awake()
     {
         base.Awake();
 
         startGameButton.gameObject.SetActive(false);
         mapPackSelect.gameObject.SetActive(false);
+
+        anim = GetComponent<Animator>();
     }
 
     protected override void Start()
@@ -54,13 +59,13 @@ public class MainMenu : GameUI
 
         if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
         {
-            startPagePanel.SetActive(false);
-            lobbyPanel.SetActive(true);
+            //startPagePanel.SetActive(false);
+            //lobbyPanel.SetActive(true);
         }
         else
         {
-            startPagePanel.SetActive(true);
-            lobbyPanel.SetActive(false);
+            //startPagePanel.SetActive(true);
+            //lobbyPanel.SetActive(false);
             SetPlayerName(nameInputField.text);
         }
     }
@@ -112,6 +117,10 @@ public class MainMenu : GameUI
             lobbyPlayers[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -10 - (i * 50));
             ((LobbyNametag)lobbyPlayers[i])?.UpdateUI();
         }
+
+        Rect r = nametagParent.GetComponent<RectTransform>().rect;
+        //r.height = lobbyPlayers.Count * 50 + 10;
+        nametagParent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, lobbyPlayers.Count * 50 + 10);
     }
 
     public void ClearPlayers()
@@ -124,8 +133,6 @@ public class MainMenu : GameUI
     public void HostLobby()
     {
         BwudalingNetworkManager.Instance.StartHost();
-
-        startPagePanel.SetActive(false);
     }
 
     public void JoinLobby()
@@ -144,9 +151,14 @@ public class MainMenu : GameUI
         {
             case Mirror.NetworkManagerMode.ClientOnly:
                 BwudalingNetworkManager.Instance.StopClient();
+                anim.SetBool("InLobby", false);
                 break;
             case Mirror.NetworkManagerMode.Host:
                 BwudalingNetworkManager.Instance.StopHost();
+                anim.SetBool("InLobby", false);
+                break;
+            case Mirror.NetworkManagerMode.Offline:
+                Debug.LogError("Trying to leave when already disconnected");
                 break;
             default:
                 Debug.LogError("Idk what happened but probably ur trying to make a server now so that's pretty cool");
@@ -167,8 +179,10 @@ public class MainMenu : GameUI
     {
         joinButton.interactable = true;
 
-        startPagePanel.SetActive(false);
-        lobbyPanel.SetActive(true);
+        //startPagePanel.SetActive(false);
+        //lobbyPanel.SetActive(true);
+
+        anim.SetBool("InLobby", true);
 
         PlayerPrefs.SetString(Constants.LastIpPref, ipAddressField.text);
         PlayerPrefs.SetString(Constants.PlayerNamePref, DisplayName);
