@@ -1501,11 +1501,11 @@ PrefabInstance:
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 528176070436849873}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 528176070436849873}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._MethodName
       value: SetBool
@@ -1524,7 +1524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[1]._Int
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._Type

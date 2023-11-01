@@ -1031,7 +1031,7 @@ PrefabInstance:
     - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2832845900036534369}
     - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
       propertyPath: abilityStart.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1039,7 +1039,7 @@ PrefabInstance:
     - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2832845900036534369}
     - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._MethodName
       value: SetBool

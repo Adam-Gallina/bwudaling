@@ -21,7 +21,7 @@ public class NetworkPlayer : NetworkBehaviour
     [SyncVar(hook = nameof(OnAvatarColorChanged))]
     public Color avatarColor = Color.white;
     [SyncVar(hook = nameof(OnAvatarShirtChanged))]
-    public string shirtTextureId;
+    public string shirtTextureId = AchievmentController.DefaultShirtId;
     [SyncVar(hook = nameof(OnReadyChanged))]
     public bool IsReady = false;
 

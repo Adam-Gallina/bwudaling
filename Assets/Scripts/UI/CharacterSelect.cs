@@ -37,8 +37,6 @@ public class CharacterSelect : MonoBehaviour
                     ColorBlock cols = transform.GetChild(i).GetComponent<Button>().colors;
                     cols.normalColor = i == avatar ? selectedCol : unselectedCol;
                     transform.GetChild(i).GetComponent<Button>().colors = cols;
-                    if (i == avatar)
-                        Debug.Log(i);
                 }
 
                 break;

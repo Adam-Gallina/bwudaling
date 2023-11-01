@@ -98,7 +98,8 @@ public class PlayerAvatar : AvatarBase
     private void CmdSetShirtId(string id) { shirtId = id; }
     private void OnShirtChanged(string _, string id)
     {
-        shirt.material = AchievmentController.Shirts[id].mat;
+        if (AchievmentController.Shirts.ContainsKey(id))
+            shirt.material = AchievmentController.Shirts[id].mat;
     }
     #endregion
 
