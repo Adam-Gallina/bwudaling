@@ -32,6 +32,7 @@ public class BasicSaw : RicochetProjectile
     [SerializeField] private ParticleSystem deathPrefab;
     [SerializeField] private AudioSource sawWhine;
     [SerializeField] private float distForWhine;
+    [SerializeField] private RandomAudio sawCrash;
 
 
     protected override void Awake()
@@ -170,6 +171,13 @@ public class BasicSaw : RicochetProjectile
 
         if (newSpeedMod < currSpeedMod)
             currSpeedMod = newSpeedMod;
+    }
+
+    [ClientRpc]
+    protected override void RpcOnRicochet()
+    {
+        if (sawCrash)
+            sawCrash.Play();
     }
 
     [Server]

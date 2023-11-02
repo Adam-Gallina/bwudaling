@@ -109,11 +109,11 @@ public class MainMenu : GameUI
     {
         for (int i = 0; i < lobbyPlayers.Count; i++)
         {
-            lobbyPlayers[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -10 - (i * 50));
+            lobbyPlayers[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -2 - (i * 48));
             ((LobbyNametag)lobbyPlayers[i])?.UpdateUI();
         }
 
-        nametagParent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, lobbyPlayers.Count * 50 + 10);
+        nametagParent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, lobbyPlayers.Count * 48 + 2);
     }
 
     public void ClearPlayers()

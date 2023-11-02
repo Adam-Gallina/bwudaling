@@ -9,6 +9,15 @@ public class RandomAudio : MonoBehaviour
 
     [SerializeField] private bool PlayOnAwake = true;
 
+    [SerializeField] private float requiredDistToPlayer;
+
+    private AudioSource source;
+
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         if (PlayOnAwake)
@@ -17,10 +26,12 @@ public class RandomAudio : MonoBehaviour
 
     public void Play()
     {
-        if (clips.Length > 0)
+        float dist = Vector3.Distance(transform.position, BwudalingNetworkManager.Instance.ActivePlayer.avatar.transform.position);
+        if (clips.Length > 0 && dist < requiredDistToPlayer)
         {
-            GetComponent<AudioSource>().clip = clips[Random.Range(0, clips.Length)];
-            GetComponent<AudioSource>().Play();
+            source.clip = clips[Random.Range(0, clips.Length)];
+            source.Play();
         }
     }
+
 }

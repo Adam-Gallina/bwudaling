@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System.Runtime.CompilerServices;
 
 public class RicochetProjectile : Projectile
 {
@@ -40,6 +41,7 @@ public class RicochetProjectile : Projectile
             currVelocity = Vector3.Reflect(currVelocity, collision.contacts[0].normal);
             rb.velocity = currVelocity.normalized * speed;
 
+            RpcOnRicochet();
             OnCollision(collision);
 
             if (((1 << collision.collider.gameObject.layer) & costRicochetLayers.value) > 0)
@@ -79,5 +81,11 @@ public class RicochetProjectile : Projectile
             return;
 
         base.OnHitWall(other);
+    }
+
+    [ClientRpc]
+    protected virtual void RpcOnRicochet()
+    {
+
     }
 }
