@@ -202,6 +202,8 @@ public class BigWed : BossBase
 
         transform.forward = target.position - transform.position;
 
+        anim.SetBool("Attack3", true);
+
         float nextSpawn = Time.time + turnTime;
         float attackEnd = nextSpawn + sawWaveCount * waveDelay + sawsPerWave * sawLaunchDelay;
         float da = sawSpreadAng / (sawWaveCount * 2);
@@ -214,9 +216,6 @@ public class BigWed : BossBase
 
             if (Time.time >= nextSpawn)
             {
-                //RpcSetAnimTrigger("Attack3");
-                //yield return new WaitForSeconds(1);
-
                 int d = (int)Mathf.Sign(Random.Range(-1, 1));
                 Vector2 dir = MyMath.Rotate(new Vector2(transform.forward.x, transform.forward.z), d * maxSawSpreadAng / 2);
 
@@ -237,6 +236,7 @@ public class BigWed : BossBase
             yield return new WaitForEndOfFrame();
         }
 
+        anim.SetBool("Attack3", false);
         attacking = false;
         canMove = true;
         nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);

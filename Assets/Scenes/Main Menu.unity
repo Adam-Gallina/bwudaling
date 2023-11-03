@@ -4198,8 +4198,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Bwuda's most pious supporter. Resurrects Bwudalings from
-            afar
+          m_StringArgument: Bwuda's most pious supporter. Helps other Bwudalings
+            from afar
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1124883742}
@@ -5547,8 +5547,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Bwuda's loyalist supporter. Creates paths for themself
-            and other Bwudalings
+          m_StringArgument: Bwuda's loyalist supporter. Creates safe paths for Bwudalings
+            to travel
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1124883742}
@@ -7746,7 +7746,7 @@ Transform:
   m_Children:
   - {fileID: 1040748618}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1124883742
 MonoBehaviour:
@@ -11201,8 +11201,8 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Bwuda's biggest supporter. Keeps other bwudalings safe
-            through their belief
+          m_StringArgument: Bwuda's biggest supporter. Keeps self and other bwudalings
+            safe through their belief
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1124883742}
@@ -13660,7 +13660,7 @@ MonoBehaviour:
   DEBUG_AllowKeyCheats: 1
   DEBUG_IgnoreCooldown: 1
   DEBUG_TpWalls: 1
-  DEBUG_ForceBossAttack: 1
+  DEBUG_ForceBossAttack: 3
 --- !u!114 &1812445703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13703,7 +13703,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1823281034
 GameObject:
@@ -14856,7 +14856,7 @@ Transform:
   - {fileID: 466088393}
   - {fileID: 1482810582}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2086840988
 MonoBehaviour:
