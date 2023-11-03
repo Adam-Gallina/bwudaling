@@ -61,9 +61,6 @@ public class LevelUI : GameUI
     {
         base.Start();
 
-        clientMenu.SetActive(true);
-        hostMenu.SetActive(false);
-
         NetworkPlayer p = BwudalingNetworkManager.Instance.ActivePlayer;
         if (p != null)
         {
@@ -71,9 +68,6 @@ public class LevelUI : GameUI
             activePlayer.abilities.OnAddXp += UpdateDisplay;
             activePlayer.abilities.OnLevelUp += UpdateDisplay;
             activePlayer.abilities.OnUpgrade += UpdateDisplay;
-
-            clientMenu.SetActive(!p.IsLeader);
-            hostMenu.SetActive(p.IsLeader);
         }
     }
 
@@ -269,14 +263,5 @@ public class LevelUI : GameUI
         activePlayer.abilities.UpgradeAbility(AbilityType.special3);
     }
 
-    public void RestartLevel()
-    {
-        BwudalingNetworkManager.Instance.RestartMap();
-    }
-
-    public void ReturnToLobby()
-    {
-        BwudalingNetworkManager.Instance.ReturnToLobby();
-    }
     #endregion
 }

@@ -7,6 +7,8 @@ public class StatsGameController : GameController
 {
     private bool started = false;
 
+    [SerializeField] private float timeBetweenStats;
+
     private StatsUI statsUI;
     private StatsUI StatsUI { get
         {
@@ -39,12 +41,19 @@ public class StatsGameController : GameController
             return true;
         });
 
+        yield return new WaitForSeconds(1);
         ShowStat(PlayerStatType.Distance);
+        yield return new WaitForSeconds(timeBetweenStats);
         ShowStat(PlayerStatType.Abilities);
+        yield return new WaitForSeconds(timeBetweenStats);
         ShowStat(PlayerStatType.Deaths, true);
+        yield return new WaitForSeconds(timeBetweenStats);
         ShowStat(PlayerStatType.Heals);
+        yield return new WaitForSeconds(timeBetweenStats);
         ShowStat(PlayerStatType.Dodges);
+        yield return new WaitForSeconds(timeBetweenStats);
         ShowStat(PlayerStatType.Haiws);
+        yield return new WaitForSeconds(timeBetweenStats);
 
         Dictionary<NetworkPlayer, int> wins = new Dictionary<NetworkPlayer, int>();
         void AddWin(NetworkPlayer p) 
@@ -71,6 +80,9 @@ public class StatsGameController : GameController
             }
         }
         RpcShowStat(PlayerStatType.Best, f.displayName, 0, "", 0, false);
+        yield return new WaitForSeconds(timeBetweenStats);
+
+        RpcHideStats();
 
         yield break;
     }
@@ -103,16 +115,16 @@ public class StatsGameController : GameController
     [ClientRpc] 
     private void RpcShowStat(PlayerStatType stat, string winningPlayer, int winningVal, string losingPlayer, int losingVal, bool showLocalPlayer)
     {
-        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
-        {
-            if (p.hasAuthority)
-            {
-                int pVal = showLocalPlayer ? p.GetComponent<PlayerStats>().currStats.StatVals[stat] : 0;
-                StatsUI.SetStatDisplay(stat, winningPlayer, winningVal, losingPlayer, losingVal, pVal);
-                break;
-            }
-        }
+        NetworkPlayer p = BwudalingNetworkManager.Instance.ActivePlayer;    
 
+        int pVal = showLocalPlayer ? p.GetComponent<PlayerStats>().currStats.StatVals[stat] : 0;
+        StatsUI.SetStatDisplay(stat, winningPlayer, winningVal, losingPlayer, losingVal, pVal);
+    }
+
+    [ClientRpc]
+    private void RpcHideStats()
+    {
+        StatsUI.HideStatDisplay();
     }
 
     [Server]
