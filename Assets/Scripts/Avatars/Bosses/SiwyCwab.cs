@@ -145,6 +145,7 @@ public class SiwyCwab : BossBase
         attacking = true;
         canMove = false;
 
+        anim.SetBool("Jump", true);
         for (int _ = leapCount.RandomVal; _ > 0; _--)
         {
             Vector3 target = GetBossMoveTarget(leapDist.RandomVal);
@@ -166,6 +167,8 @@ public class SiwyCwab : BossBase
                 }
             }
 
+            anim.SetBool("JumpUp", true);
+            yield return new WaitForSeconds(.35f);
             GetComponent<BoxCollider>().enabled = false;
 
             Vector3 start = transform.position;
@@ -174,6 +177,10 @@ public class SiwyCwab : BossBase
             {
                 float t = 1 - ((end - Time.time) / leapTime);
                 transform.position = start + (target - start) * t;
+
+                if (end - Time.time < 0.5f && anim.GetBool("JumpUp"))
+                    anim.SetBool("JumpUp", false);
+
                 yield return new WaitForEndOfFrame();
             }
 
@@ -192,6 +199,7 @@ public class SiwyCwab : BossBase
             }
         }
 
+        anim.SetBool("Jump", false);
         attacking = false;
         canMove = true;
         nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
