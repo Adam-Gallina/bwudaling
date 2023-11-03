@@ -18,23 +18,26 @@ public class LevelUI : GameUI
     [SerializeField] private TMPro.TMP_Text boostSpeedText;
     [SerializeField] private TMPro.TMP_Text boostMaxText;
     [SerializeField] private TMPro.TMP_Text boostRechargeText;
-    public TMPro.TMP_Text special1Text;
+    public Button special1Btn;
     [HideInInspector] public string special1Name;
-    public TMPro.TMP_Text special2Text;
+    public Button special2Btn;
     [HideInInspector] public string special2Name;
-    public TMPro.TMP_Text special3Text;
+    public Button special3Btn;
     [HideInInspector] public string special3Name;
     [SerializeField] private RectTransform tooltipObj;
     [SerializeField] private TMPro.TMP_Text tooltipText;
     [SerializeField] private GameObject tooltipUpgradesObj;
     [SerializeField] private TMPro.TMP_Text tooltipUpgradesText;
+    [SerializeField] private Sprite unlockSprite;
+    [SerializeField] private Sprite upgradeSprite;
 
     [Header("Player Skills")]
-    //[SerializeField] private TMPro.TMP_Text shieldText;
-    //[SerializeField] private Slider boostSlider;
     public AbilityCooldown special1Cooldown;
+    public TooltipController special1Tooltip;
     public AbilityCooldown special2Cooldown;
+    public TooltipController special2Tooltip;
     public AbilityCooldown special3Cooldown;
+    public TooltipController special3Tooltip;
 
     [Header("Banner")]
     [SerializeField] private GameObject bannerParent;
@@ -49,8 +52,8 @@ public class LevelUI : GameUI
     private BossBase healthbarTarget;
 
     [Header("Pause Menu")]
-    [SerializeField] private GameObject restartBtn;
-    [SerializeField] private GameObject returnBtn;
+    [SerializeField] private GameObject hostMenu;
+    [SerializeField] private GameObject clientMenu;
 
     private NetworkPlayer activePlayer;
 
@@ -58,8 +61,8 @@ public class LevelUI : GameUI
     {
         base.Start();
 
-        restartBtn.SetActive(false);
-        returnBtn.SetActive(false);
+        clientMenu.SetActive(true);
+        hostMenu.SetActive(false);
 
         NetworkPlayer p = BwudalingNetworkManager.Instance.ActivePlayer;
         if (p != null)
@@ -69,8 +72,8 @@ public class LevelUI : GameUI
             activePlayer.abilities.OnLevelUp += UpdateDisplay;
             activePlayer.abilities.OnUpgrade += UpdateDisplay;
 
-            restartBtn.SetActive(p.IsLeader);
-            returnBtn.SetActive(p.IsLeader);
+            clientMenu.SetActive(!p.IsLeader);
+            hostMenu.SetActive(p.IsLeader);
         }
     }
 
@@ -124,35 +127,57 @@ public class LevelUI : GameUI
 
     public override void UpdateDisplay()
     {
-        levelText.text = "Lvl " + (activePlayer.abilities.level + 1);
+        if (activePlayer.avatar)
+            levelText.text = "Lvl " + (activePlayer.abilities.level + 1) + " " + activePlayer.avatar.AvatarName;
         talentsBackground.SetActive(activePlayer.abilities.talentPoints > 0);
-        talentsText.text = "Talent Points: " + activePlayer.abilities.talentPoints;
+        talentsText.text =  activePlayer.abilities.talentPoints + " Smakins";
         xpSlider.value = (float)activePlayer.abilities.currXp / activePlayer.abilities.nextXp;
         xpText.text = activePlayer.abilities.currXp + " / " + activePlayer.abilities.nextXp;
 
-        speedText.text = "Speed\nlvl " + activePlayer.abilities.speedLevel;
-        boostSpeedText.text = "Boost\nlvl " + activePlayer.abilities.boostSpeedLevel;
-        boostMaxText.text = "Duration\nlvl " + activePlayer.abilities.boostMaxLevel;
-        //boostRechargeText.text = "Recharge\nlvl " + activePlayer.abilities.boostRechargeLevel;
+        speedText.text = "Speed: lvl " + activePlayer.abilities.speedLevel;
+        boostSpeedText.text = "Boost: lvl " + activePlayer.abilities.boostSpeedLevel;
+        boostMaxText.text = "Duration: lvl " + activePlayer.abilities.boostMaxLevel;
+        //boostRechargeText.text = "Recharge: lvl " + activePlayer.abilities.boostRechargeLevel;
 
-        string SpecialText(string name, int level) {
-            if (level == -1)
-                return $"Unlock {name}";
-            else if (level == AbilityLevels.SpecialAbilityMax)
-                return $"{name}: Max";
-            return $"{name}: lvl {level + 1}";
+        string LevelText(int level)
+        {
+            if (level < AbilityLevels.SpecialAbilityMax)
+                return level > -1 ? "lvl " + (level + 1) : "";
+            return "lvl Max";
         }
 
         special1Cooldown.gameObject.SetActive(activePlayer.abilities.special1Level > -1);
-        special1Text.text = SpecialText(special1Name, activePlayer.abilities.special1Level);
+        ((Image)special1Btn.targetGraphic).sprite = activePlayer.abilities.special1Level > -1 ? upgradeSprite : unlockSprite;
+        special1Tooltip.tooltipLevel = LevelText(activePlayer.abilities.special1Level);
+        special1Btn.interactable = activePlayer.abilities.special1Level < AbilityLevels.SpecialAbilityMax;
 
         special2Cooldown.gameObject.SetActive(activePlayer.abilities.special2Level > -1);
-        special2Text.text = SpecialText(special2Name, activePlayer.abilities.special2Level);
+        ((Image)special2Btn.targetGraphic).sprite = activePlayer.abilities.special2Level > -1 ? upgradeSprite : unlockSprite;
+        special2Tooltip.tooltipLevel = LevelText(activePlayer.abilities.special2Level);
+        special2Btn.interactable = activePlayer.abilities.special2Level < AbilityLevels.SpecialAbilityMax;
 
         special3Cooldown.gameObject.SetActive(activePlayer.abilities.special3Level > -1);
-        special3Text.text = SpecialText(special3Name, activePlayer.abilities.special3Level);
+        ((Image)special3Btn.targetGraphic).sprite = activePlayer.abilities.special3Level > -1 ? upgradeSprite : unlockSprite;
+        special3Tooltip.tooltipLevel = LevelText(activePlayer.abilities.special3Level);
+        special3Btn.interactable = activePlayer.abilities.special3Level < AbilityLevels.SpecialAbilityMax;
     }
 
+    public void ShowTooltip(Vector3 pos, string title, string text, string[] upgrades = null)
+    {
+        tooltipObj.gameObject.SetActive(true);
+        tooltipObj.position = pos;
+        tooltipText.text = title + "\n" + text;
+
+        if (upgrades != null && upgrades.Length > 0)
+        {
+            tooltipUpgradesObj.SetActive(true);
+            tooltipUpgradesText.text = "Upgrades:";
+            foreach (string s in upgrades)
+                tooltipUpgradesText.text += "\n" + s;
+        }
+        else
+            tooltipUpgradesObj.SetActive(false);
+    }
     public void ShowTooltip(Vector3 pos, string text, string[] upgrades = null)
     {
         tooltipObj.gameObject.SetActive(true);

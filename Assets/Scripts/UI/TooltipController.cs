@@ -10,6 +10,9 @@ public class TooltipController : MonoBehaviour
     [SerializeField] private float showDelay = 0.5f;
     private bool mouseOver = false;
 
+    public string tooltipName;
+    public string tooltipLevel;
+
     public string tooltip;
     public string[] upgrades;
 
@@ -29,7 +32,10 @@ public class TooltipController : MonoBehaviour
     {
         if (mouseOver && Time.time > lastMouseOver + showDelay)
         {
-            ((LevelUI)GameUI.Instance).ShowTooltip(Input.mousePosition, tooltip, upgrades);
+            if (tooltipName != "")
+                ((LevelUI)GameUI.Instance).ShowTooltip(Input.mousePosition, tooltipName + ": " + tooltipLevel, tooltip, upgrades);
+            else
+                ((LevelUI)GameUI.Instance).ShowTooltip(Input.mousePosition, tooltip, upgrades);
             updatedTipbox = false;
         }
         else if (!updatedTipbox)

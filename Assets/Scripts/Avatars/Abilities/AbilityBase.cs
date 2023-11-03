@@ -33,6 +33,7 @@ public abstract class AbilityBase : MonoBehaviour
     { 
         cooldownUI = abilityCooldown;
         cooldownUI.abilityImage.sprite = abilityIcon;
+        tooltip.tooltipName = abilityName;
         tooltip.tooltip = abilityTooltip;
         tooltip.upgrades = abilityUpgradesTooltip;
     }
@@ -123,6 +124,6 @@ public abstract class AbilityBase : MonoBehaviour
 
     public virtual void UpdateUI(int level)
     {
-        cooldownUI.SetCooldown(nextAbility - Time.time, CalcNextAbility(level));
+        cooldownUI?.SetCooldown(nextAbility - Time.time, CalcNextAbility(level));
     }
 }

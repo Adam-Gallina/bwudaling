@@ -121,11 +121,11 @@ public class PlayerAvatar : AvatarBase
         CameraController.Instance.SetTarget(transform);
         PlayerUI.Instance.SetTarget(transform);
 
-        ability1?.LinkUI(((LevelUI)GameUI.Instance).special1Cooldown, ((LevelUI)GameUI.Instance).special1Text.transform.parent.GetComponent<TooltipController>());
+        ability1?.LinkUI(((LevelUI)GameUI.Instance).special1Cooldown, ((LevelUI)GameUI.Instance).special1Tooltip);
         ((LevelUI)GameUI.Instance).special1Name = ability1.abilityName;
-        ability2?.LinkUI(((LevelUI)GameUI.Instance).special2Cooldown, ((LevelUI)GameUI.Instance).special2Text.transform.parent.GetComponent<TooltipController>());
+        ability2?.LinkUI(((LevelUI)GameUI.Instance).special2Cooldown, ((LevelUI)GameUI.Instance).special2Tooltip);
         ((LevelUI)GameUI.Instance).special2Name = ability2.abilityName;
-        ability3?.LinkUI(((LevelUI)GameUI.Instance).special3Cooldown, ((LevelUI)GameUI.Instance).special3Text.transform.parent.GetComponent<TooltipController>());
+        ability3?.LinkUI(((LevelUI)GameUI.Instance).special3Cooldown, ((LevelUI)GameUI.Instance).special3Tooltip);
         ((LevelUI)GameUI.Instance).special3Name = ability3.abilityName;
 
         idleStart = Time.time;

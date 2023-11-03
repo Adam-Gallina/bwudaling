@@ -143,7 +143,7 @@ MonoBehaviour:
   shieldModel: {fileID: 7285431704388648144}
   stats: {fileID: 0}
   NametagTarget: {fileID: 3908349563113358204}
-  AvatarName: Bwuda Wuva
+  AvatarName: Wuva
   body: {fileID: 3287756977943131017}
   shirt: {fileID: 4499718983351362157}
   boost: 0
@@ -1412,6 +1412,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dda59af7fac5f3e47853fc28975d82fe, type: 3}
   - {fileID: 8300000, guid: dd600733e1cb41c419241141d4a05b9c, type: 3}
   PlayOnAwake: 0
+  requiredDistToPlayer: 0
 --- !u!4 &7630176732438247369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
