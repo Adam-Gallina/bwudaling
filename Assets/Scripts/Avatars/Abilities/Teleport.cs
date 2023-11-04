@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using Mirror;
 
 public class Teleport : TargetAbility
 {
@@ -22,13 +23,15 @@ public class Teleport : TargetAbility
 
         controller.stats?.AddAbility();
 
+        DoServerEffect(transform.position, level);
         controller.SetPosition(currReticlePos, true);
 
         return true;
     }
 
-    protected override void DoEffect(int level)
+    protected override void PlaceEffect(ParticleSystem effect, Vector3 target, int level)
     {
-        DoServerEffect(transform.position, level);
+        ParticleSystem e = Instantiate(effect, target, Quaternion.identity);
+        base.PlaceEffect(e, target, level);
     }
 }

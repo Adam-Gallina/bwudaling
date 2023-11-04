@@ -280,6 +280,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5810628397323616299, guid: fa8463c8b8b1da6409370f283a0bced8, type: 3}
   m_PrefabInstance: {fileID: 6550539159009010620}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3596168490946618779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7710189606449694247, guid: fa8463c8b8b1da6409370f283a0bced8, type: 3}
+  m_PrefabInstance: {fileID: 6550539159009010620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3716679901962268845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3596168490946618779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7533f85b55acdb84fb806335b132cd9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &4464964441534055674 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 7430531640233289542, guid: fa8463c8b8b1da6409370f283a0bced8, type: 3}
