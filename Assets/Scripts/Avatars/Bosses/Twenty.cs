@@ -34,6 +34,9 @@ public class Twenty : BossBase
     [SerializeField] protected float arcSpawnOffset;
     [SerializeField] protected float arcSawDelay;
     [SerializeField] [Range(0, 100)] protected int haiwChance;
+    [SerializeField] private float spinSpeed;
+    [SerializeField] private ParticleSystem arcSmokeSystem;
+    [SerializeField] private ParticleSystem arcSparkSystem;
 
     protected override void CheckBossMovement()
     {
@@ -162,7 +165,10 @@ public class Twenty : BossBase
 
         canMove = false;
 
-        yield return new WaitForSeconds(startArcDelay);
+        arcSmokeSystem.Play();
+        anim.SetBool("Attack3", true);
+        yield return SpinForDelay(startArcDelay);
+        arcSparkSystem.Play();
 
         int count = arcCount.RandomVal;
         float remaining = count * arcDelay + arcDuration;
@@ -190,11 +196,14 @@ public class Twenty : BossBase
             if (Random.Range(0, 100) < haiwChance)
                 SpawnHaiw();
 
-            yield return new WaitForSeconds(arcDelay);
+            yield return SpinForDelay(arcDelay);
             remaining -= arcDelay;
         }
 
-        yield return new WaitForSeconds(remaining);
+        yield return SpinForDelay(remaining);
+        arcSparkSystem.Stop();
+        arcSmokeSystem.Stop();
+        anim.SetBool("Attack3", false);
 
         canMove = true;
         attacking = false;
@@ -208,6 +217,17 @@ public class Twenty : BossBase
         {
             SpawnSaw(arcStats.hazardPrefab, origin, direction, arcStats.hazardSpeedMod);
             yield return new WaitForSeconds(arcSawDelay);
+        }
+    }
+    private IEnumerator SpinForDelay(float delay)
+    {
+        float end = Time.time + delay;
+        float rot = transform.eulerAngles.y;
+        while (Time.time < end)
+        {
+            rot += spinSpeed * Time.deltaTime;
+            transform.eulerAngles = Vector3.up * rot;
+            yield return new WaitForEndOfFrame();
         }
     }
 
