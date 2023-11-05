@@ -33,7 +33,7 @@ public class CharacterSelect : MonoBehaviour
         {
             switch (BwudalingNetworkManager.Instance.ActivePlayer.avatar.AvatarName)
             {
-                case "Bwuda Wuva":
+                case "Wuva":
                     SelectCharBtn(1);
                     break;
                 case "Dogie":

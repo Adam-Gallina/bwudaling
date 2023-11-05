@@ -54,7 +54,7 @@ public class ColorSelect : MonoBehaviour
         {
             Debug.Log(p.displayName + " " + p.avatarColor);
             if (p.avatarColor != Color.white)
-                PlayerSelectedColor(Color.white, p.avatarColor);
+                PlayerSelectedColor(Color.white, p.avatarColor, false);
         }
     }
 
@@ -97,14 +97,15 @@ public class ColorSelect : MonoBehaviour
         return Color.white;
     }
 
-    public void PlayerSelectedColor(Color o, Color n)
+    public void PlayerSelectedColor(Color o, Color n, bool hasAuthority)
     {
         if (o != Color.white)
             colorBtns[o].Enable();
         if (colorBtns.ContainsKey(n))
         {
             colorBtns[n].Disable();
-            GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetColor(n);
+            if (hasAuthority)
+                GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetColor(n);
         }
     }
 }

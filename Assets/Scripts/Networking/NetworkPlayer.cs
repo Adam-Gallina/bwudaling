@@ -175,7 +175,7 @@ public class NetworkPlayer : NetworkBehaviour
     }
     private void OnAvatarColorChanged(Color o, Color n)
     {
-        ColorSelect.Instance?.PlayerSelectedColor(o, n);
+        ColorSelect.Instance?.PlayerSelectedColor(o, n, hasAuthority);
         OnPlayerInfoChanged();
     }
     private void OnAvatarShirtChanged(string _, string newval)

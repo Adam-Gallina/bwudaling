@@ -61,7 +61,7 @@ public class LobbyNametag : NametagUI
             Menu.startGameButton.onClick.RemoveListener(StartGame);
         }
 
-        ColorSelect.Instance?.PlayerSelectedColor(LinkedPlayer.avatarColor, Color.white);
+        ColorSelect.Instance?.PlayerSelectedColor(LinkedPlayer.avatarColor, Color.white, LinkedPlayer.hasAuthority);
     }
 
     public void UpdateUI()
