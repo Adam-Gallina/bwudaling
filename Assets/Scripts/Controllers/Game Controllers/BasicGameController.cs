@@ -6,23 +6,27 @@ using Mirror;
 public class BasicGameController : GameController
 {
     [SerializeField] protected string[] startBannerMessages = new string[] { "READY?", "3", "2", "1", "GO!" };
+    [SerializeField] protected int[] startBannerSounds = new int[] { -1, 0, 0, 0, 1 };
     //[SerializeField] protected string[] endBannerMessages = new string[] { "Returning to lobby..." };
     [SerializeField] protected float messageTime = 1;
     [SerializeField] protected float endMessageTime = 3;
+    [SerializeField] protected AudioClip boopClip;
+    [SerializeField] protected AudioClip beepClip;
+    protected AudioSource source;
 
     private bool started = false;
     private bool ended = false;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        source = GetComponent<AudioSource>();
+    }
+
     public override void OnStartClient()
     {
         GameUI.Instance?.SetBannerText("Waiting for players...");
-    }
-
-    private void Update()
-    {
-        if (BwudalingNetworkManager.Instance.DEBUG_AllowKeyCheats)
-            if (Input.GetKeyDown(KeyCode.Backslash))
-                BwudalingNetworkManager.Instance.NextMap();
     }
 
     [Server]
@@ -53,9 +57,10 @@ public class BasicGameController : GameController
 
         yield return StartCoroutine(BeforeStartMessages());
 
-        foreach (string m in startBannerMessages)
+        for (int i = 0; i < startBannerMessages.Length; i++)
         {
-            RpcSendServerBannerMessage(m, 0);
+            RpcSendServerBannerMessage(startBannerMessages[i], 0);
+            RpcSendServerAudioClip(startBannerSounds[i]);
             yield return new WaitForSeconds(messageTime);
         }
 
@@ -115,6 +120,26 @@ public class BasicGameController : GameController
         }
     }
 
+
+    protected override void OnPlayServerAudioClip(int clipNum)
+    {
+        switch (clipNum)
+        {
+            case -1:
+                return;
+            case 0:
+                source.clip = boopClip;
+                source.Play();
+                return;
+            case 1:
+                source.clip = beepClip;
+                source.Play();
+                return;
+            default:
+                Debug.LogError("Can't play clip number " + clipNum);
+                return;
+        }
+    }
     #region Map Enemies
     private void SpawnAllMapEnemies()
     {

@@ -6,12 +6,16 @@ using Mirror;
 public class XpArea : SafeArea
 {
     [SerializeField] protected ParticleSystem reachEffect;
+    [SerializeField] protected AudioSource reachAudio;
 
     [Client]
     protected override void ClientOnTouchPlayer(PlayerAvatar target)
     {
         if (IsNewPlayer(target) && target.hasAuthority)
+        {
             reachEffect?.Play();
+            reachAudio?.Play();
+        }
     }
 
     [Server]

@@ -62,6 +62,8 @@ public class PlayerAvatar : AvatarBase
     [SerializeField] private AudioSource deathAudio;
     [SerializeField] private float timeBeforeIdleAnim;
     private float idleStart;
+    [SerializeField] private ParticleSystem levelUpSystem;
+    [SerializeField] private AudioSource levelUpAudio;
 
     private List<Collider> currSafeZones = new List<Collider>();
 
@@ -84,6 +86,8 @@ public class PlayerAvatar : AvatarBase
         boost = player.abilities.BoostMaxVal;
 
         GameUI.Instance?.UpdateDisplay();
+
+        player.abilities.OnLevelUp += CmdOnLevelUp;
     }
 
     [Command]
@@ -257,6 +261,10 @@ public class PlayerAvatar : AvatarBase
                 player.abilities.talentPoints += AbilityLevels.TalentPointsPerLevel;
                 GameUI.Instance.UpdateDisplay();
             }
+            if (Input.GetKeyDown(KeyCode.Minus))
+            {
+                player.abilities.AddXp(5);
+            }
             if (dead && Input.GetKeyDown(KeyCode.Backspace))
             {
                 CmdHealTarget(this, 1);
@@ -429,6 +437,16 @@ public class PlayerAvatar : AvatarBase
             return;
         player.abilities.AddXp(xp);
     }
+    [Command]
+    private void CmdOnLevelUp() { RpcOnLevelUp(); }
+    [ClientRpc]
+    private void RpcOnLevelUp()
+    {
+        if (hasAuthority)
+            levelUpAudio.Play();
+        levelUpSystem.Play();
+    }
+
 
     [Server]
     public void DragEffect(Transform target, float duration, float speed)

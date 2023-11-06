@@ -191,16 +191,8 @@ public class BwudalingNetworkManager : NetworkManager
     {
         if (DEBUG_AllowMapSkip && Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.S))
         {
-            foreach (NetworkPlayer p in Players)
-            {
-                if (p.hasAuthority)
-                {
-                    if (p.IsLeader)
-                        NextMap();
-
-                    break;
-                }
-            }
+            if (ActivePlayer.IsLeader)
+                NextMap();
         }
     }
 

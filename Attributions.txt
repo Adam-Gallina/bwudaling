@@ -1,5 +1,6 @@
-freesound.org - derplayer
-* Saw break
+freesound.org
+* Saw break - derplayer
+* Safe zone - vewiu
 Additional sound effects from https://www.zapsplat.com
 * Shield break
 * Footsteps

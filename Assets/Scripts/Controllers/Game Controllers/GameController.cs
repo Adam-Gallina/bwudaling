@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using Unity.IO.LowLevel.Unsafe;
 
 public abstract class GameController : NetworkBehaviour
 {
@@ -11,7 +12,7 @@ public abstract class GameController : NetworkBehaviour
 
     public bool playing = false;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Instance = this;
     }
@@ -90,5 +91,15 @@ public abstract class GameController : NetworkBehaviour
         }
 
         GameUI.Instance.SetBannerText(message, col, duration);
+    }
+
+    [ClientRpc]
+    protected void RpcSendServerAudioClip(int clipNum)
+    {
+        OnPlayServerAudioClip(clipNum);
+    }
+    protected virtual void OnPlayServerAudioClip(int clipNum)
+    {
+
     }
 }
