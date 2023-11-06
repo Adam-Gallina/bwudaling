@@ -1,11 +1,19 @@
 freesound.org
 * Saw break - derplayer
 * Safe zone - vewiu
+* Teleport - DExUS5
+* Revive - Exoticgaming
+* Shield - Breviceps
+* Bark - crazymonke9
+* Btn press - MatRuthSound
 Additional sound effects from https://www.zapsplat.com
 * Shield break
 * Footsteps
+* Teleport
+* Dig
 Sound Jay
 * Saw miss
+* Dab run
 
 
 Slap?

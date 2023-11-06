@@ -117,6 +117,16 @@ public abstract class AbilityBase : MonoBehaviour
             PlaceEffect(effect, target, level);
     }
 
+    public void DoServerAudio()
+    {
+        controller.DoAbilityAudio(this);
+    }
+    [Client]
+    public virtual void OnDoClientAudio()
+    {
+        GetComponent<AudioSource>().Play();
+    }
+
     protected virtual void PlaceEffect(ParticleSystem effect, Vector3 target, int level)
     {
         effect.Play();

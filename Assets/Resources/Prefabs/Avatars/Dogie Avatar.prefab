@@ -1465,39 +1465,67 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._Target
+      value: 
+      objectReference: {fileID: 104108469879237508}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[1]._Target
       value: 
       objectReference: {fileID: 528176070436849873}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._Target
       value: 
+      objectReference: {fileID: 104108469879237508}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[1]._Target
+      value: 
       objectReference: {fileID: 528176070436849873}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[1]._MethodName
       value: SetBool
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[1]._MethodName
       value: SetBool
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[1]._PersistentArguments.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[1]._PersistentArguments.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[1]._Int
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[1]._PersistentArguments.Array.data[1]._Int
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._Type
@@ -1508,11 +1536,27 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[1]._PersistentArguments.Array.data[0]._Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[1]._PersistentArguments.Array.data[1]._Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[1]._Int
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[1]._PersistentArguments.Array.data[1]._Int
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityEnd._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._String
+      value: Buried
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[1]._PersistentArguments.Array.data[0]._String
       value: Buried
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
@@ -1524,7 +1568,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[1]._PersistentArguments.Array.data[0]._Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[1]._PersistentArguments.Array.data[1]._Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
       propertyPath: abilityStart._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._String
+      value: Buried
+      objectReference: {fileID: 0}
+    - target: {fileID: 227228281252363167, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[1]._PersistentArguments.Array.data[0]._String
       value: Buried
       objectReference: {fileID: 0}
     - target: {fileID: 4827522254973290067, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
@@ -1601,6 +1657,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+--- !u!82 &104108469879237508 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8413727307629257466, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}
+  m_PrefabInstance: {fileID: 8480927302467455358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2399353282419339128 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6124466045957285382, guid: 91b9c037899c85649b1a32bbe81260f7, type: 3}

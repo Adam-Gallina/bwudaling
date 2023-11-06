@@ -563,5 +563,38 @@ public class PlayerAvatar : AvatarBase
                 break;
         }
     }
+
+    public void DoAbilityAudio(AbilityBase ability)
+    {
+        if (ability == ability1)
+            CmdDoAbilityAudio(0);
+        else if (ability == ability2)
+            CmdDoAbilityAudio(1);
+        else if (ability == ability3)
+            CmdDoAbilityAudio(2);
+        else
+            Debug.LogError("Can't use ability audio " + ability.name, this);
+    }
+    [Command]
+    private void CmdDoAbilityAudio(int ability)
+    {
+        RpcDoAbilityAudio(ability);
+    }
+    [ClientRpc]
+    private void RpcDoAbilityAudio(int ability)
+    {
+        switch (ability)
+        {
+            case 0:
+                ability1.OnDoClientAudio();
+                break;
+            case 1:
+                ability2.OnDoClientAudio();
+                break;
+            case 2:
+                ability3.OnDoClientAudio();
+                break;
+        }
+    }
     #endregion
 }

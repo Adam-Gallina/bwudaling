@@ -4855,6 +4855,18 @@ PrefabInstance:
       propertyPath: abilityUpgradesTooltip.Array.data[1]
       value: Speed mod
       objectReference: {fileID: 0}
+    - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[0]._Target
+      value: 
+      objectReference: {fileID: 8413727307629257466}
+    - target: {fileID: 1979124213915674993, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: abilityEnd._PersistentCalls.Array.data[0]._MethodName
+      value: Play
+      objectReference: {fileID: 0}
     - target: {fileID: 5525491772514432232, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4899,6 +4911,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7823760250621112340, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: m_Volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823760250621112340, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 36a55a4b6beaff34fae91f55dd2f9f46, type: 3}
     - target: {fileID: 8464494869060063740, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
       propertyPath: m_Name
       value: Dig Variant
@@ -4908,5 +4928,10 @@ PrefabInstance:
 --- !u!4 &6124466045957285382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5525491772514432232, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
+  m_PrefabInstance: {fileID: 1751904749229789934}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &8413727307629257466 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7823760250621112340, guid: 1f2bbd489411bed4c9d355b07e1641ea, type: 3}
   m_PrefabInstance: {fileID: 1751904749229789934}
   m_PrefabAsset: {fileID: 0}

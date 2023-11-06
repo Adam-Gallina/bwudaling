@@ -165,8 +165,12 @@ MonoBehaviour:
     upgradeEveryLevel: 1
     upgradeLevels: 
   canUseWhileDead: 0
+  effect: {fileID: 0}
   abilityStart:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 3731289820195412957}
+      _MethodName: Play
+      _PersistentArguments: []
   abilityEnd:
     _PersistentCalls: []
   projectileSpawn: {fileID: 0}
@@ -196,3 +200,8 @@ MonoBehaviour:
     upgradeValue: 2
     upgradeEveryLevel: 1
     upgradeLevels: 
+--- !u!82 &3731289820195412957 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 9014373312174719099, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+  m_PrefabInstance: {fileID: 5679400414544976806}
+  m_PrefabAsset: {fileID: 0}

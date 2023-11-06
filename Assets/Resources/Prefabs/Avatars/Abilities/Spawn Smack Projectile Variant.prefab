@@ -197,6 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+    - {fileID: 2974500899207289373, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
 --- !u!1 &6349276291140394655 stripped
 GameObject:
@@ -230,7 +231,10 @@ MonoBehaviour:
   canUseWhileDead: 0
   effect: {fileID: 0}
   abilityStart:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 7501926730658119417}
+      _MethodName: Play
+      _PersistentArguments: []
   abilityEnd:
     _PersistentCalls: []
   projectileSpawn: {fileID: 0}
@@ -250,3 +254,8 @@ MonoBehaviour:
   onHitTarget:
     m_PersistentCalls:
       m_Calls: []
+--- !u!82 &7501926730658119417 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4455838645941515594, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+  m_PrefabInstance: {fileID: 6181862559213112243}
+  m_PrefabAsset: {fileID: 0}
