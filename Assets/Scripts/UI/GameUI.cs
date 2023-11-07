@@ -59,4 +59,9 @@ public class GameUI : MonoBehaviour
     {
         Debug.LogWarning($"No Healthbar set up (boss: {boss.name})");
     }
+
+    public void ToggleOptionsMenu()
+    {
+        OptionsMenu.Instance.ToggleOptionsMenu();
+    }
 }

@@ -41,4 +41,9 @@ public class PauseMenu : MonoBehaviour
         if (BwudalingNetworkManager.Instance.ActivePlayer.IsLeader)
             BwudalingNetworkManager.Instance.ReturnToLobby();
     }
+
+    public void ToggleOptions()
+    {
+        OptionsMenu.Instance.ToggleOptionsMenu();
+    }
 }
