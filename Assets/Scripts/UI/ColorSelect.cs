@@ -52,7 +52,6 @@ public class ColorSelect : MonoBehaviour
     {
         foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
         {
-            Debug.Log(p.displayName + " " + p.avatarColor);
             if (p.avatarColor != Color.white)
                 PlayerSelectedColor(Color.white, p.avatarColor, false);
         }

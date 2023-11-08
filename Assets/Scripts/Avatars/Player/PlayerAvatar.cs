@@ -151,17 +151,13 @@ public class PlayerAvatar : AvatarBase
 
     [ClientRpc]
     public void RpcStatsHealPlayer() { if (hasAuthority) stats?.AddRescue(); }
-    [Command]
-    private void CmdPlayHealAudio(PlayerAvatar target)
-    {
-        RpcPlayHealAudio(target);
-    }
     [ClientRpc]
-    private void RpcPlayHealAudio(PlayerAvatar target)
+    public void RpcPlayHealAudio(PlayerAvatar target)
     {
-        if (BwudalingNetworkManager.Instance.ActivePlayer.avatar == target)
+        if (hasAuthority || BwudalingNetworkManager.Instance.ActivePlayer.avatar == target)
         {
             healAudio.Play();
+            Debug.Log("Playing audio");
         }
     }
 
@@ -179,7 +175,7 @@ public class PlayerAvatar : AvatarBase
                 {
                     o.Heal();
                     healAudio.Play();
-                    CmdPlayHealAudio(o);
+                    RpcPlayHealAudio(o);
                     RpcStatsHealPlayer();
                 }
                 break;
@@ -418,16 +414,19 @@ public class PlayerAvatar : AvatarBase
         if (anim?.GetBool("Dead") == false)
         {
             splatSystem?.Play();
-
             if (hasAuthority)
             {
                 deathAudio.volume = 1;
                 deathAudio?.Play();
             }
-            else if (GetComponentInChildren<Renderer>().isVisible)
+            else
             {
-                deathAudio.volume = .75f;
-                deathAudio?.Play();
+                Vector3 camPos = Camera.main.WorldToScreenPoint(transform.position);
+                if (camPos.x >= 0 && camPos.x <= Screen.width && camPos.y >= 0 && camPos.y <= Screen.height)
+                {
+                    deathAudio.volume = .35f;
+                    deathAudio?.Play();
+                }
             }
         }
         anim?.SetBool("Dead", true);
@@ -447,6 +446,9 @@ public class PlayerAvatar : AvatarBase
     public void CmdHealTarget(PlayerAvatar target, int shield)
     {
         target.SetShield(shield);
+        if (target.dead)
+            RpcPlayHealAudio(target);
+
         target.Heal();
     }
 

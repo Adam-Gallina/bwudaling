@@ -51,7 +51,10 @@ public class PlayerSettings : MonoBehaviour
             this.fullscreen = fullscreen;
         }
 
-        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, fullscreen);
+        if (fullscreen)
+            Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, fullscreen);
+        else
+            Screen.fullScreenMode = FullScreenMode.Windowed;
     }
 
     public void SetMasterVolume(float volume)

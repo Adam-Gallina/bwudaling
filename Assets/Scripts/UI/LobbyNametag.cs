@@ -30,6 +30,7 @@ public class LobbyNametag : NametagUI
 
         if (string.IsNullOrEmpty(player.displayName) || player.displayName.Equals("Unnamed Player"))
             SetDisplayName(MainMenu.DisplayName);
+        GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetColor(player.avatarColor);
 
         Menu.startGameButton.gameObject.SetActive(player.IsLeader);
         Menu.mapPackSelect.gameObject.SetActive(player.IsLeader);
