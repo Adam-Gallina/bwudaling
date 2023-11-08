@@ -121,7 +121,7 @@ public class PlayerAvatar : AvatarBase
 
     public override void OnStartAuthority()
     {
-        inp = gameObject.AddComponent<InputController>();
+        inp = InputController.Instance;
 
         CameraController.Instance.SetTarget(transform);
         PlayerUI.Instance.SetTarget(transform);
@@ -296,6 +296,7 @@ public class PlayerAvatar : AvatarBase
 
         if (inp.special1.down && (!dead || ability1.canUseWhileDead))
         {
+            inp.UsingTargetKeys = inp.special1.primaryPressed;
             ability1.QueueAbility(player.abilities.special1Level);
             ability2.CancelAbility();
             ability3.CancelAbility();
@@ -304,6 +305,7 @@ public class PlayerAvatar : AvatarBase
         }
         if (inp.special2.down && (!dead || ability2.canUseWhileDead))
         {
+            inp.UsingTargetKeys = inp.special2.primaryPressed;
             ability1.CancelAbility();
             ability2.QueueAbility(player.abilities.special2Level);
             ability3.CancelAbility();
@@ -312,6 +314,7 @@ public class PlayerAvatar : AvatarBase
         }
         if (inp.special3.down && (!dead || ability3.canUseWhileDead))
         {
+            inp.UsingTargetKeys = inp.special3.primaryPressed;
             ability1.CancelAbility();
             ability2.CancelAbility();
             ability3.QueueAbility(player.abilities.special3Level);

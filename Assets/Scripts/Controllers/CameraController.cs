@@ -50,11 +50,11 @@ public class CameraController : MonoBehaviour
 
         CheckInput();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (InputController.Instance.resetCamOffset.down)
             panOffset = targetPanOffset = Vector3.zero;
 
         zoomLevel -= Input.mouseScrollDelta.y * zoomSpeed;
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (InputController.Instance.resetCamZoom.down)
             zoomLevel = 0;
 
         transform.position = target.position + panOffset - Camera.main.transform.forward * zoomLevel;

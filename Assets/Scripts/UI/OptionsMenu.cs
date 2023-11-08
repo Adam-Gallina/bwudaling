@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,9 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private GameObject controlsMenu;
     [SerializeField] private GameObject creditsMenu;
 
+    [SerializeField] private GameObject keySelector;
+    [SerializeField] private TMPro.TMP_Text keySelectText;
+
     [Header("Elements")]
     [Header("Display")]
     [SerializeField] private Toggle fullscreenToggle;
@@ -21,6 +26,8 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Slider musicVolume;
     [SerializeField] private Slider sfxVolume;
     [SerializeField] private Slider uiVolume;
+
+    private KeybindOption[] keybinds;
 
     private void Awake()
     {
@@ -34,11 +41,19 @@ public class OptionsMenu : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         menu.SetActive(false);
+        //SetMenu(0);
+        keySelector.SetActive(false);
     }
 
     private void Start()
     {
-        PlayerSettings.Instance.LoadPrefs();
+        PlayerSettings.Instance.LoadAudioPrefs();
+
+        InputController.Instance.LoadKeybinds();
+        keybinds = GetComponentsInChildren<KeybindOption>(includeInactive: true);
+        foreach (KeybindOption keybind in keybinds)
+            keybind.DisplayKeybinds();
+
         InitializeOptions();
     }
 
@@ -97,6 +112,104 @@ public class OptionsMenu : MonoBehaviour
             default:
                 Debug.LogError("Could not show requested menu");
                 break;
+        }
+    }
+
+    private Coroutine keySelect;
+    private KeyCode[] keys;
+    public void StartKeySelector(KeybindOption key, bool changeAlt, string description="")
+    {
+        keySelector.SetActive(true);
+        keySelectText.text = description;
+        keySelect = StartCoroutine(ChangeKey(key, changeAlt));
+    }
+    public void StopKeySelector()
+    {
+        keySelector.SetActive(false);
+        if (keySelect != null)
+            StopCoroutine(keySelect);
+    }
+    private IEnumerator ChangeKey(KeybindOption key, bool changeAlt)
+    {
+        if (keys == null)
+            keys = (KeyCode[])System.Enum.GetValues(typeof(KeyCode));
+
+        bool foundKey = false;
+        while (!foundKey)
+        {
+            while (!Input.anyKeyDown)
+                yield return null;
+
+            foreach (KeyCode k in keys)
+            {
+                if (Input.GetKey(k))
+                {
+                    if (k == KeyCode.Mouse0 || k == KeyCode.Mouse1)
+                        break;
+
+                    KeyCode kc = k != KeyCode.Escape ? k : KeyCode.None;
+                    if (changeAlt == false)
+                        InputController.Instance.GetKey(key.key).SetTargetKey(kc);
+                    else
+                        InputController.Instance.GetKey(key.key).SetAlternateKey(kc);
+
+                    foundKey = true;
+                    break;
+                }
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        keySelector.SetActive(false);
+        key.DisplayKeybinds();
+        CheckKeyBinds();
+    }
+
+    private void CheckKeyBinds()
+    {
+        foreach (KeybindOption k in keybinds)
+        {
+            k.SetPrimaryWarning(false);
+            k.SetAlternateWarning(false);
+        }
+
+        for (int i = 0; i < keybinds.Length - 1; i++)
+        {
+            Key k1 = InputController.Instance.GetKey(keybinds[i].key);
+
+            if (k1.targetKey == KeyCode.None && k1.alternateKey == KeyCode.None)
+            {
+                keybinds[i].SetPrimaryWarning(true);
+                continue;
+            }
+
+            for (int j = i + 1; j < keybinds.Length; j++)
+            {
+                
+                Key k2 = InputController.Instance.GetKey(keybinds[j].key);
+
+                if (k1.targetKey == k2.targetKey && k1.targetKey != KeyCode.None)
+                {
+                    keybinds[i].SetPrimaryWarning(true);
+                    keybinds[j].SetPrimaryWarning(true);
+                }
+                if (k1.targetKey == k2.alternateKey && k1.targetKey != KeyCode.None)
+                {
+                    keybinds[i].SetPrimaryWarning(true);
+                    keybinds[j].SetAlternateWarning(true);
+                }
+                if (k1.alternateKey == k2.alternateKey && k1.alternateKey != KeyCode.None)
+                {
+                    keybinds[i].SetAlternateWarning(true);
+                    keybinds[j].SetAlternateWarning(true);
+                }
+                if (k1.alternateKey == k2.targetKey && k1.alternateKey != KeyCode.None)
+                {
+                    keybinds[i].SetAlternateWarning(true);
+                    keybinds[j].SetPrimaryWarning(true);
+                }
+            }
         }
     }
 }

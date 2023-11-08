@@ -26,13 +26,17 @@ public class PlayerSettings : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        LoadPrefs();
     }
 
     public void LoadPrefs()
     {
         fullscreen = PlayerPrefs.GetInt(FullscreenPref, 0) == 1;
         SetFullscreen(fullscreen);
+    }
 
+    public void LoadAudioPrefs()
+    {
         SetMasterVolume(PlayerPrefs.GetFloat(MasterVolumePref, volumeVals.PercentOfRange(0)));
         SetMusicVolume(PlayerPrefs.GetFloat(MusicVolumePref, volumeVals.PercentOfRange(0)));
         SetSfxVolume(PlayerPrefs.GetFloat(SfxVolumePref, volumeVals.PercentOfRange(0)));

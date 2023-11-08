@@ -91,7 +91,7 @@ public class LevelUI : GameUI
         }
     }
 
-    private bool lastTarget = true, updated;
+    private bool lastTarget = false, updated;
     private void Update()
     {
         if (activePlayer.avatar)
