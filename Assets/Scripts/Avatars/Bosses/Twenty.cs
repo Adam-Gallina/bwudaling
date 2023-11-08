@@ -234,6 +234,9 @@ public class Twenty : BossBase
     [Server]
     public override IEnumerator SpawnAnim()
     {
+        CameraController.Instance.SetZoom(5);
+        CameraController.Instance.FocusOnPoint(transform.position + Vector3.forward * 4);
+
         yield return new WaitForSeconds(1);
 
         RpcSetAnimTrigger("Spawn");

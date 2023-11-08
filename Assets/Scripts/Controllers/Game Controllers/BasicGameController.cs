@@ -57,6 +57,8 @@ public class BasicGameController : GameController
 
         yield return StartCoroutine(BeforeStartMessages());
 
+        RpcPlayBackgroundStart();
+
         for (int i = 0; i < startBannerMessages.Length; i++)
         {
             RpcSendServerBannerMessage(startBannerMessages[i], 0);
@@ -111,15 +113,15 @@ public class BasicGameController : GameController
     [ClientRpc]
     protected void RpcSetPlayerCamera()
     {
-        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
-        {
-            if (p.hasAuthority)
-            {
-                CameraController.Instance.SetTarget(p.avatar.transform, 1);
-            }
-        }
+        CameraController.Instance.SetZoom(0);
+        CameraController.Instance.SetTarget(BwudalingNetworkManager.Instance.ActivePlayer.avatar.transform, 1);
     }
 
+    [ClientRpc]
+    protected void RpcPlayBackgroundStart()
+    {
+        BackgroundMusic.Instance.PlayStartClip();
+    }
 
     protected override void OnPlayServerAudioClip(int clipNum)
     {

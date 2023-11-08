@@ -54,6 +54,8 @@ public class CameraController : MonoBehaviour
             panOffset = targetPanOffset = Vector3.zero;
 
         zoomLevel -= Input.mouseScrollDelta.y * zoomSpeed;
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            zoomLevel = 0;
 
         transform.position = target.position + panOffset - Camera.main.transform.forward * zoomLevel;
     }
@@ -110,5 +112,10 @@ public class CameraController : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    public void SetZoom(float zoom)
+    {
+        zoomLevel = zoom;
     }
 }
