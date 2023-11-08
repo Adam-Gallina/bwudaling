@@ -122,6 +122,7 @@ MonoBehaviour:
   deathPrefab: {fileID: 5270425091402053529}
   sawWhine: {fileID: 5749665324632331736}
   distForWhine: 4
+  sawCrash: {fileID: 0}
   destroyWhenOOB: 1
 --- !u!114 &2836376719650468906
 MonoBehaviour:
@@ -169,7 +170,7 @@ AudioSource:
   m_GameObject: {fileID: 1864926263753650575}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3422928768354456098, guid: 946d3ab0e552b52409a08cd9a564de07, type: 2}
   m_audioClip: {fileID: 8300000, guid: 845e29228f981aa49b840d3640d7ffab, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

@@ -119,6 +119,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9014373312174719099, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -3422928768354456098, guid: 946d3ab0e552b52409a08cd9a564de07, type: 2}
     m_RemovedComponents:
     - {fileID: 4097860646481646233, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fb1f8c3cc14bb4b45a3925a4234798dd, type: 3}

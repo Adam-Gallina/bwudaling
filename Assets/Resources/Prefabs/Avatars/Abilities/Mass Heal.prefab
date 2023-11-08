@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6564091726791986382, guid: e60f84a756c59c941827024dbfd73906, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -3422928768354456098, guid: 946d3ab0e552b52409a08cd9a564de07, type: 2}
     - target: {fileID: 9051424289344407501, guid: e60f84a756c59c941827024dbfd73906, type: 3}
       propertyPath: m_Name
       value: Mass Heal
