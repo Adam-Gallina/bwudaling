@@ -26,7 +26,7 @@ public class RandomAudio : MonoBehaviour
 
     public void Play()
     {
-        float dist = Vector3.Distance(transform.position, BwudalingNetworkManager.Instance.ActivePlayer.avatar.transform.position);
+        float dist = requiredDistToPlayer > 0 ? Vector3.Distance(transform.position, BwudalingNetworkManager.Instance.ActivePlayer.avatar.transform.position) : -1;
         if (clips.Length > 0 && dist < requiredDistToPlayer)
         {
             source.clip = clips[Random.Range(0, clips.Length)];

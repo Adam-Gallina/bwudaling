@@ -64,6 +64,7 @@ public class PlayerAvatar : AvatarBase
     private float idleStart;
     [SerializeField] private ParticleSystem levelUpSystem;
     [SerializeField] private AudioSource levelUpAudio;
+    [SerializeField] private RandomAudio healAudio;
 
     private List<Collider> currSafeZones = new List<Collider>();
 
@@ -150,6 +151,19 @@ public class PlayerAvatar : AvatarBase
 
     [ClientRpc]
     public void RpcStatsHealPlayer() { if (hasAuthority) stats?.AddRescue(); }
+    [Command]
+    private void CmdPlayHealAudio(PlayerAvatar target)
+    {
+        RpcPlayHealAudio(target);
+    }
+    [ClientRpc]
+    private void RpcPlayHealAudio(PlayerAvatar target)
+    {
+        if (BwudalingNetworkManager.Instance.ActivePlayer.avatar == target)
+        {
+            healAudio.Play();
+        }
+    }
 
     [ClientRpc]
     public void RpcStatsHaiwCollected() { if (hasAuthority) stats?.AddHaiw(); }
@@ -164,6 +178,8 @@ public class PlayerAvatar : AvatarBase
                 if (o && o.dead)
                 {
                     o.Heal();
+                    healAudio.Play();
+                    CmdPlayHealAudio(o);
                     RpcStatsHealPlayer();
                 }
                 break;
@@ -381,6 +397,7 @@ public class PlayerAvatar : AvatarBase
         if (anim?.GetBool("Dead") == true)
             healedSystem?.Play();
         anim?.SetBool("Dead", false);
+        idleStart = Time.time;
     }
 
     protected override void OnDeath()
@@ -404,7 +421,7 @@ public class PlayerAvatar : AvatarBase
                 deathAudio.volume = 1;
                 deathAudio?.Play();
             }
-            else if (GetComponent<Renderer>().isVisible)
+            else if (GetComponentInChildren<Renderer>().isVisible)
             {
                 deathAudio.volume = .75f;
                 deathAudio?.Play();
