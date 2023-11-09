@@ -125,17 +125,21 @@ public class MainMenu : GameUI
     #region Buttons
     public void HostLobby()
     {
-        BwudalingNetworkManager.Instance.StartHost();
+        //BwudalingNetworkManager.Instance.StartHost();
+        BwudalingNetworkManager.Instance.GetComponent<SteamLobby>().HostSteamLobby();
     }
 
     public void JoinLobby()
     {
         string ipAddress = ipAddressField.text;
 
-        BwudalingNetworkManager.Instance.networkAddress = ipAddress;
-        BwudalingNetworkManager.Instance.StartClient();
+        //BwudalingNetworkManager.Instance.networkAddress = ipAddress;
+        
+        //BwudalingNetworkManager.Instance.StartClient();
 
-        joinButton.interactable = false;
+        BwudalingNetworkManager.Instance.GetComponent<SteamLobby>().JoinSteamLobby();
+
+        //joinButton.interactable = false;
     }
 
     public void PressLeave()
