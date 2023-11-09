@@ -8162,6 +8162,8 @@ MonoBehaviour:
   clips: []
   PlayOnAwake: 0
   requiredDistToPlayer: 0
+  source: {fileID: 0}
+  nonPlayerSource: {fileID: 0}
 --- !u!1 &1043869624
 GameObject:
   m_ObjectHideFlags: 0
@@ -15890,9 +15892,9 @@ MonoBehaviour:
   minPlayers: 1
   DEBUG_AllowMapSkip: 1
   DEBUG_AllowKeyCheats: 1
-  DEBUG_IgnoreCooldown: 1
+  DEBUG_IgnoreCooldown: 0
   DEBUG_TpWalls: 1
-  DEBUG_ForceBossAttack: 1
+  DEBUG_ForceBossAttack: 0
 --- !u!114 &1812445703
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -88,7 +88,7 @@ public class PlayerAvatar : AvatarBase
 
         GameUI.Instance?.UpdateDisplay();
 
-        player.abilities.OnLevelUp += CmdOnLevelUp;
+        //player.abilities.OnLevelUp += CmdOnLevelUp;
     }
 
     [Command]
@@ -157,7 +157,6 @@ public class PlayerAvatar : AvatarBase
         if (hasAuthority || BwudalingNetworkManager.Instance.ActivePlayer.avatar == target)
         {
             healAudio.Play();
-            Debug.Log("Playing audio");
         }
     }
 
@@ -457,7 +456,9 @@ public class PlayerAvatar : AvatarBase
     {
         if (!hasAuthority)
             return;
-        player.abilities.AddXp(xp);
+        
+        if (player.abilities.AddXp(xp))
+            CmdOnLevelUp();
     }
     [Command]
     private void CmdOnLevelUp() { RpcOnLevelUp(); }
