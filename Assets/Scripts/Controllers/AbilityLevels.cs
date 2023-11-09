@@ -150,9 +150,8 @@ public class Abilities
         this.special3Level = special3Level;
     }
 
-    public bool AddXp(int amount)
+    public void AddXp(int amount)
     {
-        bool ret = false;
         currXp += amount;
 
         if (currXp >= nextXp)
@@ -165,15 +164,11 @@ public class Abilities
 
             OnLevelUp?.Invoke();
 
-            ret = true;
-
             if (currXp >= nextXp)
                 AddXp(0);
         }
 
         OnAddXp?.Invoke();
-
-        return ret;
     }
 
     private bool SpendTalentPoints(int amount)

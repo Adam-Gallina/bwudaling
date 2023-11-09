@@ -88,7 +88,19 @@ public class PlayerAvatar : AvatarBase
 
         GameUI.Instance?.UpdateDisplay();
 
-        //player.abilities.OnLevelUp += CmdOnLevelUp;
+        player.abilities.OnLevelUp += CmdOnLevelUp;
+    }
+
+    private void OnEnable()
+    {
+        if (player && player.abilities != null)
+            player.abilities.OnLevelUp += CmdOnLevelUp;
+    }
+
+    private void OnDisable()
+    {
+        if (player && player.abilities != null)
+            player.abilities.OnLevelUp -= CmdOnLevelUp;
     }
 
     [Command]
@@ -456,9 +468,8 @@ public class PlayerAvatar : AvatarBase
     {
         if (!hasAuthority)
             return;
-        
-        if (player.abilities.AddXp(xp))
-            CmdOnLevelUp();
+
+        player.abilities.AddXp(xp);
     }
     [Command]
     private void CmdOnLevelUp() { RpcOnLevelUp(); }
