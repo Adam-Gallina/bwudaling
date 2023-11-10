@@ -102,7 +102,7 @@ MonoBehaviour:
   startAttackDelayMod: 2
   spicyStats:
     hazardPrefab: {fileID: 5929012255989091144, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
-    hazardSpeedMod: 4
+    hazardSpeedMod: 3
     bucketCount: 2
   spawnDelays:
   - 0.4
@@ -120,7 +120,7 @@ MonoBehaviour:
   maxSawSpreadAng: 20
   turnSpeed: 15
   turnTime: 1
-  spicyHaiwSpawnCount: 4
+  spicyHaiwSpawnCount: 2
   whirlStats:
     hazardPrefab: {fileID: 5929012255989091144, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
     hazardSpeedMod: 3
@@ -136,7 +136,7 @@ MonoBehaviour:
     minVal: 0.5
     maxVal: 1
   spawnCount: 3
-  whirlHaiwSpawnCount: 4
+  whirlHaiwSpawnCount: 2
   overheatStats:
     hazardPrefab: {fileID: 5929012255989091144, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
     hazardSpeedMod: 4
@@ -148,7 +148,7 @@ MonoBehaviour:
   aimSpeed: 45
   aimTime: 1
   sawLaunchDelay: 0.3
-  haiwSpawnChancePerWave: 30
+  haiwSpawnChancePerWave: 50
   model: {fileID: 3400783330348960330}
   flames: {fileID: 169856843104684709}
   modelOffset: {x: 0, y: 0, z: -10}

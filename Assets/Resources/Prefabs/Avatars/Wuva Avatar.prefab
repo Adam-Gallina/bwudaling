@@ -744,6 +744,14 @@ PrefabInstance:
       propertyPath: radius.startValue
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+      propertyPath: abilityCooldown.startValue
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+      propertyPath: abilityCooldown.upgradeValue
+      value: -1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 4871229877759646936, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
       propertyPath: m_Name
       value: Shield
@@ -1107,6 +1115,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: range.startValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: abilityCooldown.upgradeValue
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: abilityCooldown.upgradeEveryLevel
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5297081999356858382, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}

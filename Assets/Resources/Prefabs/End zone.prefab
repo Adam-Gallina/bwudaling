@@ -4942,7 +4942,7 @@ GameObject:
   - component: {fileID: 5015486162661004882}
   - component: {fileID: 7892838007570327630}
   - component: {fileID: 2792895732260559621}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: End zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

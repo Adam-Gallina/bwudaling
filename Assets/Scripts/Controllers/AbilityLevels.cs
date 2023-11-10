@@ -80,7 +80,7 @@ public static class AbilityLevels
 
     #region Boost Speed
     public const float BaseBoostMod = 1.25f;
-    public const float BoostModPerLevel = .05f;
+    public const float BoostModPerLevel = .035f;
     public static float CalcBoostSpeed(int level)
     {
         return BaseBoostMod + BoostModPerLevel * level;
@@ -92,7 +92,7 @@ public static class AbilityLevels
     public const float BoostMaxPerLevel = 0.25f;
     public static float CalcBoostMax(int level)
     {
-        return BaseBoostMax + BoostMaxPerLevel;
+        return BaseBoostMax + BoostMaxPerLevel * level;
     }
     #endregion
 

@@ -46,17 +46,17 @@ public class MenuHeadController : MonoBehaviour
     public void SelectHead(int head, Action callback)
     {
         transform.GetChild(head).GetComponent<Animator>().SetTrigger("Smack");
-        HideHeads(head, callback);
+        //HideHeads(head, callback);
     }
 
     public void HideHeads(int start, Action callback)
     {
-        StartCoroutine(DoHideHeads(start, true, callback));
+        //StartCoroutine(DoHideHeads(start, true, callback));
     }
 
     public void ShowHeads(int start)
     {
-        StartCoroutine(DoHideHeads(start, false, null));
+        //StartCoroutine(DoHideHeads(start, false, null));
     }
 
     private IEnumerator DoHideHeads(int start, bool hide, Action callback)

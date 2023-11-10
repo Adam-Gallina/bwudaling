@@ -29106,8 +29106,8 @@ MonoBehaviour:
   aimTime: 1
   sawLaunchDelay: 0.1
   haiwSpawns:
-    minVal: 2
-    maxVal: 4
+    minVal: 1
+    maxVal: 3
   meteorStats:
     hazardPrefab: {fileID: 7905868092653266221, guid: cc1b5ca62b1e39b42ad9c994afc30cec, type: 3}
     hazardSpeedMod: 2
@@ -29126,7 +29126,7 @@ MonoBehaviour:
     maxVal: 0.5
   arcStats:
     hazardPrefab: {fileID: 2257859223576959170, guid: b65c7f696edc84f458121bdc93801880, type: 3}
-    hazardSpeedMod: 4
+    hazardSpeedMod: 3
     bucketCount: 1
   arcCount:
     minVal: 6
@@ -29137,7 +29137,7 @@ MonoBehaviour:
   maxArcOffset: 40
   arcSpawnOffset: 80
   arcSawDelay: 0.75
-  haiwChance: 30
+  haiwChance: 20
   spinSpeed: 90
   arcSmokeSystem: {fileID: 7469186904732642389}
   arcSparkSystem: {fileID: 4232176218226069819}

@@ -74,6 +74,7 @@ public class SiwyCwab : BossBase
         yield return new WaitForSeconds(.5f);
 
 
+        int spawn = 0;
         while (Vector3.Distance(transform.position, tPos) > targetPosAccuracy)
         {
             transform.position = Vector3.MoveTowards(transform.position, tPos, chargeSpeed * Time.deltaTime);
@@ -82,7 +83,8 @@ public class SiwyCwab : BossBase
             {
                 lastSpawnPos = transform.position;
 
-                SpawnHaiw(-transform.forward);
+                if (spawn++ %  2 == 0)
+                    SpawnHaiw(-transform.forward);
                 SpawnSaw(chargeStats.hazardPrefab, transform.position + transform.right * chargeSawSpawnOffset, -transform.right, chargeStats.hazardSpeedMod);
                 SpawnSaw(chargeStats.hazardPrefab, transform.position - transform.right * chargeSawSpawnOffset, transform.right, chargeStats.hazardSpeedMod);
             }

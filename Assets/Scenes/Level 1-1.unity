@@ -310,7 +310,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 22, y: 7}
-  spawnCount: 6
+  spawnCount: 4
   spawnTries: 10
 --- !u!1 &76806321
 GameObject:
@@ -531,7 +531,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 29, y: 7}
-  spawnCount: 8
+  spawnCount: 6
   spawnTries: 10
 --- !u!1 &116704796
 GameObject:
@@ -684,7 +684,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 21, y: 7}
-  spawnCount: 5
+  spawnCount: 3
   spawnTries: 10
 --- !u!1 &158386684
 GameObject:
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 7}
-  spawnCount: 3
+  spawnCount: 2
   spawnTries: 10
 --- !u!1 &289800349
 GameObject:
@@ -1428,7 +1428,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 30}
-  spawnCount: 8
+  spawnCount: 7
   spawnTries: 10
 --- !u!1 &373380047
 GameObject:
@@ -1771,7 +1771,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 8}
-  spawnCount: 3
+  spawnCount: 2
   spawnTries: 10
 --- !u!1001 &460753873
 PrefabInstance:
@@ -2422,7 +2422,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 22}
-  spawnCount: 6
+  spawnCount: 5
   spawnTries: 10
 --- !u!1001 &645241528
 PrefabInstance:
@@ -3158,7 +3158,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 15, y: 7}
-  spawnCount: 5
+  spawnCount: 3
   spawnTries: 10
 --- !u!1 &782986927
 GameObject:
@@ -4784,7 +4784,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 66, y: 7}
-  spawnCount: 12
+  spawnCount: 10
   spawnTries: 10
 --- !u!1 &1220444185
 GameObject:
@@ -6060,7 +6060,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 67}
-  spawnCount: 12
+  spawnCount: 11
   spawnTries: 10
 --- !u!1001 &1598672832
 PrefabInstance:
@@ -6575,7 +6575,7 @@ MonoBehaviour:
   useSpawnerRange: 0
   model: {fileID: 0}
   spawnBounds: {x: 7, y: 22}
-  spawnCount: 6
+  spawnCount: 4
   spawnTries: 10
 --- !u!1 &1799575214
 GameObject:

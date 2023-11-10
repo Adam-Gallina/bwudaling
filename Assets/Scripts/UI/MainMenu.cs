@@ -12,8 +12,6 @@ public class MainMenu : GameUI
     [SerializeField] private TMPro.TMP_InputField nameInputField;
     [SerializeField] private TMPro.TMP_InputField ipAddressField;
 
-    [SerializeField] private Button hostButton;
-    [SerializeField] private Button joinButton;
     [SerializeField] private GameObject joinFailedText;
 
     [Header("Lobby")]
@@ -82,13 +80,6 @@ public class MainMenu : GameUI
     public void SetPlayerName(string name)
     {
         DisplayName = name;
-        UpdateButtons();
-    }
-
-    public void UpdateButtons()
-    {
-        hostButton.interactable = !string.IsNullOrEmpty(DisplayName);
-        joinButton.interactable = !string.IsNullOrEmpty(DisplayName) && !string.IsNullOrEmpty(ipAddressField.text);
     }
 
     public override void AddNametag(NametagUI nametag)
@@ -125,19 +116,28 @@ public class MainMenu : GameUI
     #region Buttons
     public void HostLobby()
     {
-        //BwudalingNetworkManager.Instance.StartHost();
-        BwudalingNetworkManager.Instance.GetComponent<SteamLobby>().HostSteamLobby();
+        if (ManagerDebug.Instance.DEBUG_useKcpManager)
+        {
+            BwudalingNetworkManager.Instance.StartHost();
+        }
+        else
+        {
+            BwudalingNetworkManager.Instance.GetComponent<SteamLobby>().HostSteamLobby();
+        }
     }
 
     public void JoinLobby()
     {
-        string ipAddress = ipAddressField.text;
-
-        //BwudalingNetworkManager.Instance.networkAddress = ipAddress;
-        
-        //BwudalingNetworkManager.Instance.StartClient();
-
-        BwudalingNetworkManager.Instance.GetComponent<SteamLobby>().JoinSteamLobby();
+        if (ManagerDebug.Instance.DEBUG_useKcpManager)
+        {
+            string ipAddress = ipAddressField.text;
+            BwudalingNetworkManager.Instance.networkAddress = ipAddress;
+            BwudalingNetworkManager.Instance.StartClient();
+        }
+        else
+        {
+            BwudalingNetworkManager.Instance.GetComponent<SteamLobby>().JoinSteamLobby();
+        }
 
         //joinButton.interactable = false;
     }
@@ -174,8 +174,6 @@ public class MainMenu : GameUI
     #region Callbacks
     private void HandleClientConnected()
     {
-        joinButton.interactable = true;
-
         anim.SetBool("InLobby", true);
 
         PlayerPrefs.SetString(Constants.LastIpPref, ipAddressField.text);
@@ -184,10 +182,6 @@ public class MainMenu : GameUI
 
     private void HandleClientDisconnected()
     {
-        joinButton.interactable = true;
-
-        UpdateButtons();
-
         anim.SetBool("InLobby", false);
 
         readyButton.GetComponentInChildren<TMPro.TMP_Text>().text = "Ready";
@@ -195,7 +189,6 @@ public class MainMenu : GameUI
 
     private void HandleClientJoinFailed()
     {
-        joinButton.interactable = true;
         joinFailedText.SetActive(true);
     }
     #endregion

@@ -39,10 +39,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Stats Screen.unity
     guid: a0d7ab593250cfb4994b722def5a9df0
   - enabled: 1
-    path: Assets/Scenes/Level 3-1.unity
+    path: Assets/Scenes/Level 3-2.unity
     guid: 7c8956e1fe1e3ed428af943080e39304
   - enabled: 1
-    path: Assets/Scenes/Level 3-2.unity
+    path: Assets/Scenes/Level 3-1.unity
     guid: 6ccb871e5921904499c7cb07dda8b7ff
   - enabled: 1
     path: Assets/Scenes/Level 3-3.unity

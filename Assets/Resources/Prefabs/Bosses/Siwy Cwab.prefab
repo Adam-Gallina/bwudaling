@@ -273,14 +273,14 @@ MonoBehaviour:
     bucketCount: 2
   timeBetweenStomps: 1.75
   stompWaves: 3
-  sawsPerWave: 7
+  sawsPerWave: 5
   stompWaveAngle: 75
   stompSpawnPoints:
   - {fileID: 3284702530963655274}
   - {fileID: 292680713092505664}
   - {fileID: 3331132743273563953}
   minHaiwSpawns: 1
-  maxHaiwSpawns: 3
+  maxHaiwSpawns: 2
   leapStats:
     hazardPrefab: {fileID: 4324063724539361144, guid: 14bca602f0a9faf4f80c676f5b513531, type: 3}
     hazardSpeedMod: 3

@@ -19,8 +19,9 @@ public class MenuHead : MonoBehaviour
     public void ButtonClicked()
     {
         //MenuHeadController.Instance.SelectHead(headId, () => { OnSmack(); });
-        MenuHeadController.Instance.SelectHead(headId, null);
-        OnSmack();
+        MenuHeadController.Instance.SelectHead(headId, OnSmack);
+        Invoke(nameof(OnSmack), .5f);
+        //OnSmack();
         speechBubble.SetActive(false);
     }
 
