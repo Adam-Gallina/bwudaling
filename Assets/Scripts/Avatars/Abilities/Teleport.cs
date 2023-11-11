@@ -8,9 +8,13 @@ public class Teleport : TargetAbility
 {
     protected override bool OnUseAbility(int level)
     {
+        Collider[] colls = Physics.OverlapSphere(currReticlePos, 0.1f, 1 << Constants.EnvironmentLayer);
+        if (colls.Length > 0)
+            return false;
+
         if (!BwudalingNetworkManager.Instance.DEBUG_TpWalls)
         {
-            Collider[] colls = Physics.OverlapSphere(currReticlePos, 0.1f, 1 << Constants.TeleportAreaLayer);
+            colls = Physics.OverlapSphere(currReticlePos, 0.1f, 1 << Constants.TeleportAreaLayer);
             if (colls.Length == 0)
                 return false;
             foreach (Collider c in colls)

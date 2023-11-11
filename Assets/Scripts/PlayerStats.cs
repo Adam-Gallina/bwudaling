@@ -19,7 +19,6 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<NetworkPlayer>();
-        currStats.updated = true;
     }
 
     private void Update()

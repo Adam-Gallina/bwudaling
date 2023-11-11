@@ -192,6 +192,11 @@ public class NetworkPlayer : NetworkBehaviour
         GameUI.Instance.UpdateDisplay();
     }
 
+    [ClientRpc] public void RpcResetPlayerStats()
+    {
+        if (!hasAuthority) return;
+        GetComponent<PlayerStats>().currStats = new PlayerStatValues();
+    }
     [ClientRpc] public void RpcGetPlayerStats() 
     { 
         if (!hasAuthority) return;
@@ -199,6 +204,7 @@ public class NetworkPlayer : NetworkBehaviour
     }
     [Command] public void CmdSetPlayerStats(PlayerStatValues stats)
     {
+        stats.updated = true;
         currPlayerStats = stats;
     }
     #endregion

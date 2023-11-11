@@ -217,6 +217,9 @@ public class BwudalingNetworkManager : NetworkManager
             if (!IsReadyToStart())
                 return;
 
+        foreach (NetworkPlayer p in Players)
+            p.RpcResetPlayerStats();
+
         currMaps = mapSet;
         currEndScene = endScene;
         ChangeToLevel(level);

@@ -31,18 +31,18 @@ public class CharacterSelect : MonoBehaviour
     {
         if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
         {
-            switch (BwudalingNetworkManager.Instance.ActivePlayer.avatar.AvatarName)
+            switch (BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass)
             {
-                case "Wuva":
+                case AvatarClass.Wuva:
                     SelectCharBtn(1);
                     break;
-                case "Dogie":
+                case AvatarClass.Dogie:
                     SelectCharBtn(2);
                     break;
-                case "Piest":
+                case AvatarClass.Piest:
                     SelectCharBtn(3);
                     break;
-                case "Bwuda":
+                case AvatarClass.Bwuda:
                     b = w = u = d = a = true;
                     SelectCharBtn(4);
                     break;

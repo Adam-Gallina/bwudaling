@@ -62,9 +62,11 @@ public abstract class AbilityBase : MonoBehaviour
             abilityStart?.Invoke();
             controller.stats?.AddAbility();
 
-            DoEffect(level);
             if (OnUseAbility(level))
+            {
                 nextAbility = Time.time + CalcNextAbility(level);
+                DoEffect(level);
+            }
 
             abilityQueued = false;
 
