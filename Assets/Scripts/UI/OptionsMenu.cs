@@ -40,8 +40,8 @@ public class OptionsMenu : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        SetMenu(0);
         menu.SetActive(false);
-        //SetMenu(0);
         keySelector.SetActive(false);
     }
 

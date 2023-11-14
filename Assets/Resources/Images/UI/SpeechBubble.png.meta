@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 212
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,18 +101,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -120,10 +108,10 @@ TextureImporter:
       name: Bubble
       rect:
         serializedVersion: 2
-        x: 26
-        y: 100
-        width: 212
-        height: 148
+        x: 21
+        y: 94
+        width: 220
+        height: 161
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,18 +119,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8d5e26d1f9744b4ea55d09224b4f2de
-      internalID: -2796438
+      spriteID: e9b49fb7a9a0abf49843efb87aa1ad2e
+      internalID: 207145222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow1
+      name: CurveBkgd
       rect:
         serializedVersion: 2
-        x: 42
-        y: 9
+        x: 61
+        y: 3
+        width: 54
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbbb2ae6c272f0244b743cbd55b514c9
+      internalID: -590399630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Curve
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 8
         width: 39
         height: 82
       alignment: 0
@@ -152,17 +161,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76bbdf0cf76edf740b1920aca703dac5
-      internalID: -394889458
+      spriteID: 12b3f66916bcd7c44bb2c91857d0ac27
+      internalID: 1198887741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Arrow2
+      name: Point
       rect:
         serializedVersion: 2
-        x: 136
+        x: 157
         y: 6
         width: 36
         height: 75
@@ -173,8 +182,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fae04cc97b90489489e311a7a08830ce
-      internalID: -1326782298
+      spriteID: 69c5ddf82162fcc4f9f1d403ebdac67f
+      internalID: -1054000487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PointBkgd
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 0
+        width: 54
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21043e304d315b740853c593c21c7a48
+      internalID: 1943362370
       vertices: []
       indices: 
       edges: []
@@ -182,7 +212,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 76d41e548ffa30f49a06cb46312519a0
+    spriteID: 5707c87e69d84254e91a46cb2aedaa9e
     internalID: 0
     vertices: []
     indices: 
@@ -190,9 +220,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Arrow1: -394889458
-      Arrow2: -1326782298
-      Bubble: -2796438
+      Bubble: 207145222
+      Curve: 1198887741
+      CurveBkgd: -590399630
+      Point: -1054000487
+      PointBkgd: 1943362370
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
