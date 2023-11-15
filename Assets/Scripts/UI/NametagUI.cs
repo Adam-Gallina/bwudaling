@@ -32,14 +32,19 @@ public class NametagUI : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (LinkedPlayer.avatar && CameraController.Instance)
+        if (LinkedPlayer.avatar)
         {
-            float t = Mathf.Clamp01(zoomRange.PercentOfRange(CameraController.Instance.ZoomLevel));
+            float offset = zoomOffset.maxVal;
+            if (CameraController.Instance)
+            {
+                float t = Mathf.Clamp01(zoomRange.PercentOfRange(CameraController.Instance.ZoomLevel));
 
-            float scale = zoomSize.PercentVal(t);
-            rt.localScale = new Vector3(scale, scale, scale);
+                float scale = zoomSize.PercentVal(t);
+                rt.localScale = new Vector3(scale, scale, scale);
 
-            float offset = zoomOffset.PercentVal(t);
+                offset = zoomOffset.PercentVal(t);
+            }
+            
             transform.position = Camera.main.WorldToScreenPoint(LinkedPlayer.avatar.NametagTarget.position) + offsetDir * offset;
         }
     }

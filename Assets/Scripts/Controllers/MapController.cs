@@ -21,6 +21,7 @@ public class MapController : MonoBehaviour
     public float hazardSpeed = 5;
     public float hazardRange = 150;
     public Vector3 mapCenter;
+    public bool canControlAvatars = true;
 
     private void OnDrawGizmos()
     {

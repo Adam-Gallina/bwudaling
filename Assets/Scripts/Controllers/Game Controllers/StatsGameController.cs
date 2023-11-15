@@ -132,5 +132,7 @@ public class StatsGameController : GameController
     {
         NetworkPlayer p = conn.identity.GetComponent<NetworkPlayer>();
         p.RpcGetPlayerStats();
+
+        base.SpawnPlayer(conn, player);
     }
 }

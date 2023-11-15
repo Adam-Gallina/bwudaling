@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using System;
+using Unity.VisualScripting;
 
 public class PlayerAvatar : AvatarBase
 {
@@ -79,15 +80,17 @@ public class PlayerAvatar : AvatarBase
         if (!player.hasAuthority)
             return;
 
-        stats = player.GetComponent<PlayerStats>();
-
         CmdSetBodyColor(player.avatarColor);
         CmdSetShirtId(player.shirtTextureId);
+
+        if (!MapController.Instance.canControlAvatars)
+            return;
 
         boost = player.abilities.BoostMaxVal;
 
         GameUI.Instance?.UpdateDisplay();
 
+        stats = player.GetComponent<PlayerStats>();
         player.abilities.OnLevelUp += CmdOnLevelUp;
     }
 
@@ -133,6 +136,9 @@ public class PlayerAvatar : AvatarBase
 
     public override void OnStartAuthority()
     {
+        if (!MapController.Instance.canControlAvatars)
+            return;
+
         inp = InputController.Instance;
 
         CameraController.Instance.SetTarget(transform);
@@ -209,6 +215,9 @@ public class PlayerAvatar : AvatarBase
 
     protected virtual void Update()
     {
+        if (!MapController.Instance.canControlAvatars)
+            return;
+
         aliveIcon.SetActive(!dead);
         aliveIcon.transform.eulerAngles = Vector3.right * 90;
         deadIcon.SetActive(dead);
