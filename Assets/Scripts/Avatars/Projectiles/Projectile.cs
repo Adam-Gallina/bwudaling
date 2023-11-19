@@ -16,6 +16,8 @@ public class Projectile : NetworkBehaviour
 
     [HideInInspector] public UnityEvent HitTarget;
 
+    [SerializeField] protected bool restrictTargetCollisionsToServer = true;
+
     protected float speed = 250;
 
     protected Rigidbody rb;
@@ -40,7 +42,7 @@ public class Projectile : NetworkBehaviour
 
     protected virtual void OnTriggerStay(Collider other)
     {
-        if (!isServer)
+        if (restrictTargetCollisionsToServer && !isServer)
             return;
 
         if (spawner && other.GetComponentInParent<AvatarBase>() == spawner)
@@ -50,7 +52,11 @@ public class Projectile : NetworkBehaviour
         {
             OnHitTarget(other);
         }
-        else if (other.gameObject.layer == Constants.EnvironmentLayer)
+
+        if (!isServer)
+            return;
+
+        if (other.gameObject.layer == Constants.EnvironmentLayer)
         {
             OnHitWall(other);
         }
@@ -65,10 +71,13 @@ public class Projectile : NetworkBehaviour
         this.targetLayer = targetLayer;
     }
 
-    [Server]
     protected virtual void OnHitTarget(Collider other)
     {
-        DestroyObject();
+        if (restrictTargetCollisionsToServer && !isServer)
+            return;
+
+        if (isServer)
+            DestroyObject();
         HitTarget?.Invoke();
     }
 

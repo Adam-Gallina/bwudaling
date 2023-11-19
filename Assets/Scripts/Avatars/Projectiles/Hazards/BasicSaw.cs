@@ -139,13 +139,15 @@ public class BasicSaw : RicochetProjectile
         rb.velocity = currVelocity.normalized * speed * currSpeedMod;
     }
 
-    [Server]
     protected override void OnHitTarget(Collider other)
     {
+        if (restrictTargetCollisionsToServer && !isServer)
+            return;
+
         AvatarBase target = other.gameObject.GetComponentInParent<AvatarBase>();
-        if (target)
+        if (target.hasAuthority)
         {
-            target.Damage();
+            target.CmdDamage();
         }
     }
 

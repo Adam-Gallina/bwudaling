@@ -15,7 +15,9 @@ public class NetworkPlayer : NetworkBehaviour
     protected NametagUI currNametag;
     [SyncVar]
     public PlayerStatValues currPlayerStats;
-
+    [SyncVar(hook = nameof(OnMapPackChanged))]
+    private int currMapPack;
+    
     [SyncVar(hook = nameof(OnDisplayNameChanged))]
     public string displayName = "Unnamed Player";
     [SyncVar(hook = nameof(OnAvatarColorChanged))]
@@ -171,13 +173,11 @@ public class NetworkPlayer : NetworkBehaviour
     [Command]
     public void CmdSetMapPack(int pack)
     {
-        RpcSetMapPack(pack);
+        currMapPack = pack;
     }
-    [ClientRpc]
-    private void RpcSetMapPack(int pack)
+    private void OnMapPackChanged(int _, int pack)
     {
-        if (!IsLeader)
-            ((MainMenu)GameUI.Instance).SetSelectedMapPack(pack);
+        ((MainMenu)GameUI.Instance).SetSelectedMapPack(pack);
     }
 
     private void OnDisplayNameChanged(string _, string newval)

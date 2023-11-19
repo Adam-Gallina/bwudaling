@@ -14655,6 +14655,7 @@ MonoBehaviour:
   HitTarget:
     m_PersistentCalls:
       m_Calls: []
+  restrictTargetCollisionsToServer: 0
   costRicochetLayers:
     serializedVersion: 2
     m_Bits: 320

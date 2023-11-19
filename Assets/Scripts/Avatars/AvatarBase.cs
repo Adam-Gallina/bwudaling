@@ -60,6 +60,12 @@ public class AvatarBase : NetworkBehaviour
 
     }
 
+    [Command]
+    public void CmdDamage()
+    {
+        Damage();
+    }
+
     [Server]
     public virtual void Damage()
     {
