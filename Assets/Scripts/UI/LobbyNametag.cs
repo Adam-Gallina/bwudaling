@@ -34,10 +34,13 @@ public class LobbyNametag : NametagUI
         GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetColor(player.avatarColor);
 
         Menu.startGameButton.gameObject.SetActive(player.IsLeader);
-        Menu.mapPackSelect.gameObject.SetActive(player.IsLeader);
+        Menu.mapPackSelect.interactable = player.IsLeader;
 
         Menu.readyButton.onClick.AddListener(ToggleReady);
         Menu.startGameButton.onClick.AddListener(StartGame);
+
+        if (player.IsLeader)
+            Menu.mapPackSelect.onValueChanged.AddListener(ChangeMap);
     }
 
     protected override void Update()
@@ -61,6 +64,8 @@ public class LobbyNametag : NametagUI
         {
             Menu.readyButton.onClick.RemoveListener(ToggleReady);
             Menu.startGameButton.onClick.RemoveListener(StartGame);
+            if (LinkedPlayer.IsLeader)
+                Menu.mapPackSelect.onValueChanged.RemoveListener(ChangeMap);
         }
 
         ColorSelect.Instance?.PlayerSelectedColor(LinkedPlayer.avatarColor, Color.white, LinkedPlayer.hasAuthority);
@@ -90,6 +95,12 @@ public class LobbyNametag : NametagUI
         BwudalingNetworkManager.Instance.StartGame(0, pack, Constants.EndScreen);
     }
 
+    public void ChangeMap(int map)
+    {
+        if (!LinkedPlayer.IsLeader) return;
+
+        LinkedPlayer.CmdSetMapPack(map);
+    }
     #region Getters/Setters
     private void SetDisplayName(string displayName)
     {

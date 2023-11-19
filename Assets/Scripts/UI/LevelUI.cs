@@ -18,26 +18,14 @@ public class LevelUI : GameUI
     [SerializeField] private TMPro.TMP_Text boostSpeedText;
     [SerializeField] private TMPro.TMP_Text boostMaxText;
     [SerializeField] private TMPro.TMP_Text boostRechargeText;
-    public Button special1Btn;
-    [HideInInspector] public string special1Name;
-    public Button special2Btn;
-    [HideInInspector] public string special2Name;
-    public Button special3Btn;
-    [HideInInspector] public string special3Name;
+    public AbilityUI ability1;
+    public AbilityUI ability2;
+    public AbilityUI ability3;
+
     [SerializeField] private RectTransform tooltipObj;
     [SerializeField] private TMPro.TMP_Text tooltipText;
     [SerializeField] private GameObject tooltipUpgradesObj;
     [SerializeField] private TMPro.TMP_Text tooltipUpgradesText;
-    [SerializeField] private Sprite unlockSprite;
-    [SerializeField] private Sprite upgradeSprite;
-
-    [Header("Player Skills")]
-    public AbilityCooldown special1Cooldown;
-    public TooltipController special1Tooltip;
-    public AbilityCooldown special2Cooldown;
-    public TooltipController special2Tooltip;
-    public AbilityCooldown special3Cooldown;
-    public TooltipController special3Tooltip;
 
     [Header("Banner")]
     [SerializeField] private GameObject bannerParent;
@@ -112,9 +100,9 @@ public class LevelUI : GameUI
             if (!updated)
             {
                 lastTarget = InputController.Instance.UsingTargetKeys;
-                special1Cooldown.UpdateKeySet(lastTarget);
-                special2Cooldown.UpdateKeySet(lastTarget);
-                special3Cooldown.UpdateKeySet(lastTarget);
+                ability1.cooldown.UpdateKeySet(lastTarget);
+                ability2.cooldown.UpdateKeySet(lastTarget);
+                ability3.cooldown.UpdateKeySet(lastTarget);
             }
         }
     }
@@ -133,27 +121,9 @@ public class LevelUI : GameUI
         boostMaxText.text = "Duration: lvl " + activePlayer.abilities.boostMaxLevel;
         //boostRechargeText.text = "Recharge: lvl " + activePlayer.abilities.boostRechargeLevel;
 
-        string LevelText(int level)
-        {
-            if (level < AbilityLevels.SpecialAbilityMax)
-                return level > -1 ? "lvl " + (level + 1) : "";
-            return "lvl Max";
-        }
-
-        special1Cooldown.gameObject.SetActive(activePlayer.abilities.special1Level > -1);
-        ((Image)special1Btn.targetGraphic).sprite = activePlayer.abilities.special1Level > -1 ? upgradeSprite : unlockSprite;
-        special1Tooltip.tooltipLevel = LevelText(activePlayer.abilities.special1Level);
-        special1Btn.interactable = activePlayer.abilities.special1Level < AbilityLevels.SpecialAbilityMax;
-
-        special2Cooldown.gameObject.SetActive(activePlayer.abilities.special2Level > -1);
-        ((Image)special2Btn.targetGraphic).sprite = activePlayer.abilities.special2Level > -1 ? upgradeSprite : unlockSprite;
-        special2Tooltip.tooltipLevel = LevelText(activePlayer.abilities.special2Level);
-        special2Btn.interactable = activePlayer.abilities.special2Level < AbilityLevels.SpecialAbilityMax;
-
-        special3Cooldown.gameObject.SetActive(activePlayer.abilities.special3Level > -1);
-        ((Image)special3Btn.targetGraphic).sprite = activePlayer.abilities.special3Level > -1 ? upgradeSprite : unlockSprite;
-        special3Tooltip.tooltipLevel = LevelText(activePlayer.abilities.special3Level);
-        special3Btn.interactable = activePlayer.abilities.special3Level < AbilityLevels.SpecialAbilityMax;
+        ability1.UpdateUI(activePlayer.abilities.special1Level);
+        ability2.UpdateUI(activePlayer.abilities.special2Level);
+        ability3.UpdateUI(activePlayer.abilities.special3Level);
     }
 
     public void ShowTooltip(Vector3 pos, string title, string text, string[] upgrades = null)
@@ -264,4 +234,39 @@ public class LevelUI : GameUI
     }
 
     #endregion
+}
+
+[System.Serializable]
+public class AbilityUI
+{
+    public Button button;
+    [HideInInspector] public string abilityName;
+    public GameObject unlockImg;
+    public GameObject upgradeImg;
+    public TMPro.TMP_Text levelText;
+    public AbilityCooldown cooldown;
+    public TooltipController tooltip;
+
+    public void UpdateUI(int abilityLevel)
+    {
+        string TooltipLevelText(int level)
+        {
+            if (level < AbilityLevels.SpecialAbilityMax)
+                return level > -1 ? "lvl " + (level + 1) : "";
+            return "lvl Max";
+        }
+        string ButtonLevelText(int level)
+        {
+            if (level < AbilityLevels.SpecialAbilityMax)
+                return level > -1 ? "lvl " + (level + 1) : "Unlock";
+            return "Max";
+        }
+
+        cooldown.gameObject.SetActive(abilityLevel > -1);
+        unlockImg.SetActive(abilityLevel == -1);
+        upgradeImg.SetActive(abilityLevel > -1);
+        levelText.text = ButtonLevelText(abilityLevel);
+        tooltip.tooltipLevel = TooltipLevelText(abilityLevel);
+        button.interactable = abilityLevel < AbilityLevels.SpecialAbilityMax;
+    }
 }

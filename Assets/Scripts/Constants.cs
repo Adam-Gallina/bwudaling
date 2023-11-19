@@ -129,13 +129,13 @@ public class Constants
 
     public static MapPack[] Maps = new MapPack[]
     {
-        new MapPack("Debug", 0, new GameScene[] { TestMap }),
-        new MapPack("Debug Cwab", 0, new GameScene[] { SiwyCwab }),
-        new MapPack("Debug Wed", 0, new GameScene[] { BigWed }),
-        new MapPack("Debug Twent", 0, new GameScene[] { Twenty }),
-        new MapPack("Siwy Cwab", 1, new GameScene[] { Level1_1, Level1_2, Level1_3, SiwyCwab }),
-        new MapPack("Big Wed", 2, new GameScene[] { Level2_1, Level2_2, Level2_3, BigWed }),
-        new MapPack("Twent", 3, new GameScene[] { Level3_1, Level3_2, Level3_3, Twenty })
+        new MapPack("Debug", 0, MapPackType.Test, new GameScene[] { TestMap }),
+        new MapPack("Debug Cwab", 0, MapPackType.Test, new GameScene[] { SiwyCwab }),
+        new MapPack("Debug Wed", 0, MapPackType.Test, new GameScene[] { BigWed }),
+        new MapPack("Debug Twent", 0, MapPackType.Test, new GameScene[] { Twenty }),
+        new MapPack("Siwy Cwab", 1, MapPackType.Bwudaling, new GameScene[] { Level1_1, Level1_2, Level1_3, SiwyCwab }),
+        new MapPack("Big Wed", 2, MapPackType.Bwudaling, new GameScene[] { Level2_1, Level2_2, Level2_3, BigWed }),
+        new MapPack("Twent", 3, MapPackType.Bwudaling, new GameScene[] { Level3_1, Level3_2, Level3_3, Twenty })
     };
     public static GameScene EndScreen = Stats;
     #endregion
@@ -152,17 +152,19 @@ public struct GameScene
         this.name = name;
     }
 }
-
+public enum MapPackType { Test, Bwudaling }
 public struct MapPack
 {
     public string name;
     public int difficulty;
+    public MapPackType packType;
     public GameScene[] maps;
 
-    public MapPack(string name, int difficulty, GameScene[] maps)
+    public MapPack(string name, int difficulty, MapPackType packType, GameScene[] maps)
     {
         this.name = name;
         this.difficulty = difficulty;
+        this.packType = packType;
         this.maps = maps;
     }
 }

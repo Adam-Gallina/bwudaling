@@ -29,13 +29,14 @@ public abstract class AbilityBase : MonoBehaviour
     [SerializeField] protected UltEvent abilityEnd;
 
     public void SetController(PlayerAvatar controller) { this.controller = controller; }
-    public void LinkUI(AbilityCooldown abilityCooldown, TooltipController tooltip) 
-    { 
-        cooldownUI = abilityCooldown;
+    public void LinkUI(AbilityUI ui)
+    {
+        ui.abilityName = abilityName;
+        cooldownUI = ui.cooldown;
         cooldownUI.abilityImage.sprite = abilityIcon;
-        tooltip.tooltipName = abilityName;
-        tooltip.tooltip = abilityTooltip;
-        tooltip.upgrades = abilityUpgradesTooltip;
+        ui.tooltip.tooltipName = abilityName;
+        ui.tooltip.tooltip = abilityTooltip;
+        ui.tooltip.upgrades = abilityUpgradesTooltip;
     }
 
     protected virtual bool CanUseAbility(int level)

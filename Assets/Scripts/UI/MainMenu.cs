@@ -19,6 +19,22 @@ public class MainMenu : GameUI
     public Button startGameButton;
     public TMPro.TMP_Dropdown mapPackSelect;
     public Sprite[] difficultyIndicators;
+    [SerializeField] private TutorialObject[] tutorials;
+    private Dictionary<MapPackType, GameObject> tutorialObj;
+    public Dictionary<MapPackType, GameObject> TutorialObj
+    {
+        get
+        {
+            if (tutorialObj == null)
+            {
+                tutorialObj = new Dictionary<MapPackType, GameObject>();
+                foreach (TutorialObject t in tutorials)
+                    tutorialObj.Add(t.packType, t.tutObject);
+            }
+
+            return tutorialObj;
+        }
+    }
 
     public static string DisplayName { get; private set; }
 
@@ -29,7 +45,8 @@ public class MainMenu : GameUI
         base.Awake();
 
         startGameButton.gameObject.SetActive(false);
-        mapPackSelect.gameObject.SetActive(false);
+        mapPackSelect.gameObject.SetActive(true);
+        SetSelectedMapPack(mapPackSelect.value);
 
         anim = GetComponent<Animator>();
     }
@@ -80,6 +97,16 @@ public class MainMenu : GameUI
     public void SetPlayerName(string name)
     {
         DisplayName = name;
+    }
+
+    public void SetSelectedMapPack(int pack)
+    {
+        mapPackSelect.value = pack;
+
+        foreach (GameObject obj in TutorialObj.Values)
+            obj.SetActive(false);
+
+        TutorialObj[Constants.Maps[pack].packType].SetActive(true);
     }
 
     public override void AddNametag(NametagUI nametag)
@@ -192,4 +219,11 @@ public class MainMenu : GameUI
         joinFailedText.SetActive(true);
     }
     #endregion
+}
+
+[System.Serializable]
+public struct TutorialObject
+{
+    public MapPackType packType;
+    public GameObject tutObject;
 }

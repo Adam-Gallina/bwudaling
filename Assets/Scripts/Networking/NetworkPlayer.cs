@@ -168,6 +168,17 @@ public class NetworkPlayer : NetworkBehaviour
 
         BwudalingNetworkManager.Instance.NotifyPlayersOfReadyState();
     }
+    [Command]
+    public void CmdSetMapPack(int pack)
+    {
+        RpcSetMapPack(pack);
+    }
+    [ClientRpc]
+    private void RpcSetMapPack(int pack)
+    {
+        if (!IsLeader)
+            ((MainMenu)GameUI.Instance).SetSelectedMapPack(pack);
+    }
 
     private void OnDisplayNameChanged(string _, string newval)
     {

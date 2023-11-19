@@ -44,11 +44,12 @@ public class BwudalingNetworkManager : NetworkManager
     public bool DEBUG_TpWalls;
     public int DEBUG_ForceBossAttack = 0;
 
-
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
     public static event Action OnClientJoinFailed;
     public static event Action<NetworkConnection, int> OnServerReadied;
+
+    public static event Action<int, int> OnMapPackChanged;
 
     public override void Awake()
     {
@@ -231,16 +232,16 @@ public class BwudalingNetworkManager : NetworkManager
         {
             Debug.LogError("Trying to change to invalid map " + level + ", defaulting to Test Map");
             ServerChangeScene(Constants.TestMap.name);
-            return;
         }
         else if (level >= currMaps.maps.Length)
         {
             ServerChangeScene(currEndScene.name);
-            return;
         }
-
-        ServerChangeScene(currMaps.maps[level].name);
-        currLevel = level;
+        else
+        {
+            ServerChangeScene(currMaps.maps[level].name);
+            currLevel = level;
+        }
     }
     #endregion
 }
