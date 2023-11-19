@@ -1,3 +1,4 @@
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,6 +16,7 @@ public class MainMenu : GameUI
     [SerializeField] private GameObject joinFailedText;
 
     [Header("Lobby")]
+    [SerializeField] private RectTransform inviteBtn;
     public Button readyButton;
     public Button startGameButton;
     public TMPro.TMP_Dropdown mapPackSelect;
@@ -131,7 +133,12 @@ public class MainMenu : GameUI
             ((LobbyNametag)lobbyPlayers[i])?.UpdateUI();
         }
 
-        nametagParent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, lobbyPlayers.Count * 48 + 2);
+        inviteBtn.gameObject.SetActive(lobbyPlayers.Count < BwudalingNetworkManager.Instance.maxConnections && !ManagerDebug.Instance.DEBUG_useKcpManager);
+        if (inviteBtn.gameObject.activeSelf)
+            inviteBtn.anchoredPosition = new Vector2(0, -2 - (lobbyPlayers.Count * 48));
+
+        int rows = lobbyPlayers.Count < BwudalingNetworkManager.Instance.maxConnections ? lobbyPlayers.Count + 1 : lobbyPlayers.Count;
+        nametagParent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, rows * 48 + 2);
     }
 
     public void ClearPlayers()
@@ -167,6 +174,15 @@ public class MainMenu : GameUI
         }
 
         //joinButton.interactable = false;
+    }
+
+    public void PressInvite()
+    {
+        if (ManagerDebug.Instance.DEBUG_useKcpManager)
+            return;
+
+        SteamLobby lobby = BwudalingNetworkManager.Instance.GetComponent<SteamLobby>();
+        SteamFriends.ActivateGameOverlayInviteDialog(lobby.lobbyID);
     }
 
     public void PressLeave()

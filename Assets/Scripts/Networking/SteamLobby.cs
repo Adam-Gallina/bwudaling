@@ -14,6 +14,8 @@ public class SteamLobby : MonoBehaviour
     protected Callback<GameLobbyJoinRequested_t> LobbyJoinRequested;
     protected Callback<LobbyEnter_t> LobbyEntered;
 
+    public CSteamID lobbyID { get; private set; }
+
     private void Start()
     {
         networkManager = GetComponent<BwudalingNetworkManager>();
@@ -43,8 +45,8 @@ public class SteamLobby : MonoBehaviour
             return;
 
         networkManager.StartHost();
-        
-        SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey, SteamUser.GetSteamID().ToString());
+        lobbyID = new CSteamID(callback.m_ulSteamIDLobby);
+        SteamMatchmaking.SetLobbyData(lobbyID, HostAddressKey, SteamUser.GetSteamID().ToString());
     }
 
     private void OnLobbyJoinRequested(GameLobbyJoinRequested_t callback)
@@ -57,7 +59,8 @@ public class SteamLobby : MonoBehaviour
         if (NetworkServer.active)
             return;
 
-        string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
+        lobbyID = new CSteamID(callback.m_ulSteamIDLobby);
+        string hostAddress = SteamMatchmaking.GetLobbyData(lobbyID, HostAddressKey);
 
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
