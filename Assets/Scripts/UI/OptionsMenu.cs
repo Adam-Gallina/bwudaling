@@ -10,17 +10,19 @@ public class OptionsMenu : MonoBehaviour
     public static OptionsMenu Instance;
 
     [SerializeField] private GameObject menu;
-    [SerializeField] private GameObject displayMenu;
-    [SerializeField] private GameObject audioMenu;
-    [SerializeField] private GameObject controlsMenu;
-    [SerializeField] private GameObject creditsMenu;
+    [SerializeField] private OptionsPage displayMenu;
+    [SerializeField] private OptionsPage audioMenu;
+    [SerializeField] private OptionsPage controlsMenu;
+    [SerializeField] private OptionsPage creditsMenu;
 
+    [Header("Elements")]
+    [Header("Controls")]
     [SerializeField] private GameObject keySelector;
     [SerializeField] private TMPro.TMP_Text keySelectText;
 
-    [Header("Elements")]
     [Header("Display")]
     [SerializeField] private Toggle fullscreenToggle;
+
     [Header("Audio")]
     [SerializeField] private Slider masterVolume;
     [SerializeField] private Slider musicVolume;
@@ -40,6 +42,8 @@ public class OptionsMenu : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        // Make sure button is lowered on start
+        SetMenu(1);
         SetMenu(0);
         menu.SetActive(false);
         keySelector.SetActive(false);
@@ -86,28 +90,28 @@ public class OptionsMenu : MonoBehaviour
         switch (m)
         {
             case 0:
-                displayMenu.SetActive(true);
-                audioMenu.SetActive(false);
-                controlsMenu.SetActive(false);
-                creditsMenu.SetActive(false);
+                displayMenu.Show();
+                audioMenu.Hide();
+                controlsMenu.Hide();
+                creditsMenu.Hide();
                 break;
             case 1:
-                displayMenu.SetActive(false);
-                audioMenu.SetActive(true);
-                controlsMenu.SetActive(false);
-                creditsMenu.SetActive(false);
+                displayMenu.Hide();
+                audioMenu.Show();
+                controlsMenu.Hide();
+                creditsMenu.Hide();
                 break;
             case 2:
-                displayMenu.SetActive(false);
-                audioMenu.SetActive(false);
-                controlsMenu.SetActive(true);
-                creditsMenu.SetActive(false);
+                displayMenu.Hide();
+                audioMenu.Hide();
+                controlsMenu.Show();
+                creditsMenu.Hide();
                 break;
             case 3:
-                displayMenu.SetActive(false);
-                audioMenu.SetActive(false);
-                controlsMenu.SetActive(false);
-                creditsMenu.SetActive(true);
+                displayMenu.Hide();
+                audioMenu.Hide();
+                controlsMenu.Hide();
+                creditsMenu.Show();
                 break;
             default:
                 Debug.LogError("Could not show requested menu");
@@ -211,5 +215,68 @@ public class OptionsMenu : MonoBehaviour
                 }
             }
         }
+    }
+}
+
+[System.Serializable]
+public class OptionsPage
+{
+    public RectTransform button;
+    public GameObject page;
+    private Coroutine currRoutine;
+
+    public void Show()
+    {
+        if (!page.activeSelf)
+        {
+            if (currRoutine != null)
+                OptionsMenu.Instance.StopCoroutine(currRoutine);
+            currRoutine = OptionsMenu.Instance.StartCoroutine(LowerBtn());
+        }
+        page.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        if (page.activeSelf)
+        {
+            if (currRoutine != null)
+                OptionsMenu.Instance.StopCoroutine(currRoutine);
+            currRoutine = OptionsMenu.Instance.StartCoroutine(RaiseBtn());
+        }
+        page.SetActive(false);
+    }
+
+    private IEnumerator LowerBtn()
+    {
+        Vector3 pos = button.localPosition;
+        float end = Time.time + 0.25f;
+        while (Time.time < end)
+        {
+            float t = 1 - ((end - Time.time) / 0.25f);
+            pos.y = -10 * t;
+            button.localPosition = pos;
+
+            yield return null;
+        }
+
+        pos.y = -10;
+        button.localPosition = pos;
+    }
+    private IEnumerator RaiseBtn()
+    {
+        Vector3 pos = button.localPosition;
+        float end = Time.time + 0.25f;
+        while (Time.time < end)
+        {
+            float t = 1 - ((end - Time.time) / 0.25f);
+            pos.y = -10 + 10 * t;
+            button.localPosition = pos;
+
+            yield return null;
+        }
+
+        pos.y = 0;
+        button.localPosition = pos;
     }
 }
