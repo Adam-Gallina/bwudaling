@@ -79,7 +79,7 @@ public class StatsGameController : GameController
                 f = p;
             }
         }
-        RpcShowStat(PlayerStatType.Best, f.displayName, 0, "", 0, false);
+        RpcShowStat(PlayerStatType.Best, f.displayName, 0, false);
         yield return new WaitForSeconds(timeBetweenStats);
 
         RpcHideStats();
@@ -91,8 +91,7 @@ public class StatsGameController : GameController
     private void ShowStat(PlayerStatType stat, bool lowestWins=false)
     {
         NetworkPlayer w = GetStatWinner(stat, lowestWins);
-        NetworkPlayer l= GetStatWinner(stat, !lowestWins);
-        RpcShowStat(stat, w.displayName, w.currPlayerStats.StatVals[stat], l.displayName, l.currPlayerStats.StatVals[stat], true);
+        RpcShowStat(stat, w.displayName, w.currPlayerStats.StatVals[stat], true);
     }
 
     private NetworkPlayer GetStatWinner(PlayerStatType stat, bool lowestWins=false)
@@ -113,12 +112,12 @@ public class StatsGameController : GameController
     }
 
     [ClientRpc] 
-    private void RpcShowStat(PlayerStatType stat, string winningPlayer, int winningVal, string losingPlayer, int losingVal, bool showLocalPlayer)
+    private void RpcShowStat(PlayerStatType stat, string winningPlayer, int winningVal, bool showLocalPlayer)
     {
         NetworkPlayer p = BwudalingNetworkManager.Instance.ActivePlayer;    
 
         int pVal = showLocalPlayer ? p.GetComponent<PlayerStats>().currStats.StatVals[stat] : 0;
-        StatsUI.SetStatDisplay(stat, winningPlayer, winningVal, losingPlayer, losingVal, pVal);
+        StatsUI.SetStatDisplay(stat, winningPlayer, winningVal, pVal);
     }
 
     [ClientRpc]

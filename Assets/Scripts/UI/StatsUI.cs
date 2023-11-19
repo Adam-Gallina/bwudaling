@@ -16,6 +16,8 @@ public class StatsUI : GameUI
     public StatDisplay dodges;
     public StatDisplay haiws;
     public StatDisplay favorite;
+    [SerializeField] private TMPro.TMP_Text deathsListL;
+    [SerializeField] private TMPro.TMP_Text deathsListR;
 
     [Header("Anim")]
     [SerializeField] private RectTransform stat1Block;
@@ -64,20 +66,19 @@ public class StatsUI : GameUI
         }
     }
 
-    public void SetStatDisplay(PlayerStatType stat, string winnerName, int winnerVal, string loserName, int loserVal, int playerVal)
+    public void SetStatDisplay(PlayerStatType stat, string winnerName, int winnerVal, int playerVal)
     {
         StatDisplay s = GetStatDisplay(stat);
         bool playerWon = winnerName == BwudalingNetworkManager.Instance.ActivePlayer.displayName;
 
         string w = playerWon ? s.SetWinnerText("You", winnerVal) : s.SetWinnerText(winnerName, winnerVal);
-        string l = s.SetLoserText(loserName, loserVal);
         string y = s.SetPlayerText("You", playerVal);
 
-        StartCoroutine(AnimStatDisplay(s.statName, w, l, y, !playerWon));
+        StartCoroutine(AnimStatDisplay(s.statName, w, y, !playerWon));
     }
 
     private bool statInPlace = true;
-    private IEnumerator AnimStatDisplay(string statName, string winner, string loser, string player, bool showPlayer)
+    private IEnumerator AnimStatDisplay(string statName, string winner, string player, bool showPlayer)
     {
         statInPlace = false;
         stat1text.text = stat1textBkgd.text = statName;
@@ -131,5 +132,33 @@ public class StatsUI : GameUI
         stat1Block.gameObject.SetActive(false);
         stat2Block.gameObject.SetActive(false);
         allStats.gameObject.SetActive(true);
+
+        ListDeathCounts();
+    }
+
+    private void ListDeathCounts()
+    {
+        List<int> deaths = new List<int>();
+        List<string> names = new List<string>();
+
+        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
+        {
+            int i;
+            for (i = 0; i < deaths.Count; i++)
+                if (deaths[i] > p.currPlayerStats.Deaths)
+                    break;
+
+            deaths.Insert(i, p.currPlayerStats.Deaths);
+            names.Insert(i, p.displayName);
+        }
+
+        deathsListL.text = deathsListR.text = "";
+        for (int i = 0; i < deaths.Count; i++)
+        {
+            if (i < BwudalingNetworkManager.Instance.Players.Count / 2)
+                deathsListL.text += $"{names[i]}: {deaths[i]}\n";
+            else
+                deathsListL.text += $"{names[i]}: {deaths[i]}\n";
+        }
     }
 }
