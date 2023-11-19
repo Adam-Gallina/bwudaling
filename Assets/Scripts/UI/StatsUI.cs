@@ -1,4 +1,5 @@
 using Mirror;
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,14 +67,17 @@ public class StatsUI : GameUI
     public void SetStatDisplay(PlayerStatType stat, string winnerName, int winnerVal, string loserName, int loserVal, int playerVal)
     {
         StatDisplay s = GetStatDisplay(stat);
-        string w = s.SetWinnerText(winnerName, winnerVal);
+        bool playerWon = winnerName == BwudalingNetworkManager.Instance.ActivePlayer.displayName;
+
+        string w = playerWon ? s.SetWinnerText("You", winnerVal) : s.SetWinnerText(winnerName, winnerVal);
         string l = s.SetLoserText(loserName, loserVal);
         string y = s.SetPlayerText("You", playerVal);
-        StartCoroutine(AnimStatDisplay(s.statName, w, l, y));
+
+        StartCoroutine(AnimStatDisplay(s.statName, w, l, y, !playerWon));
     }
 
     private bool statInPlace = true;
-    private IEnumerator AnimStatDisplay(string statName, string winner, string loser, string player)
+    private IEnumerator AnimStatDisplay(string statName, string winner, string loser, string player, bool showPlayer)
     {
         statInPlace = false;
         stat1text.text = stat1textBkgd.text = statName;
@@ -102,6 +106,7 @@ public class StatsUI : GameUI
         stat2text.text = stat2textBkgd.text = statName;
         winnerText.text = winner;
         playerText.text = player;
+        playerBlock.gameObject.SetActive(showPlayer);
 
         anim.SetTrigger("ShowWinner");
 
