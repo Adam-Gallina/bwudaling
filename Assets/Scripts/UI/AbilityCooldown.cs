@@ -8,6 +8,8 @@ public class AbilityCooldown : MonoBehaviour
     [SerializeField] private AbilityType abilityType;
 
     [SerializeField] private Image cooldownImg;
+    [SerializeField] private Image activeImg;
+    [SerializeField] private TMPro.TMP_Text activeCountdown;
     [SerializeField] private TMPro.TMP_Text keyHintText;
     [SerializeField] private TMPro.TMP_Text keyHintTextBkgd;
     public Image abilityImage;
@@ -36,7 +38,18 @@ public class AbilityCooldown : MonoBehaviour
 
     public void SetCooldown(float remaining, float duration)
     {
+        cooldownImg.gameObject.SetActive(true);
+        activeImg.gameObject.SetActive(false);
+
         float t = Mathf.Clamp01(remaining / duration);
         cooldownImg.fillAmount = t;
+    }
+
+    public void SetActive(float remaining)
+    {
+        cooldownImg.gameObject.SetActive(false);
+        activeImg.gameObject.SetActive(true);
+
+        activeCountdown.text = Mathf.RoundToInt(remaining).ToString();
     }
 }

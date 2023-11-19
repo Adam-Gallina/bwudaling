@@ -74,7 +74,12 @@ public class SafeZoneProjectileAbility : ProjectileSpawnAbility
 
     public override void UpdateUI(int level)
     {
+        float next = nextAbility - Time.time;
         float actualCooldown = abilityCooldown.CalcValue(level);
-        cooldownUI.SetCooldown(nextAbility - Time.time, actualCooldown);
+
+        if (next < actualCooldown)
+            cooldownUI.SetCooldown(next, actualCooldown);
+        else
+            cooldownUI.SetActive(next - actualCooldown);
     }
 }
