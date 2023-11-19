@@ -16813,6 +16813,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1056887031641163322, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: camScrollSpeedRange.maxVal
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056887031641163322, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: camScrollSpeedRange.minVal
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1056887031641163323, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
       propertyPath: m_Name
       value: Options

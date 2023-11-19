@@ -516,7 +516,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 6
+  spawnCount: 7
   spawnTries: 10
 --- !u!1 &158386684
 GameObject:
@@ -797,7 +797,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 6
+  spawnCount: 7
   spawnTries: 10
 --- !u!1 &202141082
 GameObject:
@@ -1200,6 +1200,7 @@ MonoBehaviour:
   hazardSpeed: 15
   hazardRange: 95
   mapCenter: {x: 0, y: 0, z: 0}
+  canControlAvatars: 1
 --- !u!4 &373380049
 Transform:
   m_ObjectHideFlags: 0
@@ -1275,7 +1276,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 8
+  spawnCount: 11
   spawnTries: 10
 --- !u!1 &431153098
 GameObject:
@@ -3687,7 +3688,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 10
+  spawnCount: 11
   spawnTries: 10
 --- !u!1 &988520752
 GameObject:
@@ -4362,13 +4363,13 @@ MonoBehaviour:
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 16
   hazardSpeed: 0
-  hazardRange: 82.13
+  hazardRange: 70.05
   useSpawnerSpeed: 0
   useSpawnerOrigin: 0
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 70, y: 70}
-  spawnCount: 20
+  spawnCount: 15
   spawnTries: 10
 --- !u!1 &1220444185
 GameObject:
@@ -4936,7 +4937,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 10
+  spawnCount: 11
   spawnTries: 10
 --- !u!1 &1394679288
 GameObject:
@@ -5532,7 +5533,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 6
+  spawnCount: 7
   spawnTries: 10
 --- !u!1 &1519100269
 GameObject:
@@ -5975,7 +5976,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 6
+  spawnCount: 7
   spawnTries: 10
 --- !u!1001 &1760048085
 PrefabInstance:
@@ -7278,7 +7279,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 10
+  spawnCount: 11
   spawnTries: 10
 --- !u!1 &2106576783
 GameObject:
@@ -7334,7 +7335,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 10
+  spawnCount: 11
   spawnTries: 10
 --- !u!1001 &1817762007941453838
 PrefabInstance:

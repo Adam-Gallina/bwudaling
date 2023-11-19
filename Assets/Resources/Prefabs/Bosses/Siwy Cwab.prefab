@@ -260,7 +260,7 @@ MonoBehaviour:
   startAttackDelayMod: 2
   chargeStats:
     hazardPrefab: {fileID: 4324063724539361144, guid: 14bca602f0a9faf4f80c676f5b513531, type: 3}
-    hazardSpeedMod: 3
+    hazardSpeedMod: 2
     bucketCount: 1
   distBetweenChargeSpawns: 8
   chargeSawSpawnOffset: 2
@@ -283,7 +283,7 @@ MonoBehaviour:
   maxHaiwSpawns: 2
   leapStats:
     hazardPrefab: {fileID: 4324063724539361144, guid: 14bca602f0a9faf4f80c676f5b513531, type: 3}
-    hazardSpeedMod: 3
+    hazardSpeedMod: 2
     bucketCount: 1
   leapCount:
     minVal: 3

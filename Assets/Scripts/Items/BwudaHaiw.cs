@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using Unity.VisualScripting;
 
 public class BwudaHaiw : ItemBase
 {
@@ -23,9 +24,16 @@ public class BwudaHaiw : ItemBase
     private float currIconRot;
     private int iconDir = 1;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip grabClip;
+    [SerializeField] private AudioClip depositClip;
+    private AudioSource source;
+
     private void Awake()
     {
         currRot = Random.Range(0, 359);
+
+        source = GetComponent<AudioSource>();
     }
 
     [ServerCallback]
@@ -75,5 +83,41 @@ public class BwudaHaiw : ItemBase
         base.OnCollect(p);
 
         p.RpcStatsHaiwCollected();
+
+        RpcPlayAudio(p, 0);
+    }
+
+    [Server]
+    public override void Drop()
+    {
+        if (targetPlayer)
+            RpcPlayAudio(targetPlayer, 1);
+
+        base.Drop();
+    }
+
+    [ClientRpc]
+    private void RpcPlayAudio(PlayerAvatar p, int clip) 
+    { 
+        if (BwudalingNetworkManager.Instance.ActivePlayer.avatar == p)
+        {
+            switch (clip)
+            {
+                case -1:
+                    source.Stop();
+                    return;
+                case 0:
+                    source.clip = grabClip;
+                    break;
+                case 1:
+                    source.clip = depositClip;
+                    break;
+                default:
+                    Debug.LogError("Could not play requested clip");
+                    return;
+            }
+
+            source.Play();
+        }
     }
 }

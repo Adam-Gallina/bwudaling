@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +23,7 @@ public class OptionsMenu : MonoBehaviour
 
     [Header("Display")]
     [SerializeField] private Toggle fullscreenToggle;
+    [SerializeField] private Slider camScrollSpeed;
 
     [Header("Audio")]
     [SerializeField] private Slider masterVolume;
@@ -73,6 +75,9 @@ public class OptionsMenu : MonoBehaviour
         sfxVolume.onValueChanged.AddListener(PlayerSettings.Instance.SetSfxVolume);
         uiVolume.value = PlayerSettings.Instance.uiVolume;
         uiVolume.onValueChanged.AddListener(PlayerSettings.Instance.SetUiVolume);
+
+        camScrollSpeed.value = PlayerSettings.Instance.camScrollVal;
+        camScrollSpeed.onValueChanged.AddListener(PlayerSettings.Instance.SetCamScrollSpeed);
     }
 
     public void ToggleOptionsMenu()

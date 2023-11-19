@@ -1468,6 +1468,14 @@ PrefabInstance:
       propertyPath: radius.upgradeValue
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8659165272510641230, guid: c59452e77dcb3424aab6883a0d27b41c, type: 3}
+      propertyPath: reflectSlowDuration.startValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659165272510641230, guid: c59452e77dcb3424aab6883a0d27b41c, type: 3}
+      propertyPath: reflectSlowDuration.upgradeValue
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c59452e77dcb3424aab6883a0d27b41c, type: 3}
 --- !u!4 &5631636798952092475 stripped

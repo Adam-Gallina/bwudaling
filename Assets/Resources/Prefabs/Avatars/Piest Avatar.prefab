@@ -955,7 +955,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5524931469494904103, guid: 9f9c9bb10f5fe1c498ea7f161bdef7fb, type: 3}
       propertyPath: range.startValue
-      value: 4
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524931469494904103, guid: 9f9c9bb10f5fe1c498ea7f161bdef7fb, type: 3}
+      propertyPath: range.upgradeValue
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5524931469494904103, guid: 9f9c9bb10f5fe1c498ea7f161bdef7fb, type: 3}
       propertyPath: abilityCooldown.startValue

@@ -9,10 +9,13 @@ public class PlayerSettings : MonoBehaviour
 
     #region PlayerPrefs
     public const string FullscreenPref = "DoFullscreen";
+
     public const string MasterVolumePref = "MasterVolume";
     public const string MusicVolumePref = "MusicVolume";
     public const string SfxVolumePref = "SfxVolume";
     public const string UiVolumePref = "UiVolume";
+
+    public const string CamScrollSpeedPref = "CamSpeed";
     #endregion
 
     public bool fullscreen { get; private set; } = false;
@@ -22,6 +25,11 @@ public class PlayerSettings : MonoBehaviour
     public float musicVolume { get { mixer.GetFloat(MusicVolumePref, out float o); return volumeVals.PercentOfRange(o); } }
     public float sfxVolume { get { mixer.GetFloat(SfxVolumePref, out float o); return volumeVals.PercentOfRange(o); } }
     public float uiVolume { get { mixer.GetFloat(UiVolumePref, out float o); return volumeVals.PercentOfRange(o); } }
+
+
+    [SerializeField] private RangeF camScrollSpeedRange;
+    public float camScrollVal { get; private set; }
+    public float CamScrollSpeed { get { return camScrollSpeedRange.PercentVal(camScrollVal); } }
 
     private void Awake()
     {
@@ -33,6 +41,9 @@ public class PlayerSettings : MonoBehaviour
     {
         fullscreen = PlayerPrefs.GetInt(FullscreenPref, 0) == 1;
         SetFullscreen(fullscreen);
+
+        camScrollVal = PlayerPrefs.GetFloat(CamScrollSpeedPref, camScrollSpeedRange.PercentOfRange(15));
+        SetCamScrollSpeed(camScrollVal);
     }
 
     public void LoadAudioPrefs()
@@ -88,5 +99,13 @@ public class PlayerSettings : MonoBehaviour
             PlayerPrefs.SetFloat(UiVolumePref, volume);
 
         mixer.SetFloat(UiVolumePref, val);
+    }
+
+    public void SetCamScrollSpeed(float t)
+    {
+        if (camScrollVal != t)
+            PlayerPrefs.SetFloat(CamScrollSpeedPref, t);
+
+        camScrollVal = t;
     }
 }

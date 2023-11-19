@@ -17,11 +17,11 @@ public class CameraController : MonoBehaviour
 
     [Header("Panning")]
     [SerializeField] private float maxCursorPercent = 0.1f;
-    private float maxCursorDist;
-    [SerializeField] private float maxPanSpeed = 2;
+    private float maxPanSpeed { get { return PlayerSettings.Instance.CamScrollSpeed; } }
     private Vector3 panOffset;
     private Vector3 targetPanOffset;
     [SerializeField] private float panSmoothingSpeed = 10;
+    [SerializeField] private float bottomCursorMod = 2;
 
     [Header("Zoom")]
     [SerializeField] private float zoomSpeed;
@@ -31,8 +31,6 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
-        maxCursorDist = Camera.main.pixelWidth * maxCursorPercent;
     }
 
     private void Update()
@@ -69,16 +67,25 @@ public class CameraController : MonoBehaviour
             Input.mousePosition.y < 0 || Input.mousePosition.y > Camera.main.pixelHeight)
             return;
 
+        float maxCursorDist = Camera.main.pixelWidth * maxCursorPercent;
+        float botCursorDist = Camera.main.pixelWidth * (maxCursorPercent * bottomCursorMod);
+
         float xt = 0, yt = 0;
         if (Input.mousePosition.x <= maxCursorDist && Input.mousePosition.x >= 0)
             xt = -(maxCursorDist - Input.mousePosition.x) / maxCursorDist;
         else if (Input.mousePosition.x >= Camera.main.pixelWidth - maxCursorDist && Input.mousePosition.x <= Camera.main.pixelWidth)
             xt = (maxCursorDist - (Camera.main.pixelWidth - Input.mousePosition.x)) / maxCursorDist;
 
-        if (Input.mousePosition.y <= maxCursorDist && Input.mousePosition.y >= 0)
-            yt = -(maxCursorDist - Input.mousePosition.y) / maxCursorDist;
+        if (Input.mousePosition.y <= botCursorDist && Input.mousePosition.y >= 0)
+        {
+            if (Input.mousePosition.y <= maxCursorDist)
+                yt = -1;
+            else
+                yt = -(botCursorDist - Input.mousePosition.y) / maxCursorDist;
+        }
         else if (Input.mousePosition.y >= Camera.main.pixelHeight - maxCursorDist && Input.mousePosition.y <= Camera.main.pixelHeight)
             yt = (maxCursorDist - (Camera.main.pixelHeight - Input.mousePosition.y)) / maxCursorDist;
+
 
         panOffset += new Vector3(xt * maxPanSpeed, 0, yt * maxPanSpeed) * Time.deltaTime;
         targetPanOffset += new Vector3(xt * maxPanSpeed, 0, yt * maxPanSpeed) * Time.deltaTime;
