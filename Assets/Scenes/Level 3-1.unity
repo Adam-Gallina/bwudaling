@@ -1864,6 +1864,7 @@ MonoBehaviour:
   hazardSpeed: 7
   hazardRange: 225
   mapCenter: {x: 0, y: 0, z: 0}
+  canControlAvatars: 1
 --- !u!4 &373380049
 Transform:
   m_ObjectHideFlags: 0
@@ -9056,7 +9057,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7940914003248008976, guid: 6dd950518fca7114ab4ef696662492c0, type: 3}
       propertyPath: m_Size.z
-      value: 70
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940914003248008976, guid: 6dd950518fca7114ab4ef696662492c0, type: 3}
+      propertyPath: m_Center.z
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dd950518fca7114ab4ef696662492c0, type: 3}
+--- !u!1 &7445469325403236463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6925405441198656168, guid: 6dd950518fca7114ab4ef696662492c0, type: 3}
+  m_PrefabInstance: {fileID: 7445469325403236462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7445469325403236464
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7445469325403236463}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 56, y: 1, z: 14}
+  m_Center: {x: 6.5, y: 0, z: -28}
