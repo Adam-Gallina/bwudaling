@@ -29,7 +29,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     public bool IsLeader;
 
-    public Abilities abilities;
+    public Abilities abilities { get { return AbilityLevels.LoadedAbilities; } }
 
     public override void OnStartClient()
     {
@@ -46,14 +46,13 @@ public class NetworkPlayer : NetworkBehaviour
     }
 
     [Client]
-    public void SetAvatar(AvatarClass avatar)
+    public void LoadAvatar()
     {
-        abilities = AbilityLevels.LoadAbilities(avatar.ToString());
-        abilities.OnAddXp += SaveAbilities;
-        abilities.OnLevelUp += SaveAbilities;
-        abilities.OnUpgrade += SaveAbilities;
+        abilities.OnAddXp += AbilityLevels.SaveAbilities;
+        abilities.OnLevelUp += AbilityLevels.SaveAbilities;
+        abilities.OnUpgrade += AbilityLevels.SaveAbilities;
 
-        CmdSetAvatar(avatar, abilities.level);
+        CmdSetAvatar(abilities.vals.avatarClass, abilities.vals.level);
     }
 
     [Command]
@@ -88,15 +87,6 @@ public class NetworkPlayer : NetworkBehaviour
         shirtTextureId = shirtId;
     }
 
-    [Client]
-    private void SaveAbilities()
-    {
-        if (abilities == null)
-            return;
-
-        AbilityLevels.SaveAbilities(gameAvatarClass.ToString(), abilities);
-    }
-
     public override void OnStopClient()
     {
         BwudalingNetworkManager.Instance.Players.Remove(this);
@@ -113,9 +103,9 @@ public class NetworkPlayer : NetworkBehaviour
 
         if (abilities != null)
         {
-            abilities.OnAddXp += SaveAbilities;
-            abilities.OnLevelUp += SaveAbilities;
-            abilities.OnUpgrade += SaveAbilities;
+            abilities.OnAddXp += AbilityLevels.SaveAbilities;
+            abilities.OnLevelUp += AbilityLevels.SaveAbilities;
+            abilities.OnUpgrade += AbilityLevels.SaveAbilities;
         }
     }
 
@@ -125,9 +115,9 @@ public class NetworkPlayer : NetworkBehaviour
 
         if (abilities != null)
         {
-            abilities.OnAddXp -= SaveAbilities;
-            abilities.OnLevelUp -= SaveAbilities;
-            abilities.OnUpgrade -= SaveAbilities;
+            abilities.OnAddXp -= AbilityLevels.SaveAbilities;
+            abilities.OnLevelUp -= AbilityLevels.SaveAbilities;
+            abilities.OnUpgrade -= AbilityLevels.SaveAbilities;
         }
     }
 

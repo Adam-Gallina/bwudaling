@@ -86,7 +86,7 @@ public class PlayerAvatar : AvatarBase
         if (!MapController.Instance.canControlAvatars)
             return;
 
-        boost = player.abilities.BoostMaxVal;
+        boost = player.abilities.vals.BoostMaxVal;
 
         GameUI.Instance?.UpdateDisplay();
 
@@ -225,9 +225,9 @@ public class PlayerAvatar : AvatarBase
 
         CheckInput();
 
-        ability1?.UpdateUI(player.abilities.special1Level);
-        ability2?.UpdateUI(player.abilities.special2Level);
-        ability3?.UpdateUI(player.abilities.special3Level);
+        ability1?.UpdateUI(player.abilities.vals.special1Level);
+        ability2?.UpdateUI(player.abilities.vals.special2Level);
+        ability3?.UpdateUI(player.abilities.vals.special3Level);
 
         if (dead)
         {
@@ -237,9 +237,9 @@ public class PlayerAvatar : AvatarBase
         }
 
         if (!inp.boost || boostRecharging)
-            boost += player.abilities.BoostRechargeVal * Time.deltaTime;
-        if (boost > player.abilities.BoostMaxVal)
-            boost = player.abilities.BoostMaxVal;
+            boost += player.abilities.vals.BoostRechargeVal * Time.deltaTime;
+        if (boost > player.abilities.vals.BoostMaxVal)
+            boost = player.abilities.vals.BoostMaxVal;
         if (boostRecharging && inp.boost.up)
             boostRecharging = false;
         anim.SetBool("Running", (inp.boost.down || inp.boost.held) && !boostRecharging);
@@ -264,7 +264,7 @@ public class PlayerAvatar : AvatarBase
         {
             Vector3 newVec = targetPos - transform.position;
             newVec.y = 0;
-            transform.forward = Vector3.RotateTowards(transform.forward, newVec.normalized, (turnSpeed + player.abilities.speedLevel * turnSpeedMod) * Mathf.Deg2Rad * Time.deltaTime, 0);
+            transform.forward = Vector3.RotateTowards(transform.forward, newVec.normalized, (turnSpeed + player.abilities.vals.speedLevel * turnSpeedMod) * Mathf.Deg2Rad * Time.deltaTime, 0);
             anim.SetBool("Dancing", false);
         }
         anim?.SetBool("Walking", walking);
@@ -287,7 +287,7 @@ public class PlayerAvatar : AvatarBase
         {
             if (Input.GetKeyDown(KeyCode.Equals))
             {
-                player.abilities.talentPoints += AbilityLevels.TalentPointsPerLevel;
+                player.abilities.vals.talentPoints += AbilityLevels.TalentPointsPerLevel;
                 GameUI.Instance.UpdateDisplay();
             }
             if (Input.GetKeyDown(KeyCode.Minus))
@@ -310,7 +310,7 @@ public class PlayerAvatar : AvatarBase
         if (inp.special1.down && (!dead || ability1.canUseWhileDead))
         {
             inp.UsingTargetKeys = inp.special1.primaryPressed;
-            ability1.QueueAbility(player.abilities.special1Level);
+            ability1.QueueAbility(player.abilities.vals.special1Level);
             ability2.CancelAbility();
             ability3.CancelAbility();
             anim.SetBool("Dancing", false);
@@ -320,7 +320,7 @@ public class PlayerAvatar : AvatarBase
         {
             inp.UsingTargetKeys = inp.special2.primaryPressed;
             ability1.CancelAbility();
-            ability2.QueueAbility(player.abilities.special2Level);
+            ability2.QueueAbility(player.abilities.vals.special2Level);
             ability3.CancelAbility();
             anim.SetBool("Dancing", false);
             idleStart = Time.time;
@@ -330,7 +330,7 @@ public class PlayerAvatar : AvatarBase
             inp.UsingTargetKeys = inp.special3.primaryPressed;
             ability1.CancelAbility();
             ability2.CancelAbility();
-            ability3.QueueAbility(player.abilities.special3Level);
+            ability3.QueueAbility(player.abilities.vals.special3Level);
             anim.SetBool("Dancing", false);
             idleStart = Time.time;
         }
@@ -391,13 +391,13 @@ public class PlayerAvatar : AvatarBase
             }
         }
 
-        anim.SetFloat("WalkSpeed", startWalkAnimSpeed + player.abilities.speedLevel * stepWalkAnimSpeed);
+        anim.SetFloat("WalkSpeed", startWalkAnimSpeed + player.abilities.vals.speedLevel * stepWalkAnimSpeed);
 
         float boostMod = 1;
         if (inp.boost && !boostRecharging && boost > 0)
-            boostMod = player.abilities.BoostSpeedVal;
+            boostMod = player.abilities.vals.BoostSpeedVal;
 
-        return player.abilities.SpeedVal * boostMod * currSpeedMod;
+        return player.abilities.vals.SpeedVal * boostMod * currSpeedMod;
     }
 
     public void SetPosition(Vector3 pos, bool updateTargetPos = false)

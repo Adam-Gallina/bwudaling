@@ -61,16 +61,6 @@ public class Constants
     #region PlayerPrefs
     public const string PlayerNamePref = "PlayerName";
     public const string LastIpPref = "LastIP";
-    public const string LevelPref = "Level";
-    public const string TalentPointsPref = "TPoints";
-    public const string XpPref = "XP";
-    public const string SpeedLvlPref = "SpeedLvl";
-    public const string BoostLvlPref = "BLvl";
-    public const string BoostMaxLvlPref = "BMaxLvl";
-    public const string BoostRechargeLvlPref = "BRechargeLvl";
-    public const string Special1LvlPref = "Sp1Lvl";
-    public const string Special2LvlPref = "Sp2Lvl";
-    public const string Special3LvlPref = "Sp3Lvl";
     #endregion
 
     #region Avatar Resources

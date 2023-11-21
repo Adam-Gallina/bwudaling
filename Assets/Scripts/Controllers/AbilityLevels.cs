@@ -1,52 +1,164 @@
+using Steamworks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
 public static class AbilityLevels
 {
+    private const int SaveVersion = 1;
+
     #region Ability Loading
-    public static Abilities LoadAbilities(string prefsName)
+    private const string CharSaveFile = "CharSaves.bwuda";
+    private const string CharAbilitySuffix = ".bwuda";
+
+    [Serializable]
+    public struct CharacterSaves
     {
-        return new Abilities(PlayerPrefs.GetInt(prefsName + Constants.LevelPref,            0), 
-                             PlayerPrefs.GetInt(prefsName + Constants.TalentPointsPref,     TalentPointsPerLevel),
-                             PlayerPrefs.GetInt(prefsName + Constants.XpPref,               0),
-                             PlayerPrefs.GetInt(prefsName + Constants.SpeedLvlPref,         0),
-                             PlayerPrefs.GetInt(prefsName + Constants.BoostLvlPref,         0),
-                             PlayerPrefs.GetInt(prefsName + Constants.BoostMaxLvlPref,      0),
-                             //PlayerPrefs.GetInt(prefsName + Constants.BoostRechargeLvlPref, 0),
-                             PlayerPrefs.GetInt(prefsName + Constants.Special1LvlPref,      -1),
-                             PlayerPrefs.GetInt(prefsName + Constants.Special2LvlPref,      -1),
-                             PlayerPrefs.GetInt(prefsName + Constants.Special3LvlPref,      -1));
+        public int saveVersion;
+        public int nextSaveID;
+        public List<int> saveIDs;
+        public List<string> classes;
+        public List<int> levels;
+    }
+    private static bool loadedCharSaves = false;
+    private static CharacterSaves charSaves;
+    public static CharacterSaves CharSaves { 
+        get {
+            if (!loadedCharSaves)
+            {
+                LoadCharacterSaves();
+                loadedCharSaves = true;
+            }
+
+            return charSaves;
+        } 
     }
 
-    public static void SaveAbilities(string prefsName, Abilities abilities)
+    public static Abilities LoadedAbilities { get; private set; }
+
+    public static string UserID { get { return ManagerDebug.Instance.DEBUG_useKcpManager ? "kcp_player" : SteamUser.GetSteamID().ToString(); } }
+    public static string UserPath { get { return Application.persistentDataPath + $"/{UserID}/"; } }
+
+    public static void LoadCharacterSaves()
     {
-        PlayerPrefs.SetInt(prefsName + Constants.LevelPref,         abilities.level);
-        PlayerPrefs.SetInt(prefsName + Constants.TalentPointsPref,  abilities.talentPoints);
-        PlayerPrefs.SetInt(prefsName + Constants.XpPref,            abilities.currXp);
-        PlayerPrefs.SetInt(prefsName + Constants.SpeedLvlPref,      abilities.speedLevel);
-        PlayerPrefs.SetInt(prefsName + Constants.BoostLvlPref,      abilities.boostSpeedLevel);
-        PlayerPrefs.SetInt(prefsName + Constants.BoostMaxLvlPref,   abilities.boostMaxLevel);
-        //PlayerPrefs.SetInt(prefsName + Constants.BoostRechargeLvlPref, abilities.boostRechargeLevel);
-        PlayerPrefs.SetInt(prefsName + Constants.Special1LvlPref,   abilities.special1Level);
-        PlayerPrefs.SetInt(prefsName + Constants.Special2LvlPref,   abilities.special2Level);
-        PlayerPrefs.SetInt(prefsName + Constants.Special3LvlPref,   abilities.special3Level);
+        if (File.Exists(UserPath + CharSaveFile))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream stream = new FileStream(UserPath + CharSaveFile, FileMode.Open);
+
+            charSaves = (CharacterSaves)bf.Deserialize(stream);
+            if (charSaves.saveVersion != SaveVersion)
+            {
+                throw new Exception($"File migration is not setup ({charSaves.saveVersion} -> {SaveVersion})");
+            }
+
+            stream.Close();
+        }
+        else
+        {
+            charSaves = new CharacterSaves();
+            charSaves.saveVersion = SaveVersion;
+            charSaves.saveIDs = new List<int>();
+            charSaves.classes = new List<string>();
+            charSaves.levels = new List<int>();
+
+            BinaryFormatter bf = new BinaryFormatter();
+
+            if (!Directory.Exists(UserPath + CharSaveFile))
+                Directory.CreateDirectory(UserPath);
+            FileStream stream = new FileStream(UserPath + CharSaveFile, FileMode.Create);
+
+            bf.Serialize(stream, charSaves);
+            stream.Close();
+        }
+
+        for (int i = 0; i < charSaves.saveIDs.Count; i++)
+        {
+            Debug.Log($"{charSaves.saveIDs[i]}: {charSaves.classes[i]} {charSaves.levels[i]}");
+        }
     }
 
-    public static void ResetAbilities(string prefsName)
+    public static void SaveCharacterSaves()
     {
-        PlayerPrefs.SetInt(prefsName + Constants.LevelPref,         0);
-        PlayerPrefs.SetInt(prefsName + Constants.TalentPointsPref,  TalentPointsPerLevel);
-        PlayerPrefs.SetInt(prefsName + Constants.XpPref,            0);
-        PlayerPrefs.SetInt(prefsName + Constants.SpeedLvlPref,      0);
-        PlayerPrefs.SetInt(prefsName + Constants.BoostLvlPref,      0);
-        PlayerPrefs.SetInt(prefsName + Constants.BoostMaxLvlPref,   0);
-        //PlayerPrefs.SetInt(prefsName + Constants.BoostRechargeLvlPref, 0);
-        PlayerPrefs.SetInt(prefsName + Constants.Special1LvlPref,   -1);
-        PlayerPrefs.SetInt(prefsName + Constants.Special2LvlPref,   -1);
-        PlayerPrefs.SetInt(prefsName + Constants.Special3LvlPref,   -1);
+        Debug.Log("Saving char saves");
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream stream = new FileStream(UserPath + CharSaveFile, FileMode.Create);
+
+        bf.Serialize(stream, CharSaves);
+        stream.Close();
+    }
+
+    public static void CreateNewCharacter(AvatarClass avatarClass)
+    {
+        if (!loadedCharSaves)
+            LoadCharacterSaves();
+
+        if (LoadedAbilities != null)
+            SaveAbilities();
+
+        LoadedAbilities = new Abilities(new AbilityVals(++charSaves.nextSaveID, avatarClass, 0, TalentPointsPerLevel, 0, 0, 0, 0, /*0,*/ -1, -1, -1));
+        CharSaves.saveIDs.Add(LoadedAbilities.vals.id);
+        CharSaves.classes.Add(avatarClass.ToString());
+        CharSaves.levels.Add(0);
+
+        SaveCharacterSaves();
+        SaveAbilities();
+    } 
+
+    public static void LoadAbilities(int id)
+    {
+        Debug.Log("Attempting to load char " + id);
+
+        if (File.Exists(UserPath + id + CharAbilitySuffix))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream stream = new FileStream(UserPath + id.ToString() + CharAbilitySuffix, FileMode.Open);
+
+            LoadedAbilities = new Abilities((AbilityVals)bf.Deserialize(stream));
+
+            stream.Close();
+        }
+        else
+        {
+            Debug.LogError("Trying to load non-existant character");
+        }
+    }
+
+    public static void SaveAbilities()
+    {
+        Debug.Log("Saving char " + LoadedAbilities.vals.id);
+        int i = CharSaves.saveIDs.IndexOf(LoadedAbilities.vals.id);
+        if (LoadedAbilities.vals.level != CharSaves.levels[i])
+        {
+            charSaves.levels[i] = LoadedAbilities.vals.level;
+            SaveCharacterSaves();
+        }
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream stream = new FileStream(UserPath + LoadedAbilities.vals.id.ToString() + CharAbilitySuffix, FileMode.Create);
+
+        bf.Serialize(stream, LoadedAbilities.vals);
+
+        stream.Close();
+    }
+
+    public static void DeleteAbilities(int id)
+    {
+        File.Delete(UserPath + id + CharAbilitySuffix);
+
+        if (!loadedCharSaves)
+            LoadCharacterSaves();
+
+        int i = charSaves.saveIDs.IndexOf(id);
+        charSaves.saveIDs.RemoveAt(i);
+        charSaves.classes.RemoveAt(i);
+        charSaves.levels.RemoveAt(i);
+
+        SaveCharacterSaves();
     }
     #endregion
 
@@ -107,8 +219,12 @@ public static class AbilityLevels
 }
 
 public enum AbilityType { speed, boostSpeed, boostMax, boostRecharge, special1, special2, special3 };
-public class Abilities
+[Serializable]
+public struct AbilityVals
 {
+    public int id;
+    public AvatarClass avatarClass;
+
     public int level;
     public int talentPoints;
     public int currXp;
@@ -128,12 +244,11 @@ public class Abilities
     public int special2Level;
     public int special3Level;
 
-    public event Action OnAddXp;
-    public event Action OnLevelUp;
-    public event Action OnUpgrade;
-
-    public Abilities(int level, int talentPoints, int currXp, int speedLevel, int boostLevel, int boostMaxLevel, /*int boostRechargeLevel,*/ int special1Level, int special2Level, int special3Level)
+    public AbilityVals(int id, AvatarClass avatarClass, int level, int talentPoints, int currXp, int speedLevel, int boostLevel, int boostMaxLevel, /*int boostRechargeLevel,*/ int special1Level, int special2Level, int special3Level)
     {
+        this.id = id;
+        this.avatarClass = avatarClass;
+
         this.level = level;
         this.talentPoints = talentPoints;
         this.currXp = currXp;
@@ -149,22 +264,36 @@ public class Abilities
         this.special2Level = special2Level;
         this.special3Level = special3Level;
     }
+}
+
+public class Abilities
+{
+    public AbilityVals vals;
+
+    public event Action OnAddXp;
+    public event Action OnLevelUp;
+    public event Action OnUpgrade;
+
+    public Abilities(AbilityVals vals)
+    {
+        this.vals = vals;
+    }
 
     public void AddXp(int amount)
     {
-        currXp += amount;
+        vals.currXp += amount;
 
-        if (currXp >= nextXp)
+        if (vals.currXp >= vals.nextXp)
         {
-            level += 1;
-            talentPoints += AbilityLevels.TalentPointsPerLevel;
+            vals.level += 1;
+            vals.talentPoints += AbilityLevels.TalentPointsPerLevel;
 
-            currXp -= nextXp;
-            nextXp = AbilityLevels.XpForNextLevel(level);
+            vals.currXp -= vals.nextXp;
+            vals.nextXp = AbilityLevels.XpForNextLevel(vals.level);
 
             OnLevelUp?.Invoke();
 
-            if (currXp >= nextXp)
+            if (vals.currXp >= vals.nextXp)
                 AddXp(0);
         }
 
@@ -173,9 +302,9 @@ public class Abilities
 
     private bool SpendTalentPoints(int amount)
     {
-        if (talentPoints >= amount)
+        if (vals.talentPoints >= amount)
         {
-            talentPoints -= amount;
+            vals.talentPoints -= amount;
             return true;
         }
         return false;
@@ -187,32 +316,32 @@ public class Abilities
         switch (ability)
         {
             case AbilityType.speed:
-                speedLevel += SpendTalentPoints(AbilityLevels.BasicAbilityCost) ? 1 : 0;
+                vals.speedLevel += SpendTalentPoints(AbilityLevels.BasicAbilityCost) ? 1 : 0;
                 break;
             case AbilityType.boostSpeed:
-                boostSpeedLevel += SpendTalentPoints(AbilityLevels.BasicAbilityCost) ? 1 : 0;
+                vals.boostSpeedLevel += SpendTalentPoints(AbilityLevels.BasicAbilityCost) ? 1 : 0;
                 break;
             case AbilityType.boostMax:
-                boostMaxLevel += SpendTalentPoints(AbilityLevels.BasicAbilityCost) ? 1 : 0;
+                vals.boostMaxLevel += SpendTalentPoints(AbilityLevels.BasicAbilityCost) ? 1 : 0;
                 break;
             case AbilityType.boostRecharge:
                 //boostRechargeLevel += SpendTalentPoints(AbilityLevels.BasicAbilityCost) ? 1 : 0;
                 Debug.LogWarning("Trying to upgrade unused ability");
                 break;
             case AbilityType.special1:
-                if (special1Level == AbilityLevels.SpecialAbilityMax)
+                if (vals.special1Level == AbilityLevels.SpecialAbilityMax)
                     return;
-                special1Level += SpendTalentPoints(AbilityLevels.SpecialAbilityCost) ? 1 : 0;
+                vals.special1Level += SpendTalentPoints(AbilityLevels.SpecialAbilityCost) ? 1 : 0;
                 break;
             case AbilityType.special2:
-                if (special2Level == AbilityLevels.SpecialAbilityMax)
+                if (vals.special2Level == AbilityLevels.SpecialAbilityMax)
                     return;
-                special2Level += SpendTalentPoints(AbilityLevels.SpecialAbilityCost) ? 1 : 0;
+                vals.special2Level += SpendTalentPoints(AbilityLevels.SpecialAbilityCost) ? 1 : 0;
                 break;
             case AbilityType.special3:
-                if (special3Level == AbilityLevels.SpecialAbilityMax)
+                if (vals.special3Level == AbilityLevels.SpecialAbilityMax)
                     return;
-                special3Level += SpendTalentPoints(AbilityLevels.SpecialAbilityCost) ? 1 : 0;
+                vals.special3Level += SpendTalentPoints(AbilityLevels.SpecialAbilityCost) ? 1 : 0;
                 break;
         }
 

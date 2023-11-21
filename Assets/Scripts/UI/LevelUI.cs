@@ -85,8 +85,8 @@ public class LevelUI : GameUI
         if (activePlayer.avatar)
         {
             //shieldText.text = "Shield: " + activePlayer.avatar.shield;
-            PlayerUI.Instance.SetStaminaBar(activePlayer.avatar.boost < activePlayer.abilities.BoostMaxVal);
-            PlayerUI.Instance.SetStaminaBarFillAmount(activePlayer.avatar.boost / activePlayer.abilities.BoostMaxVal);
+            PlayerUI.Instance.SetStaminaBar(activePlayer.avatar.boost < activePlayer.abilities.vals.BoostMaxVal);
+            PlayerUI.Instance.SetStaminaBarFillAmount(activePlayer.avatar.boost / activePlayer.abilities.vals.BoostMaxVal);
         }
 
         if (healthbarTarget)
@@ -110,20 +110,20 @@ public class LevelUI : GameUI
     public override void UpdateDisplay()
     {
         if (activePlayer.avatar)
-            levelText.text = "Lvl " + (activePlayer.abilities.level + 1) + " " + activePlayer.avatar.AvatarName;
-        talentsBackground.SetActive(activePlayer.abilities.talentPoints > 0);
-        talentsText.text =  activePlayer.abilities.talentPoints + " Smakins";
-        xpSlider.value = (float)activePlayer.abilities.currXp / activePlayer.abilities.nextXp;
-        xpText.text = activePlayer.abilities.currXp + " / " + activePlayer.abilities.nextXp;
+            levelText.text = "Lvl " + (activePlayer.abilities.vals.level + 1) + " " + activePlayer.avatar.AvatarName;
+        talentsBackground.SetActive(activePlayer.abilities.vals.talentPoints > 0);
+        talentsText.text =  activePlayer.abilities.vals.talentPoints + " Smakins";
+        xpSlider.value = (float)activePlayer.abilities.vals.currXp / activePlayer.abilities.vals.nextXp;
+        xpText.text = activePlayer.abilities.vals.currXp + " / " + activePlayer.abilities.vals.nextXp;
 
-        speedText.text = "Speed: lvl " + activePlayer.abilities.speedLevel;
-        boostSpeedText.text = "Boost: lvl " + activePlayer.abilities.boostSpeedLevel;
-        boostMaxText.text = "Duration: lvl " + activePlayer.abilities.boostMaxLevel;
+        speedText.text = "Speed: lvl " + activePlayer.abilities.vals.speedLevel;
+        boostSpeedText.text = "Boost: lvl " + activePlayer.abilities.vals.boostSpeedLevel;
+        boostMaxText.text = "Duration: lvl " + activePlayer.abilities.vals.boostMaxLevel;
         //boostRechargeText.text = "Recharge: lvl " + activePlayer.abilities.boostRechargeLevel;
 
-        ability1.UpdateUI(activePlayer.abilities.special1Level);
-        ability2.UpdateUI(activePlayer.abilities.special2Level);
-        ability3.UpdateUI(activePlayer.abilities.special3Level);
+        ability1.UpdateUI(activePlayer.abilities.vals.special1Level);
+        ability2.UpdateUI(activePlayer.abilities.vals.special2Level);
+        ability3.UpdateUI(activePlayer.abilities.vals.special3Level);
     }
 
     public void ShowTooltip(Vector3 pos, string title, string text, string[] upgrades = null)

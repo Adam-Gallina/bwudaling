@@ -6,6 +6,8 @@ freesound.org
 * Shield - Breviceps
 * Bark - crazymonke9
 * Btn press - MatRuthSound
+* Haiw grab - Philter137
+* Haiw deposit - BenDrain
 Additional sound effects from https://www.zapsplat.com
 * Shield break
 * Footsteps
