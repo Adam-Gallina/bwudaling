@@ -48,6 +48,7 @@ public class BwudalingNetworkManager : NetworkManager
     public static event Action OnClientDisconnected;
     public static event Action OnClientJoinFailed;
     public static event Action<NetworkConnection, int> OnServerReadied;
+    public static event Action OnSceneChanged;
 
     public static event Action<int, int> OnMapPackChanged;
 
@@ -135,6 +136,8 @@ public class BwudalingNetworkManager : NetworkManager
 
         gc = Instantiate(MapController.Instance.gameControllerPrefab);
         NetworkServer.Spawn(gc.gameObject);
+
+        OnSceneChanged?.Invoke();
     }
 
     public override void OnServerReady(NetworkConnectionToClient conn)

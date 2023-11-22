@@ -7,6 +7,8 @@ public abstract class BossBase : NetworkBehaviour
 {
     protected enum BossAttack { Attack1, Attack2, Attack3 };
 
+    public string bossName = "Unnamed Boss";
+
     public float maxHealth;
     [SyncVar]
     [HideInInspector] public float currHealth;

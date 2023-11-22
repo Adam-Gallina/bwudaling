@@ -40,6 +40,7 @@ public static class AbilityLevels
     }
 
     public static Abilities LoadedAbilities { get; private set; }
+    public static event Action OnAbilitiesLoaded;
 
     public static string UserID { get { return ManagerDebug.Instance.DEBUG_useKcpManager ? "kcp_player" : SteamUser.GetSteamID().ToString(); } }
     public static string UserPath { get { return Application.persistentDataPath + $"/{UserID}/"; } }
@@ -103,6 +104,8 @@ public static class AbilityLevels
 
         SaveCharacterSaves();
         SaveAbilities();
+
+        OnAbilitiesLoaded?.Invoke();
     } 
 
     public static void LoadAbilities(int id)
@@ -115,6 +118,7 @@ public static class AbilityLevels
             FileStream stream = new FileStream(UserPath + id.ToString() + CharAbilitySuffix, FileMode.Open);
 
             LoadedAbilities = new Abilities((AbilityVals)bf.Deserialize(stream));
+            OnAbilitiesLoaded?.Invoke();
 
             stream.Close();
         }

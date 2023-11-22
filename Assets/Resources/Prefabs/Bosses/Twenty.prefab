@@ -29078,6 +29078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  bossName: Twenty
   maxHealth: 300
   currHealth: 0
   spawnAnimDuration: 6

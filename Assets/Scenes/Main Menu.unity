@@ -4453,7 +4453,7 @@ MonoBehaviour:
   kcpManager: {fileID: 1812445702}
   kcpOptions: {fileID: 603863967}
   steamManager: {fileID: 1071394225}
-  DEBUG_useKcpManager: 1
+  DEBUG_useKcpManager: 0
 --- !u!4 &610880383
 Transform:
   m_ObjectHideFlags: 0
@@ -9040,9 +9040,9 @@ MonoBehaviour:
   sceneChanging: 0
   minPlayers: 1
   DEBUG_AllowMapSkip: 1
-  DEBUG_AllowKeyCheats: 0
-  DEBUG_IgnoreCooldown: 0
-  DEBUG_TpWalls: 0
+  DEBUG_AllowKeyCheats: 1
+  DEBUG_IgnoreCooldown: 1
+  DEBUG_TpWalls: 1
   DEBUG_ForceBossAttack: 0
 --- !u!4 &1071394226
 Transform:
@@ -9868,7 +9868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1233223950
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10082,6 +10082,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3ef02b126eb394385295d9b0a56b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingShirtIds:
+  - col_red
+  - col_ong
+  - col_yel
+  - col_grn
+  - col_blu
+  - col_pur
+  unlockableShirts:
+  - achievementName: LEVEL_15_WUVA
+    shirtID: bw
   shirts:
   - name: BwudaWuvin
     id: bw

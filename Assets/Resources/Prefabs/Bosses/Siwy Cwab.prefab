@@ -240,6 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  bossName: Siwy Cwab
   maxHealth: 200
   currHealth: 0
   spawnAnimDuration: 2

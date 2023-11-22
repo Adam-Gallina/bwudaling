@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System;
 
 public class BasicGameController : GameController
 {
@@ -16,6 +17,8 @@ public class BasicGameController : GameController
 
     private bool started = false;
     private bool ended = false;
+
+    public static event Action OnMapCompleted;
 
     protected override void Awake()
     {
@@ -87,6 +90,8 @@ public class BasicGameController : GameController
 
             ended = true;
             StartCoroutine(EndSequence(p));
+
+            OnMapCompleted?.Invoke();
         }
     }
 

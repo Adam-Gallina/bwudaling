@@ -193,8 +193,8 @@ public class LevelUI : GameUI
     {
         healthbarTarget = boss;
         healthbarParent.SetActive(true);
-        healthbarName.text = boss.name.Remove(boss.name.Length - 7);
-        healthbarNameOutline.text = boss.name.Remove(boss.name.Length - 7);
+        healthbarName.text = boss.bossName;
+        healthbarNameOutline.text = boss.bossName;
     }
 
     private void SetHealthbarFill(float amount)

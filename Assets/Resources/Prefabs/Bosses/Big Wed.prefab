@@ -82,6 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  bossName: Big Wed
   maxHealth: 250
   currHealth: 0
   spawnAnimDuration: 4

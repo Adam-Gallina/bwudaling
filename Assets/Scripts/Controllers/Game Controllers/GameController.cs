@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using Unity.IO.LowLevel.Unsafe;
+using System;
 
+public enum MapType { Normal, Boss }
 public abstract class GameController : NetworkBehaviour
 {
     public static GameController Instance;
@@ -11,6 +13,8 @@ public abstract class GameController : NetworkBehaviour
     protected int spawnedPlayers = 0;
 
     public bool playing = false;
+
+    public MapType mapType;
 
     protected virtual void Awake()
     {
