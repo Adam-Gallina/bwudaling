@@ -9,8 +9,15 @@ public class CharacterSelect : MonoBehaviour
 {
     private bool b, w, u, d, a;
 
+    [SerializeField] private RectTransform createBtn;
+
     [SerializeField] private RectTransform saveBtnParent;
     [SerializeField] private Button loadSaveBtnPrefab;
+    private List<Button> loadBtns = new List<Button>();
+
+    [Header("Delete Char")]
+    [SerializeField] private GameObject deleteConfirm;
+    [SerializeField] private TMPro.TMP_Text deleteText;
 
     [SerializeField] private GameObject bwudaButton;
 
@@ -18,10 +25,12 @@ public class CharacterSelect : MonoBehaviour
     [SerializeField] private Color unselectedCol = Color.white;
 
     [SerializeField] private Button nextBtn;
+    [SerializeField] private Button deleteBtn;
 
     void Awake()
     {
         bwudaButton.SetActive(false);
+        deleteConfirm.SetActive(false);
     }
 
     private void Start()
@@ -35,13 +44,18 @@ public class CharacterSelect : MonoBehaviour
     }
 
     private void AddLoadBtn(int id, string avatar, int level)
-    {        
+    {
         // Check if max chars have been created
-        //int rows = lobbyPlayers.Count < BwudalingNetworkManager.Instance.maxConnections ? lobbyPlayers.Count + 1 : lobbyPlayers.Count;
         int rows = AbilityLevels.CharSaves.saveIDs.Count;
-        saveBtnParent.sizeDelta = new Vector2(0, rows * 48 + 2);
+        if (AbilityLevels.CharSaves.saveIDs.Count < AbilityLevels.MaxCharacters)
+            rows += 1;
+        saveBtnParent.sizeDelta = new Vector2(0, rows * 43 + 2);
 
-        void SetButtonListener(Button b, int id)
+        createBtn.gameObject.SetActive(AbilityLevels.CharSaves.saveIDs.Count < AbilityLevels.MaxCharacters);
+        if (createBtn.gameObject.activeSelf)
+            createBtn.anchoredPosition = new Vector2(0, -2 - ((rows - 1) * 43));
+
+        void SetButtonLoadListener(Button b, int id)
         {
             b.onClick.AddListener(() => { PressLoad(id); });
         }
@@ -49,9 +63,11 @@ public class CharacterSelect : MonoBehaviour
         Button b = Instantiate(loadSaveBtnPrefab, saveBtnParent);
         b.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = avatar;
         b.transform.GetChild(1).GetComponent<TMPro.TMP_Text>().text = "Level " + (level + 1);
-        b.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -2 - ((saveBtnParent.childCount - 1) * 48));
+        b.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -2 - ((saveBtnParent.childCount - 2) * 43));
 
-        SetButtonListener(b, id);
+        SetButtonLoadListener(b, id);
+
+        loadBtns.Add(b);
     }
 
 
@@ -102,10 +118,11 @@ public class CharacterSelect : MonoBehaviour
         nextBtn.interactable = true;
     }
     private int saveID = -1;
-    public void PressLoad(int save)
+    public void PressLoad(int id)
     {
-        saveID = save;
+        saveID = id;
         nextBtn.interactable = true;
+        deleteBtn.interactable = true;
     }
 
     public void PressNext()
@@ -132,9 +149,24 @@ public class CharacterSelect : MonoBehaviour
         p.LoadAvatar();
     }
 
-    public void PressDelete()
+    public void DeleteChar()
     {
+        deleteConfirm.SetActive(true);
 
+        int i = AbilityLevels.CharSaves.saveIDs.IndexOf(saveID);
+        deleteText.text = $"Are you sure you want to delete your level {AbilityLevels.CharSaves.levels[i] + 1} {AbilityLevels.CharSaves.classes[i]}?";
+    }
+
+    public void ConfirmDelete()
+    {
+        AbilityLevels.DeleteAbilities(saveID);
+
+        foreach (Button b in loadBtns)
+            DestroyImmediate(b.gameObject);
+        loadBtns.Clear();
+        AbilityLevels.CharacterSaves saves = AbilityLevels.CharSaves;
+        for (int i = 0; i < saves.saveIDs.Count; i++)
+            AddLoadBtn(saves.saveIDs[i], saves.classes[i], saves.levels[i]);
     }
     #endregion
 }

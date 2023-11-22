@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public static class AbilityLevels
 {
     private const int SaveVersion = 1;
+    public const int MaxCharacters = 10;
 
     #region Ability Loading
     private const string CharSaveFile = "CharSaves.bwuda";
