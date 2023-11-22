@@ -1472,7 +1472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 14.999985}
+  m_AnchoredPosition: {x: 0, y: 15}
   m_SizeDelta: {x: 160, y: 40}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &187349990
@@ -1529,6 +1529,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: LobbyCreateBack
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1643467074}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &187349991
@@ -1686,7 +1698,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10, y: 8.5000305}
+  m_AnchoredPosition: {x: 10, y: 8.5}
   m_SizeDelta: {x: 148.4, y: -16.999939}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &229302650
@@ -3441,6 +3453,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: LobbyCreate
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1643467074}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &508034593
 MonoBehaviour:
@@ -7822,6 +7846,7 @@ MonoBehaviour:
   loadSaveBtnPrefab: {fileID: 6624156031790180034, guid: 3b7fa18c4f8ece8489cc8fa7d4ec8396, type: 3}
   deleteConfirm: {fileID: 229302648}
   deleteText: {fileID: 2144367325}
+  classBtnParent: {fileID: 1894074130}
   bwudaButton: {fileID: 1667141437}
   selectedCol: {r: 1, g: 0.60784316, b: 0, a: 1}
   unselectedCol: {r: 1, g: 1, b: 1, a: 1}
@@ -8255,7 +8280,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -80, y: -9.999985}
+  m_AnchoredPosition: {x: -80, y: -10}
   m_SizeDelta: {x: -230, y: -159.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1010176963
@@ -9843,7 +9868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1233223950
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16391,7 +16416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1790921107
 RectTransform:
   m_ObjectHideFlags: 0

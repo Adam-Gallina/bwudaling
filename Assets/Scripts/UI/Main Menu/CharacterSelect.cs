@@ -19,6 +19,7 @@ public class CharacterSelect : MonoBehaviour
     [SerializeField] private GameObject deleteConfirm;
     [SerializeField] private TMPro.TMP_Text deleteText;
 
+    [SerializeField] private Transform classBtnParent;
     [SerializeField] private GameObject bwudaButton;
 
     [SerializeField] private Color selectedCol = new Color(1, 155/255, 0, 1);
@@ -38,9 +39,6 @@ public class CharacterSelect : MonoBehaviour
         AbilityLevels.CharacterSaves saves = AbilityLevels.CharSaves;
         for (int i = 0; i < saves.saveIDs.Count; i++)
             AddLoadBtn(saves.saveIDs[i], saves.classes[i], saves.levels[i]);
-
-        if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
-            PressLoad(AbilityLevels.LoadedAbilities.vals.id);
     }
 
     private void AddLoadBtn(int id, string avatar, int level)
@@ -55,9 +53,9 @@ public class CharacterSelect : MonoBehaviour
         if (createBtn.gameObject.activeSelf)
             createBtn.anchoredPosition = new Vector2(0, -2 - ((rows - 1) * 43));
 
-        void SetButtonLoadListener(Button b, int id)
+        void SetButtonLoadListener(Button b, int id, int i)
         {
-            b.onClick.AddListener(() => { PressLoad(id); });
+            b.onClick.AddListener(() => { PressLoad(id, i); });
         }
 
         Button b = Instantiate(loadSaveBtnPrefab, saveBtnParent);
@@ -65,9 +63,11 @@ public class CharacterSelect : MonoBehaviour
         b.transform.GetChild(1).GetComponent<TMPro.TMP_Text>().text = "Level " + (level + 1);
         b.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -2 - ((saveBtnParent.childCount - 2) * 43));
 
-        SetButtonLoadListener(b, id);
+        SetButtonLoadListener(b, id, b.transform.GetSiblingIndex() - 1);
 
         loadBtns.Add(b);
+        if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline && id == AbilityLevels.LoadedAbilities.vals.id)
+            PressLoad(AbilityLevels.LoadedAbilities.vals.id, b.transform.GetSiblingIndex() - 1);
     }
 
 
@@ -108,18 +108,30 @@ public class CharacterSelect : MonoBehaviour
     public void SelectCharBtn(int avatar)
     {
         selectedAvatar = (AvatarClass)avatar;
-        /*for (int i = 0; i < transform.childCount; i++)
+        saveID = -1;
+        for (int i = 0; i < classBtnParent.childCount; i++)
         {
-            ColorBlock cols = transform.GetChild(i).GetComponent<Button>().colors;
+            ColorBlock cols = classBtnParent.GetChild(i).GetComponent<Button>().colors;
             cols.normalColor = i + 1 == avatar ? selectedCol : unselectedCol;
-            transform.GetChild(i).GetComponent<Button>().colors = cols;
-        }*/
+            cols.normalColor = i + 1 == avatar ? selectedCol : unselectedCol;
+            cols.selectedColor = i + 1 == avatar ? selectedCol : unselectedCol;
+            classBtnParent.GetChild(i).GetComponent<Button>().colors = cols;
+        }
 
         nextBtn.interactable = true;
     }
     private int saveID = -1;
-    public void PressLoad(int id)
+    public void PressLoad(int id, int btn)
     {
+        for (int i = 0; i < loadBtns.Count; i++)
+        {
+            ColorBlock cols = loadBtns[i].colors;
+            cols.normalColor = i == btn ? selectedCol : unselectedCol;
+            cols.selectedColor = i == btn ? selectedCol : unselectedCol;
+            loadBtns[i].colors = cols;
+        }
+
+        selectedAvatar = AvatarClass.None;
         saveID = id;
         nextBtn.interactable = true;
         deleteBtn.interactable = true;
@@ -133,6 +145,8 @@ public class CharacterSelect : MonoBehaviour
         {
             AbilityLevels.CreateNewCharacter(selectedAvatar);
             AddLoadBtn(AbilityLevels.LoadedAbilities.vals.id, AbilityLevels.LoadedAbilities.vals.avatarClass.ToString(), AbilityLevels.LoadedAbilities.vals.level);
+            selectedAvatar = AvatarClass.None;
+            saveID = AbilityLevels.LoadedAbilities.vals.id;
         }
         else if (saveID != -1)
         {
@@ -144,8 +158,6 @@ public class CharacterSelect : MonoBehaviour
             return;
         }
 
-        selectedAvatar = AvatarClass.None;
-        saveID = -1;
         p.LoadAvatar();
     }
 
