@@ -76,11 +76,6 @@ public static class AbilityLevels
             bf.Serialize(stream, charSaves);
             stream.Close();
         }
-
-        for (int i = 0; i < charSaves.saveIDs.Count; i++)
-        {
-            Debug.Log($"{charSaves.saveIDs[i]}: {charSaves.classes[i]} {charSaves.levels[i]}");
-        }
     }
 
     public static void SaveCharacterSaves()

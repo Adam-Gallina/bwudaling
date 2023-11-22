@@ -43,15 +43,20 @@ public class CharacterSelect : MonoBehaviour
 
     private void AddLoadBtn(int id, string avatar, int level)
     {
-        // Check if max chars have been created
-        int rows = AbilityLevels.CharSaves.saveIDs.Count;
-        if (AbilityLevels.CharSaves.saveIDs.Count < AbilityLevels.MaxCharacters)
-            rows += 1;
+        int rows = AbilityLevels.CharSaves.saveIDs.Count + 1;
         saveBtnParent.sizeDelta = new Vector2(0, rows * 43 + 2);
 
-        createBtn.gameObject.SetActive(AbilityLevels.CharSaves.saveIDs.Count < AbilityLevels.MaxCharacters);
-        if (createBtn.gameObject.activeSelf)
-            createBtn.anchoredPosition = new Vector2(0, -2 - ((rows - 1) * 43));
+        if (AbilityLevels.CharSaves.saveIDs.Count < AbilityLevels.MaxCharacters)
+        {
+            createBtn.GetComponentInChildren<TMPro.TMP_Text>().text = "Create new Bwudaling";
+            createBtn.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            createBtn.GetComponentInChildren<TMPro.TMP_Text>().text = "All Bwudaling slots used";
+            createBtn.GetComponent<Button>().interactable = false;
+        }
+        createBtn.anchoredPosition = new Vector2(0, -2 - ((rows - 1) * 43));
 
         void SetButtonLoadListener(Button b, int id, int i)
         {
@@ -66,7 +71,7 @@ public class CharacterSelect : MonoBehaviour
         SetButtonLoadListener(b, id, b.transform.GetSiblingIndex() - 1);
 
         loadBtns.Add(b);
-        if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline && id == AbilityLevels.LoadedAbilities.vals.id)
+        if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline && AbilityLevels.LoadedAbilities != null && id == AbilityLevels.LoadedAbilities.vals.id)
             PressLoad(AbilityLevels.LoadedAbilities.vals.id, b.transform.GetSiblingIndex() - 1);
     }
 
