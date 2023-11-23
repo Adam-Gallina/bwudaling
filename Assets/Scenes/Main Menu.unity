@@ -10089,12 +10089,34 @@ MonoBehaviour:
   - col_grn
   - col_blu
   - col_pur
+  - pd
+  - ys
+  - fg
+  - gf
   unlockableShirts:
+  - achievementName: LEVEL_10_ANY
+    shirtID: l_10
+  - achievementName: LEVEL_20_ANY
+    shirtID: l_20
+  - achievementName: LEVEL_30_ANY
+    shirtID: l_30
   - achievementName: LEVEL_15_WUVA
-    shirtID: bw
+    shirtID: w_bw
+  - achievementName: LEVEL_15_DOGIE
+    shirtID: d_cd
+  - achievementName: LEVEL_15_PIEST
+    shirtID: p_bc
+  - achievementName: LEVEL_15_BWUDA
+    shirtID: b_f
+  - achievementName: BOSS_SIWYCWAB
+    shirtID: b_sc
+  - achievementName: BOSS_BIGWED
+    shirtID: b_bw
+  - achievementName: BOSS_TWENTY
+    shirtID: b_t
   shirts:
   - name: BwudaWuvin
-    id: bw
+    id: w_bw
     mat: {fileID: 2100000, guid: ff316367967ef5442b9c06b27dcadab0, type: 2}
   - name: PolkaDot
     id: pd
@@ -10110,7 +10132,7 @@ MonoBehaviour:
     mat: {fileID: 2100000, guid: acbcb081c246a694081ddc24f825b549, type: 2}
   - name: Finkaboutit
     id: b_f
-    mat: {fileID: 2100000, guid: fc64e1c7c497fa846a4aa38a85c92f61, type: 2}
+    mat: {fileID: 2100000, guid: 7cadd624adc85f649bbc037140927c65, type: 2}
   - name: Red
     id: col_red
     mat: {fileID: 2100000, guid: fc64e1c7c497fa846a4aa38a85c92f61, type: 2}
@@ -10129,6 +10151,30 @@ MonoBehaviour:
   - name: Purple
     id: col_pur
     mat: {fileID: 2100000, guid: 6775599357fe28341918f4e92534f61b, type: 2}
+  - name: BwudaCwist
+    id: p_bc
+    mat: {fileID: 2100000, guid: 998ee4de516148944a91b33ab18bf2e6, type: 2}
+  - name: BwudaFlowa
+    id: l_20
+    mat: {fileID: 2100000, guid: f155f02e89214fd4c951405295ddf2b5, type: 2}
+  - name: 2Spicy4Wed
+    id: b_bw
+    mat: {fileID: 2100000, guid: 6a1b3004e2960284e841681536c3671b, type: 2}
+  - name: GayFish
+    id: gf
+    mat: {fileID: 2100000, guid: 359bf84c43ff894479f53696199b2a56, type: 2}
+  - name: NEUMNEUMNEUM
+    id: l_10
+    mat: {fileID: 2100000, guid: 5c39ef001da301c40a38da6f78216134, type: 2}
+  - name: RunninMan
+    id: l_30
+    mat: {fileID: 2100000, guid: e4b51dcb553b49a4c8a023b013b2b7f2, type: 2}
+  - name: SiwyCwab
+    id: b_sc
+    mat: {fileID: 2100000, guid: 7d587e4e97803dc478ca963f53b2529c, type: 2}
+  - name: HouseFire
+    id: b_t
+    mat: {fileID: 2100000, guid: c845c645334088b4fbb49775ca900e70, type: 2}
 --- !u!4 &1259539692
 Transform:
   m_ObjectHideFlags: 0
