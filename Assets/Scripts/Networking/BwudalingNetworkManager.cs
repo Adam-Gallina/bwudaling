@@ -90,6 +90,10 @@ public class BwudalingNetworkManager : NetworkManager
         if (conn.identity != null)
         {
             NetworkPlayer player = conn.identity.gameObject.GetComponent<NetworkPlayer>();
+
+            //if (player != ActivePlayer)
+            //    GameUI.Instance.SetBannerText($"{player.displayName} abandoned Bwuda and left the game...", Constants.DeathBannerDuration);
+
             Players.Remove(player);
         }
 

@@ -17,6 +17,7 @@ public class MainMenu : GameUI
 
     [Header("Lobby")]
     [SerializeField] private RectTransform inviteBtn;
+    [SerializeField] private TMPro.TMP_Text lobbyCount;
     public Button readyButton;
     public Button startGameButton;
     public TMPro.TMP_Dropdown mapPackSelect;
@@ -133,12 +134,14 @@ public class MainMenu : GameUI
             ((LobbyNametag)lobbyPlayers[i])?.UpdateUI();
         }
 
-        inviteBtn.gameObject.SetActive(lobbyPlayers.Count < BwudalingNetworkManager.Instance.maxConnections && !ManagerDebug.Instance.DEBUG_useKcpManager);
-        if (inviteBtn.gameObject.activeSelf)
-            inviteBtn.anchoredPosition = new Vector2(0, -2 - (lobbyPlayers.Count * 48));
+        if (ManagerDebug.Instance.DEBUG_useKcpManager)
+            inviteBtn.gameObject.SetActive(false);
+        inviteBtn.GetComponentInChildren<Button>().interactable = lobbyPlayers.Count < BwudalingNetworkManager.Instance.maxConnections;
+        inviteBtn.anchoredPosition = new Vector2(0, -2 - (lobbyPlayers.Count * 48));
+        lobbyCount.text = $"{lobbyPlayers.Count}/{BwudalingNetworkManager.Instance.maxConnections}";
 
         int rows = lobbyPlayers.Count < BwudalingNetworkManager.Instance.maxConnections ? lobbyPlayers.Count + 1 : lobbyPlayers.Count;
-        nametagParent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, rows * 48 + 2);
+        nametagParent.GetComponent<RectTransform>().sizeDelta = new Vector2(nametagParent.GetComponent<RectTransform>().sizeDelta.x, rows * 48 + 2);
     }
 
     public void ClearPlayers()

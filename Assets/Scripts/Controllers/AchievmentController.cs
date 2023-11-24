@@ -1,3 +1,4 @@
+using Mono.CecilX.Cil;
 using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
@@ -76,7 +77,8 @@ public class AchievmentController : MonoBehaviour
                 Shirts.Add(s.id, s);
         }
 
-        SteamUserStats.RequestCurrentStats();
+        if (SteamManager.Initialized)
+            SteamUserStats.RequestCurrentStats();
     }
 
     public string[] GetUnlockedShirts()
@@ -85,10 +87,14 @@ public class AchievmentController : MonoBehaviour
         foreach (string s in startingShirtIds)
             ids.Add(s);
 
-        foreach (string s in AchievementShirts.Keys)
-            if (SteamUserStats.GetAchievement(s, out bool unlocked))
-                if (unlocked)
-                    ids.Add(AchievementShirts[s]);
+
+        if (SteamManager.Initialized)
+        {
+            foreach (string s in AchievementShirts.Keys)
+                if (SteamUserStats.GetAchievement(s, out bool unlocked))
+                    if (unlocked)
+                        ids.Add(AchievementShirts[s]);
+        }
 
         return ids.ToArray();
     }
@@ -114,6 +120,8 @@ public class AchievmentController : MonoBehaviour
 
     private void UpdateStatIfLower(string stat, int val)
     {
+        if (!SteamManager.Initialized) return;
+
         SteamUserStats.GetStat(stat, out int level);
         if (level < val)
             SteamUserStats.SetStat(stat, val);
@@ -154,6 +162,8 @@ public class AchievmentController : MonoBehaviour
 
     private void OnMapCompleted()
     {
+        if (!SteamManager.Initialized) return;
+
         if (GameController.Instance.mapType == MapType.Boss)
         {
             switch (((BossMapController)MapController.Instance).bossPrefab.bossName)

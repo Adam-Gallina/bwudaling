@@ -11,6 +11,18 @@ public class ShirtSelect : MonoBehaviour
     public string CurrShirtId { get { return shirtData.id; } }
     private ShirtData shirtData;
 
+    private string savedShirt
+    {
+        get
+        {
+            return PlayerPrefs.GetString("LastUsedShirt", AchievmentController.DefaultShirtId);
+        }
+        set
+        {
+            PlayerPrefs.SetString("LastUsedShirt", value);
+        }
+    }
+
     private void Start()
     {
         availableShirts = AchievmentController.Instance.GetUnlockedShirts();
@@ -18,7 +30,7 @@ public class ShirtSelect : MonoBehaviour
         if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
         {
             if (BwudalingNetworkManager.Instance.ActivePlayer.shirtTextureId == "")
-                shirtData = AchievmentController.Shirts[AchievmentController.DefaultShirtId];
+                shirtData = AchievmentController.Shirts[savedShirt];
             else
                 shirtData = AchievmentController.Shirts[BwudalingNetworkManager.Instance.ActivePlayer.shirtTextureId];
 
@@ -33,7 +45,7 @@ public class ShirtSelect : MonoBehaviour
         }
         else
         {
-            shirtData = AchievmentController.Shirts[AchievmentController.DefaultShirtId];
+            shirtData = AchievmentController.Shirts[savedShirt];
         }
         UpdateShirtDisplay();
     }
@@ -65,5 +77,7 @@ public class ShirtSelect : MonoBehaviour
     {
         Material m = shirtData.mat;
         GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetMaterial(m);
+
+        savedShirt = shirtData.id;
     }
 }
