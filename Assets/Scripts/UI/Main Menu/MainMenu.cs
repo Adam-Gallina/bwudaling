@@ -134,8 +134,8 @@ public class MainMenu : GameUI
             ((LobbyNametag)lobbyPlayers[i])?.UpdateUI();
         }
 
-        if (ManagerDebug.Instance.DEBUG_useKcpManager)
-            inviteBtn.gameObject.SetActive(false);
+        //if (ManagerDebug.Instance.DEBUG_useKcpManager)
+        //    inviteBtn.GetComponentInChildren<Button>().gameObject.SetActive(false);
         inviteBtn.GetComponentInChildren<Button>().interactable = lobbyPlayers.Count < BwudalingNetworkManager.Instance.maxConnections;
         inviteBtn.anchoredPosition = new Vector2(0, -2 - (lobbyPlayers.Count * 48));
         lobbyCount.text = $"{lobbyPlayers.Count}/{BwudalingNetworkManager.Instance.maxConnections}";

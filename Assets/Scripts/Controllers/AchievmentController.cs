@@ -1,4 +1,3 @@
-using Mono.CecilX.Cil;
 using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,25 +29,34 @@ public class AchievmentController : MonoBehaviour
     private const string Favwit = "STATS_FAVWIT";
     #endregion
 
+    #region Non-shirt Achievements
+    private static bool b, w, u, d, a;
+    public static bool BwudaUnlocked
+    {
+        get
+        {
+            if (SteamManager.Initialized)
+            {
+                SteamUserStats.GetAchievement(Twent, out bool unlocked);
+                return unlocked || (b && w && u && d && a);
+            }
+            else
+                return b && w && u && d && a;
+        }
+    }
+    #endregion
+
     public static AchievmentController Instance { get; private set; }
 
     public static string DefaultShirtId = "col_red";
 
-    [SerializeField] private string[] startingShirtIds = new string[] { DefaultShirtId };
-
-    [System.Serializable]
-    private struct AchievementShirt
-    {
-        public string achievementName;
-        public string shirtID;
-    }
-    [SerializeField] private AchievementShirt[] unlockableShirts;
-    private Dictionary<string, string> AchievementShirts = new Dictionary<string, string>();
 
     [SerializeField] private ShirtData[] shirts = new ShirtData[0];
     public static Dictionary<string, ShirtData> Shirts = new Dictionary<string, ShirtData>();
+    private Dictionary<string, string> AchievementShirts = new Dictionary<string, string>();
 
     protected Callback<UserStatsReceived_t> StatsReceived;
+    protected Callback<UserAchievementStored_t> AchievementStored;
 
     private void Awake()
     {
@@ -61,39 +69,69 @@ public class AchievmentController : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        foreach (AchievementShirt s in unlockableShirts)
-        {
-            if (AchievementShirts.ContainsKey(s.achievementName))
-                Debug.LogError($"Duplicate shirt id {s.achievementName}, skipping {s.shirtID}");
-            else
-                AchievementShirts.Add(s.achievementName, s.shirtID);
-        }
-
         foreach (ShirtData s in shirts)
         {
+            if (s.achievementName != string.Empty)
+            {
+                if (AchievementShirts.ContainsKey(s.achievementName))
+                    Debug.LogError($"Duplicate achievement id {s.achievementName}, skipping {s.name}");
+                else
+                    AchievementShirts.Add(s.achievementName, s.id);
+            }
+
             if (Shirts.ContainsKey(s.id))
                 Debug.LogError($"Duplicate shirt id {s.id}, skipping {s.name}");
             else
                 Shirts.Add(s.id, s);
         }
 
+        StatsReceived = Callback<UserStatsReceived_t>.Create(OnStatsReceived);
+        AchievementStored = Callback<UserAchievementStored_t>.Create(OnAchievementStored);
+
         if (SteamManager.Initialized)
             SteamUserStats.RequestCurrentStats();
+    }
+
+    private void OnStatsReceived(UserStatsReceived_t callback)
+    {
+        if (callback.m_eResult != EResult.k_EResultOK)
+            return;
+
+        foreach (string a in AchievementShirts.Keys)
+        {
+            SteamUserStats.GetAchievement(a, out bool unlocked);
+            ShirtData s = Shirts[AchievementShirts[a]];
+            s.unlocked = unlocked;
+            Shirts[AchievementShirts[a]] = s;
+        }
+    }
+
+    private void OnAchievementStored(UserAchievementStored_t callback)
+    {
+        if (callback.m_nCurProgress == 0 && callback.m_nMaxProgress == 0)
+        {
+            if (!Shirts[AchievementShirts[callback.m_rgchAchievementName]].unlocked)
+            {
+                ShirtData s = Shirts[AchievementShirts[callback.m_rgchAchievementName]];
+                s.unlocked = true;
+                Shirts[AchievementShirts[callback.m_rgchAchievementName]] = s;
+                if (s.previewImg)
+                    ShirtNotification.Instance.SetNotification(s.previewImg);
+            }
+        }
     }
 
     public string[] GetUnlockedShirts()
     {
         List<string> ids = new List<string>();
-        foreach (string s in startingShirtIds)
-            ids.Add(s);
-
-
-        if (SteamManager.Initialized)
+        foreach (ShirtData s in Shirts.Values)
         {
-            foreach (string s in AchievementShirts.Keys)
-                if (SteamUserStats.GetAchievement(s, out bool unlocked))
-                    if (unlocked)
-                        ids.Add(AchievementShirts[s]);
+            Debug.Log($"{s.name}: {s.startUnlocked} {s.achievementName != string.Empty} {s.unlocked}");
+
+            if (s.startUnlocked)
+                ids.Add(s.id);
+            else if (s.achievementName != string.Empty && s.unlocked)
+                ids.Add(s.id);
         }
 
         return ids.ToArray();
@@ -111,6 +149,30 @@ public class AchievmentController : MonoBehaviour
         AbilityLevels.OnAbilitiesLoaded -= OnAbilitiesLoaded;
         BwudalingNetworkManager.OnSceneChanged -= SaveStats;
         BasicGameController.OnMapCompleted -= OnMapCompleted;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            b = true;
+        }
+        else if (b && Input.GetKeyDown(KeyCode.W))
+        {
+            w = true;
+        }
+        else if (w && Input.GetKeyDown(KeyCode.U))
+        {
+            u = true;
+        }
+        else if (u && Input.GetKeyDown(KeyCode.D))
+        {
+            d = true;
+        }
+        else if (d && Input.GetKeyDown(KeyCode.A))
+        {
+            a = true;
+        }
     }
 
     private void OnAbilitiesLoaded()
@@ -198,4 +260,10 @@ public struct ShirtData
     public string name;
     public string id;
     public Material mat;
+
+    public bool startUnlocked;
+    public string achievementName;
+    public Sprite previewImg;
+
+    [HideInInspector] public bool unlocked;
 }

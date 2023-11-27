@@ -46,6 +46,9 @@ public abstract class BossBase : NetworkBehaviour
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
+
+        if (BwudalingNetworkManager.Instance.DEBUG_ForceBossHealth != 0)
+            maxHealth = BwudalingNetworkManager.Instance.DEBUG_ForceBossHealth;
     }
 
     [ServerCallback]

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 using UnityEditor;
+using Steamworks;
 
 public class BwudalingNetworkManager : NetworkManager
 {
@@ -43,6 +44,7 @@ public class BwudalingNetworkManager : NetworkManager
     public bool DEBUG_IgnoreCooldown;
     public bool DEBUG_TpWalls;
     public int DEBUG_ForceBossAttack = 0;
+    public int DEBUG_ForceBossHealth = 0;
 
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
@@ -201,6 +203,18 @@ public class BwudalingNetworkManager : NetworkManager
         {
             if (ActivePlayer.IsLeader)
                 NextMap();
+        }
+
+        if (DEBUG_AllowKeyCheats)
+        {
+            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.R))
+            {
+                if (SteamManager.Initialized)
+                {
+                    SteamUserStats.ResetAllStats(true);
+                    SteamUserStats.StoreStats();
+                }
+            }
         }
     }
 

@@ -32,29 +32,29 @@ public class MenuPlayerPreview : MonoBehaviour
         transform.GetChild(0).localEulerAngles = Vector3.up * rot;
     }
 
-    public void SetClass(int c)
+    public void SetClass(AvatarClass c)
     {
         switch (c)
         {
-            case 0:
+            case AvatarClass.Wuva:
                 //wuvaHat.SetActive(true); 
                 dogieHat.SetActive(false);
                 piestHat.SetActive(false);
                 bwudaHat.SetActive(false);
                 break;
-            case 1:
+            case AvatarClass.Dogie:
                 //wuvaHat.SetActive(false); 
                 dogieHat.SetActive(true);
                 piestHat.SetActive(false);
                 bwudaHat.SetActive(false);
                 break;
-            case 2:
+            case AvatarClass.Piest:
                 //wuvaHat.SetActive(false); 
                 dogieHat.SetActive(false);
                 piestHat.SetActive(true);
                 bwudaHat.SetActive(false);
                 break;
-            case 3:
+            case AvatarClass.Bwuda:
                 //wuvaHat.SetActive(false); 
                 dogieHat.SetActive(false);
                 piestHat.SetActive(false);

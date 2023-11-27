@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class CharacterSelect : MonoBehaviour
 {
-    private bool b, w, u, d, a;
-
     [SerializeField] private RectTransform createBtn;
 
     [SerializeField] private RectTransform saveBtnParent;
@@ -82,29 +80,8 @@ public class CharacterSelect : MonoBehaviour
 
     private void CheckBwuda()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            b = true;
-        }
-        else if (b && Input.GetKeyDown(KeyCode.W))
-        {
-            w = true;
-        }
-        else if (w && Input.GetKeyDown(KeyCode.U))
-        {
-            u = true;
-        }
-        else if (u && Input.GetKeyDown(KeyCode.D))
-        {
-            d = true;
-        }
-        else if (d && Input.GetKeyDown(KeyCode.A))
-        {
-            a = true;
-        }
-
-        if (b && w && u && d && a)
-            bwudaButton.SetActive(true);
+        if (!bwudaButton.activeSelf)
+            bwudaButton.SetActive(AchievmentController.BwudaUnlocked);
     }
 
     #region Buttons
@@ -163,6 +140,7 @@ public class CharacterSelect : MonoBehaviour
         }
 
         p.LoadAvatar();
+        GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetClass(AbilityLevels.LoadedAbilities.vals.avatarClass);
     }
 
     public void DeleteChar()

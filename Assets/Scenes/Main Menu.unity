@@ -1543,6 +1543,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1414885777}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &187349991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3692,17 +3704,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1455358054}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 1414885777}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: LobbyCreate
+          m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1643467074}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1643467074}
         m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
@@ -5388,18 +5412,6 @@ MonoBehaviour:
             from afar
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1124883742}
-        m_TargetAssemblyTypeName: MenuPlayerPreview, Assembly-CSharp
-        m_MethodName: SetClass
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 696045321}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -6966,18 +6978,6 @@ MonoBehaviour:
           m_StringArgument: Bwuda's loyalist supporter. Creates safe paths for Bwudalings
             to travel
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1124883742}
-        m_TargetAssemblyTypeName: MenuPlayerPreview, Assembly-CSharp
-        m_MethodName: SetClass
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 696045321}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -9294,6 +9294,7 @@ MonoBehaviour:
   DEBUG_IgnoreCooldown: 1
   DEBUG_TpWalls: 1
   DEBUG_ForceBossAttack: 0
+  DEBUG_ForceBossHealth: 10
 --- !u!4 &1071394226
 Transform:
   m_ObjectHideFlags: 0
@@ -9720,6 +9721,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1414885777}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10332,99 +10345,147 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3ef02b126eb394385295d9b0a56b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingShirtIds:
-  - col_red
-  - col_ong
-  - col_yel
-  - col_grn
-  - col_blu
-  - col_pur
-  - pd
-  - ys
-  - fg
-  - gf
-  unlockableShirts:
-  - achievementName: LEVEL_10_ANY
-    shirtID: l_10
-  - achievementName: LEVEL_20_ANY
-    shirtID: l_20
-  - achievementName: LEVEL_30_ANY
-    shirtID: l_30
-  - achievementName: LEVEL_15_WUVA
-    shirtID: w_bw
-  - achievementName: LEVEL_15_DOGIE
-    shirtID: d_cd
-  - achievementName: LEVEL_15_PIEST
-    shirtID: p_bc
-  - achievementName: LEVEL_15_BWUDA
-    shirtID: b_f
-  - achievementName: BOSS_SIWYCWAB
-    shirtID: b_sc
-  - achievementName: BOSS_BIGWED
-    shirtID: b_bw
-  - achievementName: BOSS_TWENTY
-    shirtID: b_t
   shirts:
   - name: BwudaWuvin
     id: w_bw
     mat: {fileID: 2100000, guid: ff316367967ef5442b9c06b27dcadab0, type: 2}
+    startUnlocked: 0
+    achievementName: LEVEL_15_WUVA
+    previewImg: {fileID: 21300000, guid: b0b68c84901223048be2231f56736e8b, type: 3}
+    unlocked: 0
   - name: PolkaDot
     id: pd
     mat: {fileID: 2100000, guid: ba1d77609901ff04c9f756e125c9a800, type: 2}
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
   - name: YellowStripes
     id: ys
     mat: {fileID: 2100000, guid: 5765e387406556f43abf3e88ca4519f7, type: 2}
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
   - name: FluteGang
     id: fg
     mat: {fileID: 2100000, guid: 2eaebcd608a9fdc40b96fcc6c58d0611, type: 2}
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
   - name: CarDogie
     id: d_cd
     mat: {fileID: 2100000, guid: acbcb081c246a694081ddc24f825b549, type: 2}
+    startUnlocked: 0
+    achievementName: LEVEL_15_DOGIE
+    previewImg: {fileID: 21300000, guid: 132384c7c6b8c024b9c23cfeff2a6410, type: 3}
+    unlocked: 0
   - name: Finkaboutit
     id: b_f
     mat: {fileID: 2100000, guid: 7cadd624adc85f649bbc037140927c65, type: 2}
+    startUnlocked: 0
+    achievementName: LEVEL_15_BWUDA
+    previewImg: {fileID: 21300000, guid: 8796c210d40e0a548b50328f41791e94, type: 3}
+    unlocked: 0
   - name: Red
     id: col_red
     mat: {fileID: 2100000, guid: fc64e1c7c497fa846a4aa38a85c92f61, type: 2}
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
   - name: Orange
     id: col_ong
     mat: {fileID: 2100000, guid: ccd52300c3b946d4e9c41b3ef2319e28, type: 2}
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
   - name: Yellow
     id: col_yel
     mat: {fileID: 2100000, guid: 82def5e5fe3280c47bfe4a91cdb28c2a, type: 2}
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
   - name: Green
     id: col_grn
     mat: {fileID: 2100000, guid: d877ebcff3b7ba54886ef02023a2c59e, type: 2}
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
   - name: Blue
     id: col_blu
     mat: {fileID: 2100000, guid: 9c6db82b2b3e29b46a3a6dac85a235b6, type: 2}
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
   - name: Purple
     id: col_pur
     mat: {fileID: 2100000, guid: 6775599357fe28341918f4e92534f61b, type: 2}
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
   - name: BwudaCwist
     id: p_bc
     mat: {fileID: 2100000, guid: 998ee4de516148944a91b33ab18bf2e6, type: 2}
-  - name: BwudaFlowa
-    id: l_20
-    mat: {fileID: 2100000, guid: f155f02e89214fd4c951405295ddf2b5, type: 2}
-  - name: 2Spicy4Wed
-    id: b_bw
-    mat: {fileID: 2100000, guid: 6a1b3004e2960284e841681536c3671b, type: 2}
+    startUnlocked: 0
+    achievementName: LEVEL_15_PIEST
+    previewImg: {fileID: 21300000, guid: 221cd17c39764774eb39b6517de78bdc, type: 3}
+    unlocked: 0
   - name: GayFish
     id: gf
     mat: {fileID: 2100000, guid: 359bf84c43ff894479f53696199b2a56, type: 2}
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
   - name: NEUMNEUMNEUM
     id: l_10
     mat: {fileID: 2100000, guid: 5c39ef001da301c40a38da6f78216134, type: 2}
+    startUnlocked: 0
+    achievementName: LEVEL_10_ANY
+    previewImg: {fileID: 21300000, guid: a22e7bfd94263234cb236427e32e3303, type: 3}
+    unlocked: 0
+  - name: BwudaFlowa
+    id: l_20
+    mat: {fileID: 2100000, guid: f155f02e89214fd4c951405295ddf2b5, type: 2}
+    startUnlocked: 0
+    achievementName: LEVEL_20_ANY
+    previewImg: {fileID: 21300000, guid: 59ef244c570dc3846bbd3b551128abeb, type: 3}
+    unlocked: 0
   - name: RunninMan
     id: l_30
     mat: {fileID: 2100000, guid: e4b51dcb553b49a4c8a023b013b2b7f2, type: 2}
+    startUnlocked: 0
+    achievementName: LEVEL_30_ANY
+    previewImg: {fileID: 21300000, guid: 6576263ab510139418b1e47992bcd30a, type: 3}
+    unlocked: 0
   - name: SiwyCwab
     id: b_sc
     mat: {fileID: 2100000, guid: 7d587e4e97803dc478ca963f53b2529c, type: 2}
+    startUnlocked: 0
+    achievementName: BOSS_SIWYCWAB
+    previewImg: {fileID: 21300000, guid: b6addac96cfb90742b5a317f38519455, type: 3}
+    unlocked: 0
+  - name: 2Spicy4Wed
+    id: b_bw
+    mat: {fileID: 2100000, guid: 6a1b3004e2960284e841681536c3671b, type: 2}
+    startUnlocked: 0
+    achievementName: BOSS_BIGWED
+    previewImg: {fileID: 21300000, guid: 915292a523b7e0b45ac2af1cf23af410, type: 3}
+    unlocked: 0
   - name: HouseFire
     id: b_t
     mat: {fileID: 2100000, guid: c845c645334088b4fbb49775ca900e70, type: 2}
+    startUnlocked: 0
+    achievementName: BOSS_TWENTY
+    previewImg: {fileID: 21300000, guid: 61e85b0ba43d1b2479756608042ad73d, type: 3}
+    unlocked: 0
 --- !u!4 &1259539692
 Transform:
   m_ObjectHideFlags: 0
@@ -11449,6 +11510,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1414885777}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1372154943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11844,6 +11917,7 @@ GameObject:
   - component: {fileID: 1414885774}
   - component: {fileID: 1414885776}
   - component: {fileID: 1414885775}
+  - component: {fileID: 1414885777}
   m_Layer: 5
   m_Name: Lobby
   m_TagString: Untagged
@@ -11913,6 +11987,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414885773}
   m_CullTransparentMesh: 1
+--- !u!82 &1414885777
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414885773}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 7330218875182339235, guid: 946d3ab0e552b52409a08cd9a564de07, type: 2}
+  m_audioClip: {fileID: 8300000, guid: d5f41ca572d167946af9d6965c7f0009, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!224 &1425849756 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5641647727226571677, guid: 8ccb421640d58dd489de6c839c419821, type: 3}
@@ -14207,18 +14377,6 @@ MonoBehaviour:
             safe through their belief
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1124883742}
-        m_TargetAssemblyTypeName: MenuPlayerPreview, Assembly-CSharp
-        m_MethodName: SetClass
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 696045321}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -15394,18 +15552,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: The most powerful. The all-knowing. Bwuda.
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1124883742}
-        m_TargetAssemblyTypeName: MenuPlayerPreview, Assembly-CSharp
-        m_MethodName: SetClass
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 696045321}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -17023,6 +17169,7 @@ MonoBehaviour:
   DEBUG_IgnoreCooldown: 1
   DEBUG_TpWalls: 0
   DEBUG_ForceBossAttack: 0
+  DEBUG_ForceBossHealth: 0
 --- !u!114 &1812445703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17501,6 +17648,18 @@ MonoBehaviour:
       - m_Target: {fileID: 932494924}
         m_TargetAssemblyTypeName: CharacterSelect, Assembly-CSharp
         m_MethodName: DeleteChar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1414885777}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19157,6 +19316,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1056887031641163317, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056887031641163317, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056887031641163317, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056887031641163317, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -19215,6 +19386,14 @@ PrefabInstance:
     - target: {fileID: 1056887031641163323, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
       propertyPath: m_Name
       value: Options
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741774834380668178, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6148605201253805826, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 155
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}

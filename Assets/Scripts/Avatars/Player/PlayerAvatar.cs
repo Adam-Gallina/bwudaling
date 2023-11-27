@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using System;
 using Unity.VisualScripting;
+using Steamworks;
 
 public class PlayerAvatar : AvatarBase
 {
