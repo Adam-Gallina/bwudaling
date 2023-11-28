@@ -81,7 +81,6 @@ public static class AbilityLevels
 
     public static void SaveCharacterSaves()
     {
-        Debug.Log("Saving char saves");
         BinaryFormatter bf = new BinaryFormatter();
         FileStream stream = new FileStream(UserPath + CharSaveFile, FileMode.Create);
 
@@ -110,8 +109,6 @@ public static class AbilityLevels
 
     public static void LoadAbilities(int id)
     {
-        Debug.Log("Attempting to load char " + id);
-
         if (File.Exists(UserPath + id + CharAbilitySuffix))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -130,7 +127,6 @@ public static class AbilityLevels
 
     public static void SaveAbilities()
     {
-        Debug.Log("Saving char " + LoadedAbilities.vals.id);
         int i = CharSaves.saveIDs.IndexOf(LoadedAbilities.vals.id);
         if (LoadedAbilities.vals.level != CharSaves.levels[i])
         {

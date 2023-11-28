@@ -60,17 +60,20 @@ public abstract class AbilityBase : MonoBehaviour
     {
         if (CanUseAbility(level))
         {
-            abilityStart?.Invoke();
-            controller.stats?.AddAbility();
-
             if (OnUseAbility(level))
             {
+                abilityStart?.Invoke();
+                controller.stats?.AddAbility();
+
                 nextAbility = Time.time + CalcNextAbility(level);
                 DoEffect(level);
             }
 
             abilityQueued = false;
-
+        }
+        else
+        {
+            CancelAbility();
         }
     }
     protected abstract bool OnUseAbility(int level);

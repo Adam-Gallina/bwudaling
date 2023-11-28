@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using Mirror;
 
@@ -24,8 +23,6 @@ public class Teleport : TargetAbility
                     return false;
             }
         }
-
-        controller.stats?.AddAbility();
 
         DoServerEffect(transform.position, level);
         controller.SetPosition(currReticlePos, true);
