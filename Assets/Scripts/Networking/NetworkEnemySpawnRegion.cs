@@ -28,7 +28,7 @@ public class NetworkEnemySpawnRegion : NetworkEnemySpawnPos
         int spawned = 0;
         for (int i = 0; i < spawnCount; i++)
         {
-            for (int t = 0; t < spawnCount; t++)
+            for (int t = 0; t <= spawnTries; t++)
                 if (base.SpawnEnemy(spawnTries > 0))
                 {
                     spawned++;

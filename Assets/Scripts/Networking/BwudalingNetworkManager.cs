@@ -110,6 +110,13 @@ public class BwudalingNetworkManager : NetworkManager
         StopClient();
     }
 
+    public override void OnStopHost()
+    {
+        base.OnStopHost();
+
+        pressDisconnect = true;
+    }
+
     public override void OnStopClient()
     {
         base.OnStopClient();

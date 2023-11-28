@@ -163,7 +163,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 63383904}
-  m_Layer: 0
+  - component: {fileID: 63383905}
+  m_Layer: 15
   m_Name: Spawn zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,6 +187,19 @@ Transform:
   m_Father: {fileID: 431153099}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &63383905
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63383903}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14, y: 1, z: 14}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &76806321
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +580,7 @@ MonoBehaviour:
   hazardSpeed: 5
   hazardRange: 150
   mapCenter: {x: 0, y: 0, z: 0}
+  canControlAvatars: 1
 --- !u!4 &373380049
 Transform:
   m_ObjectHideFlags: 0
@@ -1695,7 +1710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: 1
+  spawn: 0
   enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
   spawnSize: 2.5
   hazardSpeed: 0
@@ -2437,7 +2452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559922902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.6, y: 0, z: -31.9}
+  m_LocalPosition: {x: 30.2, y: 0, z: -1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2456,17 +2471,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 790e72d3066ed2e4ebcdb980a385bc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: 0
-  enemyPrefab: {fileID: 2781017586742306108, guid: 6266a3e90235259418919c63b383601f, type: 3}
+  spawn: 1
+  enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 2.5
-  hazardSpeed: 0
-  hazardRange: 0
-  useSpawnerSpeed: 0
-  useSpawnerOrigin: 0
-  useSpawnerRange: 0
+  hazardSpeed: 50
+  hazardRange: 50
+  useSpawnerSpeed: 1
+  useSpawnerOrigin: 1
+  useSpawnerRange: 1
   model: {fileID: 0}
-  spawnBounds: {x: 7.14, y: 23.84}
-  spawnCount: 0
+  spawnBounds: {x: 39.19, y: 35.1}
+  spawnCount: 1
   spawnTries: 10
 --- !u!1 &1658079816
 GameObject:

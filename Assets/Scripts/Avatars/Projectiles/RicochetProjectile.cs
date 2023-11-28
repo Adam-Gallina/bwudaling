@@ -18,6 +18,7 @@ public class RicochetProjectile : Projectile
         bounces = maxBounces;
     }
 
+    [Server]
     public override void SetDirection(Vector3 direction)
     {
         base.SetDirection(direction);

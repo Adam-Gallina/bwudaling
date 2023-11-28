@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
@@ -8,6 +9,7 @@ public class SwingingSaw : IncorporealSaw
 {
     [SerializeField] protected RangeF travelRange;
     protected Vector3 endPos;
+    protected Vector3 dirToEnd;
 
     [Header("Smoothing")]
     [SerializeField] protected float smoothingRange;
@@ -19,16 +21,24 @@ public class SwingingSaw : IncorporealSaw
     {
         base.SetSpawnLocation(spawnLocation);
         endPos = GetNewEndPos();
+        dirToEnd = (endPos - transform.position).normalized;
     }
 
-    public override void SetSpeed(float speed)
+    [Server]
+    public override void SetDirection(Vector3 direction)
     {
-        base.SetSpeed(speed);
+        // Allow other sources to change direction of saw
+        if (direction != transform.forward)
+        {
+            float dist = travelRange.RandomVal;
+            spawnPos = transform.position - direction.normalized * dist / 2;
+            endPos = transform.position + direction.normalized * dist / 2;
+            dirToEnd = (endPos - transform.position).normalized;
+        }
 
-        if (smoothing)
-            return;
+        direction = endPos - transform.position;
 
-        prevSpeed = speed;
+        base.SetDirection(direction);
     }
 
     private new void Update()
@@ -42,27 +52,22 @@ public class SwingingSaw : IncorporealSaw
 
         if (t >= 1)
         {
-            spawnPos = endPos;
+            spawnPos = transform.position;
             endPos = GetNewEndPos();
+            dirToEnd = (endPos - transform.position).normalized;
             t = 0;
         }
 
-        float t2 = 2 * Mathf.Abs(t - 0.5f); //0>1, -.5>.5, 0>.5
-        
+        float t2 = 2 * Mathf.Abs(t - 0.5f); //0>1, -.5>.5, 0>|.5|, 0>|1|
+
+        float mod = 1;
         if (t2 > smoothingRange)
         {
-            smoothing = true;
             float t3 = (1 - t2) / (1 - smoothingRange);
-            float mod = minSpeedMod + (1 - minSpeedMod) * t3;
-            SetSpeed(prevSpeed * mod * currSpeedMod);
-            smoothing = false;
+            mod = minSpeedMod + (1 - minSpeedMod) * t3;
         }
-        else
-        {
-            SetSpeed(prevSpeed * currSpeedMod);
-        }
-        
-        SetDirection(endPos - transform.position);
+
+        rb.velocity = dirToEnd * speed * mod * currSpeedMod;
     }
 
     private Vector3 GetNewEndPos()
@@ -79,6 +84,6 @@ public class SwingingSaw : IncorporealSaw
             dir = MyMath.Rotate(dir, 90);
         }
 
-        return transform.position + (origin - transform.position).normalized * travelRange.RandomVal;
+        return transform.position + MyMath.RotateAboutY((origin - transform.position).normalized, Random.Range(-30, 30)) * travelRange.RandomVal;
     }
 }

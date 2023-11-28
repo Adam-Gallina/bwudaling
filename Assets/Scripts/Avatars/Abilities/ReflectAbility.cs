@@ -24,8 +24,8 @@ public class ReflectAbility : TargetAbility
             BasicSaw s = c.GetComponentInParent<BasicSaw>();
             if (s)
             {
-                s.SetDirection(c.transform.position - transform.position);
                 s.ApplySpeedMod(reflectSlowMod.CalcValue(level), reflectSlowDuration.CalcValue(level));
+                s.SetDirection(c.transform.position - transform.position);
             }
         }
     }

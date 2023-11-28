@@ -22,7 +22,8 @@ public class ShirtNotification : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
 
         rt = GetComponent<RectTransform>();
         y = rt.anchoredPosition.y;
