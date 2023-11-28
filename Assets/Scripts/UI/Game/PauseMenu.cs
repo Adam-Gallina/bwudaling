@@ -21,7 +21,7 @@ public class PauseMenu : MonoBehaviour
         switch (BwudalingNetworkManager.Instance.mode)
         {
             case Mirror.NetworkManagerMode.ClientOnly:
-                BwudalingNetworkManager.Instance.StopClient();
+                BwudalingNetworkManager.Instance.DisconnectClient();
                 break;
             case Mirror.NetworkManagerMode.Host:
                 BwudalingNetworkManager.Instance.StopHost();

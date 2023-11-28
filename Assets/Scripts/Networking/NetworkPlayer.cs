@@ -208,6 +208,13 @@ public class NetworkPlayer : NetworkBehaviour
         stats.updated = true;
         currPlayerStats = stats;
     }
+
+    [ClientRpc]
+    public void RpcNotifyPlayerLeft(string playerName)
+    {
+        if (hasAuthority)
+            NotificationUI.Instance.AddNotification($"{playerName} left");
+    }
     #endregion
 
     #region Avatar

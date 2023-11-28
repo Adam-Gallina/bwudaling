@@ -76,10 +76,12 @@ public class MainMenu : GameUI
         {
             anim.SetTrigger("RejoinLobby");
             anim.SetBool("InLobby", true);
+            NotificationUI.Instance.gameObject.SetActive(false);
         }
         else
         {
             SetPlayerName(nameInputField.text);
+            NotificationUI.Instance.gameObject.SetActive(true);
         }
     }
 
@@ -193,7 +195,7 @@ public class MainMenu : GameUI
         switch (BwudalingNetworkManager.Instance.mode)
         {
             case Mirror.NetworkManagerMode.ClientOnly:
-                BwudalingNetworkManager.Instance.StopClient();
+                BwudalingNetworkManager.Instance.DisconnectClient();
                 anim.SetBool("InLobby", false);
                 break;
             case Mirror.NetworkManagerMode.Host:
@@ -215,12 +217,18 @@ public class MainMenu : GameUI
     {
         Application.Quit();
     }
+
+    public void ShowNotifications()
+    {
+        NotificationUI.Instance.gameObject.SetActive(true);
+    }
     #endregion
 
     #region Callbacks
     private void HandleClientConnected()
     {
         anim.SetBool("InLobby", true);
+        NotificationUI.Instance.gameObject.SetActive(false);
 
         PlayerPrefs.SetString(Constants.LastIpPref, ipAddressField.text);
         PlayerPrefs.SetString(Constants.PlayerNamePref, DisplayName);
@@ -229,6 +237,7 @@ public class MainMenu : GameUI
     private void HandleClientDisconnected()
     {
         anim.SetBool("InLobby", false);
+        NotificationUI.Instance.gameObject.SetActive(true);
 
         readyButton.GetComponentInChildren<TMPro.TMP_Text>().text = "Ready";
     }
@@ -236,6 +245,7 @@ public class MainMenu : GameUI
     private void HandleClientJoinFailed()
     {
         joinFailedText.SetActive(true);
+        NotificationUI.Instance.gameObject.SetActive(true);
     }
     #endregion
 }

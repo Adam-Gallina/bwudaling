@@ -93,13 +93,33 @@ public class BwudalingNetworkManager : NetworkManager
         {
             NetworkPlayer player = conn.identity.gameObject.GetComponent<NetworkPlayer>();
 
-            //if (player != ActivePlayer)
-            //    GameUI.Instance.SetBannerText($"{player.displayName} abandoned Bwuda and left the game...", Constants.DeathBannerDuration);
-
             Players.Remove(player);
+
+            foreach (NetworkPlayer p in Players)
+                p.RpcNotifyPlayerLeft(player.displayName);
         }
 
         base.OnServerDisconnect(conn);
+    }
+    
+    private bool pressDisconnect = false;
+    public void DisconnectClient()
+    {
+        pressDisconnect = true;
+
+        StopClient();
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+
+        Players.Clear();
+
+        if (!pressDisconnect)
+            NotificationUI.Instance.AddNotification("Disconnected from server");
+
+        pressDisconnect = false;
     }
 
     public override void OnClientError(TransportError error, string reason)

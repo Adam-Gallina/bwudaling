@@ -4727,7 +4727,7 @@ MonoBehaviour:
   kcpManager: {fileID: 1812445702}
   kcpOptions: {fileID: 603863967}
   steamManager: {fileID: 1071394225}
-  DEBUG_useKcpManager: 0
+  DEBUG_useKcpManager: 1
 --- !u!4 &610880383
 Transform:
   m_ObjectHideFlags: 0

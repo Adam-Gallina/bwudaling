@@ -126,8 +126,6 @@ public class AchievmentController : MonoBehaviour
         List<string> ids = new List<string>();
         foreach (ShirtData s in Shirts.Values)
         {
-            Debug.Log($"{s.name}: {s.startUnlocked} {s.achievementName != string.Empty} {s.unlocked}");
-
             if (s.startUnlocked)
                 ids.Add(s.id);
             else if (s.achievementName != string.Empty && s.unlocked)
@@ -250,7 +248,8 @@ public class AchievmentController : MonoBehaviour
 
     private void SaveStats()
     {
-        SteamUserStats.StoreStats();
+        if (SteamManager.Initialized)
+            SteamUserStats.StoreStats();
     }
 }
 
