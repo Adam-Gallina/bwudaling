@@ -6,8 +6,6 @@ using Steamworks;
 
 public class SteamLobby : MonoBehaviour
 {
-    private BwudalingNetworkManager networkManager;
-
     private const string HostAddressKey = "HostAddress";
 
     protected Callback<LobbyCreated_t> LobbyCreated;
@@ -18,8 +16,6 @@ public class SteamLobby : MonoBehaviour
 
     private void Start()
     {
-        networkManager = GetComponent<BwudalingNetworkManager>();
-
         if (!SteamManager.Initialized)
             return;
 
@@ -30,7 +26,7 @@ public class SteamLobby : MonoBehaviour
 
     public void HostSteamLobby()
     {
-        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, BwudalingNetworkManager.Instance.maxConnections);
     }
 
     public void JoinSteamLobby()
@@ -44,7 +40,7 @@ public class SteamLobby : MonoBehaviour
             // Show host button
             return;
 
-        networkManager.StartHost();
+        BwudalingNetworkManager.Instance.StartHost();
         lobbyID = new CSteamID(callback.m_ulSteamIDLobby);
         SteamMatchmaking.SetLobbyData(lobbyID, HostAddressKey, SteamUser.GetSteamID().ToString());
     }
@@ -62,8 +58,8 @@ public class SteamLobby : MonoBehaviour
         lobbyID = new CSteamID(callback.m_ulSteamIDLobby);
         string hostAddress = SteamMatchmaking.GetLobbyData(lobbyID, HostAddressKey);
 
-        networkManager.networkAddress = hostAddress;
-        networkManager.StartClient();
+        BwudalingNetworkManager.Instance.networkAddress = hostAddress;
+        BwudalingNetworkManager.Instance.StartClient();
 
         // Hide host/join button
     }

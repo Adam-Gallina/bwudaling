@@ -161,7 +161,7 @@ public class MainMenu : GameUI
         }
         else
         {
-            BwudalingNetworkManager.Instance.GetComponent<SteamLobby>().HostSteamLobby();
+            ManagerDebug.Instance.steamTransport.GetComponent<SteamLobby>().HostSteamLobby();
         }
     }
 

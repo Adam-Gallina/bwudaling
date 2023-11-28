@@ -62,6 +62,8 @@ public class BwudalingNetworkManager : NetworkManager
             return;
         }
 
+        transport = ManagerDebug.Instance.transport;
+
         base.Awake();
 
         Instance = this;

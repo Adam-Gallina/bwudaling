@@ -2474,14 +2474,14 @@ MonoBehaviour:
   spawn: 1
   enemyPrefab: {fileID: 5001992652091490284, guid: da3cfd9630350ac40a33cc9ce42d2c4c, type: 3}
   spawnSize: 2.5
-  hazardSpeed: 50
+  hazardSpeed: 25
   hazardRange: 50
   useSpawnerSpeed: 1
   useSpawnerOrigin: 1
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 39.19, y: 35.1}
-  spawnCount: 1
+  spawnCount: 50
   spawnTries: 10
 --- !u!1 &1658079816
 GameObject:

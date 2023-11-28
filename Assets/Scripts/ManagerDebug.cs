@@ -7,25 +7,36 @@ public class ManagerDebug : MonoBehaviour
 {
     public static ManagerDebug Instance;
 
-    public NetworkManager kcpManager;
     public GameObject kcpOptions;
 
-    public NetworkManager steamManager;
+    public BwudalingNetworkManager networkManager;
+
+    public Transport kcpTransport;
+    public Transport steamTransport;
     public bool DEBUG_useKcpManager = true;
+
+    public Transport transport { get; private set; }
 
     void Awake()
     {
-        Instance = this;
+        kcpOptions.SetActive(DEBUG_useKcpManager);
 
-        if (DEBUG_useKcpManager)
+        if (Instance != null)
         {
-            kcpManager.gameObject.SetActive(true);
-            kcpOptions.SetActive(true);
+            networkManager.transform.parent = null;
+            networkManager.gameObject.SetActive(true);
+
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            steamManager.gameObject.SetActive(true);
-            kcpOptions.gameObject.SetActive(false);
-        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        transport = DEBUG_useKcpManager ? kcpTransport : steamTransport;
+        transport.gameObject.SetActive(true);
+
+        networkManager.transform.parent = null;
+        networkManager.gameObject.SetActive(true);
     }
 }
