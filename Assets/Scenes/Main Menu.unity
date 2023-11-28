@@ -4728,7 +4728,7 @@ MonoBehaviour:
   networkManager: {fileID: 1144509071}
   kcpTransport: {fileID: 1812445703}
   steamTransport: {fileID: 1071394223}
-  DEBUG_useKcpManager: 1
+  DEBUG_useKcpManager: 0
 --- !u!4 &610880383
 Transform:
   m_ObjectHideFlags: 0
