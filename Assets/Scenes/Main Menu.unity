@@ -3692,18 +3692,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1233223949}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1414885777}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -3728,16 +3716,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1643467074}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
+      - m_Target: {fileID: 1455358054}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: LobbyCreate
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &508034593
@@ -4728,7 +4716,7 @@ MonoBehaviour:
   networkManager: {fileID: 1144509071}
   kcpTransport: {fileID: 1812445703}
   steamTransport: {fileID: 1071394223}
-  DEBUG_useKcpManager: 0
+  DEBUG_useKcpManager: 1
 --- !u!4 &610880383
 Transform:
   m_ObjectHideFlags: 0
@@ -9809,6 +9797,7 @@ MonoBehaviour:
   DEBUG_TpWalls: 0
   DEBUG_ForceBossAttack: 0
   DEBUG_ForceBossHealth: 0
+  DEBUG_UnlockAllShirts: 1
 --- !u!4 &1144509072
 Transform:
   m_ObjectHideFlags: 0
@@ -10164,7 +10153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1233223950
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19375,6 +19364,14 @@ PrefabInstance:
     - target: {fileID: 1741774834380668178, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029914013487966581, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219409530352893371, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6148605201253805826, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
       propertyPath: m_AnchoredPosition.x

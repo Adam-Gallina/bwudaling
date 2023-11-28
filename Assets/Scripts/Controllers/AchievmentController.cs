@@ -126,9 +126,9 @@ public class AchievmentController : MonoBehaviour
         List<string> ids = new List<string>();
         foreach (ShirtData s in Shirts.Values)
         {
-            if (s.startUnlocked)
-                ids.Add(s.id);
-            else if (s.achievementName != string.Empty && s.unlocked)
+            if (s.startUnlocked
+                || s.achievementName != string.Empty && s.unlocked
+                || BwudalingNetworkManager.Instance.DEBUG_UnlockAllShirts)
                 ids.Add(s.id);
         }
 
