@@ -269,7 +269,6 @@ public class PlayerAvatar : AvatarBase
         }
         anim?.SetBool("Moving", walking);
         anim.SetInteger("MoveAnim", AbilityLevels.CalcSpeedAnim(currSpeed, (inp.boost.down || inp.boost.held) && !boostRecharging));
-        Debug.Log(currSpeed);
     }
 
     private void UpdateCurrSpeed(float newSpeed)

@@ -2,6 +2,7 @@ using Mirror;
 using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class StatsUI : GameUI
@@ -74,12 +75,32 @@ public class StatsUI : GameUI
         string w = playerWon ? s.SetWinnerText("You", winnerVal) : s.SetWinnerText(winnerName, winnerVal);
         string y = s.SetPlayerText("You", playerVal);
 
-        StartCoroutine(AnimStatDisplay(s.statName, w, y, !playerWon));
+        Animator a = null;
+        foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
+        {
+            if (p.displayName == winnerName)
+            {
+                a = p.avatar.GetComponentInChildren<Animator>();
+                break;
+            }
+        }
+
+        // Hide the player option for best stat
+        if (stat == PlayerStatType.Best)
+            playerWon = false;
+        StartCoroutine(AnimStatDisplay(s.statName, w, y, a, !playerWon));
     }
 
+    private Animator lastAnimated = null;
     private bool statInPlace = true;
-    private IEnumerator AnimStatDisplay(string statName, string winner, string player, bool showPlayer)
+    private IEnumerator AnimStatDisplay(string statName, string winner, string player, Animator winnerAnim, bool showPlayer)
     {
+        if (lastAnimated)
+        {
+            lastAnimated.SetBool("Dancing", false);
+            lastAnimated = null;
+        }
+
         statInPlace = false;
         stat1text.text = stat1textBkgd.text = statName;
         anim.SetTrigger("NextStat");
@@ -110,6 +131,15 @@ public class StatsUI : GameUI
         playerBlock.gameObject.SetActive(showPlayer);
 
         anim.SetTrigger("ShowWinner");
+
+        
+        if (winnerAnim)
+        {
+            winnerAnim.SetBool("Dancing", true);
+            winnerAnim.SetInteger("Dance", 1);
+            lastAnimated = winnerAnim;
+        }
+
 
         float wRot = dropRotation.RandomVal * -rotDir;
         float yRot = dropRotation.RandomVal * rotDir;
