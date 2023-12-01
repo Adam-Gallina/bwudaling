@@ -243,7 +243,6 @@ public class PlayerAvatar : AvatarBase
             boost = player.abilities.vals.BoostMaxVal;
         if (boostRecharging && inp.boost.up)
             boostRecharging = false;
-        anim.SetBool("Running", (inp.boost.down || inp.boost.held) && !boostRecharging);
 
         targetPos = GetMovement();
         Vector3 dir = targetPos - transform.position;
@@ -268,7 +267,9 @@ public class PlayerAvatar : AvatarBase
             transform.forward = Vector3.RotateTowards(transform.forward, newVec.normalized, (turnSpeed + player.abilities.vals.speedLevel * turnSpeedMod) * Mathf.Deg2Rad * Time.deltaTime, 0);
             anim.SetBool("Dancing", false);
         }
-        anim?.SetBool("Walking", walking);
+        anim?.SetBool("Moving", walking);
+        anim.SetInteger("MoveAnim", AbilityLevels.CalcSpeedAnim(currSpeed, (inp.boost.down || inp.boost.held) && !boostRecharging));
+        Debug.Log(currSpeed);
     }
 
     private void UpdateCurrSpeed(float newSpeed)
@@ -392,7 +393,7 @@ public class PlayerAvatar : AvatarBase
             }
         }
 
-        anim.SetFloat("WalkSpeed", startWalkAnimSpeed + player.abilities.vals.speedLevel * stepWalkAnimSpeed);
+        anim.SetFloat("MoveMod", startWalkAnimSpeed + player.abilities.vals.speedLevel * stepWalkAnimSpeed);
 
         float boostMod = 1;
         if (inp.boost && !boostRecharging && boost > 0)

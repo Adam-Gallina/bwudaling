@@ -128,6 +128,12 @@ public static class AbilityLevels
     public static void SaveAbilities()
     {
         int i = CharSaves.saveIDs.IndexOf(LoadedAbilities.vals.id);
+        if (i == -1)
+        {
+            Debug.LogWarning($"Trying to save non-existant Bwudaling (lvl {LoadedAbilities.vals.level} {LoadedAbilities.vals.avatarClass})");
+            return;
+        }
+
         if (LoadedAbilities.vals.level != CharSaves.levels[i])
         {
             charSaves.levels[i] = LoadedAbilities.vals.level;
@@ -153,6 +159,9 @@ public static class AbilityLevels
         charSaves.saveIDs.RemoveAt(i);
         charSaves.classes.RemoveAt(i);
         charSaves.levels.RemoveAt(i);
+
+        if (id == LoadedAbilities.vals.id)
+            LoadedAbilities = null;
 
         SaveCharacterSaves();
     }
@@ -183,6 +192,11 @@ public static class AbilityLevels
     public static float CalcSpeed(int level)
     {
         return BaseSpeed + level * SpeedPerLevel;
+    }
+
+    public static int CalcSpeedAnim(float speed, bool running)
+    {
+        return (int)(speed / 12.5f) + (running ? 1 : 0);
     }
     #endregion
 

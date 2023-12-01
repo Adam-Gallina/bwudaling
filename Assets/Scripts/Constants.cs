@@ -26,22 +26,22 @@ public class Constants
         " walked headfirst into a saw",
         " went kaboom",
         " is now shaking their head frantically",
-        " forgot this wasn't runling",                // This one might need to be taken out in public releases
+        //" forgot this wasn't runling",                // This one might need to be taken out in public releases
         " ate a twenty haiw",
         " went swimming within 1 hour of eating",
         " died.",
         " was ugly in front of bwuda mudda",
-        " was out-sillied by a cwab",
+        " was out-siwied by a cwab",
         " is no longer with us",
         " said Bwudaling was bad (it is)",
-        " wished they were James Bond",                // This one might need to be taken out in public releases
+        //" wished they were James Bond",                // This one might need to be taken out in public releases
         " peeked the op",
         " forgot to breathe",
         " got rectangle foot",
         " was diagnosed with pearhead condition",
-        " got rejected by the pung's",                 // This one might need to be taken out in public releases
+        //" got rejected by the pung's",                 // This one might need to be taken out in public releases
         " drew a 7",
-        " missed BeReal time",
+        //" missed BeReal time",
         " was bonked by the sock rock",
         " was discovered to have acorn head",
         " was hit by a llama",
@@ -52,7 +52,8 @@ public class Constants
         " is such a silly wittle goose",
         " is a stinkin shrub",
         " had to look at Big Wed's memes",
-        " was demoted"
+        " was demoted",
+        ". Oof."
     };
     public static float DeathBannerDuration = 2;
 
