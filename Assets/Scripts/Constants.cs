@@ -26,7 +26,6 @@ public class Constants
         " walked headfirst into a saw",
         " went kaboom",
         " is now shaking their head frantically",
-        //" forgot this wasn't runling",                // This one might need to be taken out in public releases
         " ate a twenty haiw",
         " went swimming within 1 hour of eating",
         " died.",
@@ -34,14 +33,11 @@ public class Constants
         " was out-siwied by a cwab",
         " is no longer with us",
         " said Bwudaling was bad (it is)",
-        //" wished they were James Bond",                // This one might need to be taken out in public releases
         " peeked the op",
         " forgot to breathe",
         " got rectangle foot",
         " was diagnosed with pearhead condition",
-        //" got rejected by the pung's",                 // This one might need to be taken out in public releases
         " drew a 7",
-        //" missed BeReal time",
         " was bonked by the sock rock",
         " was discovered to have acorn head",
         " was hit by a llama",
@@ -53,7 +49,23 @@ public class Constants
         " is a stinkin shrub",
         " had to look at Big Wed's memes",
         " was demoted",
-        ". Oof."
+        ". Oof.",
+        " is a liiiiil stinky",
+        " lost the game",
+        "? What were you finkin?",
+        " died a horrendous death",
+        " sniffa'd a saw",
+        " kinda sucks at this",
+        " had a lil oopsy-poopsy",
+        "'s fart wasn't just a fart",
+        " went honk mimimimimi",
+        " went honk shoooo",
+        " fell apart",
+        " is blowing chunks",
+        " didn't give constructive criticism",
+        " lost their growth mindset",
+        " looks like an ogre",
+        " got hurted"
     };
     public static float DeathBannerDuration = 2;
 
