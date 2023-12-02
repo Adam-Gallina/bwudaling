@@ -48,7 +48,7 @@ public class AchievmentController : MonoBehaviour
 
     public static AchievmentController Instance { get; private set; }
 
-    public static string DefaultShirtId = "col_red";
+    public static string DefaultShirtId { get; private set; }  = "col_red";
 
 
     [SerializeField] private ShirtData[] shirts = new ShirtData[0];

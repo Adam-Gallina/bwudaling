@@ -8,8 +8,8 @@ public class ShirtSelect : MonoBehaviour
 {
     private int currShirt = 0;
     private string[] availableShirts;
-    public string CurrShirtId { get { return shirtData.id; } }
-    private ShirtData shirtData;
+    public static string CurrShirtId { get { return shirtData.id; } }
+    private static ShirtData shirtData;
 
     private string savedShirt
     {

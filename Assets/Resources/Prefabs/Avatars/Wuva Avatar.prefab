@@ -861,6 +861,14 @@ PrefabInstance:
       propertyPath: projectileSpawn
       value: 
       objectReference: {fileID: 6086452747484178263}
+    - target: {fileID: 6785680171945048309, guid: b026ced7375b4df4d88ce174a6d40fde, type: 3}
+      propertyPath: zoneDiameter.startValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785680171945048309, guid: b026ced7375b4df4d88ce174a6d40fde, type: 3}
+      propertyPath: zoneDiameter.upgradeValue
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 6785680171945048310, guid: b026ced7375b4df4d88ce174a6d40fde, type: 3}
       propertyPath: m_RootOrder
       value: 1
