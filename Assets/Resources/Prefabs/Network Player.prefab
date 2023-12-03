@@ -68,8 +68,17 @@ MonoBehaviour:
   gameAvatarClass: 0
   avatarLevel: 0
   avatar: {fileID: 0}
+  currPlayerStats:
+    updated: 0
+    DistTravelled: 0
+    Deaths: 0
+    Rescues: 0
+    Dodges: 0
+    Abilities: 0
+    HaiwsCollected: 0
   displayName: Unnamed Player
   avatarColor: {r: 1, g: 1, b: 1, a: 1}
+  shirtTextureId: 
   IsReady: 0
   IsLeader: 0
 --- !u!114 &9093899259416148656
@@ -84,10 +93,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ace22a9c5f0f234394c2959213efeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerDist: 0
-  PlayerDeaths: 0
-  PlayerRescues: 0
-  PlayerDodges: 0
+  currStats:
+    updated: 0
+    DistTravelled: 0
+    Deaths: 0
+    Rescues: 0
+    Dodges: 0
+    Abilities: 0
+    HaiwsCollected: 0
   pDodgeDist: 1
-  PlayerAbilities: 0
-  PlayerHaiwsCollected: 0

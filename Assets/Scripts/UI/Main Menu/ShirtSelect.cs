@@ -58,7 +58,6 @@ public class ShirtSelect : MonoBehaviour
 
         shirtData = AchievmentController.Shirts[availableShirts[currShirt]];
         UpdateShirtDisplay();
-        BwudalingNetworkManager.Instance.ActivePlayer.SetAvatarShirt(shirtData.id);
     }
 
     public void LastShirt()
@@ -70,7 +69,6 @@ public class ShirtSelect : MonoBehaviour
 
         shirtData = AchievmentController.Shirts[availableShirts[currShirt]];
         UpdateShirtDisplay();
-        BwudalingNetworkManager.Instance.ActivePlayer.SetAvatarShirt(shirtData.id);
     }
 
     private void UpdateShirtDisplay()

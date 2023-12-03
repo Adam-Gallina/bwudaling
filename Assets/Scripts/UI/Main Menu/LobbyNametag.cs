@@ -85,6 +85,7 @@ public class LobbyNametag : NametagUI
 
         Menu.readyButton.GetComponentInChildren<TMPro.TMP_Text>().text = !LinkedPlayer.IsReady ? "Unready" : "Ready";
         LinkedPlayer.CmdSetIsReady(!LinkedPlayer.IsReady);
+        LinkedPlayer.SetAvatarShirt(ShirtSelect.CurrShirtId);
     }
 
     public void StartGame()
