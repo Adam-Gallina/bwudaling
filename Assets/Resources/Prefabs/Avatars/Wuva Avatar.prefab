@@ -741,8 +741,16 @@ PrefabInstance:
       value: Bwuda's might hands protect you and allies from harm
       objectReference: {fileID: 0}
     - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+      propertyPath: range.startValue
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
       propertyPath: radius.startValue
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+      propertyPath: range.upgradeValue
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
       propertyPath: abilityCooldown.startValue
@@ -1123,7 +1131,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: range.startValue
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: range.upgradeValue
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: abilityCooldown.upgradeValue

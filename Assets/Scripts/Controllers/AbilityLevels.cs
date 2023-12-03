@@ -160,7 +160,7 @@ public static class AbilityLevels
         charSaves.classes.RemoveAt(i);
         charSaves.levels.RemoveAt(i);
 
-        if (id == LoadedAbilities.vals.id)
+        if (LoadedAbilities != null && id == LoadedAbilities.vals.id)
             LoadedAbilities = null;
 
         SaveCharacterSaves();

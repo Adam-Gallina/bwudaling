@@ -16,6 +16,7 @@ public abstract class TargetAbility : AbilityBase
     [SerializeField] protected bool forceMaxRange;
 
     [SerializeField] protected ParticleSystem splashEffect;
+    [Tooltip("0 to not scale")] [SerializeField] protected float baseScale = 0;
 
     private void Update()
     {
@@ -102,8 +103,16 @@ public abstract class TargetAbility : AbilityBase
 
         if (!splashEffect) return;
 
-        shape = splashEffect.shape;
-        shape.radius = radius.CalcValue(level) - 2.5f;
+        if (baseScale == 0)
+        {
+            shape = splashEffect.shape;
+            shape.radius = radius.CalcValue(level) - 2.5f;
+        }
+        else
+        {
+            float s = baseScale * radius.CalcValue(level) * 2;
+            splashEffect.transform.localScale = new Vector3(s, s, s);
+        }
         PlaceEffect(splashEffect, target + Vector3.up * .1f, level);
     }
 
