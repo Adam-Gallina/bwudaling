@@ -80,7 +80,7 @@ public class StatsGameController : GameController
             }
         }
         RpcShowStat(PlayerStatType.Best, f.displayName, 0, false);
-        yield return new WaitForSeconds(timeBetweenStats);
+        yield return new WaitForSeconds(timeBetweenStats * 3);
 
         RpcHideStats();
 

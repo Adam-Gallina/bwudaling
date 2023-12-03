@@ -9,6 +9,8 @@ public class StatsUI : GameUI
 {
     [SerializeField] private GameObject allStats;
 
+    [SerializeField] private GameObject viewStatsBtn;
+
     [Header("Stats")]
     public StatDisplay distance;
     public StatDisplay abilities;
@@ -36,6 +38,8 @@ public class StatsUI : GameUI
     [SerializeField] private float targetOffset = -35;
     [SerializeField] private float dropTime;
     [SerializeField] private RangeF dropRotation;
+    [SerializeField] private AudioSource smackAudio;
+    [SerializeField] private AudioSource didiyenuAudio;
 
     private Animator anim;
 
@@ -48,6 +52,7 @@ public class StatsUI : GameUI
         stat1Block.gameObject.SetActive(true);
         stat2Block.gameObject.SetActive(true);
         allStats.gameObject.SetActive(false);
+        viewStatsBtn.SetActive(false);
     }
 
     public StatDisplay GetStatDisplay(PlayerStatType stat)
@@ -85,15 +90,25 @@ public class StatsUI : GameUI
             }
         }
 
-        // Hide the player option for best stat
+        float speedMod = 1;
         if (stat == PlayerStatType.Best)
-            playerWon = false;
-        StartCoroutine(AnimStatDisplay(s.statName, w, y, a, !playerWon));
+        {
+            playerWon = true;
+            didiyenuAudio.Play();
+            speedMod = .125f;
+        }
+        smackAudio.gameObject.SetActive(speedMod == 1);
+        StartCoroutine(AnimStatDisplay(s.statName, w, y, speedMod, a, !playerWon));
+    }
+
+    public void Smackins()
+    {
+        smackAudio.Play();
     }
 
     private Animator lastAnimated = null;
     private bool statInPlace = true;
-    private IEnumerator AnimStatDisplay(string statName, string winner, string player, Animator winnerAnim, bool showPlayer)
+    private IEnumerator AnimStatDisplay(string statName, string winner, string player, float speedMod, Animator winnerAnim, bool showPlayer)
     {
         if (lastAnimated)
         {
@@ -104,15 +119,16 @@ public class StatsUI : GameUI
         statInPlace = false;
         stat1text.text = stat1textBkgd.text = statName;
         anim.SetTrigger("NextStat");
+        anim.speed = speedMod;
 
         float rotDir = Mathf.Sign(Random.Range(-1, 1));
         float offset = slideOffset.RandomVal;
         float rot = dropRotation.RandomVal * rotDir;
         float startRot = Random.Range(-90, 90) + rot;
         float start = Time.time;
-        while (Time.time < start + slideTime)
+        while (Time.time < start + (slideTime * 1 / speedMod))
         {
-            float t = (Time.time - start) / slideTime;
+            float t = (Time.time - start) / (slideTime * 1 / speedMod);
             float x = stat1Block.anchoredPosition.x;
             stat1Block.anchoredPosition = new Vector2(x, offset + (targetOffset - offset) * t);
             stat1Block.eulerAngles = new Vector3(0, 0, startRot + (rot - startRot) * t);
@@ -159,9 +175,11 @@ public class StatsUI : GameUI
 
     public void HideStatDisplay()
     {
-        stat1Block.gameObject.SetActive(false);
+        /*stat1Block.gameObject.SetActive(false);
         stat2Block.gameObject.SetActive(false);
-        allStats.gameObject.SetActive(true);
+        allStats.gameObject.SetActive(true);*/
+
+        viewStatsBtn.SetActive(true);
 
         ListDeathCounts();
     }
