@@ -91,6 +91,8 @@ public class Meteor : BasicSaw
     [ClientRpc]
     protected void RpcOnLand()
     {
+        GetComponent<AudioSource>().Play();
+
         if (!isServer)
         {
             spawnAnim.Play();

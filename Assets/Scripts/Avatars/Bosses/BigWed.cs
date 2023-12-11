@@ -97,6 +97,7 @@ public class BigWed : BossBase
             yield return new WaitForSeconds(spawnDelays[i]);
             Vector3 dir = MyMath.RotateAboutY(transform.forward, Random.Range(-maxSawSpreadAng, maxSawSpreadAng));
             SpawnSaw(spicyStats.hazardPrefab, transform.position, dir, spicyStats.hazardSpeedMod);
+            RpcPlaySpecialAudio();
 
             if (i % haiwDelta == 0)
                 SpawnHaiw();
@@ -152,6 +153,7 @@ public class BigWed : BossBase
                     SpawnSaw(whirlStats.hazardPrefab, transform.position, dir, whirlStats.hazardSpeedMod);
                     dir = MyMath.RotateAboutY(dir, da);
                 }
+                RpcPlaySpecialAudio();
             }
 
             if (Time.time > nextHair)
@@ -222,6 +224,7 @@ public class BigWed : BossBase
                 if (Random.Range(0, 100) < haiwSpawnChancePerWave)
                     SpawnHaiw();
 
+                RpcPlaySpecialAudio();
                 for (int _ = 0; _ < sawsPerWave; _++)
                 {
                     SpawnSaw(overheatStats.hazardPrefab, transform.position, new Vector3(dir.x, 0, dir.y), overheatStats.hazardSpeedMod);
@@ -246,17 +249,18 @@ public class BigWed : BossBase
     [Server]
     public override IEnumerator SpawnAnim()
     {
-        StartAnim();
+        RpcStartAnim();
 
         yield return base.SpawnAnim();
     }
 
     [ClientRpc] 
-    private void StartAnim() { StartCoroutine(Anim()); }
+    private void RpcStartAnim() { StartCoroutine(Anim()); }
     private IEnumerator Anim()
     {
         model.gameObject.SetActive(true);
         flames.Play();
+        spawnAudio.Play();
         CameraController.Instance.FocusOnPoint(model.position + Vector3.forward * 3);
         CameraController.Instance.SetZoom(3);
 
@@ -273,6 +277,12 @@ public class BigWed : BossBase
 
         flames.Stop();
         model.localPosition = Vector3.zero;
+
+        anim.SetBool("Attack3", true);
+
+        yield return new WaitForSeconds(2);
+        spawnAudio.Stop();
+        anim.SetBool("Attack3", false);
     }
 
     [Server]
@@ -282,6 +292,7 @@ public class BigWed : BossBase
 
         canMove = false;
 
+        RpcPlayDeathAudio();
         RpcSetAnimTrigger("Killed");
 
         yield return base.DeathAnim();

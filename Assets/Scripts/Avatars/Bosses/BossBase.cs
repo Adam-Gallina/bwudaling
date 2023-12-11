@@ -43,9 +43,15 @@ public abstract class BossBase : NetworkBehaviour
 
     protected Animator anim;
 
+    [Header("Audio")]
+    [SerializeField] protected AudioSource spawnAudio;
+    [SerializeField] protected AudioSource deathAudio;
+    protected AudioSource audioSource;
+
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         if (BwudalingNetworkManager.Instance.DEBUG_ForceBossHealth != 0)
             maxHealth = BwudalingNetworkManager.Instance.DEBUG_ForceBossHealth;
@@ -287,6 +293,24 @@ public abstract class BossBase : NetworkBehaviour
     protected void RpcSetAnimTrigger(string trigger)
     {
         anim.SetTrigger(trigger);
+    }
+
+    [ClientRpc] 
+    protected void RpcPlaySpecialAudio()
+    {
+        audioSource.Play();
+    }
+
+    [ClientRpc]
+    protected void RpcPlaySpawnAudio()
+    {
+        spawnAudio.Play();
+    }
+
+    [ClientRpc]
+    protected void RpcPlayDeathAudio()
+    {
+        deathAudio.Play();
     }
 }
 

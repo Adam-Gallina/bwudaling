@@ -96,6 +96,7 @@ public class Twenty : BossBase
             SpawnHaiw();
         }
 
+        RpcPlaySpecialAudio();
         for (int _ = 0; _ < sawWaveCount; _++)
         {
             SpawnSaw(waveStats.hazardPrefab, transform.position, new Vector3(nextDir1.x, 0, nextDir1.y), waveStats.hazardSpeedMod);
@@ -253,6 +254,7 @@ public class Twenty : BossBase
 
         canMove = false;
 
+        RpcPlayDeathAudio();
         RpcSetAnimTrigger("Killed");
 
         yield return base.DeathAnim();

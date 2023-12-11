@@ -75,6 +75,7 @@ public class SiwyCwab : BossBase
 
 
         int spawn = 0;
+        RpcPlaySpecialAudio();
         while (Vector3.Distance(transform.position, tPos) > targetPosAccuracy)
         {
             transform.position = Vector3.MoveTowards(transform.position, tPos, chargeSpeed * Time.deltaTime);
@@ -118,6 +119,7 @@ public class SiwyCwab : BossBase
             Vector3 dir = stompSpawnPoints[i % stompSpawnPoints.Length].forward;
             Vector2 nextDir = MyMath.Rotate(new Vector2(dir.x, dir.z), -stompWaveAngle / 2);
 
+            RpcPlaySpecialAudio();
             for (int s = 0; s < sawsPerWave; s++)
             {
                 SpawnSaw(stompStats.hazardPrefab, stompSpawnPoints[i % stompSpawnPoints.Length].position, new Vector3(nextDir.x, 0, nextDir.y), stompStats.hazardSpeedMod);
@@ -199,6 +201,7 @@ public class SiwyCwab : BossBase
                 SpawnSaw(leapStats.hazardPrefab, transform.position, dir, leapStats.hazardSpeedMod);
                 dir = MyMath.RotateAboutY(dir, da);
             }
+            RpcPlaySpecialAudio();
         }
 
         anim.SetBool("Jump", false);
@@ -229,6 +232,7 @@ public class SiwyCwab : BossBase
 
         canMove = false;
 
+        RpcPlayDeathAudio();
         RpcSetAnimTrigger("Killed");
 
         yield return base.DeathAnim();

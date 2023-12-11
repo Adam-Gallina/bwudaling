@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6675476711911464698}
   - component: {fileID: 9136782112212669000}
   - component: {fileID: 6933598389672723404}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SmokeTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4835,7 +4835,7 @@ GameObject:
   - component: {fileID: 696657511870311098}
   - component: {fileID: 2580574537082629926}
   - component: {fileID: 2806444158719948425}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10006,7 +10006,7 @@ GameObject:
   - component: {fileID: 8302256883408540692}
   - component: {fileID: 8649853624069584048}
   - component: {fileID: 173156649625789026}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Traveling Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

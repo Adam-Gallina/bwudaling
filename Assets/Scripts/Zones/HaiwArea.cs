@@ -22,6 +22,9 @@ public class HaiwArea : SafeArea
     [ServerCallback]
     private void Update()
     {
+        if (BwudalingNetworkManager.Instance.DEBUG_AllowKeyCheats && Input.GetKeyDown(KeyCode.Backslash))
+            chargeLevel += chargePerHaiw;
+
         if (chargeLevel > 0)
         {
             chargeLevel -= Time.deltaTime;
