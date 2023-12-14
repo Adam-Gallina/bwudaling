@@ -10919,7 +10919,7 @@ MonoBehaviour:
   DEBUG_AllowMapSkip: 1
   DEBUG_AllowKeyCheats: 1
   DEBUG_IgnoreCooldown: 1
-  DEBUG_TpWalls: 1
+  DEBUG_TpWalls: 0
   DEBUG_ForceBossAttack: 0
   DEBUG_ForceBossHealth: 10
   DEBUG_UnlockAllShirts: 0
@@ -15114,7 +15114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1498317495
 RectTransform:
   m_ObjectHideFlags: 0

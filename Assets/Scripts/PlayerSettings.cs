@@ -1,3 +1,4 @@
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,16 +10,27 @@ public class PlayerSettings : MonoBehaviour
 
     #region PlayerPrefs
     public const string FullscreenPref = "DoFullscreen";
+    public const string CamScrollSpeedPref = "CamSpeed";
+    public const string NicknamePref = "Nickname";
 
     public const string MasterVolumePref = "MasterVolume";
     public const string MusicVolumePref = "MusicVolume";
     public const string SfxVolumePref = "SfxVolume";
     public const string UiVolumePref = "UiVolume";
-
-    public const string CamScrollSpeedPref = "CamSpeed";
     #endregion
 
     public bool fullscreen { get; private set; } = false;
+    public string nickname { get; private set; } = "";
+    public string RealNickname { 
+        get 
+        {
+            if (nickname != "")
+                return nickname;
+            else
+                return ManagerDebug.Instance.DEBUG_useKcpManager ? "Unnamed KCP Player" : SteamFriends.GetPersonaName();
+        } 
+    }
+
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private RangeF volumeVals;
     public float masterVolume { get { mixer.GetFloat(MasterVolumePref, out float o); return volumeVals.PercentOfRange(o); } }
@@ -46,12 +58,15 @@ public class PlayerSettings : MonoBehaviour
         SetCamScrollSpeed(camScrollVal);
     }
 
-    public void LoadAudioPrefs()
+    public void LoadLatePrefs()
     {
         SetMasterVolume(PlayerPrefs.GetFloat(MasterVolumePref, volumeVals.PercentOfRange(0)));
         SetMusicVolume(PlayerPrefs.GetFloat(MusicVolumePref, volumeVals.PercentOfRange(0)));
         SetSfxVolume(PlayerPrefs.GetFloat(SfxVolumePref, volumeVals.PercentOfRange(0)));
         SetUiVolume(PlayerPrefs.GetFloat(UiVolumePref, volumeVals.PercentOfRange(0)));
+
+        nickname = PlayerPrefs.GetString(NicknamePref, "");
+        SetNickname(nickname);
     }
 
     public void SetFullscreen(bool fullscreen)
@@ -66,6 +81,17 @@ public class PlayerSettings : MonoBehaviour
             Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, fullscreen);
         else
             Screen.fullScreenMode = FullScreenMode.Windowed;
+    }
+
+    public void SetNickname(string nickname)
+    {
+        if (nickname != this.nickname)
+        {
+            PlayerPrefs.SetString(NicknamePref, nickname);
+            this.nickname = nickname;
+            if (BwudalingNetworkManager.Instance.ActivePlayer)
+                BwudalingNetworkManager.Instance.ActivePlayer.CmdSetDisplayName(RealNickname);
+        }
     }
 
     public void SetMasterVolume(float volume)

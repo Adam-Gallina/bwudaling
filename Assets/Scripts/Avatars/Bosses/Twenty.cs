@@ -235,8 +235,7 @@ public class Twenty : BossBase
     [Server]
     public override IEnumerator SpawnAnim()
     {
-        CameraController.Instance.SetZoom(5);
-        CameraController.Instance.FocusOnPoint(transform.position + Vector3.forward * 4);
+        RpcSpawnAnim();
 
         yield return new WaitForSeconds(1);
 
@@ -245,6 +244,12 @@ public class Twenty : BossBase
         yield return new WaitForSeconds(.5f);
 
         yield return base.SpawnAnim();
+    }
+
+    [ClientRpc]
+    private void RpcSpawnAnim()
+    {
+        CameraController.Instance.SetZoom(5);
     }
 
     [Server]

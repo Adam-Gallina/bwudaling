@@ -24,6 +24,7 @@ public class OptionsMenu : MonoBehaviour
     [Header("Display")]
     [SerializeField] private Toggle fullscreenToggle;
     [SerializeField] private Slider camScrollSpeed;
+    [SerializeField] private TMPro.TMP_InputField nickname;
 
     [Header("Audio")]
     [SerializeField] private Slider masterVolume;
@@ -53,7 +54,7 @@ public class OptionsMenu : MonoBehaviour
 
     private void Start()
     {
-        PlayerSettings.Instance.LoadAudioPrefs();
+        PlayerSettings.Instance.LoadLatePrefs();
 
         InputController.Instance.LoadKeybinds();
         keybinds = GetComponentsInChildren<KeybindOption>(includeInactive: true);
@@ -66,6 +67,7 @@ public class OptionsMenu : MonoBehaviour
     private void InitializeOptions()
     {
         fullscreenToggle.isOn = PlayerSettings.Instance.fullscreen;
+        nickname.text = PlayerSettings.Instance.nickname;
 
         masterVolume.value = PlayerSettings.Instance.masterVolume;
         masterVolume.onValueChanged.AddListener(PlayerSettings.Instance.SetMasterVolume);

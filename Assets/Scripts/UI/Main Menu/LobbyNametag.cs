@@ -105,14 +105,7 @@ public class LobbyNametag : NametagUI
     #region Getters/Setters
     private void SetDisplayName(string displayName)
     {
-        if (ManagerDebug.Instance.DEBUG_useKcpManager)
-        {
-            LinkedPlayer.CmdSetDisplayName(displayName);
-        }
-        else
-        {
-            LinkedPlayer.CmdSetDisplayName(SteamFriends.GetPersonaName());
-        }
+        LinkedPlayer.CmdSetDisplayName(PlayerSettings.Instance.RealNickname);
     }
     #endregion
 }

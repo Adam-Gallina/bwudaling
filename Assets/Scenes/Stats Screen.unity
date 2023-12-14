@@ -1899,11 +1899,11 @@ RectTransform:
   m_Father: {fileID: 1817762007677609018}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 2.5, y: 435}
-  m_SizeDelta: {x: -5, y: 50}
-  m_Pivot: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 5, y: 0}
+  m_SizeDelta: {x: 795, y: 15}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &533788045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4347,7 +4347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1680039650
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5572,11 +5572,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1210422248001336216, guid: e332fde920ed4cd42a67a3a286aef8b2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 60
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 1287805819916784356, guid: e332fde920ed4cd42a67a3a286aef8b2, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 95
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 1503666059265531934, guid: e332fde920ed4cd42a67a3a286aef8b2, type: 3}
       propertyPath: m_IsActive
@@ -5668,7 +5668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3420190074764305159, guid: e332fde920ed4cd42a67a3a286aef8b2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3831100618428688537, guid: e332fde920ed4cd42a67a3a286aef8b2, type: 3}
       propertyPath: m_IsActive
@@ -5680,7 +5680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4579475047704156736, guid: e332fde920ed4cd42a67a3a286aef8b2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 71.7
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4924756709004416481, guid: e332fde920ed4cd42a67a3a286aef8b2, type: 3}
       propertyPath: m_Interactable
@@ -5689,6 +5689,10 @@ PrefabInstance:
     - target: {fileID: 4980044888478209653, guid: e332fde920ed4cd42a67a3a286aef8b2, type: 3}
       propertyPath: m_Name
       value: Pause Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389006906795433370, guid: e332fde920ed4cd42a67a3a286aef8b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6927961096678200922, guid: e332fde920ed4cd42a67a3a286aef8b2, type: 3}
       propertyPath: m_IsActive
@@ -5928,7 +5932,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 450}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

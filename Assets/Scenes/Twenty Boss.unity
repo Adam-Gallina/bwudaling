@@ -659,6 +659,7 @@ MonoBehaviour:
   hazardSpeed: 5
   hazardRange: 100
   mapCenter: {x: 0, y: 0, z: -54}
+  canControlAvatars: 1
   bossPrefab: {fileID: 6373117362493061847, guid: d85afd057c4abff4e9c6291489e1b948, type: 3}
 --- !u!1 &419174779
 GameObject:

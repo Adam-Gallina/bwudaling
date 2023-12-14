@@ -26,6 +26,7 @@ public class BossGameController : BasicGameController
     {
         GameUI.Instance.SetBossHealthTarget(boss);
         CameraController.Instance.SetTarget(boss.transform, 1);
+        CameraController.Instance.FocusOnPoint(boss.transform.position + Vector3.forward * 3);
     }
 
     [Server]

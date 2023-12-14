@@ -175,7 +175,7 @@ public class MainMenu : GameUI
         }
         else
         {
-            BwudalingNetworkManager.Instance.GetComponent<SteamLobby>().JoinSteamLobby();
+            ManagerDebug.Instance.steamTransport.GetComponent<SteamLobby>().JoinSteamLobby();
         }
 
         //joinButton.interactable = false;
@@ -186,7 +186,7 @@ public class MainMenu : GameUI
         if (ManagerDebug.Instance.DEBUG_useKcpManager)
             return;
 
-        SteamLobby lobby = BwudalingNetworkManager.Instance.GetComponent<SteamLobby>();
+        SteamLobby lobby = ManagerDebug.Instance.steamTransport.GetComponent<SteamLobby>();
         SteamFriends.ActivateGameOverlayInviteDialog(lobby.lobbyID);
     }
 

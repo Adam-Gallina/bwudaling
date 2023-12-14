@@ -214,8 +214,8 @@ public class SiwyCwab : BossBase
     [Server]
     public override IEnumerator SpawnAnim()
     {
+        RpcSpawnAnim();
 
-        CameraController.Instance.SetZoom(2);
         yield return new WaitForSeconds(1);
 
         RpcSetAnimTrigger("Spawn");
@@ -223,6 +223,12 @@ public class SiwyCwab : BossBase
         yield return new WaitForSeconds(.5f);
 
         yield return base.SpawnAnim();
+    }
+
+    [ClientRpc]
+    private void RpcSpawnAnim()
+    {
+        CameraController.Instance.SetZoom(2);
     }
 
     [Server]

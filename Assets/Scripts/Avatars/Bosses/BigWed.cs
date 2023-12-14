@@ -261,7 +261,6 @@ public class BigWed : BossBase
         model.gameObject.SetActive(true);
         flames.Play();
         spawnAudio.Play();
-        CameraController.Instance.FocusOnPoint(model.position + Vector3.forward * 3);
         CameraController.Instance.SetZoom(3);
 
         float startTime = Time.time;
@@ -273,7 +272,6 @@ public class BigWed : BossBase
 
             yield return new WaitForEndOfFrame();
         }
-        //currHealth = maxHealth;
 
         flames.Stop();
         model.localPosition = Vector3.zero;
