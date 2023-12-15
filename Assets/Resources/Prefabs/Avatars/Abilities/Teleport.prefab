@@ -81,6 +81,7 @@ MonoBehaviour:
     upgradeLevels: 
   forceMaxRange: 0
   splashEffect: {fileID: 0}
+  baseScale: 0
 --- !u!82 &1796836217414249081
 AudioSource:
   m_ObjectHideFlags: 0
@@ -101,7 +102,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 47
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 50
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

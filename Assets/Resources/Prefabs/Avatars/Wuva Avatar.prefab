@@ -760,6 +760,14 @@ PrefabInstance:
       propertyPath: abilityCooldown.upgradeValue
       value: -1.75
       objectReference: {fileID: 0}
+    - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[0]._Target
+      value: 
+      objectReference: {fileID: 4987983373281028758}
+    - target: {fileID: 3288531033609842075, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+      propertyPath: abilityStart._PersistentCalls.Array.data[0]._MethodName
+      value: Play
+      objectReference: {fileID: 0}
     - target: {fileID: 4871229877759646936, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
       propertyPath: m_Name
       value: Shield
@@ -782,6 +790,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c70cd306a472f740ad2a1a9cdc4cdb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &4987983373281028758 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7286645016788801499, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+  m_PrefabInstance: {fileID: 2317028865054702925}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2505139102875159042
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -132,10 +132,10 @@ public class Constants
 
     public static MapPack[] Maps = new MapPack[]
     {
-        new MapPack("Debug", 0, MapPackType.Test, new GameScene[] { TestMap }),
+        /*new MapPack("Debug", 0, MapPackType.Test, new GameScene[] { TestMap }),
         new MapPack("Debug Cwab", 0, MapPackType.Test, new GameScene[] { SiwyCwab }),
         new MapPack("Debug Wed", 0, MapPackType.Test, new GameScene[] { BigWed }),
-        new MapPack("Debug Twent", 0, MapPackType.Test, new GameScene[] { Twenty }),
+        new MapPack("Debug Twent", 0, MapPackType.Test, new GameScene[] { Twenty }),*/
         new MapPack("Siwy Cwab", 1, MapPackType.Bwudaling, new GameScene[] { Level1_1, Level1_2, Level1_3, SiwyCwab }),
         new MapPack("Big Wed", 2, MapPackType.Bwudaling, new GameScene[] { Level2_1, Level2_2, Level2_3, BigWed }),
         new MapPack("Twent", 3, MapPackType.Bwudaling, new GameScene[] { Level3_1, Level3_2, Level3_3, Twenty })

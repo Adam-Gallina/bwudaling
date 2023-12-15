@@ -44,4 +44,9 @@ public class RandomAudio : MonoBehaviour
             source.Play();
         }
     }
+
+    public void Stop()
+    {
+        source.Stop();
+    }
 }

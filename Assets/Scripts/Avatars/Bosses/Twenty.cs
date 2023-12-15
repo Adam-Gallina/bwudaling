@@ -132,15 +132,17 @@ public class Twenty : BossBase
             Vector3 spawnPos;
 
             int n = Random.Range(0, chanceToTargetPlayer + chanceForRandomDrop);
-            if (n < chanceToTargetPlayer)
+
+            Transform target = n < chanceToTargetPlayer ? GetRandomValidPlayer() : null;
+            if (target)
             {
                 Vector2 dir = Random.insideUnitCircle * Random.Range(0, maxDistFromPlayer);
-                spawnPos = GetRandomValidPlayer().position + new Vector3(dir.x, 0, dir.y);
+                spawnPos = target.position + new Vector3(dir.x, 0, dir.y);
             }
             else
             {
-                Vector2 c = Random.insideUnitCircle;
-                spawnPos = transform.position + new Vector3(c.x, 0, c.y) * meteorRange.RandomVal;
+                Vector2 c = Random.insideUnitCircle * meteorRange.RandomVal;
+                spawnPos = transform.position + new Vector3(c.x, 0, c.y);
             }
 
             SpawnSaw(meteorStats.hazardPrefab, spawnPos, Vector3.zero, meteorStats.hazardSpeedMod);

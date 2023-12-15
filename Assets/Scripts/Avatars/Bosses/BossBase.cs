@@ -203,25 +203,23 @@ public abstract class BossBase : NetworkBehaviour
         return target;
     }
 
-    // Returns a random living player able to be hit, or a random one if none exist
+    // Returns a random living player able to be hit, or null if none exist
     protected Transform GetRandomValidPlayer()
     {
         int tries = BwudalingNetworkManager.Instance.Players.Count;
         int p = Random.Range(0, BwudalingNetworkManager.Instance.Players.Count);
-        Transform target = null;
 
         while (tries-- > 0)
         {
             PlayerAvatar pa = BwudalingNetworkManager.Instance.Players[p].avatar;
-            target = BwudalingNetworkManager.Instance.Players[p].avatar.transform;
 
             if (!pa.dead && pa.canDamage)
-                break;
+                return BwudalingNetworkManager.Instance.Players[p].avatar.transform;
 
             p = (p + 1) % BwudalingNetworkManager.Instance.Players.Count;
         }
 
-        return target;
+        return null;
     }
     #endregion
 
