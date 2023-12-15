@@ -1151,8 +1151,12 @@ PrefabInstance:
       value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: abilityCooldown.startValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: abilityCooldown.upgradeValue
-      value: -0.25
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3578797770551436819, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: abilityCooldown.upgradeEveryLevel
