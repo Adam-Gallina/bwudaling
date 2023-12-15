@@ -45,7 +45,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3422928768354456098, guid: 946d3ab0e552b52409a08cd9a564de07, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.85
   m_Pitch: 0.5
   Loop: 0
   Mute: 0
@@ -272,7 +272,7 @@ MonoBehaviour:
   sparkDespawwnTime: 0.15
   deathPrefab: {fileID: 743195460189730654}
   sawWhine: {fileID: 3306298375799979674}
-  distForWhine: 4
+  distForWhine: 5
   sawCrash: {fileID: 5301787229049411323}
 --- !u!114 &8302314823388800267
 MonoBehaviour:

@@ -122,7 +122,7 @@ MonoBehaviour:
   sparkDespawwnTime: 0.15
   deathPrefab: {fileID: 5270425091402053529}
   sawWhine: {fileID: 5749665324632331736}
-  distForWhine: 4
+  distForWhine: 5
   sawCrash: {fileID: 0}
   destroyWhenOOB: 1
 --- !u!114 &2836376719650468906

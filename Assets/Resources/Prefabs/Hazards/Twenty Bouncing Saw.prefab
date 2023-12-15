@@ -14672,7 +14672,7 @@ MonoBehaviour:
   sparkDespawwnTime: 0.15
   deathPrefab: {fileID: 8407948442245987475}
   sawWhine: {fileID: 6980718091644891834}
-  distForWhine: 4
+  distForWhine: 5
   sawCrash: {fileID: 0}
 --- !u!114 &7451287833963905532
 MonoBehaviour:

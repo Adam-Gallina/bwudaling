@@ -772,6 +772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 7286645016788801499, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
+      propertyPath: m_Volume
+      value: 0.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c443f53a58cefb47bc21f7fab6af9a2, type: 3}
 --- !u!4 &297324370112367191 stripped
@@ -1098,6 +1102,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1140294442760899447}
     m_Modifications:
+    - target: {fileID: 3131446854874700116, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3345866437851789462, guid: 4d9a4ef2b4ac8ba46b69938ef15c4c22, type: 3}
       propertyPath: m_RootOrder
       value: 2

@@ -29211,7 +29211,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3422928768354456098, guid: 946d3ab0e552b52409a08cd9a564de07, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4cd14b23e890f024dbea5e6f85390dd7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.35
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -40156,22 +40156,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7467372388042613727, guid: 2f5f25b042bf14e2e81d69a769884149, type: 3}
   m_PrefabInstance: {fileID: 6324976127143389969}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3496548827741609348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3487962978276477134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcea4d301d1dae04ead2372abf03759e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  system1: {fileID: 2822942197153885930}
-  system2: {fileID: 7181435271937447233}
-  system3: {fileID: 7051960496691760367}
-  obj1: {fileID: 0}
 --- !u!82 &7006033139225346116
 AudioSource:
   m_ObjectHideFlags: 0
@@ -40181,7 +40165,7 @@ AudioSource:
   m_GameObject: {fileID: 3487962978276477134}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3422928768354456098, guid: 946d3ab0e552b52409a08cd9a564de07, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0c2d06f90f4c437479f7ae9366cc102b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -40286,6 +40270,22 @@ MonoBehaviour:
   requiredDistToPlayer: 0
   source: {fileID: 7006033139225346116}
   nonPlayerSource: {fileID: 0}
+--- !u!114 &3496548827741609348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487962978276477134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcea4d301d1dae04ead2372abf03759e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  system1: {fileID: 2822942197153885930}
+  system2: {fileID: 7181435271937447233}
+  system3: {fileID: 7051960496691760367}
+  obj1: {fileID: 0}
 --- !u!4 &4422869827655499831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7685362982838479654, guid: 2f5f25b042bf14e2e81d69a769884149, type: 3}
