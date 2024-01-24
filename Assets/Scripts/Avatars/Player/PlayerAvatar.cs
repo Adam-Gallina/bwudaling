@@ -251,10 +251,17 @@ public class PlayerAvatar : AvatarBase
             projectileSpawn.forward = dir;
 
         rb.velocity = (targetPos - transform.position).normalized * CalcSpeed();
+        // If closer to target point than would move in one physics frame, just snap to that point
         if (Vector3.Distance(transform.position, targetPos) < rb.velocity.magnitude * Time.deltaTime)
         {
-            rb.velocity = Vector3.zero;
-            rb.MovePosition(targetPos);
+            Physics.Raycast(transform.position + Vector3.up * .5f, rb.velocity, out RaycastHit hit, rb.velocity.magnitude * Time.deltaTime, 1 << Constants.EnvironmentLayer);
+            // Don't snap if it would take player into a wall
+            if (!hit.transform)
+            {
+                rb.velocity = Vector3.zero;
+                rb.MovePosition(targetPos);
+                Debug.Log(Time.time + " Snapped to point " + targetPos);
+            }
         }
         
         UpdateCurrSpeed(rb.velocity.magnitude > 0 ? rb.velocity.magnitude : CalcSpeed());
