@@ -65,7 +65,23 @@ public class Constants
         " didn't give constructive criticism",
         " lost their growth mindset",
         " looks like an ogre",
-        " got hurted"
+        " got hurted",
+        " said dogs are better than cats",
+        " said a no-no word",
+        " ate dirt",
+        "...kinda cringe...",
+        " got a lil dirt on their foot",
+        " forgot to tie their shoelace",
+        " pushed bugs to master",
+        " posted thirst traps",
+        " has the worst nickname",
+        " got L'd on. LOSER",
+        " peepeed their pantsies",
+        " went out. BETTER LUCK NEXT TIME",
+        " failed miserably",
+        " died? You gonna cry about it?",
+        "? AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        " was lost to the times"
     };
     public static float DeathBannerDuration = 2;
 

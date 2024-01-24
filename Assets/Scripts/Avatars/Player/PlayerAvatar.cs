@@ -354,7 +354,8 @@ public class PlayerAvatar : AvatarBase
             useMouse = true;
             Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 100, 1 << Constants.GroundLayer);
             idleStart = Time.time;
-            return new Vector3(hit.point.x, 0, hit.point.z);
+
+            return hit.transform != null ? new Vector3(hit.point.x, 0, hit.point.z) : transform.position;
         }
         else if (useMouse)
             return targetPos;

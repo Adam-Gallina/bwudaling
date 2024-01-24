@@ -196,7 +196,9 @@ public static class AbilityLevels
 
     public static int CalcSpeedAnim(float speed, bool running)
     {
-        return (int)(speed / 15f) + (running ? 1 : 0);
+        float level = speed / 15f;
+
+        return (int)level + (running && level % 1 >= .25f ? 1 : 0);
     }
     #endregion
 
