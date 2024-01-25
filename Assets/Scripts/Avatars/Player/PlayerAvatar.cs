@@ -260,7 +260,6 @@ public class PlayerAvatar : AvatarBase
             {
                 rb.velocity = Vector3.zero;
                 rb.MovePosition(targetPos);
-                Debug.Log(Time.time + " Snapped to point " + targetPos);
             }
         }
         

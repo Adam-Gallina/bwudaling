@@ -92,6 +92,12 @@ public class Constants
     public const string LastIpPref = "LastIP";
     #endregion
 
+    #region Names
+    public const string CwabName = "Siwy Cwab";
+    public const string WedName = "Big Wed";
+    public const string TwentName = "Twent";
+    #endregion
+
     #region Avatar Resources
     public const string AvatarPrefabFolder = "Prefabs/Avatars";
     public const string WuvaPrefab = "Wuva Avatar";
@@ -152,12 +158,30 @@ public class Constants
         new MapPack("Debug Cwab", 0, MapPackType.Test, new GameScene[] { SiwyCwab }),
         new MapPack("Debug Wed", 0, MapPackType.Test, new GameScene[] { BigWed }),
         new MapPack("Debug Twent", 0, MapPackType.Test, new GameScene[] { Twenty }),
-        new MapPack("Siwy Cwab", 1, MapPackType.Bwudaling, new GameScene[] { Level1_1, Level1_2, Level1_3, SiwyCwab }),
-        new MapPack("Big Wed", 2, MapPackType.Bwudaling, new GameScene[] { Level2_1, Level2_2, Level2_3, BigWed }),
-        new MapPack("Twent", 3, MapPackType.Bwudaling, new GameScene[] { Level3_1, Level3_2, Level3_3, Twenty })
+        new MapPack(CwabName, 1, MapPackType.Bwudaling, new GameScene[] { Level1_1, Level1_2, Level1_3, SiwyCwab }),
+        new MapPack(WedName, 2, MapPackType.Bwudaling, new GameScene[] { Level2_1, Level2_2, Level2_3, BigWed }),
+        new MapPack(TwentName, 3, MapPackType.Bwudaling, new GameScene[] { Level3_1, Level3_2, Level3_3, Twenty })
     };
     public static GameScene EndScreen = Stats;
     #endregion
+
+    public static string FormatRunTime(float time, bool showHour = false)
+    {
+        if (time == -1)
+            return "n/a";
+
+        int ms = Mathf.RoundToInt(time % 1 * 1000);
+        int s = (int)time;
+        ms -= s;
+        int m = s / 60;
+        s %= 60;
+        int h = m / 60;
+        m %= 60;
+
+        return h > 0 || showHour
+            ? string.Format("{0:0}:{1:00}:{2:00}.{3:000}", h, m, s, ms)
+            : string.Format("{0:0}:{1:00}.{2:000}", m, s, ms);
+    }
 }
 
 public struct GameScene

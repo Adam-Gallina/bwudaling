@@ -12,6 +12,10 @@ public class AchievmentController : MonoBehaviour
     private const string DogieLevel = "highest_level_dogie";
     private const string PiestLevel = "highest_level_piest";
     private const string BwudaLevel = "highest_level_bwuda";
+
+    private const string CwabTime = "fastest_cwab";
+    private const string WedTime = "fastest_wed";
+    private const string TwentTime = "fastest_twent";
     #endregion
     #region Achievement API names
     private const string Level10 = "LEVEL_10_ANY";
@@ -28,6 +32,14 @@ public class AchievmentController : MonoBehaviour
 
     private const string Favwit = "STATS_FAVWIT";
     #endregion
+    #region UserPref names
+    private const string FastestLvl1Time= "fastest_lvl1";
+    private const string FastestClassTime = "fastest_any";
+    private static string PrefTime(AvatarClass c) 
+    {
+        return BwudalingNetworkManager.Instance.currMaps.name + c;
+    }
+    #endregion
 
     #region Non-shirt Achievements
     private static bool b, w, u, d, a;
@@ -35,6 +47,9 @@ public class AchievmentController : MonoBehaviour
     {
         get
         {
+            if (BwudalingNetworkManager.Instance.DEBUG_ForceLockBwuda)
+                return false;
+
             if (SteamManager.Initialized)
             {
                 SteamUserStats.GetAchievement(Twent, out bool unlocked);
@@ -44,6 +59,43 @@ public class AchievmentController : MonoBehaviour
                 return b && w && u && d && a;
         }
     }
+    #endregion
+
+    #region Stat Values
+    private static float GetTimeValue(string statName)
+    {
+        if (!SteamManager.Initialized) return -1;
+
+        return SteamUserStats.GetStat(statName, out float value) ? value : -1;
+    }
+
+    public static float FastestCwab { get { return GetTimeValue(CwabTime); } }
+    public static float FastestWed { get { return GetTimeValue(WedTime); } }
+    public static float FastestTwent { get { return GetTimeValue(TwentTime); } }
+    public static float GetCurrMapPackTime()
+    {
+        switch (BwudalingNetworkManager.Instance.currMaps.name)
+        {
+            case Constants.CwabName:
+                return FastestCwab;
+            case Constants.WedName:
+                return FastestWed;
+            case Constants.TwentName:
+                return FastestTwent;
+            default:
+                Debug.LogError("Can't fetch best time for current map pack " + BwudalingNetworkManager.Instance.currMaps.name);
+                return -1;
+        }
+    }
+
+    public static float FastestWuva1 { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Wuva) + FastestLvl1Time, -1); } }
+    public static float FastestWuvaAny { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Wuva) + FastestClassTime, -1); } }
+    public static float FastestDogie1 { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Dogie) + FastestLvl1Time, -1); } }
+    public static float FastestDogieAny { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Dogie) + FastestClassTime, -1); } }
+    public static float FastestPiest1 { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Piest) + FastestLvl1Time, -1); } }
+    public static float FastestPiestAny { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Piest) + FastestClassTime, -1); } }
+    public static float FastestBwuda1 { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Bwuda) + FastestLvl1Time, -1); } }
+    public static float FastestBwudaAny { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Bwuda) + FastestClassTime, -1); } }
     #endregion
 
     public static AchievmentController Instance { get; private set; }
@@ -139,6 +191,7 @@ public class AchievmentController : MonoBehaviour
     {
         AbilityLevels.OnAbilitiesLoaded += OnAbilitiesLoaded;
         BwudalingNetworkManager.OnSceneChanged += SaveStats;
+        BasicGameController.OnMapStarted += OnMapStarted;
         BasicGameController.OnMapCompleted += OnMapCompleted;
     }
 
@@ -146,6 +199,7 @@ public class AchievmentController : MonoBehaviour
     {
         AbilityLevels.OnAbilitiesLoaded -= OnAbilitiesLoaded;
         BwudalingNetworkManager.OnSceneChanged -= SaveStats;
+        BasicGameController.OnMapStarted -= OnMapStarted;
         BasicGameController.OnMapCompleted -= OnMapCompleted;
     }
 
@@ -220,21 +274,63 @@ public class AchievmentController : MonoBehaviour
         }
     }
 
-    private void OnMapCompleted()
+    private void UpdatePrefIfLower(string pref, float time)
     {
+        float lastTime = PlayerPrefs.GetFloat(pref, -1);
+        Debug.Log(lastTime + " " + time);
+        if (lastTime == -1 || time < lastTime)
+            PlayerPrefs.SetFloat(pref, time);
+    }
+    private void OnMapStarted()
+    {
+        if (!SteamManager.Initialized) return;
+
+        if (GameController.Instance.mapType == MapType.Boss)
+        {
+
+            // Check/Save fastest time for boss
+            switch (((BossMapController)MapController.Instance).bossPrefab.bossName)
+            {
+                case Constants.CwabName:
+                    //SteamUserStats.SetAchievement(SiwyCwab);
+                    break;
+                case Constants.WedName:
+                    //SteamUserStats.SetAchievement(BigWed);
+                    break;
+                case Constants.TwentName:
+                    //SteamUserStats.SetAchievement(Twent);
+                    break;
+                default:
+                    //Debug.LogError("Can't update achievement for current boss " + ((BossMapController)MapController.Instance).bossPrefab.bossName);
+                    return;
+            }
+
+            SaveStats();
+        }
+    }
+
+    private void OnMapCompleted(NetworkPlayer p)
+    {
+        if (GameController.Instance.mapType == MapType.Boss)
+        {
+            UpdatePrefIfLower(PrefTime(BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass) + FastestClassTime, BasicGameController.ElapsedTime);
+            if (BwudalingNetworkManager.Instance.ActivePlayer.startedLevel1)
+                UpdatePrefIfLower(PrefTime(BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass) + FastestLvl1Time, BasicGameController.ElapsedTime);
+        }
+
         if (!SteamManager.Initialized) return;
 
         if (GameController.Instance.mapType == MapType.Boss)
         {
             switch (((BossMapController)MapController.Instance).bossPrefab.bossName)
             {
-                case "Siwy Cwab":
+                case Constants.CwabName:
                     SteamUserStats.SetAchievement(SiwyCwab);
                     break;
-                case "Big Wed":
+                case Constants.WedName:
                     SteamUserStats.SetAchievement(BigWed);
                     break;
-                case "Twenty":
+                case Constants.TwentName:
                     SteamUserStats.SetAchievement(Twent);
                     break;
                 default:

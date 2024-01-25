@@ -22,6 +22,20 @@ public class StatsUI : GameUI
     [SerializeField] private TMPro.TMP_Text deathsListL;
     [SerializeField] private TMPro.TMP_Text deathsListR;
 
+    [Header("Times")]
+    [SerializeField] protected TMPro.TMP_Text currRunTitle;
+    [SerializeField] protected TMPro.TMP_Text currRunTitleBkgd;
+    [SerializeField] protected TMPro.TMP_Text currRunTime;
+    [SerializeField] protected TMPro.TMP_Text bestAllRunTime;
+    [SerializeField] protected TMPro.TMP_Text bestWuva1RunTime;
+    [SerializeField] protected TMPro.TMP_Text bestDogie1RunTime;
+    [SerializeField] protected TMPro.TMP_Text bestPiest1RunTime;
+    [SerializeField] protected TMPro.TMP_Text bestBwuda1RunTime;
+    [SerializeField] protected TMPro.TMP_Text bestWuvaRunTime;
+    [SerializeField] protected TMPro.TMP_Text bestDogieRunTime;
+    [SerializeField] protected TMPro.TMP_Text bestPiestRunTime;
+    [SerializeField] protected TMPro.TMP_Text bestBwudaRunTime;
+
     [Header("Anim")]
     [SerializeField] private RectTransform stat1Block;
     [SerializeField] private TMPro.TMP_Text stat1text;
@@ -53,6 +67,15 @@ public class StatsUI : GameUI
         stat2Block.gameObject.SetActive(true);
         allStats.gameObject.SetActive(false);
         viewStatsBtn.SetActive(false);
+
+        bestBwudaRunTime.transform.parent.gameObject.SetActive(AchievmentController.BwudaUnlocked);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        DisplayRunTimes();
     }
 
     public StatDisplay GetStatDisplay(PlayerStatType stat)
@@ -94,11 +117,32 @@ public class StatsUI : GameUI
         if (stat == PlayerStatType.Best)
         {
             playerWon = true;
-            didiyenuAudio.Play();
+            if (!BwudalingNetworkManager.Instance.DEBUG_SkipStatsAnim)
+                didiyenuAudio.Play();
             speedMod = .125f;
         }
         smackAudio.gameObject.SetActive(speedMod == 1);
-        StartCoroutine(AnimStatDisplay(s.statName, w, y, speedMod, a, !playerWon));
+
+        if (!BwudalingNetworkManager.Instance.DEBUG_SkipStatsAnim)
+            StartCoroutine(AnimStatDisplay(s.statName, w, y, speedMod, a, !playerWon));
+    }
+
+    private void DisplayRunTimes()
+    {
+        currRunTitle.text = currRunTitleBkgd.text = BwudalingNetworkManager.Instance.currMaps.name + " Time";
+
+        currRunTime.text = Constants.FormatRunTime(BasicGameController.ElapsedTime, true);
+        bestAllRunTime.text = Constants.FormatRunTime(AchievmentController.GetCurrMapPackTime(), true);
+
+        bestWuva1RunTime.text = "Level 1: " + Constants.FormatRunTime(AchievmentController.FastestWuva1, true);
+        bestDogie1RunTime.text = "Level 1: " + Constants.FormatRunTime(AchievmentController.FastestDogie1, true);
+        bestPiest1RunTime.text = "Level 1: " + Constants.FormatRunTime(AchievmentController.FastestPiest1, true);
+        bestBwuda1RunTime.text = "Level 1: " + Constants.FormatRunTime(AchievmentController.FastestBwuda1, true);
+
+        bestWuvaRunTime.text = "Any lvl: " + Constants.FormatRunTime(AchievmentController.FastestWuvaAny, true);
+        bestDogieRunTime.text = "Any lvl: " + Constants.FormatRunTime(AchievmentController.FastestDogieAny, true);
+        bestPiestRunTime.text = "Any lvl: " + Constants.FormatRunTime(AchievmentController.FastestPiestAny, true);
+        bestBwudaRunTime.text = "Any lvl: " + Constants.FormatRunTime(AchievmentController.FastestBwudaAny, true);
     }
 
     public void Smackins()

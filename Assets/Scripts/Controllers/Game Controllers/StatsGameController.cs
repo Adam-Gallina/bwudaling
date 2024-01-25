@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class StatsGameController : GameController
@@ -40,6 +41,9 @@ public class StatsGameController : GameController
 
             return true;
         });
+
+        if (BwudalingNetworkManager.Instance.DEBUG_SkipStatsAnim)
+            timeBetweenStats = 0;
 
         yield return new WaitForSeconds(1);
         ShowStat(PlayerStatType.Distance);

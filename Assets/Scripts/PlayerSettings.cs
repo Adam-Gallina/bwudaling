@@ -11,6 +11,7 @@ public class PlayerSettings : MonoBehaviour
     #region PlayerPrefs
     public const string FullscreenPref = "DoFullscreen";
     public const string CamScrollSpeedPref = "CamSpeed";
+    public const string ShowSpeedrunTimerPref = "SpeedrunTimer";
     public const string NicknamePref = "Nickname";
 
     public const string MasterVolumePref = "MasterVolume";
@@ -30,6 +31,7 @@ public class PlayerSettings : MonoBehaviour
                 return ManagerDebug.Instance.DEBUG_useKcpManager ? "Unnamed KCP Player" : SteamFriends.GetPersonaName();
         } 
     }
+    public bool speedrunTimer { get; private set; } = false;
 
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private RangeF volumeVals;
@@ -56,6 +58,9 @@ public class PlayerSettings : MonoBehaviour
 
         camScrollVal = PlayerPrefs.GetFloat(CamScrollSpeedPref, camScrollSpeedRange.PercentOfRange(15));
         SetCamScrollSpeed(camScrollVal);
+
+        speedrunTimer = PlayerPrefs.GetInt(ShowSpeedrunTimerPref, 0) == 1;
+        SetSpeedrunTimer(speedrunTimer);
     }
 
     public void LoadLatePrefs()
@@ -81,6 +86,15 @@ public class PlayerSettings : MonoBehaviour
             Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, fullscreen);
         else
             Screen.fullScreenMode = FullScreenMode.Windowed;
+    }
+
+    public void SetSpeedrunTimer(bool show)
+    {
+        if (show != speedrunTimer)
+        {
+            speedrunTimer = show;
+            PlayerPrefs.SetInt(ShowSpeedrunTimerPref, show ? 1 : 0);
+        }
     }
 
     public void SetNickname(string nickname)

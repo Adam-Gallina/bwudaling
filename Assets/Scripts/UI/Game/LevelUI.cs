@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
@@ -43,7 +44,19 @@ public class LevelUI : GameUI
     [SerializeField] private GameObject hostMenu;
     [SerializeField] private GameObject clientMenu;
 
+    [Header("Speedrun Timer")]
+    [SerializeField] private GameObject timer;
+    [SerializeField] private TMPro.TMP_Text timerText;
+    [SerializeField] private TMPro.TMP_Text timerTextOutline;
+
     private NetworkPlayer activePlayer;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        healthbarParent.SetActive(false);
+    }
 
     protected override void Start()
     {
@@ -104,6 +117,14 @@ public class LevelUI : GameUI
                 ability2.cooldown.UpdateKeySet(lastTarget);
                 ability3.cooldown.UpdateKeySet(lastTarget);
             }
+        }
+
+        timer.SetActive(PlayerSettings.Instance.speedrunTimer);
+        if (PlayerSettings.Instance.speedrunTimer)
+        {
+            string t = Constants.FormatRunTime(BasicGameController.ElapsedTime);
+            timerText.text = t;
+            timerTextOutline.text = t;
         }
     }
 

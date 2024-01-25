@@ -6,6 +6,8 @@ using System;
 
 public class BasicGameController : GameController
 {
+    public static float ElapsedTime { get; protected set; } = 0;
+
     [SerializeField] protected string[] startBannerMessages = new string[] { "READY?", "3", "2", "1", "GO!" };
     [SerializeField] protected int[] startBannerSounds = new int[] { -1, 0, 0, 0, 1 };
     //[SerializeField] protected string[] endBannerMessages = new string[] { "Returning to lobby..." };
@@ -15,16 +17,31 @@ public class BasicGameController : GameController
     [SerializeField] protected AudioClip beepClip;
     protected AudioSource source;
 
+    [SyncVar]
     private bool started = false;
+    [SyncVar]
     private bool ended = false;
 
-    public static event Action OnMapCompleted;
+    public static event Action OnMapStarted;
+    public static event Action<NetworkPlayer> OnMapCompleted;
 
     protected override void Awake()
     {
         base.Awake();
 
         source = GetComponent<AudioSource>();
+    }
+
+    protected virtual void Update()
+    {
+        if (started && !ended)
+            ElapsedTime += Time.deltaTime;
+    }
+
+    [Server]
+    public static void ResetTimer()
+    {
+        ElapsedTime = 0;
     }
 
     public override void OnStartClient()
@@ -40,6 +57,7 @@ public class BasicGameController : GameController
             started = true;
             StartCoroutine(StartSequence());
             RpcSendServerBannerMessage(string.Empty, 0);
+            RpcOnLevelStart();
         }
     }
 
@@ -51,6 +69,12 @@ public class BasicGameController : GameController
             playing = true;
             MapController.Instance.startWall.SetActive(false);
         }
+    }
+
+    [ClientRpc]
+    private void RpcOnLevelStart()
+    {
+        OnMapStarted?.Invoke();
     }
 
     [Server]
@@ -91,8 +115,14 @@ public class BasicGameController : GameController
             ended = true;
             StartCoroutine(EndSequence(p));
 
-            OnMapCompleted?.Invoke();
+            RpcOnPlayerWin(p);
         }
+    }
+
+    [ClientRpc]
+    private void RpcOnPlayerWin(NetworkPlayer p)
+    {
+        OnMapCompleted?.Invoke(p);
     }
 
     [Server]

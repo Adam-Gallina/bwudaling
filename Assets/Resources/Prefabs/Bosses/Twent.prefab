@@ -29012,7 +29012,7 @@ GameObject:
   - component: {fileID: 2007482908985407104}
   - component: {fileID: 1310158181247759658}
   m_Layer: 0
-  m_Name: Twenty
+  m_Name: Twent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29080,7 +29080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  bossName: Twenty
+  bossName: Twent
   maxHealth: 300
   currHealth: 0
   spawnAnimDuration: 6

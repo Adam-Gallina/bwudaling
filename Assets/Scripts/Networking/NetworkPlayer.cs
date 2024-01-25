@@ -10,6 +10,7 @@ public class NetworkPlayer : NetworkBehaviour
     public AvatarClass gameAvatarClass;
     [SyncVar]
     [HideInInspector] public int avatarLevel;
+    [HideInInspector] public bool startedLevel1 = false;
     [SyncVar]
     public PlayerAvatar avatar;
     protected NametagUI currNametag;
@@ -60,6 +61,7 @@ public class NetworkPlayer : NetworkBehaviour
     {
         gameAvatarClass = avatar;
         avatarLevel = level;
+        startedLevel1 = level == 0;
     }
 
     [Client]

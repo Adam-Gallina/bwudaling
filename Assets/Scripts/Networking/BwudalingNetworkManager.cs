@@ -13,7 +13,7 @@ public class BwudalingNetworkManager : NetworkManager
     private GameController gc;
 
     [HideInInspector] public int currLevel = 0;
-    private MapPack currMaps;
+    [HideInInspector] public MapPack currMaps;
     private GameScene currEndScene;
     [HideInInspector] public bool sceneChanging = false;
 
@@ -46,6 +46,8 @@ public class BwudalingNetworkManager : NetworkManager
     public int DEBUG_ForceBossAttack = 0;
     public int DEBUG_ForceBossHealth = 0;
     public bool DEBUG_UnlockAllShirts = false;
+    public bool DEBUG_SkipStatsAnim = false;
+    public bool DEBUG_ForceLockBwuda = false;
 
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;
@@ -271,6 +273,8 @@ public class BwudalingNetworkManager : NetworkManager
 
         foreach (NetworkPlayer p in Players)
             p.RpcResetPlayerStats();
+
+        BasicGameController.ResetTimer();
 
         currMaps = mapSet;
         currEndScene = endScene;
