@@ -7,6 +7,8 @@ public class SafeArea : MonoBehaviour
 {    
     protected List<PlayerAvatar> reached = new List<PlayerAvatar>();
 
+    //protected List<PlayerAvatar> contained = new List<PlayerAvatar>();
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == Constants.PlayerLayer)
@@ -16,6 +18,8 @@ public class SafeArea : MonoBehaviour
             if (!target)
                 return;
             
+            //contained.Add(target);
+
             if (target.isClient)
                 ClientOnTouchPlayer(target);
             if (target.isServer)
@@ -24,6 +28,19 @@ public class SafeArea : MonoBehaviour
             if (IsNewPlayer(target))
                 reached.Add(target);
 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == Constants.PlayerLayer)
+        {
+            PlayerAvatar target = other.GetComponentInParent<PlayerAvatar>();
+
+            if (!target)
+                return;
+
+            //contained.Remove(target);
         }
     }
 

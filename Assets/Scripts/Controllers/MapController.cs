@@ -22,6 +22,8 @@ public class MapController : MonoBehaviour
     public float hazardRange = 150;
     public Vector3 mapCenter;
     public bool canControlAvatars = true;
+    public int maxFriendlyReward = 3;
+    public float friendlyXpMod = .2f;
 
     private void OnDrawGizmos()
     {

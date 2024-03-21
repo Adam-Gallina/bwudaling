@@ -63,7 +63,7 @@ public abstract class BossBase : NetworkBehaviour
         if (other.gameObject.layer == Constants.PlayerLayer)
         {
             PlayerAvatar p = other.gameObject.GetComponent<PlayerAvatar>();
-            if (p)
+            if (p && !BwudalingNetworkManager.Instance.DEBUG_Invulnerable)
                 p.Damage();
         }
     }

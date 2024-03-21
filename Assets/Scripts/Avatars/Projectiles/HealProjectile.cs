@@ -29,7 +29,7 @@ public class HealProjectile : RicochetProjectile
 
         if (player && player.dead)
         {
-            player.Heal();
+            player.PlayerHeal((PlayerAvatar)spawner);
             ((PlayerAvatar)spawner).RpcPlayHealAudio(player);
             base.OnHitTarget(other);
         }

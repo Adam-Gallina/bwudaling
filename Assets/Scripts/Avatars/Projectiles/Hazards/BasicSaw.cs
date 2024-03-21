@@ -145,7 +145,7 @@ public class BasicSaw : RicochetProjectile
             return;
 
         AvatarBase target = other.gameObject.GetComponentInParent<AvatarBase>();
-        if (target.hasAuthority)
+        if (target.hasAuthority && !BwudalingNetworkManager.Instance.DEBUG_Invulnerable)
         {
             target.CmdDamage();
         }

@@ -69,6 +69,7 @@ public class PlayerAvatar : AvatarBase
     [SerializeField] private RandomAudio healAudio;
 
     private List<Collider> currSafeZones = new List<Collider>();
+    private List<PlayerAvatar> lastHeals = new List<PlayerAvatar>();
 
     protected InputController inp;
     protected Animator anim;
@@ -188,7 +189,7 @@ public class PlayerAvatar : AvatarBase
                 PlayerAvatar o = other.GetComponent<PlayerAvatar>();
                 if (o && o.dead)
                 {
-                    o.Heal();
+                    o.PlayerHeal(this);
                     healAudio.Play();
                     RpcPlayHealAudio(o);
                     RpcStatsHealPlayer();
@@ -416,6 +417,18 @@ public class PlayerAvatar : AvatarBase
     }
     #endregion
 
+    [Server]
+    public void PlayerHeal(PlayerAvatar other)
+    {
+        if (!lastHeals.Contains(other)) 
+            lastHeals.Add(other);
+
+        Heal();
+    }
+
+    [Server] public List<PlayerAvatar> GetLastHeals() { return lastHeals; }
+    [Server] public void ResetLastHeals() { lastHeals.Clear(); }
+
     protected override void OnHeal()
     {
         if (anim?.GetBool("Dead") == true)
@@ -465,16 +478,17 @@ public class PlayerAvatar : AvatarBase
     [Command]
     public void CmdHealTarget(PlayerAvatar target)
     {
-        target.Heal();
+        target.PlayerHeal(this);
     }
     [Command]
     public void CmdHealTarget(PlayerAvatar target, int shield)
     {
         target.SetShield(shield);
         if (target.dead)
+        {
             RpcPlayHealAudio(target);
-
-        target.Heal();
+            target.PlayerHeal(this);
+        }
     }
 
     [ClientRpc]

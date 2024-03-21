@@ -48,6 +48,7 @@ public class BwudalingNetworkManager : NetworkManager
     public bool DEBUG_UnlockAllShirts = false;
     public bool DEBUG_SkipStatsAnim = false;
     public bool DEBUG_ForceLockBwuda = false;
+    public bool DEBUG_Invulnerable = false;
 
     public static event Action OnClientConnected;
     public static event Action OnClientDisconnected;

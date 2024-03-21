@@ -10925,6 +10925,7 @@ MonoBehaviour:
   DEBUG_UnlockAllShirts: 0
   DEBUG_SkipStatsAnim: 1
   DEBUG_ForceLockBwuda: 1
+  DEBUG_Invulnerable: 0
 --- !u!4 &1144509072
 Transform:
   m_ObjectHideFlags: 0

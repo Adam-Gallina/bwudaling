@@ -1865,6 +1865,8 @@ MonoBehaviour:
   hazardRange: 225
   mapCenter: {x: 0, y: 0, z: 0}
   canControlAvatars: 1
+  maxFriendlyReward: 3
+  friendlyXpMod: 0.2
 --- !u!4 &373380049
 Transform:
   m_ObjectHideFlags: 0
@@ -8874,6 +8876,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1189071785567167079, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189071785567167079, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1817762006722511100, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -8989,6 +8999,22 @@ PrefabInstance:
     - target: {fileID: 1817762008411173247, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00024414062
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
