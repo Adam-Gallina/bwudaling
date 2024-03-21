@@ -305,7 +305,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 33, y: 33}
-  spawnCount: 10
+  spawnCount: 8
   spawnTries: 10
 --- !u!1 &63383903
 GameObject:
@@ -624,7 +624,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 33, y: 33}
-  spawnCount: 10
+  spawnCount: 8
   spawnTries: 10
 --- !u!1001 &174782884
 PrefabInstance:
@@ -773,7 +773,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 33, y: 33}
-  spawnCount: 9
+  spawnCount: 4
   spawnTries: 10
 --- !u!1001 &271286173
 PrefabInstance:
@@ -1022,7 +1022,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 33, y: 33}
-  spawnCount: 8
+  spawnCount: 7
   spawnTries: 10
 --- !u!1 &341184900
 GameObject:
@@ -1424,7 +1424,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 33, y: 33}
-  spawnCount: 10
+  spawnCount: 8
   spawnTries: 10
 --- !u!1001 &461255514
 PrefabInstance:
@@ -2620,6 +2620,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1189071785567167079, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189071785567167079, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1817762006722511100, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2731,6 +2739,22 @@ PrefabInstance:
     - target: {fileID: 1817762007775058172, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
       propertyPath: m_Name
       value: Game Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00024414062
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
@@ -3412,7 +3436,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 33, y: 33}
-  spawnCount: 7
+  spawnCount: 6
   spawnTries: 10
 --- !u!1 &1220444185
 GameObject:
@@ -4953,7 +4977,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 33, y: 33}
-  spawnCount: 9
+  spawnCount: 4
   spawnTries: 10
 --- !u!1 &1868996487
 GameObject:
@@ -5242,7 +5266,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 33, y: 33}
-  spawnCount: 7
+  spawnCount: 6
   spawnTries: 10
 --- !u!1 &1935538232
 GameObject:
@@ -5705,5 +5729,5 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 33, y: 33}
-  spawnCount: 9
+  spawnCount: 4
   spawnTries: 10

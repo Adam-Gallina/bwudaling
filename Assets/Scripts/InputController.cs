@@ -137,12 +137,28 @@ public class Key
 
     public string GetKey()
     {
-        return targetKey.ToString();
+        switch (targetKey)
+        {
+            case KeyCode.Mouse2: return "M2";
+            case KeyCode.Mouse3: return "M3";
+            case KeyCode.Mouse4: return "M4";
+            case KeyCode.Mouse5: return "M5";
+            case KeyCode.Mouse6: return "M6";
+            default: return targetKey.ToString();
+        }
     }
 
     public string GetAltKey()
     {
-        return alternateKey.ToString();
+        switch (alternateKey)
+        {
+            case KeyCode.Mouse2: return "M2";
+            case KeyCode.Mouse3: return "M3";
+            case KeyCode.Mouse4: return "M4";
+            case KeyCode.Mouse5: return "M5";
+            case KeyCode.Mouse6: return "M6";
+            default: return alternateKey.ToString();
+        }
     }
 
     public static implicit operator bool(Key obj)

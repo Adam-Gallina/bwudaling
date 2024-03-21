@@ -69,6 +69,10 @@ public class LevelUI : GameUI
             activePlayer.abilities.OnAddXp += UpdateDisplay;
             activePlayer.abilities.OnLevelUp += UpdateDisplay;
             activePlayer.abilities.OnUpgrade += UpdateDisplay;
+
+            ability1.cooldown.UpdateKeySet();
+            ability2.cooldown.UpdateKeySet();
+            ability3.cooldown.UpdateKeySet();
         }
     }
 
