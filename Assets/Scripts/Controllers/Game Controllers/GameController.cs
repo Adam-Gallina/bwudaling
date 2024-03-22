@@ -106,4 +106,15 @@ public abstract class GameController : NetworkBehaviour
     {
 
     }
+
+    [Command]
+    public void CmdSetPlayerMovement(bool canMove)
+    {
+        RpcSetPlayerMovement(canMove);
+    }
+    [ClientRpc]
+    protected void RpcSetPlayerMovement(bool canMove)
+    {
+        MapController.Instance.canControlAvatars = canMove;
+    }
 }

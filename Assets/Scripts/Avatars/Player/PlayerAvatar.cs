@@ -130,6 +130,7 @@ public class PlayerAvatar : AvatarBase
         base.Awake();
 
         anim = GetComponentInChildren<Animator>();
+        anim.SetInteger("Dance", 1);
 
         ability1?.SetController(this);
         ability2?.SetController(this);
@@ -311,7 +312,6 @@ public class PlayerAvatar : AvatarBase
         if (!dead && inp.dance1.down)
         {
             anim.SetBool("Dancing", true);
-            anim.SetInteger("Dance", 1);
             idleStart = Time.time;
         }
 
@@ -344,6 +344,11 @@ public class PlayerAvatar : AvatarBase
         }
 
         anim.SetBool("Idling", Time.time >= idleStart + timeBeforeIdleAnim);
+    }
+
+    public void DoDance()
+    {
+        anim.SetBool("Dancing", true);
     }
 
     protected bool CheckSpecial(float timer)

@@ -32,6 +32,8 @@ public class BossGameController : BasicGameController
     [Server]
     protected override IEnumerator EndSequence(NetworkPlayer p)
     {
+        RpcSetPlayerMovement(false);
+
         RpcSetCamera(spawnedBoss, 1);
 
         RpcSendServerBannerMessage(spawnedBoss.name.Remove(spawnedBoss.name.Length - 7) + " was defeated!", 0);

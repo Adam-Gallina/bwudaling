@@ -123,11 +123,23 @@ public class BasicGameController : GameController
     private void RpcOnPlayerWin(NetworkPlayer p)
     {
         OnMapCompleted?.Invoke(p);
+
+        if (p)
+        {
+            if (p.hasAuthority)
+                p.avatar.DoDance();
+        }
+        else
+        {
+            BwudalingNetworkManager.Instance.ActivePlayer.avatar.DoDance();
+        }
     }
 
     [Server]
     protected virtual IEnumerator EndSequence(NetworkPlayer p)
     {
+        RpcSetPlayerMovement(false);
+
         RpcSetCamera(p.avatar, 1);
 
         RpcSendServerBannerMessage(p.displayName + " won!", p.avatarColor, 0);
@@ -135,6 +147,8 @@ public class BasicGameController : GameController
 
         RpcSendServerBannerMessage(string.Empty, 0);
         yield return null;
+
+        yield return new WaitForSeconds(10);
 
         BwudalingNetworkManager.Instance.NextMap();
     }

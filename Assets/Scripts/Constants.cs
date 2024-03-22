@@ -136,21 +136,25 @@ public class Constants
     #endregion
 
     #region Scenes
-    public static GameScene MainMenu = new GameScene(0, "Main Menu");
     public static GameScene TestMap = new GameScene(1, "Test Map");
+
+    public static GameScene MainMenu = new GameScene(0, "Main Menu");
+    public static GameScene Stats = new GameScene(10, "Stats Screen");
+
     public static GameScene Level1_1 = new GameScene(2, "Level 1-1");
     public static GameScene Level1_2 = new GameScene(3, "Level 1-2");
     public static GameScene Level1_3 = new GameScene(4, "Level 1-3");
     public static GameScene SiwyCwab = new GameScene(5, "Siwy Cwab Boss");
+
     public static GameScene Level2_1 = new GameScene(6, "Level 2-1");
     public static GameScene Level2_2 = new GameScene(7, "Level 2-2");
     public static GameScene Level2_3 = new GameScene(8, "Level 2-3");
     public static GameScene BigWed = new GameScene(14, "Big Wed Boss");
+
     public static GameScene Level3_1 = new GameScene(11, "Level 3-1");
     public static GameScene Level3_2 = new GameScene(12, "Level 3-2");
     public static GameScene Level3_3 = new GameScene(13, "Level 3-3");
     public static GameScene Twenty = new GameScene(9, "Twenty Boss");
-    public static GameScene Stats = new GameScene(10, "Stats Screen");
 
     public static MapPack[] Maps = new MapPack[]
     {
