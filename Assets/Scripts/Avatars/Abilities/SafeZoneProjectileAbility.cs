@@ -19,21 +19,23 @@ public class SafeZoneProjectileAbility : ProjectileSpawnAbility
         base.OnSpawnProjectile(b, level);
 
         float s = zoneDiameter.CalcValue(level);
-        b.transform.localScale = new Vector3(s, s, s);
+        b.transform.localScale = new Vector3(s, b.transform.localScale.y, s);
+        Vector3 pos = b.transform.position;
+        pos.y = 0;
+        b.transform.position = pos;
 
-        StartCoroutine(DespawnProjectile(b, level));
+        StartCoroutine(MoveProjectile(b, level));
     }
 
     [Server]
-    private IEnumerator DespawnProjectile(Projectile b, int level)
+    private IEnumerator MoveProjectile(Projectile b, int level)
     {
         float zoneStart = Time.time;
         float calcSpeedMod = controller.currSpeed + speedMod - minSpeed;
 
         float dist = 0;
         Vector3 lastPos = b.transform.position;
-        do
-        {
+        do {
             dist += Vector3.Distance(b.transform.position, lastPos);
 
             float t = dist / zoneTravelDist.CalcValue(level);
@@ -44,18 +46,18 @@ public class SafeZoneProjectileAbility : ProjectileSpawnAbility
 
             yield return new WaitForEndOfFrame();
 
-        } while (dist < zoneTravelDist.CalcValue(level));
+        } while (dist < zoneTravelDist.CalcValue(level) && Time.time < zoneStart + zoneDuration.CalcValue(level));
 
         b.SetSpeed(0);
 
         yield return new WaitForSeconds(zoneDuration.CalcValue(level) - (Time.time - zoneStart));
 
         float start = Time.time;
-        float startOffset = b.transform.GetChild(0).localPosition.y;
+        Vector3 startPos = b.transform.position;
         while (Time.time < start + projectileDespawnTime)
         {
             float t = (Time.time - start) / projectileDespawnTime;
-            b.transform.GetChild(0).localPosition = new Vector3(0, startOffset + projectileDespawnOffset * t, 0);
+            b.transform.position = startPos + Vector3.up * projectileDespawnOffset * t;
 
             yield return new WaitForEndOfFrame();
         }

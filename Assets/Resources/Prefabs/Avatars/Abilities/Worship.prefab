@@ -100,7 +100,7 @@ MonoBehaviour:
     upgradeLevels: 
   minSpeed: 1
   projectileDespawnTime: 1
-  projectileDespawnOffset: -0.75
+  projectileDespawnOffset: -2.75
 --- !u!82 &4811819463541866614
 AudioSource:
   m_ObjectHideFlags: 0
