@@ -27,10 +27,13 @@ public class AchievmentController : MonoBehaviour
     private const string Level15Bwuda = "LEVEL_15_BWUDA";
 
     private const string SiwyCwab = "BOSS_SIWYCWAB";
+    private const string FastSiwyCwab = "BOSS_FAST_SIWYCWAB";
     private const string BigWed = "BOSS_BIGWED";
+    private const string FastWed = "BOSS_FAST_BIGWED";
     private const string Twent = "BOSS_TWENTY";
+    private const string FastTwent = "BOSS_FAST_TWENTY";
 
-    private const string Favwit = "STATS_FAVWIT";
+    //private const string Favwit = "STATS_FAVWIT";
     #endregion
     #region UserPref names
     private const string FastestLvl1Time= "fastest_lvl1";
@@ -66,7 +69,7 @@ public class AchievmentController : MonoBehaviour
     {
         if (!SteamManager.Initialized) return -1;
 
-        return SteamUserStats.GetStat(statName, out float value) ? value : -1;
+        return SteamUserStats.GetStat(statName, out float value) ? -value : -1;
     }
 
     public static float FastestCwab { get { return GetTimeValue(CwabTime); } }
@@ -88,14 +91,14 @@ public class AchievmentController : MonoBehaviour
         }
     }
 
-    public static float FastestWuva1 { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Wuva) + FastestLvl1Time, -1); } }
-    public static float FastestWuvaAny { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Wuva) + FastestClassTime, -1); } }
-    public static float FastestDogie1 { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Dogie) + FastestLvl1Time, -1); } }
-    public static float FastestDogieAny { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Dogie) + FastestClassTime, -1); } }
-    public static float FastestPiest1 { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Piest) + FastestLvl1Time, -1); } }
-    public static float FastestPiestAny { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Piest) + FastestClassTime, -1); } }
-    public static float FastestBwuda1 { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Bwuda) + FastestLvl1Time, -1); } }
-    public static float FastestBwudaAny { get { return PlayerPrefs.GetFloat(PrefTime(AvatarClass.Bwuda) + FastestClassTime, -1); } }
+    public static float FastestWuva1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Wuva) + FastestLvl1Time); } }
+    public static float FastestWuvaAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Wuva) + FastestClassTime); } }
+    public static float FastestDogie1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Dogie) + FastestLvl1Time); } }
+    public static float FastestDogieAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Dogie) + FastestClassTime); } }
+    public static float FastestPiest1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Piest) + FastestLvl1Time); } }
+    public static float FastestPiestAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Piest) + FastestClassTime); } }
+    public static float FastestBwuda1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Bwuda) + FastestLvl1Time); } }
+    public static float FastestBwudaAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Bwuda) + FastestClassTime); } }
     #endregion
 
     public static AchievmentController Instance { get; private set; }
@@ -137,11 +140,18 @@ public class AchievmentController : MonoBehaviour
                 Shirts.Add(s.id, s);
         }
 
-        StatsReceived = Callback<UserStatsReceived_t>.Create(OnStatsReceived);
-        AchievementStored = Callback<UserAchievementStored_t>.Create(OnAchievementStored);
-
         if (SteamManager.Initialized)
+        {
+            if (BwudalingNetworkManager.Instance.DEBUG_ResetAchievements)
+            {
+                SteamUserStats.ResetAllStats(true);
+                Debug.LogWarning("Reset all user stats and achievements");
+            }
+
+            StatsReceived = Callback<UserStatsReceived_t>.Create(OnStatsReceived);
+            AchievementStored = Callback<UserAchievementStored_t>.Create(OnAchievementStored);
             SteamUserStats.RequestCurrentStats();
+        }
     }
 
     private void OnStatsReceived(UserStatsReceived_t callback)
@@ -274,12 +284,29 @@ public class AchievmentController : MonoBehaviour
         }
     }
 
-    private void UpdatePrefIfLower(string pref, float time)
+    private void UpdateSavedTimeIfLower(string key, float time)
     {
-        float lastTime = PlayerPrefs.GetFloat(pref, -1);
-        Debug.Log(lastTime + " " + time);
+        //float lastTime = PlayerPrefs.GetFloat(pref, -1);
+        //if (lastTime == -1 || time < lastTime)
+        //    PlayerPrefs.SetFloat(pref, time);
+
+        double lastTime = SpeedrunData.GetTime(key);
         if (lastTime == -1 || time < lastTime)
-            PlayerPrefs.SetFloat(pref, time);
+            SpeedrunData.SetTime(key, time);
+    }
+
+    private void UpdateTimeStatIfLower(string stat, float time)
+    {
+        if (!SteamManager.Initialized) return;
+
+        time = -time;
+
+        SteamUserStats.GetStat(stat, out float bestTime);
+        if (time > bestTime)
+        {
+            SteamUserStats.SetStat(stat, time);
+            SaveStats();
+        }
     }
     private void OnMapStarted()
     {
@@ -313,9 +340,9 @@ public class AchievmentController : MonoBehaviour
     {
         if (GameController.Instance.mapType == MapType.Boss)
         {
-            UpdatePrefIfLower(PrefTime(BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass) + FastestClassTime, BasicGameController.ElapsedTime);
+            UpdateSavedTimeIfLower(PrefTime(BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass) + FastestClassTime, BasicGameController.ElapsedTime);
             if (BwudalingNetworkManager.Instance.ActivePlayer.startedLevel1)
-                UpdatePrefIfLower(PrefTime(BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass) + FastestLvl1Time, BasicGameController.ElapsedTime);
+                UpdateSavedTimeIfLower(PrefTime(BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass) + FastestLvl1Time, BasicGameController.ElapsedTime);
         }
 
         if (!SteamManager.Initialized) return;
@@ -325,12 +352,15 @@ public class AchievmentController : MonoBehaviour
             switch (((BossMapController)MapController.Instance).bossPrefab.bossName)
             {
                 case Constants.CwabName:
+                    UpdateTimeStatIfLower(CwabTime, BasicGameController.ElapsedTime);
                     SteamUserStats.SetAchievement(SiwyCwab);
                     break;
                 case Constants.WedName:
+                    UpdateTimeStatIfLower(WedTime, BasicGameController.ElapsedTime);
                     SteamUserStats.SetAchievement(BigWed);
                     break;
                 case Constants.TwentName:
+                    UpdateTimeStatIfLower(TwentTime, BasicGameController.ElapsedTime);
                     SteamUserStats.SetAchievement(Twent);
                     break;
                 default:

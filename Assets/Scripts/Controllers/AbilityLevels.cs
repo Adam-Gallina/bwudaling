@@ -3,13 +3,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
 public static class AbilityLevels
 {
-    private const int SaveVersion = 1;
+    public const int SaveVersion = 1;
     public const int MaxCharacters = 10;
 
     #region Ability Loading
@@ -52,13 +53,23 @@ public static class AbilityLevels
             BinaryFormatter bf = new BinaryFormatter();
             FileStream stream = new FileStream(UserPath + CharSaveFile, FileMode.Open);
 
-            charSaves = (CharacterSaves)bf.Deserialize(stream);
-            if (charSaves.saveVersion != SaveVersion)
+            try
             {
-                throw new Exception($"File migration is not setup ({charSaves.saveVersion} -> {SaveVersion})");
-            }
+                charSaves = (CharacterSaves)bf.Deserialize(stream);
 
-            stream.Close();
+                if (charSaves.saveVersion != SaveVersion)
+                {
+                    throw new Exception($"File migration is not setup ({charSaves.saveVersion} -> {SaveVersion})");
+                }
+            }
+            catch (SerializationException e)
+            {
+                Debug.LogError("Save data corrupted...");
+            }
+            finally
+            {
+                stream.Close();
+            }
         }
         else
         {

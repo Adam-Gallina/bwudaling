@@ -11993,6 +11993,13 @@ MonoBehaviour:
     achievementName: BOSS_TWENTY
     previewImg: {fileID: 21300000, guid: 61e85b0ba43d1b2479756608042ad73d, type: 3}
     unlocked: 0
+  - name: HeadSmackin
+    id: bt_hs
+    mat: {fileID: 2100000, guid: 199f5c0b1db0bde4aa139a6b2bef1a53, type: 2}
+    startUnlocked: 0
+    achievementName: BOSS_FAST_SIWYCWAB
+    previewImg: {fileID: 21300000, guid: 722a62e80e335bf4292add56adf3968a, type: 3}
+    unlocked: 0
 --- !u!4 &1259539692
 Transform:
   m_ObjectHideFlags: 0

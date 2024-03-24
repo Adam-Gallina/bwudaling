@@ -45,6 +45,7 @@ public class BwudalingNetworkManager : NetworkManager
     public bool DEBUG_TpWalls;
     public int DEBUG_ForceBossAttack = 0;
     public int DEBUG_ForceBossHealth = 0;
+    public bool DEBUG_ResetAchievements = false;
     public bool DEBUG_UnlockAllShirts = false;
     public bool DEBUG_SkipStatsAnim = false;
     public bool DEBUG_ForceLockBwuda = false;
