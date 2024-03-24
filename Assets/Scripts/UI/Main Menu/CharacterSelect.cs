@@ -25,10 +25,14 @@ public class CharacterSelect : MonoBehaviour
     [SerializeField] private Button nextBtn;
     [SerializeField] private Button deleteBtn;
 
+    [SerializeField] private GameObject loadCharError;
+    [SerializeField] private TMPro.TMP_Text loadCharErrorText;
+
     void Awake()
     {
         bwudaButton.SetActive(false);
         deleteConfirm.SetActive(false);
+        loadCharError.SetActive(false);
     }
 
     private void Start()
@@ -131,7 +135,11 @@ public class CharacterSelect : MonoBehaviour
         }
         else if (saveID != -1)
         {
-            AbilityLevels.LoadAbilities(saveID);
+            if (!AbilityLevels.LoadAbilities(saveID))
+            {
+                loadCharError.SetActive(true);
+                loadCharErrorText.text = $"Error: Could not load level {AbilityLevels.LoadedAbilities.vals.level} {AbilityLevels.LoadedAbilities.vals.avatarClass}. File is likely corrupted, try selecting a different character :(";
+            }
         }
         else
         {

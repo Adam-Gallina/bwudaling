@@ -46,7 +46,7 @@ public static class AbilityLevels
     public static string UserID { get { return ManagerDebug.Instance.DEBUG_useKcpManager ? "kcp_player" : SteamUser.GetSteamID().ToString(); } }
     public static string UserPath { get { return Application.persistentDataPath + $"/{UserID}/"; } }
 
-    public static void LoadCharacterSaves()
+    public static bool LoadCharacterSaves()
     {
         if (File.Exists(UserPath + CharSaveFile))
         {
@@ -56,20 +56,26 @@ public static class AbilityLevels
             try
             {
                 charSaves = (CharacterSaves)bf.Deserialize(stream);
-
-                if (charSaves.saveVersion != SaveVersion)
-                {
-                    throw new Exception($"File migration is not setup ({charSaves.saveVersion} -> {SaveVersion})");
-                }
             }
             catch (SerializationException e)
             {
-                Debug.LogError("Save data corrupted...");
-            }
-            finally
-            {
+                if (saveDataLoadFailed)
+                    return false;
+
                 stream.Close();
+                saveDataLoadFailed = true;
+                return RecoverCharSaveFile();
             }
+
+            if (charSaves.saveVersion != SaveVersion)
+            {
+                throw new Exception($"File migration is not setup ({charSaves.saveVersion} -> {SaveVersion})");
+                return false;
+            }
+
+            stream.Close();
+            saveDataLoadFailed = false;
+            return true;
         }
         else
         {
@@ -87,6 +93,8 @@ public static class AbilityLevels
 
             bf.Serialize(stream, charSaves);
             stream.Close();
+
+            return true;
         }
     }
 
@@ -118,21 +126,35 @@ public static class AbilityLevels
         OnAbilitiesLoaded?.Invoke();
     } 
 
-    public static void LoadAbilities(int id)
+    public static bool LoadAbilities(int id)
     {
         if (File.Exists(UserPath + id + CharAbilitySuffix))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream stream = new FileStream(UserPath + id.ToString() + CharAbilitySuffix, FileMode.Open);
 
-            LoadedAbilities = new Abilities((AbilityVals)bf.Deserialize(stream));
-            OnAbilitiesLoaded?.Invoke();
+            try
+            {
+                LoadedAbilities = new Abilities((AbilityVals)bf.Deserialize(stream));
+                OnAbilitiesLoaded?.Invoke();
+            }
+            catch (SerializationException e) 
+            {
+                Debug.LogError("Could not read " + id + CharAbilitySuffix);
+                return false;
+            } 
+            finally 
+            { 
+                stream.Close();
+            }
 
-            stream.Close();
+            return true;
         }
         else
         {
             Debug.LogError("Trying to load non-existant character");
+
+            return false;
         }
     }
 
@@ -176,6 +198,45 @@ public static class AbilityLevels
 
         SaveCharacterSaves();
     }
+
+    #region Save Data Recovery
+    private static bool saveDataLoadFailed = false;
+    private static bool RecoverCharSaveFile()
+    {
+        charSaves = new CharacterSaves();
+        charSaves.saveVersion = SaveVersion;
+        charSaves.saveIDs = new List<int>();
+        charSaves.classes = new List<string>();
+        charSaves.levels = new List<int>();
+
+        foreach (string f in Directory.GetFiles(UserPath))
+        {
+            if (Path.GetExtension(f) != CharAbilitySuffix) continue;
+            string fname = Path.GetFileNameWithoutExtension(f);
+            
+            if (!int.TryParse(fname, out int id)) continue;
+
+            if (!LoadAbilities(id)) continue;
+
+            if (charSaves.nextSaveID <= id)
+                charSaves.nextSaveID = id + 1;
+
+            charSaves.saveIDs.Add(id);
+            charSaves.classes.Add(LoadedAbilities.vals.avatarClass.ToString());
+            charSaves.levels.Add(LoadedAbilities.vals.level);
+        }
+
+        LoadedAbilities = null;
+
+        // Pretend CharSaves was loaded successfully to attempt a normal save
+        loadedCharSaves = true;
+        SaveCharacterSaves();
+
+        // Attempt to load CharSaves normally now
+        loadedCharSaves = false;
+        return LoadCharacterSaves();
+    }
+    #endregion
     #endregion
 
     #region Required XP Calculations
