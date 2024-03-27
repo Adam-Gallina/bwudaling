@@ -59,4 +59,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 4-3.unity
     guid: cafbe5ba8567c3b45ba87902bbd12bad
+  - enabled: 1
+    path: Assets/Scenes/Rainbow String Boss.unity
+    guid: ec291633eb789004aa444723398837f7
   m_configObjects: {}
