@@ -11,8 +11,16 @@ public class NetworkWaveSpawner : NetworkSpiralSpawner
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * 3);
-        
-        Gizmos.DrawWireCube(transform.position, transform.forward * spawnOffset + transform.right * spawnHeight);
+
+        Vector3 forward = transform.forward * spawnOffset / 2;
+        Vector3 back = transform.forward * -spawnOffset / 2;
+        Vector3 left = transform.right * spawnHeight / 2;
+        Vector3 right = transform.right * -spawnHeight / 2;
+
+        Gizmos.DrawLine(transform.position + forward + right, transform.position + forward + left);
+        Gizmos.DrawLine(transform.position + back + left, transform.position + forward + left);
+        Gizmos.DrawLine(transform.position + back + left, transform.position + back + right);
+        Gizmos.DrawLine(transform.position + forward + right, transform.position + back + right);
     }
 
     public override Vector3 GetSpawnPos()

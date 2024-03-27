@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &10110791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6227,7 +6227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &663730300
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9368,12 +9368,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 19.85
+  m_fontSizeBase: 16
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 20
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -11635,7 +11635,7 @@ MonoBehaviour:
   DEBUG_AllowMapSkip: 1
   DEBUG_AllowKeyCheats: 1
   DEBUG_IgnoreCooldown: 1
-  DEBUG_TpWalls: 1
+  DEBUG_TpWalls: 0
   DEBUG_ForceBossAttack: 0
   DEBUG_ForceBossHealth: 1
   DEBUG_ResetAchievements: 0

@@ -10,7 +10,13 @@ public class TeleportArea : SafeArea
     [Client]
     protected override void ClientOnTouchPlayer(PlayerAvatar target)
     {
-        if (target.hasAuthority)
+        if (target.hasAuthority && GameController.Instance.playing)
             validTp = true;
+    }
+
+    [Client]
+    public void OnChildTouchPlayer(PlayerAvatar target)
+    {
+        ClientOnTouchPlayer(target);
     }
 }

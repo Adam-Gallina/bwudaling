@@ -96,6 +96,7 @@ public class Constants
     public const string CwabName = "Siwy Cwab";
     public const string WedName = "Big Wed";
     public const string TwentName = "Twent";
+    public const string RainbowName = "Rainbow String";
     #endregion
 
     #region Avatar Resources
@@ -156,15 +157,22 @@ public class Constants
     public static GameScene Level3_3 = new GameScene(13, "Level 3-3");
     public static GameScene Twenty = new GameScene(9, "Twenty Boss");
 
+    public static GameScene Level4_1 = new GameScene(15, "Level 4-1");
+    public static GameScene Level4_2 = new GameScene(16, "Level 4-2");
+    public static GameScene Level4_3 = new GameScene(17, "Level 4-3");
+    public static GameScene RainbowString = new GameScene(18, "Rainbow String Boss");
+
     public static MapPack[] Maps = new MapPack[]
     {
+        new MapPack("Wiggly", 1, MapPackType.Test, new GameScene[] { Level4_1 }),
         new MapPack("Debug", 0, MapPackType.Test, new GameScene[] { TestMap }),
         new MapPack("Debug Cwab", 0, MapPackType.Test, new GameScene[] { SiwyCwab }),
         new MapPack("Debug Wed", 0, MapPackType.Test, new GameScene[] { BigWed }),
         new MapPack("Debug Twent", 0, MapPackType.Test, new GameScene[] { Twenty }),
         new MapPack(CwabName, 1, MapPackType.Bwudaling, new GameScene[] { Level1_1, Level1_2, Level1_3, SiwyCwab }),
+        new MapPack(RainbowName, 1, MapPackType.Bwudaling, new GameScene[] { Level4_1, Level4_2, Level4_3, RainbowString }),
         new MapPack(WedName, 2, MapPackType.Bwudaling, new GameScene[] { Level2_1, Level2_2, Level2_3, BigWed }),
-        new MapPack(TwentName, 3, MapPackType.Bwudaling, new GameScene[] { Level3_1, Level3_2, Level3_3, Twenty })
+        new MapPack(TwentName, 3, MapPackType.Bwudaling, new GameScene[] { Level3_1, Level3_2, Level3_3, Twenty }),
     };
     public static GameScene EndScreen = Stats;
     #endregion

@@ -13,15 +13,18 @@ public class Teleport : TargetAbility
 
         if (!BwudalingNetworkManager.Instance.DEBUG_TpWalls)
         {
-            colls = Physics.OverlapSphere(currReticlePos, 0.1f, 1 << Constants.TeleportAreaLayer);
+            colls = Physics.OverlapSphere(currReticlePos, 0.25f, 1 << Constants.TeleportAreaLayer);
             if (colls.Length == 0)
                 return false;
+
+            bool valid = false;
             foreach (Collider c in colls)
             {
-                TeleportArea tp = c.GetComponent<TeleportArea>();
-                if (tp && !tp.validTp)
-                    return false;
+                TeleportArea tp = c.GetComponentInParent<TeleportArea>();
+                if (tp) valid |= tp.validTp;
             }
+
+            if (!valid) return false;
         }
 
         DoServerEffect(transform.position, level);
