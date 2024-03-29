@@ -164,7 +164,7 @@ public class Constants
 
     public static MapPack[] Maps = new MapPack[]
     {
-        new MapPack("Wiggly", 1, MapPackType.Test, new GameScene[] { Level4_2 }),
+        new MapPack("Wiggly", 1, MapPackType.Test, new GameScene[] { Level4_1 }),
         new MapPack("Debug", 0, MapPackType.Test, new GameScene[] { TestMap }),
         new MapPack("Debug Cwab", 0, MapPackType.Test, new GameScene[] { SiwyCwab }),
         new MapPack("Debug Wed", 0, MapPackType.Test, new GameScene[] { BigWed }),

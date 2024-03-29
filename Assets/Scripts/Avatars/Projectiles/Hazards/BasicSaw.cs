@@ -62,6 +62,8 @@ public class BasicSaw : RicochetProjectile
         else if (activeCollisions.ContainsKey(other)) return;
         else if (((1 << other.gameObject.layer) & (freeRicochetLayers.value | costRicochetLayers.value)) == 0) 
             return;
+        else if (other.GetType() == typeof(MeshCollider) && !((MeshCollider)other).convex)
+            return;
 
         ParticleSystem system = null;
         if (spawnedSparks.Count > 0)
@@ -73,6 +75,7 @@ public class BasicSaw : RicochetProjectile
             system = Instantiate(sparkPrefab, transform);
 
         Vector3 dir = (other.ClosestPoint(transform.position) - transform.position).normalized;
+
         system.transform.position = transform.position + dir * sparkRadius + Vector3.up * sparkHeight;
         system.transform.forward = dir;
         system.Play();
