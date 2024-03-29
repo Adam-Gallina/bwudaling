@@ -1838,8 +1838,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1365740921709373361}
     - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: range.startValue
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: radius.startValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: range.upgradeValue
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: radius.upgradeValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: range.upgradeEveryLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
       propertyPath: fetchDuration.startValue
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
+      propertyPath: radius.upgradeEveryLevel
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2005843394939869107, guid: d9b435597daeb86458dc1a384855a9a8, type: 3}
       propertyPath: fetchDuration.upgradeValue
