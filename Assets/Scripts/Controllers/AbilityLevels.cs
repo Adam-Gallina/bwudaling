@@ -57,7 +57,7 @@ public static class AbilityLevels
             {
                 charSaves = (CharacterSaves)bf.Deserialize(stream);
             }
-            catch (SerializationException e)
+            catch (SerializationException)
             {
                 if (saveDataLoadFailed)
                     return false;
@@ -137,7 +137,7 @@ public static class AbilityLevels
                 LoadedAbilities = new Abilities((AbilityVals)bf.Deserialize(stream));
                 OnAbilitiesLoaded?.Invoke();
             }
-            catch (SerializationException e) 
+            catch (SerializationException) 
             {
                 Debug.LogError("Could not read " + id + CharAbilitySuffix);
                 return false;
