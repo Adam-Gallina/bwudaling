@@ -27,6 +27,7 @@ public abstract class BossBase : NetworkBehaviour
 
     [Header("Random Movement")]
     [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float minMoveDist = 0;
     [SerializeField] protected float maxMoveDist;
     [SerializeField] protected float moveBuffer;
     [SerializeField] protected float targetPosAccuracy = .1f;
@@ -86,7 +87,7 @@ public abstract class BossBase : NetworkBehaviour
     {
         spawned = true;
         canMove = true;
-        targetPos = GetBossMoveTarget(Random.Range(0, maxMoveDist));
+        targetPos = GetBossMoveTarget(Random.Range(minMoveDist, maxMoveDist));
         nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks) * startAttackDelayMod;
     }
 
@@ -112,11 +113,17 @@ public abstract class BossBase : NetworkBehaviour
     }
     protected virtual void CheckBossMovement()
     {
+        if (!canMove) return;
+
         if (Vector3.Distance(transform.position, targetPos) < targetPosAccuracy)
         {
             targetPos = GetBossMoveTarget(Random.Range(0, maxMoveDist));
         }
 
+        DoBossMovement();
+    }
+    protected virtual void DoBossMovement()
+    {
         transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
 
         transform.forward = Vector3.RotateTowards(transform.forward, (targetPos - transform.position).normalized, rotationSpeed * Mathf.Deg2Rad * Time.deltaTime, 0);

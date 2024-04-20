@@ -70,7 +70,6 @@ public static class AbilityLevels
             if (charSaves.saveVersion != SaveVersion)
             {
                 throw new Exception($"File migration is not setup ({charSaves.saveVersion} -> {SaveVersion})");
-                return false;
             }
 
             stream.Close();
