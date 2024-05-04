@@ -24,21 +24,6 @@ public class RainbowString : BossBase
     [Header("Unknown Attack")]
     [SerializeField] protected BossAttackStats tangleStats;
 
-
-    private Transform ball1;
-    private Transform ball2;
-    private Transform ball3;
-    protected override void Awake()
-    {
-        base.Awake();
-
-        ball1 = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
-        ball1.localScale = Vector3.one * 4;
-        ball2 = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
-        ball2.localScale = Vector3.one * 2f;
-    }
-
-
     protected override void FillAttackBucket()
     {
         for (int i = 0; i < yarnballStats.bucketCount; i++)
@@ -49,14 +34,12 @@ public class RainbowString : BossBase
             attackBucket.Add(BossAttack.Attack3);
     }
 
-    private Vector3 lastPos;
     protected override void DoBossMovement()
     {
         lastPos = transform.position;
 
-        // Calculate move angle by using length of arc equation
+        // Calculate angular velocity by using length of arc equation
         float maxRadianDelta = moveSpeed * Time.deltaTime / currMoveRadius;
-        //transform.position = currMoveCenter + Vector3.RotateTowards(transform.position - currMoveCenter, targetPos - currMoveCenter, maxRadianDelta, 0);
 
         Vector3 toPos = transform.position - currMoveCenter;
         Vector3 toTarget = targetPos - currMoveCenter;
@@ -65,30 +48,25 @@ public class RainbowString : BossBase
         if (Vector3.Angle(toTarget, toPos) < maxRadianDelta * Mathf.Rad2Deg)
             pos = targetPos;
         else
-            pos = currMoveCenter + MyMath.RotateAboutY(toTarget, maxRadianDelta * Mathf.Rad2Deg);
+            pos = currMoveCenter + Vector3.RotateTowards(toPos, toTarget, maxRadianDelta, 0);
         transform.position = pos;
 
-        Debug.Log(moveSpeed + ": " + ((lastPos - transform.position).magnitude / Time.deltaTime));
 
         //transform.forward = Vector3.RotateTowards(transform.forward, (targetPos - transform.position).normalized, rotationSpeed * Mathf.Deg2Rad * Time.deltaTime, 0);
-
 
         // Update segment positions
     }
 
     protected override Vector3 GetBossMoveTarget(float distance)
     {
-        currMoveRadius = distance;
         currMoveCenter = base.GetBossMoveTarget(distance);
-        
-        currAngDir = (Random.Range(0, 1) == 0 ? 1 : -1);
+        currMoveRadius = Vector3.Distance(currMoveCenter, transform.position);
+
+        currAngDir = Random.Range(0, 2) == 0 ? 1 : -1;
         float ang = moveAngle.RandomVal * currAngDir;
 
         Vector3 toPos = (transform.position - currMoveCenter);
         Vector3 toTarget = MyMath.RotateAboutY(toPos, ang);
-
-        ball1.position = currMoveCenter + toTarget;
-        ball2.position = currMoveCenter;
 
         return currMoveCenter + toTarget;
     }
