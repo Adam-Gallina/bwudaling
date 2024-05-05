@@ -117,7 +117,7 @@ public abstract class BossBase : NetworkBehaviour
 
         if (Vector3.Distance(transform.position, targetPos) < targetPosAccuracy)
         {
-            targetPos = GetBossMoveTarget(Random.Range(0, maxMoveDist));
+            targetPos = GetBossMoveTarget(Random.Range(minMoveDist, maxMoveDist));
         }
 
         DoBossMovement();
@@ -130,7 +130,7 @@ public abstract class BossBase : NetworkBehaviour
     }
     protected virtual Vector3 GetBossMoveTarget(float distance)
     {
-        Vector2 randPos = Random.insideUnitCircle * distance;
+        Vector2 randPos = Random.insideUnitCircle.normalized * distance;
         Vector3 pos;
 
         for (int _ = 0; _ < 4; _++)

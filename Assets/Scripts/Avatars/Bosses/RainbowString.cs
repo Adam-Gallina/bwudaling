@@ -6,12 +6,12 @@ using UnityEngine;
 public class RainbowString : BossBase
 {
     [Header("Movement Anim")]
-    [SerializeField] private RangeF moveAngle;
-    private float currMoveRadius;
-    private Vector3 currMoveCenter;
-    private float currAngDir;
-    [SerializeField] private float sawFollowDist;
+    [SerializeField] private float bezierControlSize = 15;
+    [SerializeField] private int bezierSamples = 20;
+    float lastBezierT;
+    [SerializeField] private float segmentFollowDist;
     [SerializeField] private Transform[] segments;
+    private List<Bezier> moveCurves = new List<Bezier>();
 
     [Header("Yarnball Attack")]
     [SerializeField] protected BossAttackStats yarnballStats;
@@ -23,6 +23,41 @@ public class RainbowString : BossBase
 
     [Header("Unknown Attack")]
     [SerializeField] protected BossAttackStats tangleStats;
+
+    /*private void OnDrawGizmos()
+    {
+        if (moveCurves.Count == 0)
+            return;
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, minMoveDist);
+        Gizmos.DrawWireSphere(transform.position, maxMoveDist);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(moveCurves[0].start + Vector3.up * 6, moveCurves[0].start + moveCurves[0].startConstraint + Vector3.up * 6);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(moveCurves[0].end + Vector3.up * 6, moveCurves[0].end + moveCurves[0].endConstraint + Vector3.up * 6);
+
+        Gizmos.color = Color.yellow;
+        Vector3 lastPos = moveCurves[0].start;
+        for (int i = 1; i < bezierSamples; i++)
+        {
+            Vector3 pos = moveCurves[0].Sample((float)i / bezierSamples);
+            Gizmos.DrawLine(lastPos + Vector3.up * 5, pos + Vector3.up * 5);
+            lastPos = pos;
+        }
+    }*/
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        foreach (Transform s in segments)
+        {
+            s.parent = transform.parent;
+            s.position = transform.position;
+        }
+    }
 
     protected override void FillAttackBucket()
     {
@@ -36,39 +71,65 @@ public class RainbowString : BossBase
 
     protected override void DoBossMovement()
     {
-        lastPos = transform.position;
+        Vector3 lastPos = transform.position;
+        float dt = moveSpeed * Time.deltaTime / moveCurves[0].length;
+        lastBezierT += dt;
+        if (lastBezierT >= 1)
+            lastBezierT = 1;
+        transform.position = moveCurves[0].Sample(lastBezierT);
+        transform.forward = transform.position - lastPos;
 
-        // Calculate angular velocity by using length of arc equation
-        float maxRadianDelta = moveSpeed * Time.deltaTime / currMoveRadius;
+        // Update animation
+        segments[0].position = transform.position;
+        float animDt = segmentFollowDist / moveCurves[0].length;
+        float animT = lastBezierT;
+        int currCurve = 0;
+        int i;
+        for (i = 1; i < segments.Length; i++)
+        {
+            animT -= animDt;
+            if (animT < 0)
+            {
+                currCurve++;
+                if (currCurve >= moveCurves.Count)
+                    break;
 
-        Vector3 toPos = transform.position - currMoveCenter;
-        Vector3 toTarget = targetPos - currMoveCenter;
+                float remainingDist = segmentFollowDist - (animT + animDt) * moveCurves[currCurve - 1].length;
+                animT = 1 - (remainingDist / moveCurves[currCurve].length);
+                animDt = segmentFollowDist / moveCurves[currCurve].length;
+            }
 
-        Vector3 pos;
-        if (Vector3.Angle(toTarget, toPos) < maxRadianDelta * Mathf.Rad2Deg)
-            pos = targetPos;
-        else
-            pos = currMoveCenter + Vector3.RotateTowards(toPos, toTarget, maxRadianDelta, 0);
-        transform.position = pos;
+            segments[i].position = moveCurves[currCurve].Sample(animT);
+        }
+        // If no curve exists yet, step any remaining points towards front
+        /*for (; i < segments.Length; i++)
+        {
+            if (Vector3.Distance(segments[i - 1].position, segments[i].position) > segmentFollowDist)
+                segments[i].position = segments[i - 1].position + (segments[i].position - segments[i - 1].position).normalized * segmentFollowDist;
+        }*/
 
-
-        //transform.forward = Vector3.RotateTowards(transform.forward, (targetPos - transform.position).normalized, rotationSpeed * Mathf.Deg2Rad * Time.deltaTime, 0);
-
-        // Update segment positions
+        // Clean up any unused curves
+        if (currCurve < moveCurves.Count - 1)
+            moveCurves.RemoveAt(moveCurves.Count - 1);
     }
+
 
     protected override Vector3 GetBossMoveTarget(float distance)
     {
-        currMoveCenter = base.GetBossMoveTarget(distance);
-        currMoveRadius = Vector3.Distance(currMoveCenter, transform.position);
+        if (moveCurves.Count == 0 || Vector3.Distance(transform.position, moveCurves[0].end) < targetPosAccuracy || lastBezierT == 1)
+        {
+            Vector3 s = transform.position;
+            Vector3 sc = transform.forward * bezierControlSize;
+            Vector3 e = base.GetBossMoveTarget(distance);
+            Vector3 ec = MyMath.RotateAboutY((s - e).normalized, Random.Range(-45, 45)) * bezierControlSize;
+            moveCurves.Insert(0, new Bezier(s, sc, e, ec));
 
-        currAngDir = Random.Range(0, 2) == 0 ? 1 : -1;
-        float ang = moveAngle.RandomVal * currAngDir;
+            lastBezierT = 0;
 
-        Vector3 toPos = (transform.position - currMoveCenter);
-        Vector3 toTarget = MyMath.RotateAboutY(toPos, ang);
+            moveCurves[0].ApproximateLength(bezierSamples);
+        }
 
-        return currMoveCenter + toTarget;
+        return moveCurves[0].Sample(1);
     }
 
     #region Attacks
