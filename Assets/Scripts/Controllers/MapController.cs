@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
 public class MapController : MonoBehaviour
 {

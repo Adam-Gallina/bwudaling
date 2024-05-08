@@ -26,16 +26,17 @@ public class NetworkEnemySpawnPos : MonoBehaviour
     [Server]
     public virtual bool SpawnEnemy(bool validatePos = true)
     {
-        return SpawnEnemy(GetSpawnPos(), GetSpawnRot(), validatePos);
+        return SpawnEnemy(GetSpawnPos(), GetSpawnRot(), MapController.Instance.transform, validatePos);
     }
     [Server]
-    public virtual bool SpawnEnemy(Vector3 pos, Vector3 dir, bool validatePos = true)
+    public virtual bool SpawnEnemy(Vector3 pos, Vector3 dir, Transform parent, bool validatePos = true)
     {
         if (validatePos)
             if (!ValidateSpawnPos(pos))
                 return false;
 
         GameObject newEnemy = Instantiate(enemyPrefab.gameObject, pos, Quaternion.Euler(dir));
+        newEnemy.transform.parent = parent;
         NetworkServer.Spawn(newEnemy);
 
         BasicSaw newSaw = newEnemy.GetComponent<BasicSaw>();

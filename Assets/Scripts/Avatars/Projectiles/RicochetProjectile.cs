@@ -21,7 +21,7 @@ public class RicochetProjectile : Projectile
     [Server]
     public override void SetDirection(Vector3 direction)
     {
-        base.SetDirection(direction);
+        base.SetDirection(direction.normalized);
         currVelocity = direction.normalized * speed;
     }
 

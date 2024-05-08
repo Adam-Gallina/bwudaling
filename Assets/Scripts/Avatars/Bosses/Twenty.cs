@@ -133,7 +133,7 @@ public class Twenty : BossBase
 
             int n = Random.Range(0, chanceToTargetPlayer + chanceForRandomDrop);
 
-            Transform target = n < chanceToTargetPlayer ? GetRandomValidPlayer() : null;
+            Transform target = n < chanceToTargetPlayer ? GetRandomPlayer() : null;
             if (target)
             {
                 Vector2 dir = Random.insideUnitCircle * Random.Range(0, maxDistFromPlayer);

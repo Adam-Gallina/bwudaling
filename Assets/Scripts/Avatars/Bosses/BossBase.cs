@@ -211,7 +211,7 @@ public abstract class BossBase : NetworkBehaviour
     }
 
     // Returns a random living player able to be hit, or null if none exist
-    protected Transform GetRandomValidPlayer()
+    protected Transform GetRandomPlayer(bool isValid = true)
     {
         int tries = BwudalingNetworkManager.Instance.Players.Count;
         int p = Random.Range(0, BwudalingNetworkManager.Instance.Players.Count);
@@ -220,7 +220,7 @@ public abstract class BossBase : NetworkBehaviour
         {
             PlayerAvatar pa = BwudalingNetworkManager.Instance.Players[p].avatar;
 
-            if (!pa.dead && pa.canDamage)
+            if ((!pa.dead && pa.canDamage) || !isValid)
                 return BwudalingNetworkManager.Instance.Players[p].avatar.transform;
 
             p = (p + 1) % BwudalingNetworkManager.Instance.Players.Count;
@@ -272,6 +272,7 @@ public abstract class BossBase : NetworkBehaviour
     protected BasicSaw SpawnSaw(BasicSaw prefab, Vector3 pos, Vector3 dir, float speedMod = 1)
     {
         BasicSaw saw = Instantiate(prefab, pos, Quaternion.identity);
+        saw.transform.parent = MapController.Instance.transform;
         NetworkServer.Spawn(saw.gameObject);
         saw.SetSpawnLocation(pos);
         saw.SetOriginLocation(MapController.Instance.mapCenter, MapController.Instance.hazardRange);

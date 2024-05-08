@@ -165,19 +165,32 @@ MonoBehaviour:
   - {fileID: 523729512437932404}
   - {fileID: 4757505978358669031}
   yarnballStats:
-    hazardPrefab: {fileID: 0}
-    hazardSpeedMod: 0
-    bucketCount: 1
-  yarnballSpawnDelays: []
-  yarnballHaiwSpawnCount: 0
+    hazardPrefab: {fileID: 5929012255989091144, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
+    hazardSpeedMod: 1.5
+    bucketCount: 3
+  yarnballBursts:
+    minVal: 3
+    maxVal: 6
+  yarnballBurstSpawns: 3
+  yarnballSpawnMargin: 0.15
+  yarnballBurstDelay: 1.25
+  yarnballHaiwSpawnChance: 30
   frayStats:
     hazardPrefab: {fileID: 0}
     hazardSpeedMod: 0
     bucketCount: 1
   tangleStats:
-    hazardPrefab: {fileID: 0}
-    hazardSpeedMod: 0
-    bucketCount: 1
+    hazardPrefab: {fileID: 5929012255989091144, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
+    hazardSpeedMod: 4
+    bucketCount: 2
+  tanglePullDuration: 4
+  tanglePullSpeedMod: 0.8
+  tangleExplodeSpeedMod: 2
+  tangleExplodeModDuration: 10
+  tangleSpawnCount: 12
+  tangleHaiwSpawns:
+    minVal: 2
+    maxVal: 4
 --- !u!114 &3287314865822888132
 MonoBehaviour:
   m_ObjectHideFlags: 0

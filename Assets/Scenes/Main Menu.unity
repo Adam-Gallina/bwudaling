@@ -11637,7 +11637,7 @@ MonoBehaviour:
   DEBUG_AllowKeyCheats: 1
   DEBUG_IgnoreCooldown: 1
   DEBUG_TpWalls: 0
-  DEBUG_ForceBossAttack: 0
+  DEBUG_ForceBossAttack: 3
   DEBUG_ForceBossHealth: 1
   DEBUG_ResetAchievements: 0
   DEBUG_UnlockAllShirts: 0

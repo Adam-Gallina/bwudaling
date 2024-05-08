@@ -170,11 +170,11 @@ public class BasicSaw : RicochetProjectile
     }
 
     [Server]
-    public void ApplySpeedMod(float newSpeedMod, float duration)
+    public void ApplySpeedMod(float newSpeedMod, float duration, bool overrideCurrent = false)
     {
         speedDebuffEnd = Time.time + duration;
 
-        if (newSpeedMod < currSpeedMod)
+        if (newSpeedMod < currSpeedMod || overrideCurrent)
             currSpeedMod = newSpeedMod;
     }
 

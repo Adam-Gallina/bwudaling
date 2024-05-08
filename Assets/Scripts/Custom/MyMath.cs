@@ -70,6 +70,13 @@ public class Bezier
     public float length { get; private set; }
 
 
+    public void MoveEnd(Vector3 end, Vector3? endConstraint = null)
+    {
+        this.end = end;
+        if (endConstraint != null)
+            this.endConstraint = (Vector3)endConstraint;
+    }
+
     public Bezier(Vector3 start, Vector3 startConstraint, Vector3 end, Vector3 endConstraint)
     {
         this.start = start;
