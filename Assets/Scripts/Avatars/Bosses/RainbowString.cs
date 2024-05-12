@@ -133,7 +133,9 @@ public class RainbowString : BossBase
         Vector3 s = transform.position;
         Vector3 sc = transform.forward * bezierControlSize;
         Vector3 e = target;
-        Vector3 ec = MyMath.RotateAboutY((s - e).normalized, Random.Range(-45, 45)) * bezierControlSize;
+        //Vector3 ec = MyMath.RotateAboutY((e - s).normalized, Random.Range(-45, 45)) * bezierControlSize;
+        Vector2 dir = Random.insideUnitCircle.normalized;
+        Vector3 ec = new Vector3(dir.x, 0, dir.y) * bezierControlSize;
         moveCurves.Insert(0, new Bezier(s, sc, e, ec));
 
         lastBezierT = 0;
@@ -177,7 +179,7 @@ public class RainbowString : BossBase
     protected IEnumerator FrayAttack()
     {
         yield return null;
-    }
+    } 
 
     protected override void DoAttack3()
     {

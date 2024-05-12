@@ -130,6 +130,11 @@ public abstract class BossBase : NetworkBehaviour
     }
     protected virtual Vector3 GetBossMoveTarget(float distance)
     {
+        if (!IsValidMovePos(transform.position))
+        {
+            return MyMath.RotateAboutY((MapController.Instance.mapCenter - transform.position).normalized * distance, Random.Range(-30, 30));
+        }
+
         Vector2 randPos = Random.insideUnitCircle.normalized * distance;
         Vector3 pos;
 

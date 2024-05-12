@@ -149,7 +149,7 @@ MonoBehaviour:
   spawnAudio: {fileID: 0}
   deathAudio: {fileID: 0}
   bezierControlSize: 15
-  bezierSamples: 30
+  bezierSamples: 50
   segmentFollowDist: 6
   segments:
   - {fileID: 5345857484092593887}
