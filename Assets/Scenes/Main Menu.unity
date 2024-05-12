@@ -12325,11 +12325,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104775483}
   m_CullTransparentMesh: 1
---- !u!1 &1108070438 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -2984815718558934986, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
-  m_PrefabInstance: {fileID: 1040748617}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1108428100
 GameObject:
   m_ObjectHideFlags: 0
@@ -12593,9 +12588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e208a8d77d02524797cf90ab42a3c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dogieHat: {fileID: 1108070438}
-  piestHat: {fileID: 1556798143}
-  bwudaHat: {fileID: 1229403179}
+  dogieHatName: Hat_Dogie
+  piestHatName: Hat_Piest
+  bwudaHatName: Hat_Bwuda
   shirtBody: {fileID: 174039040}
   shirt: {fileID: 1946732021}
   danceBody: {fileID: 1446150399}
@@ -13770,11 +13765,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1229403179 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -5753185578959084616, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
-  m_PrefabInstance: {fileID: 1040748617}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1233223949
 GameObject:
   m_ObjectHideFlags: 0
@@ -18913,11 +18903,6 @@ RectTransform:
   m_AnchoredPosition: {x: -50.000004, y: 62.5}
   m_SizeDelta: {x: -100, y: 330}
   m_Pivot: {x: 0.5, y: 0}
---- !u!1 &1556798143 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5177505966461004832, guid: 286f9f85fb210b847a7567c3aaed013e, type: 3}
-  m_PrefabInstance: {fileID: 1040748617}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1557902666
 GameObject:
   m_ObjectHideFlags: 0

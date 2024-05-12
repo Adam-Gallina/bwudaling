@@ -41,7 +41,7 @@ public class XpArea : SafeArea
             List<PlayerAvatar> eligible = new List<PlayerAvatar>();
 
             // Check for players close to/within safe zone
-            Collider[] nearby = Physics.OverlapBox(transform.position + rewardCheckOrigin, new Vector3(rewardDist, rewardDist, rewardDist) / 2, transform.rotation, 1 << Constants.PlayerLayer);
+            Collider[] nearby = Physics.OverlapBox(transform.position + rewardCheckOrigin, Vector3.one * rewardDist / 2, transform.rotation, 1 << Constants.PlayerLayer);
             foreach (Collider c in nearby)
             {
                 PlayerAvatar p = c.GetComponent<PlayerAvatar>();

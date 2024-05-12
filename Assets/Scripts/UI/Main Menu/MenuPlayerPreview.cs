@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class MenuPlayerPreview : MonoBehaviour
 {
-    //[SerializeField] private GameObject wuvaHat;
-    [SerializeField] private GameObject dogieHat;
-    [SerializeField] private GameObject piestHat;
-    [SerializeField] private GameObject bwudaHat;
+    //[SerializeField] private string wuvaHatName;
+    [SerializeField] private string dogieHatName = "Hat_Dogie";
+    [SerializeField] private string piestHatName = "Hat_Piest";
+    [SerializeField] private string bwudaHatName = "Hat_Bwuda";
 
     [SerializeField] private SkinnedMeshRenderer shirtBody;
     [SerializeField] private SkinnedMeshRenderer shirt;
@@ -26,6 +26,9 @@ public class MenuPlayerPreview : MonoBehaviour
         //anim.SetBool("Walking", true);
         anim.SetBool("Dancing", true);
         anim.SetInteger("Dance", 1);
+
+        Debug.Log(shirtBody.transform.parent);
+        Debug.Log(shirtBody.transform.parent.Find(dogieHatName));
     }
 
     float rot = 0;
@@ -37,32 +40,34 @@ public class MenuPlayerPreview : MonoBehaviour
 
     public void SetClass(AvatarClass c)
     {
-        switch (c)
-        {
-            case AvatarClass.Wuva:
-                //wuvaHat.SetActive(true); 
-                dogieHat.SetActive(false);
-                piestHat.SetActive(false);
-                bwudaHat.SetActive(false);
-                break;
-            case AvatarClass.Dogie:
-                //wuvaHat.SetActive(false); 
-                dogieHat.SetActive(true);
-                piestHat.SetActive(false);
-                bwudaHat.SetActive(false);
-                break;
-            case AvatarClass.Piest:
-                //wuvaHat.SetActive(false); 
-                dogieHat.SetActive(false);
-                piestHat.SetActive(true);
-                bwudaHat.SetActive(false);
-                break;
-            case AvatarClass.Bwuda:
-                //wuvaHat.SetActive(false); 
-                dogieHat.SetActive(false);
-                piestHat.SetActive(false);
-                bwudaHat.SetActive(true);
-                break;
+        foreach (Transform t in new Transform[] { shirtBody.transform.parent, danceBody.transform.parent }) {
+            switch (c)
+            {
+                case AvatarClass.Wuva:
+                    //t.Find(wuvaHatName).gameObject.SetActive(true);
+                    t.Find(dogieHatName).gameObject.SetActive(false);
+                    t.Find(piestHatName).gameObject.SetActive(false);
+                    t.Find(bwudaHatName).gameObject.SetActive(false);
+                    break;
+                case AvatarClass.Dogie:
+                    //t.Find(wuvaHatName).gameObject.SetActive(false); 
+                    t.Find(dogieHatName).gameObject.SetActive(true);
+                    t.Find(piestHatName).gameObject.SetActive(false);
+                    t.Find(bwudaHatName).gameObject.SetActive(false);
+                    break;
+                case AvatarClass.Piest:
+                    //t.Find(wuvaHatName).gameObject.SetActive(false); 
+                    t.Find(dogieHatName).gameObject.SetActive(false);
+                    t.Find(piestHatName).gameObject.SetActive(true);
+                    t.Find(bwudaHatName).gameObject.SetActive(false);
+                    break;
+                case AvatarClass.Bwuda:
+                    //t.Find(wuvaHatName).gameObject.SetActive(false); 
+                    t.Find(dogieHatName).gameObject.SetActive(false);
+                    t.Find(piestHatName).gameObject.SetActive(false);
+                    t.Find(bwudaHatName).gameObject.SetActive(true);
+                    break;
+            }
         }
     }
 
