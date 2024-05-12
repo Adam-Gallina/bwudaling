@@ -9,6 +9,9 @@ public class DanceSelect : MonoBehaviour
     public static string CurrDanceId { get { return danceData.id; } }
     private static DanceData danceData;
 
+    [SerializeField] private TMPro.TMP_Text danceName;
+    [SerializeField] private TMPro.TMP_Text danceNameOutline;
+
     private string savedDance
     {
         get
@@ -25,26 +28,26 @@ public class DanceSelect : MonoBehaviour
     {
         availableDances = AchievmentController.Instance.GetUnlockedDances();
 
-        /*if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
+        if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
         {
-            if (BwudalingNetworkManager.Instance.ActivePlayer.shirtTextureId == "")
-                shirtData = AchievmentController.Shirts[savedShirt];
+            if (BwudalingNetworkManager.Instance.ActivePlayer.danceId == "")
+                danceData = AchievmentController.Dances[savedDance];
             else
-                shirtData = AchievmentController.Shirts[BwudalingNetworkManager.Instance.ActivePlayer.shirtTextureId];
+                danceData = AchievmentController.Dances[BwudalingNetworkManager.Instance.ActivePlayer.danceId];
 
-            for (int i = 0; i < availableShirts.Length; i++)
+            for (int i = 0; i < availableDances.Length; i++)
             {
-                if (availableShirts[i] == shirtData.id)
+                if (availableDances[i] == danceData.id)
                 {
-                    currShirt = i;
+                    currDance = i;
                     break;
                 }
             }
         }
         else
-        {*/
+        {
             danceData = AchievmentController.Dances[savedDance];
-        //}
+        }
         UpdateDanceDisplay();
     }
 
@@ -73,5 +76,8 @@ public class DanceSelect : MonoBehaviour
     {
         GameObject.Find("Shirt Preview Cam").GetComponent<MenuPlayerPreview>().SetDance(danceData.animId);
         savedDance = danceData.id;
+
+        danceName.text = danceData.name;
+        danceNameOutline.text = danceData.name;
     }
 }

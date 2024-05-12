@@ -11,6 +11,9 @@ public class ShirtSelect : MonoBehaviour
     public static string CurrShirtId { get { return shirtData.id; } }
     private static ShirtData shirtData;
 
+    [SerializeField] private TMPro.TMP_Text shirtName;
+    [SerializeField] private TMPro.TMP_Text shirtNameOutline;
+
     private string savedShirt
     {
         get
@@ -77,5 +80,8 @@ public class ShirtSelect : MonoBehaviour
         GameObject.Find("Shirt Preview Cam").GetComponent<MenuPlayerPreview>().SetMaterial(m);
 
         savedShirt = shirtData.id;
+
+        shirtName.text = shirtData.name;
+        shirtNameOutline.text = shirtData.name;
     }
 }

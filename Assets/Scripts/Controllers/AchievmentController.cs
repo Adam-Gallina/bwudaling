@@ -113,7 +113,7 @@ public class AchievmentController : MonoBehaviour
 
     [SerializeField] private DanceData[] dances = new DanceData[0];
     public static Dictionary<string, DanceData> Dances = new Dictionary<string, DanceData>();
-    //private Dictionary<string, string> AchievementDances = new Dictionary<string, string>();
+    private Dictionary<string, string> AchievementDances = new Dictionary<string, string>();
 
     protected Callback<UserStatsReceived_t> StatsReceived;
     protected Callback<UserAchievementStored_t> AchievementStored;
@@ -147,13 +147,13 @@ public class AchievmentController : MonoBehaviour
 
         foreach (DanceData d in dances)
         {
-            /*if (d.achievementName != string.Empty)
+            if (d.achievementName != string.Empty)
             {
-                if (AchievementShirts.ContainsKey(s.achievementName))
-                    Debug.LogError($"Duplicate achievement id {s.achievementName}, skipping {s.name}");
+                if (AchievementDances.ContainsKey(d.achievementName))
+                    Debug.LogError($"Duplicate dance achievement id {d.achievementName}, skipping {d.name}");
                 else
-                    AchievementShirts.Add(s.achievementName, s.id);
-            }*/
+                    AchievementDances.Add(d.achievementName, d.id);
+            }
 
             if (Dances.ContainsKey(d.id))
                 Debug.LogError($"Duplicate dance id {d.id}, skipping {d.name}");
@@ -193,13 +193,25 @@ public class AchievmentController : MonoBehaviour
     {
         if (callback.m_nCurProgress == 0 && callback.m_nMaxProgress == 0)
         {
-            if (!Shirts[AchievementShirts[callback.m_rgchAchievementName]].unlocked)
+            if (AchievementShirts.ContainsKey(callback.m_rgchAchievementName))
             {
-                ShirtData s = Shirts[AchievementShirts[callback.m_rgchAchievementName]];
-                s.unlocked = true;
-                Shirts[AchievementShirts[callback.m_rgchAchievementName]] = s;
-                if (s.previewImg)
-                    ShirtNotification.Instance.SetNotification(s.previewImg);
+                if (!Shirts[AchievementShirts[callback.m_rgchAchievementName]].unlocked)
+                {
+                    ShirtData s = Shirts[AchievementShirts[callback.m_rgchAchievementName]];
+                    s.unlocked = true;
+                    Shirts[AchievementShirts[callback.m_rgchAchievementName]] = s;
+                    if (s.previewImg)
+                        ShirtNotification.Instance.SetNotification(s.previewImg);
+                }
+            }
+            if (AchievementDances.ContainsKey(callback.m_rgchAchievementName))
+            {
+                if (!Dances[AchievementDances[callback.m_rgchAchievementName]].unlocked)
+                {
+                    DanceData d = Dances[AchievementDances[callback.m_rgchAchievementName]];
+                    d.unlocked = true;
+                    Dances[AchievementDances[callback.m_rgchAchievementName]] = d;
+                }
             }
         }
     }
