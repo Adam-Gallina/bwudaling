@@ -148,7 +148,7 @@ public class CharacterSelect : MonoBehaviour
         }
 
         p.LoadAvatar();
-        GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetClass(AbilityLevels.LoadedAbilities.vals.avatarClass);
+        GameObject.Find("Shirt Preview Cam").GetComponent<MenuPlayerPreview>().SetClass(AbilityLevels.LoadedAbilities.vals.avatarClass);
     }
 
     public void DeleteChar()

@@ -1,8 +1,8 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using Action = System.Action;
 
 public class RainbowString : BossBase
 {
@@ -25,6 +25,11 @@ public class RainbowString : BossBase
 
     [Header("Fray Attack")]
     [SerializeField] protected BossAttackStats frayStats;
+    [SerializeField] private float frayEdgeRadius = 110;
+    [SerializeField] private float frayMoveSpeed;
+    [SerializeField] private RangeI frayCharges;
+    [Range(0, 100)]
+    [SerializeField] protected int frayHaiwSpawnChance = 30;
 
     [Header("Tangle Attack")]
     [SerializeField] protected BossAttackStats tangleStats;
@@ -128,15 +133,17 @@ public class RainbowString : BossBase
         return moveCurves[0].Sample(1);
     }
 
-    private void GetNewMovementCurve(Vector3 target)
+    private void GetNewMovementCurve(Vector3 target, Vector3? targetControl = null)
     {
+        if (targetControl == null)
+        {
+            Vector2 dir = Random.insideUnitCircle.normalized;
+            targetControl = new Vector3(dir.x, 0, dir.y) * bezierControlSize;
+        }
+
         Vector3 s = transform.position;
         Vector3 sc = transform.forward * bezierControlSize;
-        Vector3 e = target;
-        //Vector3 ec = MyMath.RotateAboutY((e - s).normalized, Random.Range(-45, 45)) * bezierControlSize;
-        Vector2 dir = Random.insideUnitCircle.normalized;
-        Vector3 ec = new Vector3(dir.x, 0, dir.y) * bezierControlSize;
-        moveCurves.Insert(0, new Bezier(s, sc, e, ec));
+        moveCurves.Insert(0, new Bezier(s, sc, target, targetControl.Value));
 
         lastBezierT = 0;
 
@@ -144,6 +151,19 @@ public class RainbowString : BossBase
     }
 
     #region Attacks
+    private IEnumerator MoveThroughCurve(Action onMove = null)
+    {
+        while (lastBezierT < 1)
+        {
+            DoBossMovement();
+
+            if (onMove != null)
+                onMove.Invoke();
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     protected override void DoAttack1()
     {
         StartCoroutine(YarnballAttack());
@@ -178,8 +198,55 @@ public class RainbowString : BossBase
     }
     protected IEnumerator FrayAttack()
     {
-        yield return null;
-    } 
+        attacking = true;
+        canMove = false;
+        float lastMoveSpeed = moveSpeed;
+
+        Vector3 currDir = (transform.position - MapController.Instance.mapCenter).normalized;
+        Vector3 t = MyMath.RotateAboutY(currDir, Random.Range(30, 60)) * frayEdgeRadius * (Random.Range(0, 2) == 0 ? 1 : -1);
+        GetNewMovementCurve(MapController.Instance.mapCenter + t, (t - transform.position).normalized * bezierControlSize);
+        if (moveCurves.Count > 1)
+        {
+            moveCurves[1].MoveEnd(transform.position, transform.forward * bezierControlSize);
+            moveCurves[1].ApproximateLength(bezierSamples);
+        }
+        yield return MoveThroughCurve();
+
+        moveSpeed = frayMoveSpeed;
+        for (int i = frayCharges.RandomVal; i > 0; i--)
+        {
+            // Move to new target start
+            currDir = (transform.position - MapController.Instance.mapCenter).normalized;
+            float ang = Random.Range(30, 60) * (Random.Range(0, 2) == 0 ? 1 : -1);
+            t = MyMath.RotateAboutY(currDir, ang) * frayEdgeRadius;
+            GetNewMovementCurve(MapController.Instance.mapCenter + t, (MapController.Instance.mapCenter + t - transform.position).normalized * bezierControlSize);
+
+            yield return MoveThroughCurve();
+
+            // Charge thru map
+            currDir = (MapController.Instance.mapCenter - transform.position).normalized;
+            ang = Random.Range(-30, 30);
+            t = MyMath.RotateAboutY(currDir, ang) * frayEdgeRadius;
+            GetNewMovementCurve(MapController.Instance.mapCenter + t, currDir * bezierControlSize);
+
+            // Spawn haiw at halfway point
+            bool spawnedHaiw = false;
+            yield return MoveThroughCurve(() =>
+            {
+                if (!spawnedHaiw && lastBezierT >= .5f)
+                {
+                    spawnedHaiw = true;
+                    if (Random.Range(0, 100) <= frayHaiwSpawnChance)
+                        SpawnHaiw();
+                }
+            });
+        }
+
+        attacking = false;
+        canMove = true;
+        nextAttack = Time.time + Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+        moveSpeed = lastMoveSpeed;
+    }
 
     protected override void DoAttack3()
     {
@@ -191,18 +258,13 @@ public class RainbowString : BossBase
         attacking = true;
         canMove = false;
 
-        GetNewMovementCurve(MapController.Instance.mapCenter);
+        GetNewMovementCurve(MapController.Instance.mapCenter, (MapController.Instance.mapCenter - transform.position).normalized * bezierControlSize);
         if (moveCurves.Count > 1)
         {
             moveCurves[1].MoveEnd(transform.position, transform.forward * bezierControlSize);
             moveCurves[1].ApproximateLength(bezierSamples);
         }
-
-        while (lastBezierT < 1)
-        {
-            DoBossMovement();
-            yield return new WaitForEndOfFrame();
-        }
+        yield return MoveThroughCurve();
 
         BasicSaw[] saws = MapController.Instance.GetComponentsInChildren<BasicSaw>();
         foreach (BasicSaw saw in saws)

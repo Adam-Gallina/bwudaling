@@ -85,6 +85,9 @@ public class PlayerAvatar : AvatarBase
         CmdSetBodyColor(player.avatarColor);
         CmdSetShirtId(player.shirtTextureId);
 
+        if (AchievmentController.Dances.ContainsKey(player.danceId))
+            anim.SetInteger("Dance", AchievmentController.Dances[player.danceId].animId);
+
         if (!MapController.Instance.canControlAvatars)
             return;
 
@@ -128,9 +131,7 @@ public class PlayerAvatar : AvatarBase
     protected override void Awake()
     {
         base.Awake();
-
         anim = GetComponentInChildren<Animator>();
-        anim.SetInteger("Dance", 1);
 
         ability1?.SetController(this);
         ability2?.SetController(this);
@@ -216,7 +217,10 @@ public class PlayerAvatar : AvatarBase
     protected virtual void Update()
     {
         if (!MapController.Instance.canControlAvatars)
+        {
+            rb.velocity = Vector3.zero;
             return;
+        }
 
         aliveIcon.SetActive(!dead);
         aliveIcon.transform.eulerAngles = Vector3.right * 90;

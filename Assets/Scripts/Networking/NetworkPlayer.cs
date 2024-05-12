@@ -25,6 +25,8 @@ public class NetworkPlayer : NetworkBehaviour
     public Color avatarColor = Color.white;
     [SyncVar(hook = nameof(OnAvatarShirtChanged))]
     public string shirtTextureId;
+    [SyncVar(hook = nameof(OnAvatarDanceChanged))]
+    public string danceId;
     [SyncVar(hook = nameof(OnReadyChanged))]
     public bool IsReady = false;
 
@@ -87,6 +89,18 @@ public class NetworkPlayer : NetworkBehaviour
     private void CmdSetShirtColor(string shirtId)
     {
         shirtTextureId = shirtId;
+    }
+
+    [Client]
+    public void SetAvatarDance(string danceId)
+    {
+        if (hasAuthority)
+            CmdSetDance(danceId);
+    }
+    [Command]
+    private void CmdSetDance(string danceId)
+    {
+        this.danceId = danceId;
     }
 
     public override void OnStopClient()
@@ -182,6 +196,11 @@ public class NetworkPlayer : NetworkBehaviour
         OnPlayerInfoChanged();
     }
     private void OnAvatarShirtChanged(string _, string newval)
+    {
+        OnPlayerInfoChanged();
+    }
+
+    private void OnAvatarDanceChanged(string _, string newval)
     {
         OnPlayerInfoChanged();
     }

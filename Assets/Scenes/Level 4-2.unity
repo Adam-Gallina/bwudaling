@@ -624,7 +624,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   amountPerSpawn: 1
-  spawnRate: 1.25
+  spawnRate: 1
   minTurnAng: 0
   maxTurnAng: 0
   spawnHeight: 40
@@ -2142,7 +2142,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   amountPerSpawn: 1
-  spawnRate: 1.5
+  spawnRate: 1.25
   minTurnAng: 0
   maxTurnAng: 0
   spawnHeight: 40
@@ -3254,7 +3254,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   amountPerSpawn: 1
-  spawnRate: 1.5
+  spawnRate: 1.25
   minTurnAng: 0
   maxTurnAng: 0
   spawnHeight: 40
@@ -3476,7 +3476,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   amountPerSpawn: 1
-  spawnRate: 1
+  spawnRate: 0.75
   minTurnAng: 0
   maxTurnAng: 0
   spawnHeight: 40
@@ -4567,7 +4567,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   amountPerSpawn: 1
-  spawnRate: 1.25
+  spawnRate: 1
   minTurnAng: 0
   maxTurnAng: 0
   spawnHeight: 40
@@ -5396,7 +5396,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   amountPerSpawn: 1
-  spawnRate: 1
+  spawnRate: 0.75
   minTurnAng: 0
   maxTurnAng: 0
   spawnHeight: 40

@@ -74,7 +74,7 @@ public class ShirtSelect : MonoBehaviour
     private void UpdateShirtDisplay()
     {
         Material m = shirtData.mat;
-        GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetMaterial(m);
+        GameObject.Find("Shirt Preview Cam").GetComponent<MenuPlayerPreview>().SetMaterial(m);
 
         savedShirt = shirtData.id;
     }

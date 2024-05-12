@@ -66,6 +66,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   playing: 0
+  mapType: 0
   startBannerMessages:
   - READY?
   - 3

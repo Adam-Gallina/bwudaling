@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class MenuPlayerPreview : MonoBehaviour
@@ -9,9 +10,11 @@ public class MenuPlayerPreview : MonoBehaviour
     [SerializeField] private GameObject piestHat;
     [SerializeField] private GameObject bwudaHat;
 
-    [SerializeField] private SkinnedMeshRenderer body;
-
+    [SerializeField] private SkinnedMeshRenderer shirtBody;
     [SerializeField] private SkinnedMeshRenderer shirt;
+
+    [SerializeField] private SkinnedMeshRenderer danceBody;
+    [SerializeField] private SkinnedMeshRenderer danceShirt;
 
     [SerializeField] private float spinSpeed = 180;
 
@@ -21,8 +24,8 @@ public class MenuPlayerPreview : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         //anim.SetBool("Walking", true);
-        //anim.SetBool("Dancing", true);
-        //anim.SetInteger("Dance", 1);
+        anim.SetBool("Dancing", true);
+        anim.SetInteger("Dance", 1);
     }
 
     float rot = 0;
@@ -65,11 +68,19 @@ public class MenuPlayerPreview : MonoBehaviour
 
     public void SetColor(Color col)
     {
-        body.material.color = col;
+        shirtBody.material.color = col;
+        danceBody.material.color = col;
     }
 
     public void SetMaterial(Material mat)
     {
         shirt.material = mat;
+        danceShirt.material = mat;
+    }
+
+
+    public void SetDance(int dance)
+    {
+        anim.SetInteger("Dance", dance);
     }
 }

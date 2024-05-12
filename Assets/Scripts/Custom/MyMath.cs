@@ -73,8 +73,8 @@ public class Bezier
     public void MoveEnd(Vector3 end, Vector3? endConstraint = null)
     {
         this.end = end;
-        if (endConstraint != null)
-            this.endConstraint = (Vector3)endConstraint;
+        if (endConstraint.HasValue)
+            this.endConstraint = endConstraint.Value;
     }
 
     public Bezier(Vector3 start, Vector3 startConstraint, Vector3 end, Vector3 endConstraint)

@@ -104,7 +104,7 @@ public class ColorSelect : MonoBehaviour
         {
             colorBtns[n].Disable();
             if (hasAuthority)
-                GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetColor(n);
+                GameObject.Find("Shirt Preview Cam").GetComponent<MenuPlayerPreview>().SetColor(n);
         }
     }
 }

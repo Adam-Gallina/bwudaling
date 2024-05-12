@@ -2083,7 +2083,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 10
+  spawnCount: 7
   spawnTries: 10
 --- !u!1001 &548257174
 PrefabInstance:
@@ -3499,7 +3499,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 8
+  spawnCount: 6
   spawnTries: 10
 --- !u!1001 &859776666
 PrefabInstance:
@@ -4224,7 +4224,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 8
+  spawnCount: 6
   spawnTries: 10
 --- !u!1 &1186491199
 GameObject:
@@ -4326,7 +4326,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 10
+  spawnCount: 7
   spawnTries: 10
 --- !u!1 &1220444185
 GameObject:
@@ -5021,7 +5021,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 10
+  spawnCount: 7
   spawnTries: 10
 --- !u!1 &1441210435
 GameObject:
@@ -5540,7 +5540,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 12
+  spawnCount: 9
   spawnTries: 10
 --- !u!1001 &1538715760
 PrefabInstance:
@@ -6000,7 +6000,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 12
+  spawnCount: 9
   spawnTries: 10
 --- !u!1001 &1801043128
 PrefabInstance:
@@ -6811,7 +6811,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 8
+  spawnCount: 6
   spawnTries: 10
 --- !u!1 &2021959786
 GameObject:
@@ -7040,7 +7040,7 @@ MonoBehaviour:
   useSpawnerRange: 1
   model: {fileID: 0}
   spawnBounds: {x: 48, y: 48}
-  spawnCount: 12
+  spawnCount: 9
   spawnTries: 10
 --- !u!1 &2113703610
 GameObject:

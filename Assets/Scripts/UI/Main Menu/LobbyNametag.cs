@@ -31,7 +31,7 @@ public class LobbyNametag : NametagUI
 
         if (string.IsNullOrEmpty(player.displayName) || player.displayName.Equals("Unnamed Player"))
             SetDisplayName(MainMenu.DisplayName);
-        GameObject.Find("Preview Cam").GetComponent<MenuPlayerPreview>().SetColor(player.avatarColor);
+        GameObject.Find("Shirt Preview Cam").GetComponent<MenuPlayerPreview>().SetColor(player.avatarColor);
 
         Menu.startGameButton.gameObject.SetActive(player.IsLeader);
         Menu.mapPackSelect.interactable = player.IsLeader;
@@ -86,6 +86,7 @@ public class LobbyNametag : NametagUI
         Menu.readyButton.GetComponentInChildren<TMPro.TMP_Text>().text = !LinkedPlayer.IsReady ? "Unready" : "Ready";
         LinkedPlayer.CmdSetIsReady(!LinkedPlayer.IsReady);
         LinkedPlayer.SetAvatarShirt(ShirtSelect.CurrShirtId);
+        LinkedPlayer.SetAvatarDance(DanceSelect.CurrDanceId);
     }
 
     public void StartGame()

@@ -86,7 +86,7 @@ public class AchievmentController : MonoBehaviour
             case Constants.TwentName:
                 return FastestTwent;
             default:
-                Debug.LogError("Can't fetch best time for current map pack " + BwudalingNetworkManager.Instance.currMaps.name);
+                Debug.LogWarning("Can't fetch best time for current map pack " + BwudalingNetworkManager.Instance.currMaps.name);
                 return -1;
         }
     }
@@ -103,12 +103,17 @@ public class AchievmentController : MonoBehaviour
 
     public static AchievmentController Instance { get; private set; }
 
-    public static string DefaultShirtId { get; private set; }  = "col_red";
+    public static string DefaultShirtId { get; private set; } = "col_red";
+    public static string DefaultDanceId { get; private set; } = "dental_hygiene";
 
 
     [SerializeField] private ShirtData[] shirts = new ShirtData[0];
     public static Dictionary<string, ShirtData> Shirts = new Dictionary<string, ShirtData>();
     private Dictionary<string, string> AchievementShirts = new Dictionary<string, string>();
+
+    [SerializeField] private DanceData[] dances = new DanceData[0];
+    public static Dictionary<string, DanceData> Dances = new Dictionary<string, DanceData>();
+    //private Dictionary<string, string> AchievementDances = new Dictionary<string, string>();
 
     protected Callback<UserStatsReceived_t> StatsReceived;
     protected Callback<UserAchievementStored_t> AchievementStored;
@@ -138,6 +143,22 @@ public class AchievmentController : MonoBehaviour
                 Debug.LogError($"Duplicate shirt id {s.id}, skipping {s.name}");
             else
                 Shirts.Add(s.id, s);
+        }
+
+        foreach (DanceData d in dances)
+        {
+            /*if (d.achievementName != string.Empty)
+            {
+                if (AchievementShirts.ContainsKey(s.achievementName))
+                    Debug.LogError($"Duplicate achievement id {s.achievementName}, skipping {s.name}");
+                else
+                    AchievementShirts.Add(s.achievementName, s.id);
+            }*/
+
+            if (Dances.ContainsKey(d.id))
+                Debug.LogError($"Duplicate dance id {d.id}, skipping {d.name}");
+            else
+                Dances.Add(d.id, d);
         }
 
         if (SteamManager.Initialized)
@@ -197,6 +218,20 @@ public class AchievmentController : MonoBehaviour
         return ids.ToArray();
     }
     
+    public string[] GetUnlockedDances()
+    {
+        List<string> ids = new List<string>();
+        foreach (DanceData d in Dances.Values)
+        {
+            if (d.startUnlocked
+                || d.achievementName != string.Empty && d.unlocked
+                || BwudalingNetworkManager.Instance.DEBUG_UnlockAllShirts)
+                ids.Add(d.id);
+        }
+
+        return ids.ToArray();
+    }
+
     private void OnEnable()
     {
         AbilityLevels.OnAbilitiesLoaded += OnAbilitiesLoaded;
@@ -364,7 +399,7 @@ public class AchievmentController : MonoBehaviour
                     SteamUserStats.SetAchievement(Twent);
                     break;
                 default:
-                    Debug.LogError("Can't update achievement for current boss " + ((BossMapController)MapController.Instance).bossPrefab.bossName);
+                    Debug.LogWarning("Can't update achievement for current boss " + ((BossMapController)MapController.Instance).bossPrefab.bossName);
                     return;
             }
 
@@ -385,6 +420,20 @@ public struct ShirtData
     public string name;
     public string id;
     public Material mat;
+
+    public bool startUnlocked;
+    public string achievementName;
+    public Sprite previewImg;
+
+    [HideInInspector] public bool unlocked;
+}
+
+[System.Serializable]
+public struct DanceData
+{
+    public string name;
+    public string id;
+    public int animId;
 
     public bool startUnlocked;
     public string achievementName;

@@ -184,7 +184,6 @@ public class Constants
 
         int ms = Mathf.RoundToInt(time % 1 * 1000);
         int s = (int)time;
-        ms -= s;
         int m = s / 60;
         s %= 60;
         int h = m / 60;
