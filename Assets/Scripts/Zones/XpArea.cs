@@ -12,6 +12,14 @@ public class XpArea : SafeArea
 
     protected Dictionary<PlayerAvatar, int> rewarded = new Dictionary<PlayerAvatar, int>();
     [SerializeField] protected float rewardDist = 35;
+    [SerializeField] protected Vector3 rewardCheckOrigin;
+    [SerializeField] protected Collider rewardCheckIgnore;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position + rewardCheckOrigin, Vector3.one * rewardDist);
+    }
 
     [Client]
     protected override void ClientOnTouchPlayer(PlayerAvatar target)
@@ -33,15 +41,16 @@ public class XpArea : SafeArea
             List<PlayerAvatar> eligible = new List<PlayerAvatar>();
 
             // Check for players close to/within safe zone
-            Collider[] nearby = Physics.OverlapBox(transform.position, new Vector3(rewardDist, rewardDist, rewardDist) / 2, transform.rotation, 1 << Constants.PlayerLayer);
+            Collider[] nearby = Physics.OverlapBox(transform.position + rewardCheckOrigin, new Vector3(rewardDist, rewardDist, rewardDist) / 2, transform.rotation, 1 << Constants.PlayerLayer);
             foreach (Collider c in nearby)
             {
                 PlayerAvatar p = c.GetComponent<PlayerAvatar>();
                 if (p == null) continue;
 
                 // Make sure no wall exists between potential helper and safe zone
-                if (Physics.Raycast(transform.position + Vector3.up * .25f, c.ClosestPoint(transform.position) - transform.position, Vector3.Distance(transform.position, c.ClosestPoint(transform.position)), 1 << Constants.EnvironmentLayer))
-                    continue;
+                if (rewardCheckIgnore != c)
+                    if (Physics.Raycast(transform.position + Vector3.up * .25f, c.ClosestPoint(transform.position) - transform.position, Vector3.Distance(transform.position, c.ClosestPoint(transform.position)), 1 << Constants.EnvironmentLayer))
+                        continue;
 
                 eligible.Add(p);
             }

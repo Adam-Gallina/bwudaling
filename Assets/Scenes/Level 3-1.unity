@@ -2048,6 +2048,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 5015486162661004882, guid: a1becec601bf6ee4f99256109f70f7e8, type: 3}
+      propertyPath: rewardCheckOrigin.x
+      value: 10.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015486162661004882, guid: a1becec601bf6ee4f99256109f70f7e8, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: -9.94
+      objectReference: {fileID: 0}
     - target: {fileID: 7178965273626521078, guid: a1becec601bf6ee4f99256109f70f7e8, type: 3}
       propertyPath: m_Name
       value: End zone

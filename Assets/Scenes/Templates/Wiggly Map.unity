@@ -637,6 +637,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Safe zone (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckIgnore
+      value: 
+      objectReference: {fileID: 401383122}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: 10.33
+      objectReference: {fileID: 0}
     - target: {fileID: 7674197359380249724, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -982,6 +990,14 @@ PrefabInstance:
     - target: {fileID: 524780858525099877, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_Name
       value: Safe zone (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckIgnore
+      value: 
+      objectReference: {fileID: 1983339572}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: 10.29
       objectReference: {fileID: 0}
     - target: {fileID: 7674197359380249724, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_RootOrder
@@ -1545,6 +1561,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Safe zone (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckIgnore
+      value: 
+      objectReference: {fileID: 555939611}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: 10.29
+      objectReference: {fileID: 0}
     - target: {fileID: 7674197359380249724, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1699,6 +1723,14 @@ PrefabInstance:
     - target: {fileID: 524780858525099877, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_Name
       value: Safe zone (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckIgnore
+      value: 
+      objectReference: {fileID: 98479841}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: 10.33
       objectReference: {fileID: 0}
     - target: {fileID: 7674197359380249724, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_RootOrder
@@ -2095,6 +2127,14 @@ PrefabInstance:
     - target: {fileID: 524780858525099877, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_Name
       value: Safe zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckIgnore
+      value: 
+      objectReference: {fileID: 459655458}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: 10.29
       objectReference: {fileID: 0}
     - target: {fileID: 7674197359380249724, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_RootOrder
@@ -4162,6 +4202,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5015486162661004882, guid: a1becec601bf6ee4f99256109f70f7e8, type: 3}
+      propertyPath: rewardCheckOrigin.x
+      value: -9.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7178965273626521078, guid: a1becec601bf6ee4f99256109f70f7e8, type: 3}
       propertyPath: m_Name
       value: End zone
@@ -4453,6 +4497,14 @@ PrefabInstance:
     - target: {fileID: 524780858525099877, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_Name
       value: Safe zone (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckIgnore
+      value: 
+      objectReference: {fileID: 1832450141}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: 10.33
       objectReference: {fileID: 0}
     - target: {fileID: 7674197359380249724, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_RootOrder
@@ -4771,6 +4823,14 @@ PrefabInstance:
     - target: {fileID: 524780858525099877, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_Name
       value: Safe zone (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckIgnore
+      value: 
+      objectReference: {fileID: 1375344063}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: 10.33
       objectReference: {fileID: 0}
     - target: {fileID: 3658574904247133682, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5499,6 +5559,14 @@ PrefabInstance:
     - target: {fileID: 524780858525099877, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_Name
       value: Safe zone (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckIgnore
+      value: 
+      objectReference: {fileID: 247842511}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: 10.29
       objectReference: {fileID: 0}
     - target: {fileID: 7674197359380249724, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_RootOrder
@@ -6358,6 +6426,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Safe zone (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckIgnore
+      value: 
+      objectReference: {fileID: 615352849}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: 10.33
+      objectReference: {fileID: 0}
     - target: {fileID: 7674197359380249724, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -6754,6 +6830,14 @@ PrefabInstance:
     - target: {fileID: 524780858525099877, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_Name
       value: Safe zone (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckIgnore
+      value: 
+      objectReference: {fileID: 621669138}
+    - target: {fileID: 2667988898235185460, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
+      propertyPath: rewardCheckOrigin.z
+      value: 10.29
       objectReference: {fileID: 0}
     - target: {fileID: 7674197359380249724, guid: 3db7b450a04390048949a2a728c8f467, type: 3}
       propertyPath: m_RootOrder
