@@ -26,9 +26,6 @@ public class MenuPlayerPreview : MonoBehaviour
         //anim.SetBool("Walking", true);
         anim.SetBool("Dancing", true);
         anim.SetInteger("Dance", 1);
-
-        Debug.Log(shirtBody.transform.parent);
-        Debug.Log(shirtBody.transform.parent.Find(dogieHatName));
     }
 
     float rot = 0;

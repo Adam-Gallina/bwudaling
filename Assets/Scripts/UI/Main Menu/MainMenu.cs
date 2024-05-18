@@ -58,6 +58,8 @@ public class MainMenu : GameUI
     {
         base.Start();
 
+        GameObject.Find("Dance Preview").SetActive(false);
+
         nameInputField.text = PlayerPrefs.GetString(Constants.PlayerNamePref, "Player");
         if (PlayerPrefs.HasKey(Constants.LastIpPref))
             ipAddressField.text = PlayerPrefs.GetString(Constants.LastIpPref);

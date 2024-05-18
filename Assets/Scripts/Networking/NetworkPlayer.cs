@@ -26,7 +26,7 @@ public class NetworkPlayer : NetworkBehaviour
     [SyncVar(hook = nameof(OnAvatarShirtChanged))]
     public string shirtTextureId;
     [SyncVar(hook = nameof(OnAvatarDanceChanged))]
-    public string danceId;
+    public string danceId = "dental_hygiene";
     [SyncVar(hook = nameof(OnReadyChanged))]
     public bool IsReady = false;
 

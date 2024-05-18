@@ -71,7 +71,7 @@ public class RainbowString : BossBase
         foreach (Transform s in segments)
         {
             s.parent = transform.parent;
-            s.position = transform.position;
+            s.position = transform.position + Vector3.up * s.position.y;
         }
     }
 
@@ -98,7 +98,7 @@ public class RainbowString : BossBase
             transform.forward = transform.position - lastPos;
 
         // Update animation
-        segments[0].position = transform.position;
+        segments[0].position = transform.position + Vector3.up * segments[0].position.y;
         float animDt = segmentFollowDist / moveCurves[0].length;
         float animT = lastBezierT;
         int currCurve = 0;
@@ -117,7 +117,7 @@ public class RainbowString : BossBase
                 animDt = segmentFollowDist / moveCurves[currCurve].length;
             }
 
-            segments[i].position = moveCurves[currCurve].Sample(animT);
+            segments[i].position = moveCurves[currCurve].Sample(animT) + Vector3.up * segments[i].position.y;
         }
 
         // Clean up any unused curves
