@@ -49,6 +49,9 @@ public class LevelUI : GameUI
     [SerializeField] private TMPro.TMP_Text timerText;
     [SerializeField] private TMPro.TMP_Text timerTextOutline;
 
+    [Header("Respawn Panel")]
+    [SerializeField] private GameObject respawnPanel;
+
     private NetworkPlayer activePlayer;
 
     protected override void Awake()
@@ -56,6 +59,7 @@ public class LevelUI : GameUI
         base.Awake();
 
         healthbarParent.SetActive(false);
+        respawnPanel.SetActive(false);
     }
 
     protected override void Start()
@@ -104,6 +108,11 @@ public class LevelUI : GameUI
             //shieldText.text = "Shield: " + activePlayer.avatar.shield;
             PlayerUI.Instance.SetStaminaBar(activePlayer.avatar.boost < activePlayer.abilities.vals.BoostMaxVal);
             PlayerUI.Instance.SetStaminaBarFillAmount(activePlayer.avatar.boost / activePlayer.abilities.vals.BoostMaxVal);
+
+            if (!activePlayer.avatar.dead)
+            {
+                SetRespawnPanel(false);
+            }
         }
 
         if (healthbarTarget)
@@ -188,6 +197,11 @@ public class LevelUI : GameUI
         tooltipObj.gameObject.SetActive(false);
     }
 
+    public void SetRespawnPanel(bool show)
+    {
+        respawnPanel.SetActive(show);
+    }
+
     #region Banner
     protected Coroutine currBanner;
     public override void SetBannerText(string text, Color col, float duration = 0)
@@ -258,6 +272,13 @@ public class LevelUI : GameUI
         activePlayer.abilities.UpgradeAbility(AbilityType.special3);
     }
 
+    public void RespawnActivePlayer()
+    {
+        if (activePlayer.avatar.dead)
+            activePlayer.avatar.RespawnPlayer(true);
+
+        SetRespawnPanel(false);
+    }
     #endregion
 }
 

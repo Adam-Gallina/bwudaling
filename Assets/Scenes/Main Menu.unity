@@ -3314,7 +3314,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1001150117}
+      - m_Target: {fileID: 841544005}
         m_TargetAssemblyTypeName: DanceSelect, Assembly-CSharp
         m_MethodName: NextDance
         m_Mode: 1
@@ -4978,7 +4978,6 @@ GameObject:
   - component: {fileID: 504789549}
   - component: {fileID: 504789551}
   - component: {fileID: 504789550}
-  - component: {fileID: 504789552}
   m_Layer: 5
   m_Name: Shirt Preview
   m_TagString: Untagged
@@ -5048,20 +5047,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504789548}
   m_CullTransparentMesh: 1
---- !u!114 &504789552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 504789548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27dc7ea387d21f489f612e868732a54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shirtName: {fileID: 35565045}
-  shirtNameOutline: {fileID: 842599970}
 --- !u!1 &508034590
 GameObject:
   m_ObjectHideFlags: 0
@@ -5094,6 +5079,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1513228916}
+  - {fileID: 2066387512}
   m_Father: {fileID: 1738925636}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7680,7 +7666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &735327290
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9144,6 +9130,8 @@ GameObject:
   m_Component:
   - component: {fileID: 841544003}
   - component: {fileID: 841544004}
+  - component: {fileID: 841544006}
+  - component: {fileID: 841544005}
   m_Layer: 5
   m_Name: Previews
   m_TagString: Untagged
@@ -9271,6 +9259,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &841544005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841544002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8545bf1a90944164eb8b6ebe10ad2058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  danceName: {fileID: 658622002}
+  danceNameOutline: {fileID: 1736470906}
+--- !u!114 &841544006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841544002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27dc7ea387d21f489f612e868732a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shirtName: {fileID: 35565045}
+  shirtNameOutline: {fileID: 842599970}
 --- !u!1 &842040785
 GameObject:
   m_ObjectHideFlags: 0
@@ -10166,7 +10182,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 504789552}
+      - m_Target: {fileID: 841544006}
         m_TargetAssemblyTypeName: ShirtSelect, Assembly-CSharp
         m_MethodName: NextShirt
         m_Mode: 1
@@ -10413,7 +10429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &932494923
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10450,6 +10466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createBtn: {fileID: 508034591}
+  classUnlockIndicator: {fileID: 2066387509}
   saveBtnParent: {fileID: 1738925636}
   loadSaveBtnPrefab: {fileID: 6624156031790180034, guid: 3b7fa18c4f8ece8489cc8fa7d4ec8396, type: 3}
   deleteConfirm: {fileID: 229302648}
@@ -11039,14 +11056,13 @@ GameObject:
   - component: {fileID: 1001150113}
   - component: {fileID: 1001150116}
   - component: {fileID: 1001150115}
-  - component: {fileID: 1001150117}
   m_Layer: 5
   m_Name: Dance Preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1001150113
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11109,20 +11125,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001150112}
   m_CullTransparentMesh: 1
---- !u!114 &1001150117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1001150112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8545bf1a90944164eb8b6ebe10ad2058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  danceName: {fileID: 658622002}
-  danceNameOutline: {fileID: 1736470906}
 --- !u!1 &1010176963
 GameObject:
   m_ObjectHideFlags: 0
@@ -13290,7 +13292,7 @@ MonoBehaviour:
   DEBUG_IgnoreCooldown: 1
   DEBUG_TpWalls: 1
   DEBUG_ForceBossAttack: 0
-  DEBUG_ForceBossHealth: 0
+  DEBUG_ForceBossHealth: 1
   DEBUG_ResetAchievements: 0
   DEBUG_UnlockAllShirts: 0
   DEBUG_SkipStatsAnim: 1
@@ -15194,7 +15196,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 504789552}
+      - m_Target: {fileID: 841544006}
         m_TargetAssemblyTypeName: ShirtSelect, Assembly-CSharp
         m_MethodName: LastShirt
         m_Mode: 1
@@ -15676,8 +15678,8 @@ RectTransform:
   m_Father: {fileID: 1761438801}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.29666656}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -22462,7 +22464,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1001150117}
+      - m_Target: {fileID: 841544005}
         m_TargetAssemblyTypeName: DanceSelect, Assembly-CSharp
         m_MethodName: LastDance
         m_Mode: 1
@@ -24113,6 +24115,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032564962}
   m_CullTransparentMesh: 1
+--- !u!1 &2066387509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066387512}
+  - component: {fileID: 2066387511}
+  - component: {fileID: 2066387510}
+  m_Layer: 5
+  m_Name: Bwuda Unlock Indicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2066387510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066387509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 46ce811e5f4e30e489090fb65ec378f0, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &2066387511
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066387509}
+  m_CullTransparentMesh: 1
+--- !u!224 &2066387512
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066387509}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 508034591}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 8, y: 8}
+  m_SizeDelta: {x: 30, y: 30}
+  m_Pivot: {x: 1, y: 1}
 --- !u!1 &2084740177
 GameObject:
   m_ObjectHideFlags: 0
@@ -25060,6 +25135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Options
       objectReference: {fileID: 0}
+    - target: {fileID: 1507051145678203920, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1741774834380668178, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -25071,6 +25150,10 @@ PrefabInstance:
     - target: {fileID: 3219409530352893371, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
       propertyPath: m_text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512674179315713329, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6148605201253805826, guid: 25a4acf988758884096ae0498f80d9e4, type: 3}
       propertyPath: m_AnchoredPosition.x

@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 63383906}
   m_Layer: 15
   m_Name: Spawn zone
-  m_TagString: Untagged
+  m_TagString: ValidRespawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -660,6 +660,8 @@ MonoBehaviour:
   hazardRange: 100
   mapCenter: {x: 0, y: 0, z: -54}
   canControlAvatars: 1
+  maxFriendlyReward: 3
+  friendlyXpMod: 0.2
   bossPrefab: {fileID: 6373117362493061847, guid: d85afd057c4abff4e9c6291489e1b948, type: 3}
 --- !u!1 &419174779
 GameObject:
@@ -1463,6 +1465,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1189071785567167079, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189071785567167079, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1817762006953626537, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1554,6 +1564,22 @@ PrefabInstance:
     - target: {fileID: 1817762007775058172, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
       propertyPath: m_Name
       value: Game Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7113023419597124267, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00024414062
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c475966b808c3a4cad16bac6096d9bf, type: 3}

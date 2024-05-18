@@ -45,7 +45,7 @@ public class HaiwArea : SafeArea
             if (target.heldItem.itemType == ItemType.BwudaHaiw)
             {
                 StartCoroutine(OnCollectHaiw(target.heldItem));
-                target.RpcAddXp(MapController.Instance.safeZoneXp);
+                target.RpcAddXp(MapController.Instance.safeZoneXp, false);
             }
         }
     }

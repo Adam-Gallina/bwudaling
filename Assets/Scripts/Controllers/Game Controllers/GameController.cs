@@ -9,6 +9,7 @@ public enum MapType { Normal, Boss }
 public abstract class GameController : NetworkBehaviour
 {
     public static GameController Instance;
+    public static float ElapsedTime { get; protected set; } = 0;
 
     protected int spawnedPlayers = 0;
 
@@ -69,6 +70,12 @@ public abstract class GameController : NetworkBehaviour
         np.RpcOnAvatarSpawned(avatar.gameObject);
 
         spawnedPlayers += 1;
+    }
+
+    [ClientRpc]
+    public void RpcResetTimer()
+    {
+        ElapsedTime = 0;
     }
 
     [Command]

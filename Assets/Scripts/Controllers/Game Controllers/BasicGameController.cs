@@ -6,8 +6,6 @@ using System;
 
 public class BasicGameController : GameController
 {
-    public static float ElapsedTime { get; protected set; } = 0;
-
     [SerializeField] protected string[] startBannerMessages = new string[] { "READY?", "3", "2", "1", "GO!" };
     [SerializeField] protected int[] startBannerSounds = new int[] { -1, 0, 0, 0, 1 };
     //[SerializeField] protected string[] endBannerMessages = new string[] { "Returning to lobby..." };
@@ -35,13 +33,29 @@ public class BasicGameController : GameController
     protected virtual void Update()
     {
         if (started && !ended)
+        {
             ElapsedTime += Time.deltaTime;
+
+            if (isServer)
+            {
+                bool allDead = true;
+                foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
+                {
+                    if (!p.avatar.dead)
+                        allDead = false;
+                }
+
+                if (allDead)
+                    RpcPlayersDead();
+            }
+
+        }
     }
 
-    [Server]
-    public static void ResetTimer()
+    [ClientRpc]
+    private void RpcPlayersDead()
     {
-        ElapsedTime = 0;
+        ((LevelUI)GameUI.Instance).SetRespawnPanel(true);
     }
 
     public override void OnStartClient()
@@ -110,7 +124,7 @@ public class BasicGameController : GameController
         if (!ended)
         {
             foreach (NetworkPlayer n in BwudalingNetworkManager.Instance.Players)
-                n.avatar.RpcAddXp(MapController.Instance.winXp);
+                n.avatar.RpcAddXp(MapController.Instance.winXp, false);
 
             ended = true;
             StartCoroutine(EndSequence(p));

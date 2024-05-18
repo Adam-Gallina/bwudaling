@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CharacterSelect : MonoBehaviour
 {
     [SerializeField] private RectTransform createBtn;
+    [SerializeField] private GameObject classUnlockIndicator;
 
     [SerializeField] private RectTransform saveBtnParent;
     [SerializeField] private Button loadSaveBtnPrefab;
@@ -37,9 +38,18 @@ public class CharacterSelect : MonoBehaviour
 
     private void Start()
     {
+        bool newCharUnlocked = PlayerPrefs.GetInt("ShownBwudaUnlockIndicator", 0) == 0 && AchievmentController.BwudaUnlocked;
+
         AbilityLevels.CharacterSaves saves = AbilityLevels.CharSaves;
         for (int i = 0; i < saves.saveIDs.Count; i++)
+        {
             AddLoadBtn(saves.saveIDs[i], saves.classes[i], saves.levels[i]);
+
+            if (saves.classes[i] == "Bwuda")
+                newCharUnlocked = false;
+        }
+
+        classUnlockIndicator.SetActive(newCharUnlocked);
     }
 
     private void AddLoadBtn(int id, string avatar, int level)
@@ -104,6 +114,9 @@ public class CharacterSelect : MonoBehaviour
         }
 
         nextBtn.interactable = true;
+
+        if (selectedAvatar == AvatarClass.Bwuda)
+            PlayerPrefs.SetInt("ShownBwudaUnlockIndicator", 1);
     }
     private int saveID = -1;
     public void PressLoad(int id, int btn)

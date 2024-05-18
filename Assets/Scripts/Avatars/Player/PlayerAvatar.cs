@@ -70,6 +70,8 @@ public class PlayerAvatar : AvatarBase
 
     private List<Collider> currSafeZones = new List<Collider>();
     private List<PlayerAvatar> lastHeals = new List<PlayerAvatar>();
+    private bool skipNextXp = false;
+    private Vector3 lastSafePos;
 
     protected InputController inp;
     protected Animator anim;
@@ -153,6 +155,7 @@ public class PlayerAvatar : AvatarBase
         ability3?.LinkUI(((LevelUI)GameUI.Instance).ability3);
 
         idleStart = Time.time;
+        lastSafePos = transform.position;
     }
 
     protected override void OnShieldChanged(int _, int shield)
@@ -182,25 +185,32 @@ public class PlayerAvatar : AvatarBase
     [ClientRpc]
     public void RpcStatsHaiwCollected() { if (hasAuthority) stats?.AddHaiw(); }
 
-    [ServerCallback]
     private void OnTriggerEnter(Collider other)
     {
-        switch (other.gameObject.layer)
+        if (isServer)
         {
-            case Constants.PlayerLayer:
-                PlayerAvatar o = other.GetComponent<PlayerAvatar>();
-                if (o && o.dead)
-                {
-                    o.PlayerHeal(this);
-                    healAudio.Play();
-                    RpcPlayHealAudio(o);
-                    RpcStatsHealPlayer();
-                }
-                break;
-            case Constants.SafeAreaLayer:
-                currSafeZones.Add(other);
-                canDamage = false;
-                break;
+            switch (other.gameObject.layer)
+            {
+                case Constants.PlayerLayer:
+                    PlayerAvatar o = other.GetComponent<PlayerAvatar>();
+                    if (o && o.dead)
+                    {
+                        o.PlayerHeal(this);
+                        healAudio.Play();
+                        RpcPlayHealAudio(o);
+                        RpcStatsHealPlayer();
+                    }
+                    break;
+                case Constants.SafeAreaLayer:
+                    currSafeZones.Add(other);
+                    canDamage = false;
+                    break;
+            }
+        }
+        
+        if (other.gameObject.layer == Constants.SafeAreaLayer && other.CompareTag(Constants.ValidRespawnTag))
+        {
+            lastSafePos = other.transform.position;
         }
     }
 
@@ -311,6 +321,8 @@ public class PlayerAvatar : AvatarBase
             {
                 CmdHealTarget(this, 1);
             }
+            if (Input.GetKeyDown(KeyCode.Backslash))
+                RespawnPlayer(true);
         }
 
         if (!dead && inp.dance1.down)
@@ -426,6 +438,16 @@ public class PlayerAvatar : AvatarBase
     }
     #endregion
 
+    [Client]
+    public void RespawnPlayer(bool applySkipNextXp)
+    {
+        if (applySkipNextXp)
+            skipNextXp = true;
+
+        SetPosition(lastSafePos, true);
+        CmdHealTarget(this);
+    }
+
     [Server]
     public void PlayerHeal(PlayerAvatar other)
     {
@@ -501,10 +523,16 @@ public class PlayerAvatar : AvatarBase
     }
 
     [ClientRpc]
-    public void RpcAddXp(int xp)
+    public void RpcAddXp(int xp, bool isFriendlyBonus)
     {
         if (!hasAuthority)
             return;
+
+        if (skipNextXp && !isFriendlyBonus)
+        {
+            skipNextXp = false;
+            return;
+        }
 
         player.abilities.AddXp(xp);
     }

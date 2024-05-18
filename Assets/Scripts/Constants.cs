@@ -135,6 +135,9 @@ public class Constants
     public const int TeleportAreaLayer = 14;
     public const int SafeAreaLayer = 15;
     #endregion
+    #region Tags
+    public const string ValidRespawnTag = "ValidRespawn";
+    #endregion
 
     #region Scenes
     public static GameScene TestMap = new GameScene(1, "Test Map");

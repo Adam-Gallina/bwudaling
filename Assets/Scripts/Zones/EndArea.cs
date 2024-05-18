@@ -18,7 +18,7 @@ public class EndArea : XpArea
                 }
             }
 
-            target.RpcAddXp(MapController.Instance.endZoneXp);
+            target.RpcAddXp(MapController.Instance.endZoneXp, false);
         }
     }
 }

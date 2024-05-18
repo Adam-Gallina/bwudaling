@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4053101289022153071}
   m_Layer: 15
   m_Name: Safe zone
-  m_TagString: Untagged
+  m_TagString: ValidRespawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +50,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reachEffect: {fileID: 7403115328887151022}
   reachAudio: {fileID: 4053101289022153071}
+  rewardDist: 35
+  rewardCheckOrigin: {x: 0, y: 0, z: 0}
+  rewardCheckIgnore: {fileID: 0}
 --- !u!65 &675634304316990173
 BoxCollider:
   m_ObjectHideFlags: 0

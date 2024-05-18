@@ -36,7 +36,7 @@ public class XpArea : SafeArea
     {
         if (IsNewPlayer(target))
         {
-            target.RpcAddXp(MapController.Instance.safeZoneXp);
+            target.RpcAddXp(MapController.Instance.safeZoneXp, false);
 
             List<PlayerAvatar> eligible = new List<PlayerAvatar>();
 
@@ -84,6 +84,6 @@ public class XpArea : SafeArea
 
         rewarded[target] += c;
         int friendlyReward = Mathf.RoundToInt(MapController.Instance.safeZoneXp * MapController.Instance.friendlyXpMod);
-        target.RpcAddXp(friendlyReward * c);
+        target.RpcAddXp(friendlyReward * c, true);
     }
 }
