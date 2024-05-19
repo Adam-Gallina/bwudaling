@@ -38,23 +38,36 @@ public class RainbowString : BossBase
     [SerializeField] private float tangleExplodeSpeedMod = 1.35f;
     [SerializeField] private float tangleExplodeModDuration = 10;
     [SerializeField] private int tangleSpawnCount = 12;
+    [SerializeField] private float tangleAnimRadius = 10;
+    [SerializeField] private float tangleAnimMoveSpeed = 24;
     [SerializeField] private RangeI tangleHaiwSpawns;
+
+
+    //[Header("Spawn Anim")]
+
+    [Header("Death Anim")]
+    [SerializeField] private float jitterMoveSpeed;
+    [SerializeField] private float jitterRadius;
+    [SerializeField] private float deathAnimFirstSegmentDeath;
+    [SerializeField] private float deathAnimSegmentDeathDelay;
+    [SerializeField] private float deathAnimCamMoveSpeed;
+    [SerializeField] private ParticleSystem segmentDeathPrefab;
 
     private void OnDrawGizmos()
     {
         if (moveCurves.Count == 0)
             return;
 
-        Gizmos.color = Color.blue;
+        /*Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, minMoveDist);
-        Gizmos.DrawWireSphere(transform.position, maxMoveDist);
+        Gizmos.DrawWireSphere(transform.position, maxMoveDist);*/
 
-        Gizmos.color = Color.green;
+        /*Gizmos.color = Color.yellow;
         Gizmos.DrawLine(moveCurves[0].start + Vector3.up * 6, moveCurves[0].start + moveCurves[0].startConstraint + Vector3.up * 6);
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(moveCurves[0].end + Vector3.up * 6, moveCurves[0].end + moveCurves[0].endConstraint + Vector3.up * 6);
+        Gizmos.DrawLine(moveCurves[0].end + Vector3.up * 6, moveCurves[0].end + moveCurves[0].endConstraint + Vector3.up * 6);*/
 
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.green;
         Vector3 lastPos = moveCurves[0].start;
         for (int i = 1; i < bezierSamples; i++)
         {
@@ -62,16 +75,16 @@ public class RainbowString : BossBase
             Gizmos.DrawLine(lastPos + Vector3.up * 5, pos + Vector3.up * 5);
             lastPos = pos;
         }
-    }
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        foreach (Transform s in segments)
-        {
-            s.parent = transform.parent;
-            s.position = transform.position + Vector3.up * s.position.y;
+        Gizmos.color = Color.yellow;
+        for (int j = 1; j < moveCurves.Count; j++) {
+            lastPos = moveCurves[j].start;
+            for (int i = 1; i < bezierSamples; i++)
+            {
+                Vector3 pos = moveCurves[j].Sample((float)i / bezierSamples);
+                Gizmos.DrawLine(lastPos + Vector3.up * 5, pos + Vector3.up * 5);
+                lastPos = pos;
+            }
         }
     }
 
@@ -98,7 +111,10 @@ public class RainbowString : BossBase
             transform.forward = transform.position - lastPos;
 
         // Update animation
-        segments[0].position = transform.position + Vector3.up * segments[0].position.y;
+        //segments[0].position = transform.position + Vector3.up * segments[0].position.y;
+
+        Vector3[] segmentPositions = new Vector3[segments.Length - 1];
+
         float animDt = segmentFollowDist / moveCurves[0].length;
         float animT = lastBezierT;
         int currCurve = 0;
@@ -117,12 +133,24 @@ public class RainbowString : BossBase
                 animDt = segmentFollowDist / moveCurves[currCurve].length;
             }
 
-            segments[i].position = moveCurves[currCurve].Sample(animT) + Vector3.up * segments[i].position.y;
+            //segments[i].position = moveCurves[currCurve].Sample(animT) + Vector3.up * segments[i].position.y;
+            segmentPositions[i - 1] = moveCurves[currCurve].Sample(animT);
         }
+
+        RpcUpdateSaws(segmentPositions);
 
         // Clean up any unused curves
         if (currCurve < moveCurves.Count - 1)
             moveCurves.RemoveAt(moveCurves.Count - 1);
+    }
+
+    [ClientRpc]
+    private void RpcUpdateSaws(Vector3[] segmentPositions)
+    {
+        for (int i = 1; i < segments.Length; i++)
+        {
+            segments[i].position = segmentPositions[i - 1] + Vector3.up * segments[i].position.y;
+        }
     }
 
     protected override Vector3 GetBossMoveTarget(float distance)
@@ -133,16 +161,18 @@ public class RainbowString : BossBase
         return moveCurves[0].Sample(1);
     }
 
-    private void GetNewMovementCurve(Vector3 target, Vector3? targetControl = null)
+    private void GetNewMovementCurve(Vector3 target, Vector3? targetControl = null, float controlSize = 0)
     {
-        if (targetControl == null)
+        if (controlSize <= 0)
+            controlSize = bezierControlSize;
+        if (!targetControl.HasValue)
         {
             Vector2 dir = Random.insideUnitCircle.normalized;
-            targetControl = new Vector3(dir.x, 0, dir.y) * bezierControlSize;
+            targetControl = new Vector3(dir.x, 0, dir.y) * controlSize;
         }
 
         Vector3 s = transform.position;
-        Vector3 sc = transform.forward * bezierControlSize;
+        Vector3 sc = transform.forward * controlSize;
         moveCurves.Insert(0, new Bezier(s, sc, target, targetControl.Value));
 
         lastBezierT = 0;
@@ -202,14 +232,10 @@ public class RainbowString : BossBase
         canMove = false;
         float lastMoveSpeed = moveSpeed;
 
+        yield return MoveThroughCurve();
         Vector3 currDir = (transform.position - MapController.Instance.mapCenter).normalized;
         Vector3 t = MyMath.RotateAboutY(currDir, Random.Range(30, 60)) * frayEdgeRadius * (Random.Range(0, 2) == 0 ? 1 : -1);
-        GetNewMovementCurve(MapController.Instance.mapCenter + t, (t - transform.position).normalized * bezierControlSize);
-        if (moveCurves.Count > 1)
-        {
-            moveCurves[1].MoveEnd(transform.position, transform.forward * bezierControlSize);
-            moveCurves[1].ApproximateLength(bezierSamples);
-        }
+        GetNewMovementCurve(MapController.Instance.mapCenter + t, (t - transform.position).normalized);
         yield return MoveThroughCurve();
 
         moveSpeed = frayMoveSpeed;
@@ -219,7 +245,7 @@ public class RainbowString : BossBase
             currDir = (transform.position - MapController.Instance.mapCenter).normalized;
             float ang = Random.Range(30, 60) * (Random.Range(0, 2) == 0 ? 1 : -1);
             t = MyMath.RotateAboutY(currDir, ang) * frayEdgeRadius;
-            GetNewMovementCurve(MapController.Instance.mapCenter + t, (MapController.Instance.mapCenter + t - transform.position).normalized * bezierControlSize);
+            GetNewMovementCurve(MapController.Instance.mapCenter + t, (MapController.Instance.mapCenter + t - transform.position).normalized);
 
             yield return MoveThroughCurve();
 
@@ -227,7 +253,7 @@ public class RainbowString : BossBase
             currDir = (MapController.Instance.mapCenter - transform.position).normalized;
             ang = Random.Range(-30, 30);
             t = MyMath.RotateAboutY(currDir, ang) * frayEdgeRadius;
-            GetNewMovementCurve(MapController.Instance.mapCenter + t, currDir * bezierControlSize);
+            GetNewMovementCurve(MapController.Instance.mapCenter + t, currDir);
 
             // Spawn haiw at halfway point
             bool spawnedHaiw = false;
@@ -237,10 +263,17 @@ public class RainbowString : BossBase
                 {
                     spawnedHaiw = true;
                     if (Random.Range(0, 100) <= frayHaiwSpawnChance)
+                    {
                         SpawnHaiw();
+                    }
                 }
             });
         }
+
+        Vector3 toCenter = (MapController.Instance.mapCenter - transform.position).normalized;
+        toCenter = MyMath.RotateAboutY(toCenter, Random.Range(-30, 30));
+        GetNewMovementCurve(transform.position + toCenter * frayEdgeRadius * .75f);
+        targetPos = moveCurves[0].Sample(1);
 
         attacking = false;
         canMove = true;
@@ -258,12 +291,8 @@ public class RainbowString : BossBase
         attacking = true;
         canMove = false;
 
-        GetNewMovementCurve(MapController.Instance.mapCenter, (MapController.Instance.mapCenter - transform.position).normalized * bezierControlSize);
-        if (moveCurves.Count > 1)
-        {
-            moveCurves[1].MoveEnd(transform.position, transform.forward * bezierControlSize);
-            moveCurves[1].ApproximateLength(bezierSamples);
-        }
+        yield return MoveThroughCurve();
+        GetNewMovementCurve(MapController.Instance.mapCenter, (MapController.Instance.mapCenter - transform.position).normalized);
         yield return MoveThroughCurve();
 
         BasicSaw[] saws = MapController.Instance.GetComponentsInChildren<BasicSaw>();
@@ -272,16 +301,23 @@ public class RainbowString : BossBase
             if (saw == null) continue;
 
             saw.SetDirection(transform.position - saw.transform.position);
-            saw.ApplySpeedMod(tanglePullSpeedMod, tanglePullDuration);
+            saw.ApplySpeedMod(tanglePullSpeedMod, tanglePullDuration * 1.25f, true);
         }
 
-        float start = Time.time;
-        while (Time.time < start + tanglePullDuration)
+        float speed = moveSpeed;
+        moveSpeed = tangleAnimMoveSpeed;
+
+        float end = Time.time + tanglePullDuration;
+        while (Time.time < end)
         {
-            // Circle animation
+            Vector2 d = Random.insideUnitCircle * tangleAnimRadius;
+            Vector3 pos = MapController.Instance.mapCenter + new Vector3(d.x, 0, d.y);
+            GetNewMovementCurve(pos, (pos - transform.position).normalized, tangleAnimRadius / 2);
 
-            yield return new WaitForEndOfFrame();
+            yield return MoveThroughCurve();
         }
+
+        moveSpeed = speed;
 
         foreach (BasicSaw saw in saws)
         {
@@ -315,15 +351,44 @@ public class RainbowString : BossBase
     [Server]
     public override IEnumerator SpawnAnim()
     {
+        transform.position = MapController.Instance.mapCenter + Vector3.right * frayEdgeRadius;
+        transform.forward = Vector3.back - Vector3.right;
+        GetNewMovementCurve(MapController.Instance.mapCenter, (Vector3.back + Vector3.right).normalized);
+
+        foreach (Transform se in segments)
+            se.position = transform.position + Vector3.up * se.position.y;
+
         RpcStartAnim();
 
-        yield return base.SpawnAnim();
+
+        float s = moveSpeed;
+        moveSpeed *= 1.5f;
+
+        yield return MoveThroughCurve();
+
+        StartCoroutine(base.SpawnAnim());
+
+        float end = Time.time + spawnAnimDuration;
+        while (Time.time < end)
+        {
+            Vector2 d = Random.insideUnitCircle * tangleAnimRadius;
+            Vector3 pos = MapController.Instance.mapCenter + new Vector3(d.x, 0, d.y);
+            GetNewMovementCurve(pos, (pos - transform.position).normalized, tangleAnimRadius / 2);
+
+            yield return MoveThroughCurve();
+        }
+
+        moveSpeed = s;
     }
 
     [ClientRpc]
     private void RpcStartAnim() { StartCoroutine(Anim()); }
     private IEnumerator Anim()
     {
+        CameraController.Instance.SetTarget(MapController.Instance.transform, 1);
+        CameraController.Instance.FocusOnPoint(MapController.Instance.mapCenter);
+        CameraController.Instance.SetZoom(8);
+
         yield return null;
     }
 
@@ -333,10 +398,74 @@ public class RainbowString : BossBase
         yield return new WaitForSeconds(1);
 
         canMove = false;
+        attacking = true;
 
-        //RpcPlayDeathAudio();
-        //RpcSetAnimTrigger("Killed");
+        RpcStartDeath();
 
         yield return base.DeathAnim();
+    }
+
+    [ClientRpc]
+    private void RpcStartDeath() { StartCoroutine(Death()); }
+    private IEnumerator Death()
+    {
+        CameraController.Instance.SetZoom(8);
+
+        Vector3[] lastSegmentPos = new Vector3[segments.Length];
+        for (int i = 0; i < segments.Length; i++)
+            lastSegmentPos[i] = segments[i].position;
+
+        float next = Time.time + deathAnimFirstSegmentDeath;
+        int destroyed = 0;
+        float camT = lastBezierT;
+        float camDt = deathAnimCamMoveSpeed * Time.deltaTime / moveCurves[0].length;
+        int currCamCurve = 0;
+        float camMoveStart = Time.time + deathAnimFirstSegmentDeath;
+
+        while (destroyed < segments.Length)
+        {
+            for (int i = destroyed; i < segments.Length; i++)
+            {
+                Vector2 d = Random.insideUnitCircle * jitterRadius;
+                Vector3 pos = lastSegmentPos[i] + new Vector3(d.x, 0, d.y);
+
+                segments[i].position = segments[i].position + (pos - segments[i].position).normalized * jitterMoveSpeed * Time.deltaTime;
+            }
+
+            if (Time.time >= next)
+            {
+                ParticleSystem ps = Instantiate(segmentDeathPrefab, segments[destroyed].position, Quaternion.identity);
+                ps.gameObject.SetActive(true);
+                ps.Play();
+
+                Destroy(segments[destroyed].gameObject);
+                destroyed++;
+                next = Time.time + deathAnimSegmentDeathDelay;
+            }
+
+            if (Time.time >= camMoveStart)
+            {
+                camT -= camDt;
+
+                if (camT < 0)
+                {
+                    currCamCurve++;
+                    if (currCamCurve >= moveCurves.Count)
+                    {
+                        currCamCurve--;
+                    }
+                    else
+                    {
+                        float remainingDist = deathAnimCamMoveSpeed - (camT + camDt) * moveCurves[currCamCurve - 1].length;
+                        camT = 1 - (remainingDist / moveCurves[currCamCurve].length);
+                        camDt = deathAnimCamMoveSpeed * Time.deltaTime / moveCurves[currCamCurve].length;
+                    }
+                }
+
+                CameraController.Instance.FocusOnPoint(moveCurves[currCamCurve].Sample(camT));
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

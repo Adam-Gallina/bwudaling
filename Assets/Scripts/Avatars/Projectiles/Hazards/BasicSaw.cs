@@ -75,7 +75,8 @@ public class BasicSaw : RicochetProjectile
             system = Instantiate(sparkPrefab, transform);
 
         Vector3 dir = (other.ClosestPoint(transform.position) - transform.position).normalized;
-
+        if (dir == Vector3.zero)
+            dir = (other.transform.position - transform.position).normalized;
         system.transform.position = transform.position + dir * sparkRadius + Vector3.up * sparkHeight;
         system.transform.forward = dir;
         system.Play();
@@ -91,6 +92,8 @@ public class BasicSaw : RicochetProjectile
             return;
 
         Vector3 dir = (other.ClosestPoint(transform.position) - transform.position).normalized;
+        if (dir == Vector3.zero)
+            dir = (other.transform.position - transform.position).normalized;
         activeCollisions[other].transform.position = transform.position + dir * sparkRadius + Vector3.up * sparkHeight;
         activeCollisions[other].transform.forward = dir;
     }

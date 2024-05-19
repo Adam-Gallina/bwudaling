@@ -109,7 +109,7 @@ public abstract class BossBase : NetworkBehaviour
 
     protected bool IsValidMovePos(Vector3 pos) 
     {
-        return !Physics.Raycast(transform.position, (pos - transform.position), Vector3.Distance(transform.position, pos) + moveBuffer, 1 << Constants.HazardBoundaryLayer | 1 << Constants.EnvironmentLayer);
+        return !Physics.Raycast(transform.position, pos - transform.position, Vector3.Distance(transform.position, pos) + moveBuffer, 1 << Constants.HazardBoundaryLayer | 1 << Constants.EnvironmentLayer);
     }
     protected virtual void CheckBossMovement()
     {
@@ -146,8 +146,8 @@ public abstract class BossBase : NetworkBehaviour
             randPos = MyMath.Rotate(randPos, 90);
         }
 
-        Debug.LogWarning(name + " couldn't find a valid move direction :(");
-        return transform.position;
+        Debug.LogWarning(name + " couldn't find a valid move direction, moving towards center");
+        return transform.position + (MapController.Instance.mapCenter - transform.position).normalized * distance;
     }
 
     #region Attacks

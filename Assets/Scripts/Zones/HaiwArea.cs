@@ -22,7 +22,7 @@ public class HaiwArea : SafeArea
     [ServerCallback]
     private void Update()
     {
-        if (BwudalingNetworkManager.Instance.DEBUG_AllowKeyCheats && Input.GetKeyDown(KeyCode.Backslash))
+        if (BwudalingNetworkManager.Instance.DEBUG_AllowKeyCheats && Input.GetKeyDown(KeyCode.Delete))
             chargeLevel += chargePerHaiw;
 
         if (chargeLevel > 0)

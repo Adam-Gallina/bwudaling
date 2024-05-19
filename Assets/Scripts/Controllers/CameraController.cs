@@ -105,6 +105,7 @@ public class CameraController : MonoBehaviour
         target = t;
         targetImportance = importance;
         panOffset = Vector3.zero;
+        targetPanOffset = Vector3.zero;
     }
 
     public static bool IsPointerOverUIObject()
