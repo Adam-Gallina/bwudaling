@@ -14201,12 +14201,26 @@ MonoBehaviour:
     achievementName: BOSS_SIWYCWAB
     previewImg: {fileID: 21300000, guid: b6addac96cfb90742b5a317f38519455, type: 3}
     unlocked: 0
+  - name: Head Smackin
+    id: bt_sc
+    mat: {fileID: 2100000, guid: 199f5c0b1db0bde4aa139a6b2bef1a53, type: 2}
+    startUnlocked: 0
+    achievementName: BOSS_FAST_SIWYCWAB
+    previewImg: {fileID: 21300000, guid: 722a62e80e335bf4292add56adf3968a, type: 3}
+    unlocked: 0
   - name: 2Spicy 4Wed
     id: b_bw
     mat: {fileID: 2100000, guid: 6a1b3004e2960284e841681536c3671b, type: 2}
     startUnlocked: 0
     achievementName: BOSS_BIGWED
     previewImg: {fileID: 21300000, guid: 915292a523b7e0b45ac2af1cf23af410, type: 3}
+    unlocked: 0
+  - name: 4Spicy 8Wed
+    id: bt_bw
+    mat: {fileID: 2100000, guid: 8537601f64b5c5a4990dc0aa1e65ba8f, type: 2}
+    startUnlocked: 0
+    achievementName: BOSS_FAST_BIGWED
+    previewImg: {fileID: 21300000, guid: c73b123af91aaea4290fccd55eccf7cc, type: 3}
     unlocked: 0
   - name: Housefire
     id: b_t
@@ -14215,12 +14229,54 @@ MonoBehaviour:
     achievementName: BOSS_TWENTY
     previewImg: {fileID: 21300000, guid: 61e85b0ba43d1b2479756608042ad73d, type: 3}
     unlocked: 0
-  - name: Head Smackin
-    id: bt_hs
-    mat: {fileID: 2100000, guid: 199f5c0b1db0bde4aa139a6b2bef1a53, type: 2}
+  - name: Housefiretruck
+    id: bt_t
+    mat: {fileID: 2100000, guid: 1957475cbe557a640bc642cc62c3342b, type: 2}
     startUnlocked: 0
-    achievementName: BOSS_FAST_SIWYCWAB
-    previewImg: {fileID: 21300000, guid: 722a62e80e335bf4292add56adf3968a, type: 3}
+    achievementName: BOSS_FAST_TWENTY
+    previewImg: {fileID: 21300000, guid: 1fd8cf6da972c574186cc731b3b7fc41, type: 3}
+    unlocked: 0
+  - name: Too early
+    id: b_rs
+    mat: {fileID: 2100000, guid: b87c86b739c745d4eb71eb7ff9fc1e52, type: 2}
+    startUnlocked: 0
+    achievementName: BOSS_RAINBOWSTWING
+    previewImg: {fileID: 21300000, guid: fc9ddbabdf93cf94d93f9fc2a58cd531, type: 3}
+    unlocked: 0
+  - name: No more boxes
+    id: bt_rs
+    mat: {fileID: 2100000, guid: 6075e43a9472fbb47a8858d1878a967c, type: 2}
+    startUnlocked: 0
+    achievementName: BOSS_FAST_RAINBOWSTWING
+    previewImg: {fileID: 21300000, guid: 163bb307e6bc66c4b89ea2fd85dd1c6f, type: 3}
+    unlocked: 0
+  - name: Brave Piest
+    id: o_bp
+    mat: {fileID: 2100000, guid: c909dbc0a458c564f95852c92798a448, type: 2}
+    startUnlocked: 0
+    achievementName: BOSS_RAINBOWSTWING_AS_PIEST
+    previewImg: {fileID: 21300000, guid: 691f3d5772e127646ba90dbeb78e1338, type: 3}
+    unlocked: 0
+  - name: Bwuda Birfday!
+    id: o_bd
+    mat: {fileID: 2100000, guid: c1813511f13619e4ea6a7b1d5d2a8e68, type: 2}
+    startUnlocked: 0
+    achievementName: BWUDA_BIRTHDAY
+    previewImg: {fileID: 21300000, guid: dd899ca2bcf8092429bf9c386d299e29, type: 3}
+    unlocked: 0
+  - name: Chicken Sandwich
+    id: o_cs
+    mat: {fileID: 2100000, guid: 7016bdad4ec69a741b1f3528850d56da, type: 2}
+    startUnlocked: 0
+    achievementName: STAT_DISTANCE_1
+    previewImg: {fileID: 21300000, guid: 6f5da3319156a7d45a07dd86bdeeb21e, type: 3}
+    unlocked: 0
+  - name: Smakin Time
+    id: o_bf
+    mat: {fileID: 2100000, guid: 71e34661829129646b775a8f7f845310, type: 2}
+    startUnlocked: 0
+    achievementName: BWUDA_FAVWIT
+    previewImg: {fileID: 21300000, guid: f7e67bb8a5d6b3042b1af57ec82acb9c, type: 3}
     unlocked: 0
   dances:
   - name: Dental Hygiene

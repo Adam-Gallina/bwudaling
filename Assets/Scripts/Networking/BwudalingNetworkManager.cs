@@ -245,6 +245,7 @@ public class BwudalingNetworkManager : NetworkManager
             {
                 if (SteamManager.Initialized)
                 {
+                    Debug.LogWarning("Reset Steam stats...");
                     SteamUserStats.ResetAllStats(true);
                     SteamUserStats.StoreStats();
                 }

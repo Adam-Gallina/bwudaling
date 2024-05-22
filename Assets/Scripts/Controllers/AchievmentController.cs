@@ -1,4 +1,5 @@
 using Steamworks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,6 +17,7 @@ public class AchievmentController : MonoBehaviour
     private const string CwabTime = "fastest_cwab";
     private const string WedTime = "fastest_wed";
     private const string TwentTime = "fastest_twent";
+    private const string StwingTime = "fastest_stwing";
     #endregion
     #region Achievement API names
     private const string Level10 = "LEVEL_10_ANY";
@@ -32,6 +34,10 @@ public class AchievmentController : MonoBehaviour
     private const string FastWed = "BOSS_FAST_BIGWED";
     private const string Twent = "BOSS_TWENTY";
     private const string FastTwent = "BOSS_FAST_TWENTY";
+    private const string Stwing = "BOSS_RAINBOWSTWING";
+    private const string FastStwing = "BOSS_FAST_RAINBOWSTWING";
+
+    private const string BwudaBirthday = "BWUDA_BIRTHDAY";
 
     //private const string Favwit = "STATS_FAVWIT";
     #endregion
@@ -75,6 +81,7 @@ public class AchievmentController : MonoBehaviour
     public static float FastestCwab { get { return GetTimeValue(CwabTime); } }
     public static float FastestWed { get { return GetTimeValue(WedTime); } }
     public static float FastestTwent { get { return GetTimeValue(TwentTime); } }
+    public static float FastestStwing { get { return GetTimeValue(StwingTime); } }
     public static float GetCurrMapPackTime()
     {
         switch (BwudalingNetworkManager.Instance.currMaps.name)
@@ -85,6 +92,8 @@ public class AchievmentController : MonoBehaviour
                 return FastestWed;
             case Constants.TwentName:
                 return FastestTwent;
+            case Constants.RainbowName:
+                return FastestStwing;
             default:
                 Debug.LogWarning("Can't fetch best time for current map pack " + BwudalingNetworkManager.Instance.currMaps.name);
                 return -1;
@@ -248,6 +257,7 @@ public class AchievmentController : MonoBehaviour
     {
         AbilityLevels.OnAbilitiesLoaded += OnAbilitiesLoaded;
         BwudalingNetworkManager.OnSceneChanged += SaveStats;
+        BwudalingNetworkManager.OnClientConnected += CheckBwudaBirthday;
         BasicGameController.OnMapStarted += OnMapStarted;
         BasicGameController.OnMapCompleted += OnMapCompleted;
     }
@@ -256,6 +266,7 @@ public class AchievmentController : MonoBehaviour
     {
         AbilityLevels.OnAbilitiesLoaded -= OnAbilitiesLoaded;
         BwudalingNetworkManager.OnSceneChanged -= SaveStats;
+        BwudalingNetworkManager.OnClientConnected -= CheckBwudaBirthday;
         BasicGameController.OnMapStarted -= OnMapStarted;
         BasicGameController.OnMapCompleted -= OnMapCompleted;
     }
@@ -331,12 +342,18 @@ public class AchievmentController : MonoBehaviour
         }
     }
 
+    private void CheckBwudaBirthday()
+    {
+        SteamUserStats.GetAchievement(BwudaBirthday, out bool u);
+        if (!u && DateTime.Now.Day == 19 && DateTime.Now.Month == 4)
+        {
+            SteamUserStats.SetAchievement(BwudaBirthday);
+            SaveStats();
+        }
+    }
+
     private void UpdateSavedTimeIfLower(string key, float time)
     {
-        //float lastTime = PlayerPrefs.GetFloat(pref, -1);
-        //if (lastTime == -1 || time < lastTime)
-        //    PlayerPrefs.SetFloat(pref, time);
-
         double lastTime = SpeedrunData.GetTime(key);
         if (lastTime == -1 || time < lastTime)
             SpeedrunData.SetTime(key, time);
@@ -374,6 +391,8 @@ public class AchievmentController : MonoBehaviour
                 case Constants.TwentName:
                     //SteamUserStats.SetAchievement(Twent);
                     break;
+                case Constants.RainbowName:
+                    break;
                 default:
                     //Debug.LogError("Can't update achievement for current boss " + ((BossMapController)MapController.Instance).bossPrefab.bossName);
                     return;
@@ -399,16 +418,20 @@ public class AchievmentController : MonoBehaviour
             switch (((BossMapController)MapController.Instance).bossPrefab.bossName)
             {
                 case Constants.CwabName:
-                    UpdateTimeStatIfLower(CwabTime, BasicGameController.ElapsedTime);
+                    UpdateTimeStatIfLower(CwabTime, GameController.ElapsedTime);
                     SteamUserStats.SetAchievement(SiwyCwab);
                     break;
                 case Constants.WedName:
-                    UpdateTimeStatIfLower(WedTime, BasicGameController.ElapsedTime);
+                    UpdateTimeStatIfLower(WedTime, GameController.ElapsedTime);
                     SteamUserStats.SetAchievement(BigWed);
                     break;
                 case Constants.TwentName:
-                    UpdateTimeStatIfLower(TwentTime, BasicGameController.ElapsedTime);
+                    UpdateTimeStatIfLower(TwentTime, GameController.ElapsedTime);
                     SteamUserStats.SetAchievement(Twent);
+                    break;
+                case Constants.RainbowName:
+                    UpdateTimeStatIfLower(StwingTime, GameController.ElapsedTime);
+                    SteamUserStats.SetAchievement(Stwing);
                     break;
                 default:
                     Debug.LogWarning("Can't update achievement for current boss " + ((BossMapController)MapController.Instance).bossPrefab.bossName);
