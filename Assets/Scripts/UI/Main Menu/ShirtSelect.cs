@@ -28,33 +28,39 @@ public class ShirtSelect : MonoBehaviour
 
     private void Start()
     {
-        availableShirts = AchievmentController.Instance.GetUnlockedShirts();
+        shirtData = AchievmentController.Shirts[savedShirt];
+        UpdateShirtDisplay();
+    }
 
-        if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
+    private void CheckLoadShirts()
+    {
+        if (availableShirts == null)
         {
-            if (BwudalingNetworkManager.Instance.ActivePlayer.shirtTextureId == "")
-                shirtData = AchievmentController.Shirts[savedShirt];
-            else
-                shirtData = AchievmentController.Shirts[BwudalingNetworkManager.Instance.ActivePlayer.shirtTextureId];
+            availableShirts = AchievmentController.Instance.GetUnlockedShirts();
 
-            for (int i = 0; i < availableShirts.Length; i++)
+            if (BwudalingNetworkManager.Instance.mode != Mirror.NetworkManagerMode.Offline)
             {
-                if (availableShirts[i] == shirtData.id)
+                if (BwudalingNetworkManager.Instance.ActivePlayer.shirtTextureId == "")
+                    shirtData = AchievmentController.Shirts[savedShirt];
+                else
+                    shirtData = AchievmentController.Shirts[BwudalingNetworkManager.Instance.ActivePlayer.shirtTextureId];
+
+                for (int i = 0; i < availableShirts.Length; i++)
                 {
-                    currShirt = i;
-                    break;
+                    if (availableShirts[i] == shirtData.id)
+                    {
+                        currShirt = i;
+                        break;
+                    }
                 }
             }
         }
-        else
-        {
-            shirtData = AchievmentController.Shirts[savedShirt];
-        }
-        UpdateShirtDisplay();
     }
 
     public void NextShirt()
     {
+        CheckLoadShirts();
+
         currShirt++;
         if (currShirt >= availableShirts.Length)
             currShirt = 0;
@@ -65,6 +71,8 @@ public class ShirtSelect : MonoBehaviour
 
     public void LastShirt()
     {
+        CheckLoadShirts();
+
         currShirt--;
         if (currShirt < 0)
             currShirt = availableShirts.Length - 1;

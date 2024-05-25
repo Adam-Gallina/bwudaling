@@ -13292,10 +13292,10 @@ MonoBehaviour:
   DEBUG_IgnoreCooldown: 1
   DEBUG_TpWalls: 1
   DEBUG_ForceBossAttack: 0
-  DEBUG_ForceBossHealth: 1
+  DEBUG_ForceBossHealth: 0
   DEBUG_ResetAchievements: 0
   DEBUG_UnlockAllShirts: 0
-  DEBUG_SkipStatsAnim: 1
+  DEBUG_SkipStatsAnim: 0
   DEBUG_ForceLockBwuda: 0
   DEBUG_Invulnerable: 0
 --- !u!4 &1144509072
@@ -14277,6 +14277,27 @@ MonoBehaviour:
     startUnlocked: 0
     achievementName: BWUDA_FAVWIT
     previewImg: {fileID: 21300000, guid: f7e67bb8a5d6b3042b1af57ec82acb9c, type: 3}
+    unlocked: 0
+  - name: Here lied Twent
+    id: o_d1
+    mat: {fileID: 2100000, guid: e581941012843a04ea506973fc169d21, type: 2}
+    startUnlocked: 0
+    achievementName: STAT_DEATHS_1
+    previewImg: {fileID: 21300000, guid: 8cff43e0e94cca840bb415589c741e48, type: 3}
+    unlocked: 0
+  - name: SCRUMDIDDLYUMPTIOUS
+    id: o_r1
+    mat: {fileID: 2100000, guid: 04b3122fe6ae95c48a9cdcb44282d1a9, type: 2}
+    startUnlocked: 0
+    achievementName: STAT_REVIVES_1
+    previewImg: {fileID: 21300000, guid: 6cd4898695d14d2499492cd4c1ef58b7, type: 3}
+    unlocked: 0
+  - name: Cheeeese
+    id: o_h1
+    mat: {fileID: 2100000, guid: db3cae7b0c2ee6e44a16a4058eb5ea79, type: 2}
+    startUnlocked: 0
+    achievementName: STAT_HAIWS_1
+    previewImg: {fileID: 21300000, guid: b28067c5375f3e64dbf92bdbbdbfb96c, type: 3}
     unlocked: 0
   dances:
   - name: Dental Hygiene

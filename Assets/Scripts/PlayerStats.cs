@@ -11,6 +11,8 @@ public class PlayerStats : MonoBehaviour
 
     //[Header("Dist")]
     private Vector3 lastPlayerPos;
+    private float statDistCount;
+    [SerializeField] private float statDistUpdateAmount = 5;
 
     [Header("Dodges")]
     [SerializeField] private float pDodgeDist = 1.5f;
@@ -46,7 +48,17 @@ public class PlayerStats : MonoBehaviour
         }
 
         if (lastPlayerPos != Vector3.zero)
-            currStats.DistTravelled += Vector3.Distance(player.avatar.transform.position, lastPlayerPos);
+        {
+            float d = Vector3.Distance(player.avatar.transform.position, lastPlayerPos);
+            currStats.DistTravelled += d;
+            statDistCount += d;
+
+            if (statDistCount >= statDistUpdateAmount)
+            {
+                AchievmentController.Instance.AddStat(PlayerStatType.Distance, (int)statDistCount);
+                statDistCount -= (int)statDistCount;
+            }
+        }
         lastPlayerPos = player.avatar.transform.position;
     }
 
@@ -59,11 +71,15 @@ public class PlayerStats : MonoBehaviour
     public void AddDeath()
     {
         currStats.Deaths++;
+
+        AchievmentController.Instance.AddStat(PlayerStatType.Deaths, 1);
     }
 
     public void AddRescue()
     {
         currStats.Rescues++;
+
+        AchievmentController.Instance.AddStat(PlayerStatType.Heals, 1);
     }
 
     public void AddAbility()
@@ -74,6 +90,8 @@ public class PlayerStats : MonoBehaviour
     public void AddHaiw()
     {
         currStats.HaiwsCollected++;
+
+        AchievmentController.Instance.AddStat(PlayerStatType.Haiws, 1);
     }
 }
 

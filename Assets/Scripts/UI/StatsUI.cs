@@ -120,6 +120,9 @@ public class StatsUI : GameUI
             if (!BwudalingNetworkManager.Instance.DEBUG_SkipStatsAnim)
                 didiyenuAudio.Play();
             speedMod = .125f;
+
+            if (winnerName == BwudalingNetworkManager.Instance.ActivePlayer.displayName)
+                AchievmentController.Instance.AddStat(PlayerStatType.Best, 1);
         }
         smackAudio.gameObject.SetActive(speedMod == 1);
 

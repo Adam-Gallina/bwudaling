@@ -46,6 +46,7 @@ public class HaiwArea : SafeArea
             {
                 StartCoroutine(OnCollectHaiw(target.heldItem));
                 target.RpcAddXp(MapController.Instance.safeZoneXp, false);
+                target.RpcStatsHaiwCollected();
             }
         }
     }

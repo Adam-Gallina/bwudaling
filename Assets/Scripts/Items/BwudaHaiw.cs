@@ -82,8 +82,6 @@ public class BwudaHaiw : ItemBase
     {
         base.OnCollect(p);
 
-        p.RpcStatsHaiwCollected();
-
         RpcPlayAudio(p, 0);
     }
 

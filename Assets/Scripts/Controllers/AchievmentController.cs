@@ -18,6 +18,12 @@ public class AchievmentController : MonoBehaviour
     private const string WedTime = "fastest_wed";
     private const string TwentTime = "fastest_twent";
     private const string StwingTime = "fastest_stwing";
+
+    private const string TotalDistance = "total_distance";
+    private const string TotalDeaths = "total_deaths";
+    private const string TotalRevives = "total_revives";
+    private const string TotalHaiws = "total_haiws";
+    private const string TotalFavwit = "total_favwit";
     #endregion
     #region Achievement API names
     private const string Level10 = "LEVEL_10_ANY";
@@ -38,8 +44,6 @@ public class AchievmentController : MonoBehaviour
     private const string FastStwing = "BOSS_FAST_RAINBOWSTWING";
 
     private const string BwudaBirthday = "BWUDA_BIRTHDAY";
-
-    //private const string Favwit = "STATS_FAVWIT";
     #endregion
     #region UserPref names
     private const string FastestLvl1Time= "fastest_lvl1";
@@ -202,8 +206,10 @@ public class AchievmentController : MonoBehaviour
     {
         if (callback.m_nCurProgress == 0 && callback.m_nMaxProgress == 0)
         {
+            bool unlocked = false;
             if (AchievementShirts.ContainsKey(callback.m_rgchAchievementName))
             {
+                unlocked = true;
                 if (!Shirts[AchievementShirts[callback.m_rgchAchievementName]].unlocked)
                 {
                     ShirtData s = Shirts[AchievementShirts[callback.m_rgchAchievementName]];
@@ -215,6 +221,7 @@ public class AchievmentController : MonoBehaviour
             }
             if (AchievementDances.ContainsKey(callback.m_rgchAchievementName))
             {
+                unlocked = true;
                 if (!Dances[AchievementDances[callback.m_rgchAchievementName]].unlocked)
                 {
                     DanceData d = Dances[AchievementDances[callback.m_rgchAchievementName]];
@@ -222,6 +229,9 @@ public class AchievmentController : MonoBehaviour
                     Dances[AchievementDances[callback.m_rgchAchievementName]] = d;
                 }
             }
+
+            if (!unlocked)
+                Debug.LogWarning($"{callback.m_rgchAchievementName} was recieved but has no reward");
         }
     }
 
@@ -274,25 +284,15 @@ public class AchievmentController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
-        {
             b = true;
-        }
         else if (b && Input.GetKeyDown(KeyCode.W))
-        {
             w = true;
-        }
         else if (w && Input.GetKeyDown(KeyCode.U))
-        {
             u = true;
-        }
         else if (u && Input.GetKeyDown(KeyCode.D))
-        {
             d = true;
-        }
         else if (d && Input.GetKeyDown(KeyCode.A))
-        {
             a = true;
-        }
     }
 
     private void OnAbilitiesLoaded()
@@ -350,6 +350,41 @@ public class AchievmentController : MonoBehaviour
             SteamUserStats.SetAchievement(BwudaBirthday);
             SaveStats();
         }
+    }
+
+    public void AddStat(PlayerStatType stat, int amount)
+    {
+        if (!SteamManager.Initialized) return;
+
+        int n;
+        switch (stat)
+        {
+            case PlayerStatType.Deaths:
+                SteamUserStats.GetStat(TotalDeaths, out n);
+                SteamUserStats.SetStat(TotalDeaths, n + amount);
+                break;
+            case PlayerStatType.Heals:
+                SteamUserStats.GetStat(TotalRevives, out n);
+                SteamUserStats.SetStat(TotalRevives, n + amount);
+                break;
+            case PlayerStatType.Haiws:
+                SteamUserStats.GetStat(TotalHaiws, out n);
+                SteamUserStats.SetStat(TotalHaiws, n + amount);
+                break;
+            case PlayerStatType.Distance:
+                SteamUserStats.GetStat(TotalDistance, out n);
+                SteamUserStats.SetStat(TotalDistance, n + amount);
+                break;
+            case PlayerStatType.Best:
+                SteamUserStats.GetStat(TotalFavwit, out n);
+                SteamUserStats.SetStat(TotalFavwit, n + amount);
+                break;
+            default:
+                Debug.LogWarning($"Stat {stat} is not currently tracked");
+                break;
+        }
+
+        SaveStats();
     }
 
     private void UpdateSavedTimeIfLower(string key, float time)

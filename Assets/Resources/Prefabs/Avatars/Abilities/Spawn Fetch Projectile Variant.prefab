@@ -144,8 +144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityName: Fetch
-  abilityTooltip: Throw a leash and pull a downed player towards you
-  abilityUpgradesTooltip: []
+  abilityTooltip: Use your leash to pull nearby downed players towards you
+  abilityUpgradesTooltip:
+  - Pull Speed
+  - Pull Duration
+  - Range
   abilityIcon: {fileID: 242510585, guid: 1efdeea52b45fb141b93246ad04de85f, type: 3}
   abilityCooldown:
     startValue: 30
