@@ -81,7 +81,18 @@ public class Constants
         " failed miserably",
         " died? You gonna cry about it?",
         "? AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        " was lost to the times"
+        " was lost to the times",
+        " couldn't handle the loudest chuckle",
+        " got pooped on",
+        " is a lil smacka",
+        " took an arrow to the spleen",
+        " has no skibidi toilet rizz :(",
+        " really doesn't know how to play this game",
+        " eats doodoo",
+        " made a basic spelling error",
+        " snots'd all over",
+        " is tootin' up a STORM",
+        " bought too much avocado toast"
     };
     public static float DeathBannerDuration = 2;
 

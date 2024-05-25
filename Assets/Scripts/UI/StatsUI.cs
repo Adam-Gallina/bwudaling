@@ -199,7 +199,6 @@ public class StatsUI : GameUI
         if (winnerAnim)
         {
             winnerAnim.SetBool("Dancing", true);
-            winnerAnim.SetInteger("Dance", 1);
             lastAnimated = winnerAnim;
         }
 

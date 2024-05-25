@@ -150,7 +150,7 @@ MonoBehaviour:
   - {fileID: 4783558883154457094}
   - {fileID: 4934942300126069282}
   yarnballStats:
-    hazardPrefab: {fileID: 5929012255989091144, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
+    hazardPrefab: {fileID: 8001007977230579900, guid: 5ea2c87d2b857194ba23b14e71bbac95, type: 3}
     hazardSpeedMod: 2.5
     bucketCount: 3
   yarnballBursts:
@@ -171,7 +171,7 @@ MonoBehaviour:
     maxVal: 6
   frayHaiwSpawnChance: 40
   tangleStats:
-    hazardPrefab: {fileID: 5929012255989091144, guid: 01bb8e4018b90c0499bb9c1713e99f93, type: 3}
+    hazardPrefab: {fileID: 8001007977230579900, guid: 5ea2c87d2b857194ba23b14e71bbac95, type: 3}
     hazardSpeedMod: 4
     bucketCount: 2
   tanglePullDuration: 4
