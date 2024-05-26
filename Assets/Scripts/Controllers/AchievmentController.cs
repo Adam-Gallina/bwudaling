@@ -133,6 +133,7 @@ public class AchievmentController : MonoBehaviour
 
     private void Awake()
     {
+        SpeedrunData.LoadData();
         if (Instance != null)
         {
             Destroy(gameObject);

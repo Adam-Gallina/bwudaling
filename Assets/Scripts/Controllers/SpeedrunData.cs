@@ -36,6 +36,11 @@ public static class SpeedrunData
             }
 
             stream.Close();
+
+            foreach (string s in Times.Keys)
+            {
+                Debug.Log(s + ": " + Times[s]);
+            }
         }
         else
         {

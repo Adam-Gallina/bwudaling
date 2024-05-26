@@ -45,6 +45,7 @@ public class RainbowString : BossBase
 
     [Header("Spawn Anim")]
     [SerializeField] private float spawnAnimSegmentPlaceDelay;
+    [SerializeField] private AudioSource placeAudio;
 
     [Header("Death Anim")]
     [SerializeField] private float jitterMoveSpeed;
@@ -420,6 +421,7 @@ public class RainbowString : BossBase
             {
                 segments[placed].position = targetSegmentPos[placed] + Vector3.up * 1.75f;
                 placed++;
+                placeAudio.Play();
                 next = Time.time + spawnAnimSegmentPlaceDelay;
             }
 
