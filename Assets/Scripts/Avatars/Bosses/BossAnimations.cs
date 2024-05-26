@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class BossAnimations : MonoBehaviour
     [SerializeField] private ParticleSystem system2;
     [SerializeField] private ParticleSystem system3;
     [SerializeField] private GameObject obj1;
+
+    public static event Action Callback1;
 
     public void StartSystem1() {
         if (!system1)
@@ -61,5 +64,10 @@ public class BossAnimations : MonoBehaviour
         if (!obj1)
             return;
         obj1.SetActive(false);
+    }
+
+    public void SetCallback1()
+    {
+        Callback1?.Invoke();
     }
 }

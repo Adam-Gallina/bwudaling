@@ -87,7 +87,7 @@ public class Bezier
 
     public Vector3 Sample(float t)
     {
-        return MyMath.SampleBezierPoint(start, start + startConstraint, end, end + endConstraint, t);
+        return MyMath.SampleBezierPoint(start, start + startConstraint, end + endConstraint, end, t);
     }
 
     public float ApproximateLength(int samples)

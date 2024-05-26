@@ -43,7 +43,8 @@ public class RainbowString : BossBase
     [SerializeField] private RangeI tangleHaiwSpawns;
 
 
-    //[Header("Spawn Anim")]
+    [Header("Spawn Anim")]
+    [SerializeField] private float spawnAnimSegmentPlaceDelay;
 
     [Header("Death Anim")]
     [SerializeField] private float jitterMoveSpeed;
@@ -62,10 +63,10 @@ public class RainbowString : BossBase
         Gizmos.DrawWireSphere(transform.position, minMoveDist);
         Gizmos.DrawWireSphere(transform.position, maxMoveDist);*/
 
-        /*Gizmos.color = Color.yellow;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawLine(moveCurves[0].start + Vector3.up * 6, moveCurves[0].start + moveCurves[0].startConstraint + Vector3.up * 6);
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(moveCurves[0].end + Vector3.up * 6, moveCurves[0].end + moveCurves[0].endConstraint + Vector3.up * 6);*/
+        Gizmos.DrawLine(moveCurves[0].end + Vector3.up * 6, moveCurves[0].end + moveCurves[0].endConstraint + Vector3.up * 6);
 
         Gizmos.color = Color.green;
         Vector3 lastPos = moveCurves[0].start;
@@ -347,49 +348,83 @@ public class RainbowString : BossBase
     }
     #endregion
 
-
+    private bool receivedCb = false;
     [Server]
     public override IEnumerator SpawnAnim()
     {
-        transform.position = MapController.Instance.mapCenter + Vector3.right * frayEdgeRadius;
-        transform.forward = Vector3.back - Vector3.right;
-        GetNewMovementCurve(MapController.Instance.mapCenter, (Vector3.back + Vector3.right).normalized);
-
-        foreach (Transform se in segments)
-            se.position = transform.position + Vector3.up * se.position.y;
-
         RpcStartAnim();
 
+        yield return new WaitForSeconds(1);
 
-        float s = moveSpeed;
-        moveSpeed *= 1.5f;
+        BossAnimations.Callback1 += OnServerAnimCallback;
+        RpcSetAnimTrigger("Spawn");
 
-        yield return MoveThroughCurve();
+        yield return new WaitUntil(() => receivedCb);
 
-        StartCoroutine(base.SpawnAnim());
-
-        float end = Time.time + spawnAnimDuration;
-        while (Time.time < end)
-        {
-            Vector2 d = Random.insideUnitCircle * tangleAnimRadius;
-            Vector3 pos = MapController.Instance.mapCenter + new Vector3(d.x, 0, d.y);
-            GetNewMovementCurve(pos, (pos - transform.position).normalized, tangleAnimRadius / 2);
-
-            yield return MoveThroughCurve();
-        }
-
-        moveSpeed = s;
+        yield return base.SpawnAnim();
+    }
+    private void OnServerAnimCallback()
+    {
+        receivedCb = true;
+        BossAnimations.Callback1 -= OnServerAnimCallback;
     }
 
     [ClientRpc]
-    private void RpcStartAnim() { StartCoroutine(Anim()); }
-    private IEnumerator Anim()
+    private void RpcStartAnim()
     {
         CameraController.Instance.SetTarget(MapController.Instance.transform, 1);
         CameraController.Instance.FocusOnPoint(MapController.Instance.mapCenter);
-        CameraController.Instance.SetZoom(8);
+        CameraController.Instance.SetZoom(12);
 
-        yield return null;
+        BossAnimations.Callback1 += OnAnimCallback;
+    }
+    private void OnAnimCallback()
+    {
+        BossAnimations.Callback1 -= OnAnimCallback;
+        StartCoroutine(Anim());
+    }
+    private IEnumerator Anim()
+    {
+        GetComponent<NetworkAnimator>().enabled = false;
+        GetComponentInChildren<Animator>().enabled = false;
+
+        Vector3 s = segments[segments.Length - 1].position;
+        Vector3 e = transform.position;
+        s.y = e.y = 0;
+        moveCurves.Add(new Bezier(s, Vector3.right * 35 + Vector3.forward * .8f * 35,
+                                  e, Vector3.right * .8f * 35 + Vector3.back * 35));
+        moveCurves[0].ApproximateLength(bezierSamples);
+
+        Vector3[] targetSegmentPos = new Vector3[segments.Length];
+        for (int i = 0; i < segments.Length; i++)
+            targetSegmentPos[i] = moveCurves[0].Sample(1 - ((float)i / (segments.Length-1)));
+
+        Vector3[] lastSegmentPos = new Vector3[segments.Length];
+        for (int i = 0; i < segments.Length; i++)
+            lastSegmentPos[i] = segments[i].position;
+
+        float next = Time.time + spawnAnimSegmentPlaceDelay;
+        int placed = 0;
+        while (placed < segments.Length)
+        {
+            for (int i = placed; i < segments.Length; i++)
+            {
+                Vector2 d = Random.insideUnitCircle * jitterRadius;
+                Vector3 pos = lastSegmentPos[i] + new Vector3(d.x, 0, d.y);
+
+                segments[i].position = segments[i].position + (pos - segments[i].position).normalized * jitterMoveSpeed * Time.deltaTime;
+                segments[i].localEulerAngles = new Vector3(0, segments[i].localEulerAngles.y, 0);
+            }
+
+            if (Time.time >= next)
+            {
+                segments[placed].position = targetSegmentPos[placed] + Vector3.up * 1.75f;
+                placed++;
+                next = Time.time + spawnAnimSegmentPlaceDelay;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     [Server]

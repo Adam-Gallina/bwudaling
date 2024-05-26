@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4379013353168800323}
+  - component: {fileID: 8782396432942334535}
+  - component: {fileID: 6861882571046762625}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -43,6 +45,43 @@ Transform:
   m_Father: {fileID: 7152797152930393208}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8782396432942334535
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379013353168800320}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 917acd04b08de014e8677a6471f41110, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6861882571046762625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379013353168800320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcea4d301d1dae04ead2372abf03759e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  system1: {fileID: 0}
+  system2: {fileID: 0}
+  system3: {fileID: 0}
+  obj1: {fileID: 0}
 --- !u!1 &7152797152930393211
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,6 +94,7 @@ GameObject:
   - component: {fileID: 7152797152930393214}
   - component: {fileID: 6197218239656705202}
   - component: {fileID: 3287314865822888132}
+  - component: {fileID: 8624276601999589791}
   m_Layer: 0
   m_Name: Rainbow String
   m_TagString: Untagged
@@ -184,6 +224,7 @@ MonoBehaviour:
   tangleHaiwSpawns:
     minVal: 2
     maxVal: 4
+  spawnAnimSegmentPlaceDelay: 0.2
   jitterMoveSpeed: 20
   jitterRadius: 3
   deathAnimFirstSegmentDeath: 1
@@ -227,6 +268,22 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &8624276601999589791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152797152930393211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  animator: {fileID: 8782396432942334535}
 --- !u!1 &7257492501933805869
 GameObject:
   m_ObjectHideFlags: 0
