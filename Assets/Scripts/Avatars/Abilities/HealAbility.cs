@@ -20,10 +20,12 @@ public class HealAbility : TargetAbility
             hit = true;
         }
 
+        Debug.Log(currReticlePos);
         Collider[] players = Physics.OverlapSphere(currReticlePos, radius.CalcValue(level), 1 << Constants.PlayerLayer);
         foreach (Collider c in players)
         {
             PlayerAvatar p = c.GetComponent<PlayerAvatar>();
+            Debug.Log(c + " " + p + " " + c.GetComponentInParent<PlayerAvatar>());
             if (p && (p.dead ? canTargetDead : canTargetLiving))
             {
                 if (p.dead)

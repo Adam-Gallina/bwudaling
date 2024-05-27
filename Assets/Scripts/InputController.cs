@@ -31,8 +31,8 @@ public class InputController : MonoBehaviour
     public Key dance1 = new Key("Input_Dance1", KeyCode.Alpha1);
 
     public Key resetCamOffset = new Key("Input_ResetCam", KeyCode.Space);
-
     public Key resetCamZoom = new Key("Input_ResetZoom", KeyCode.LeftControl);
+    
 
     [HideInInspector] public bool UsingTargetKeys = true;
 

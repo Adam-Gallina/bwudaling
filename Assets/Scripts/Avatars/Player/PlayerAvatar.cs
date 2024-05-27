@@ -466,6 +466,7 @@ public class PlayerAvatar : AvatarBase
             healedSystem?.Play();
         anim?.SetBool("Dead", false);
         idleStart = Time.time;
+        dragEnd = 0;
     }
 
     protected override void OnDeath()

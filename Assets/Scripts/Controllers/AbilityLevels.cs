@@ -66,12 +66,12 @@ public static class AbilityLevels
                 saveDataLoadFailed = true;
                 return RecoverCharSaveFile();
             }
+            stream.Close();
 
             if (charSaves.saveVersion != SaveVersion)
                 if (!UpdateCharacterSaves())
                     throw new Exception("Could not update character saves");
 
-            stream.Close();
             saveDataLoadFailed = false;
             return true;
         }
@@ -101,8 +101,6 @@ public static class AbilityLevels
         if (charSaves.saveVersion == SaveVersion)
             return true;
 
-        SteamUserStats.GetStat(AchievmentController.TotalDistance, out int n);
-        Debug.Log("dist: " + n);
         switch (charSaves.saveVersion)
         {
             case 1: //Added new stats for xp/level count, need to update steam stats appropriately

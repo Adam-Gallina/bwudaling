@@ -179,13 +179,13 @@ MonoBehaviour:
   splashEffect: {fileID: 0}
   baseScale: 0
   fetchDuration:
-    startValue: 2
-    upgradeValue: 0.5
+    startValue: 1
+    upgradeValue: 0.4
     upgradeEveryLevel: 1
     upgradeLevels: 
   fetchSpeed:
-    startValue: 2.5
-    upgradeValue: 0.75
+    startValue: 4
+    upgradeValue: 0.6
     upgradeEveryLevel: 1
     upgradeLevels: 
   projectileSpawn: {fileID: 0}

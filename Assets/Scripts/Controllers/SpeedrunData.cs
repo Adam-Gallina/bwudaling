@@ -30,11 +30,12 @@ public static class SpeedrunData
             FileStream stream = new FileStream(UserPath + TimeSaveFile, FileMode.Open);
 
             Times = (Dictionary<string, float>)bf.Deserialize(stream);
+
+            stream.Close();
+
             if (Times[SaveVersionKey] != SaveVersion)
                 if (!UpdateData())
                     throw new Exception("File migration failed");
-
-            stream.Close();
         }
         else
         {

@@ -59,6 +59,7 @@ public abstract class TargetAbility : AbilityBase
         {
             UseAbility(currLevel);
             showIndicator = false;
+            currReticlePos = controller.transform.position;
             return;
         }
 
