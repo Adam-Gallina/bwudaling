@@ -535,6 +535,7 @@ public class PlayerAvatar : AvatarBase
         }
 
         player.abilities.AddXp(xp);
+        AchievmentController.Instance.AddStat(AchievmentController.TotalXp, xp);
     }
     [Command]
     private void CmdOnLevelUp() { RpcOnLevelUp(); }
@@ -542,7 +543,10 @@ public class PlayerAvatar : AvatarBase
     private void RpcOnLevelUp()
     {
         if (hasAuthority)
+        {
             levelUpAudio.Play();
+            AchievmentController.Instance.AddStat(AchievmentController.TotalLevels, 1);
+        }
         levelUpSystem.Play();
     }
 

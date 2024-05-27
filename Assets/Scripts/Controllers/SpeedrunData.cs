@@ -30,17 +30,11 @@ public static class SpeedrunData
             FileStream stream = new FileStream(UserPath + TimeSaveFile, FileMode.Open);
 
             Times = (Dictionary<string, float>)bf.Deserialize(stream);
-            if (Times[SaveVersionKey]!= SaveVersion)
-            {
-                throw new Exception($"File migration is not setup ({Times[SaveVersionKey]} -> {SaveVersion})");
-            }
+            if (Times[SaveVersionKey] != SaveVersion)
+                if (!UpdateData())
+                    throw new Exception("File migration failed");
 
             stream.Close();
-
-            foreach (string s in Times.Keys)
-            {
-                Debug.Log(s + ": " + Times[s]);
-            }
         }
         else
         {
@@ -49,6 +43,24 @@ public static class SpeedrunData
                 { SaveVersionKey, SaveVersion }
             };
         }
+    }
+
+    private static bool UpdateData()
+    {
+        if (Times[SaveVersionKey] == SaveVersion)
+            return true;
+
+        switch (Times[SaveVersionKey])
+        {
+            case 1: //Added new stats for xp/level count, v1 data file should never be created in release builds
+                Times[SaveVersionKey] = SaveVersion;
+                break;
+            default:
+                throw new Exception($"File migration is not setup ({Times[SaveVersionKey]} -> {SaveVersion})");
+        }
+
+        SaveData();
+        return UpdateData();
     }
 
     public static bool SaveData()

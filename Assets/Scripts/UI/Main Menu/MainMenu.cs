@@ -213,6 +213,11 @@ public class MainMenu : GameUI
         ClearPlayers();
     }
 
+    public void ToggleStatsMenu()
+    {
+        MainMenuStats.Instance.gameObject.SetActive(!MainMenuStats.Instance.gameObject.activeSelf);
+    }
+
     public void PressQuit()
     {
         Application.Quit();

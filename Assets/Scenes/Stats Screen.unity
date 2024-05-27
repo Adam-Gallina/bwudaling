@@ -437,6 +437,8 @@ MonoBehaviour:
   hazardRange: 0
   mapCenter: {x: 0, y: 0, z: 0}
   canControlAvatars: 0
+  maxFriendlyReward: 3
+  friendlyXpMod: 0.2
 --- !u!4 &94150273
 Transform:
   m_ObjectHideFlags: 0

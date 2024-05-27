@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public static class AbilityLevels
 {
-    public const int SaveVersion = 1;
+    public const int SaveVersion = 2;
     public const int MaxCharacters = 10;
 
     #region Ability Loading
@@ -68,9 +68,8 @@ public static class AbilityLevels
             }
 
             if (charSaves.saveVersion != SaveVersion)
-            {
-                throw new Exception($"File migration is not setup ({charSaves.saveVersion} -> {SaveVersion})");
-            }
+                if (!UpdateCharacterSaves())
+                    throw new Exception("Could not update character saves");
 
             stream.Close();
             saveDataLoadFailed = false;
@@ -95,6 +94,45 @@ public static class AbilityLevels
 
             return true;
         }
+    }
+
+    private static bool UpdateCharacterSaves()
+    {
+        if (charSaves.saveVersion == SaveVersion)
+            return true;
+
+        SteamUserStats.GetStat(AchievmentController.TotalDistance, out int n);
+        Debug.Log("dist: " + n);
+        switch (charSaves.saveVersion)
+        {
+            case 1: //Added new stats for xp/level count, need to update steam stats appropriately
+                int totalLevels = 0;
+                int totalXp = 0;
+                for (int i = 0; i < charSaves.levels.Count; i++)
+                {
+                    totalLevels += charSaves.levels[i];
+
+                    if (!LoadAbilities(charSaves.saveIDs[i]))
+                        continue;
+
+                    totalXp += LoadedAbilities.vals.currXp;
+                    for (int l = charSaves.levels[i]; l >= 0; l--)
+                    {
+                        totalXp += XpForNextLevel(l);
+                    }
+                }
+
+                AchievmentController.Instance.AddStat(AchievmentController.TotalLevels, totalLevels);
+                AchievmentController.Instance.AddStat(AchievmentController.TotalXp, totalXp);
+
+                charSaves.saveVersion = SaveVersion;
+                break;
+            default:
+                throw new Exception($"File migration is not setup ({charSaves.saveVersion} -> {SaveVersion})");
+        }
+
+        SaveCharacterSaves();
+        return UpdateCharacterSaves();
     }
 
     public static void SaveCharacterSaves()

@@ -55,7 +55,7 @@ public class PlayerStats : MonoBehaviour
 
             if (statDistCount >= statDistUpdateAmount)
             {
-                AchievmentController.Instance.AddStat(PlayerStatType.Distance, (int)statDistCount);
+                AchievmentController.Instance.AddStat(AchievmentController.TotalDistance, (int)statDistCount);
                 statDistCount -= (int)statDistCount;
             }
         }
@@ -66,32 +66,36 @@ public class PlayerStats : MonoBehaviour
     {
         if (player.avatar && !player.avatar.dead)
             currStats.Dodges++;
+
+        AchievmentController.Instance.AddStat(AchievmentController.TotalDodges, 1);
     }
 
     public void AddDeath()
     {
         currStats.Deaths++;
 
-        AchievmentController.Instance.AddStat(PlayerStatType.Deaths, 1);
+        AchievmentController.Instance.AddStat(AchievmentController.TotalDeaths, 1);
     }
 
     public void AddRescue()
     {
         currStats.Rescues++;
 
-        AchievmentController.Instance.AddStat(PlayerStatType.Heals, 1);
+        AchievmentController.Instance.AddStat(AchievmentController.TotalRevives, 1);
     }
 
     public void AddAbility()
     {
         currStats.Abilities++;
+
+        AchievmentController.Instance.AddStat(AchievmentController.TotalAbilities, 1);
     }
 
     public void AddHaiw()
     {
         currStats.HaiwsCollected++;
 
-        AchievmentController.Instance.AddStat(PlayerStatType.Haiws, 1);
+        AchievmentController.Instance.AddStat(AchievmentController.TotalHaiws, 1);
     }
 }
 

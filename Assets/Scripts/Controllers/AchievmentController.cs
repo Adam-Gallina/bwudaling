@@ -19,11 +19,15 @@ public class AchievmentController : MonoBehaviour
     private const string TwentTime = "fastest_twent";
     private const string StwingTime = "fastest_stwing";
 
-    private const string TotalDistance = "total_distance";
-    private const string TotalDeaths = "total_deaths";
-    private const string TotalRevives = "total_revives";
-    private const string TotalHaiws = "total_haiws";
-    private const string TotalFavwit = "total_favwit";
+    public const string TotalDistance = "total_distance";
+    public const string TotalDeaths = "total_deaths";
+    public const string TotalRevives = "total_revives";
+    public const string TotalHaiws = "total_haiws";
+    public const string TotalFavwit = "total_favwit";
+    public const string TotalXp = "total_xp";
+    public const string TotalLevels= "total_levels";
+    public const string TotalDodges = "total_dodges";
+    public const string TotalAbilities = "total_abilities";
     #endregion
     #region Achievement API names
     private const string Level10 = "LEVEL_10_ANY";
@@ -46,11 +50,15 @@ public class AchievmentController : MonoBehaviour
     private const string BwudaBirthday = "BWUDA_BIRTHDAY";
     #endregion
     #region UserPref names
-    private const string FastestLvl1Time= "fastest_lvl1";
-    private const string FastestClassTime = "fastest_any";
-    private static string PrefTime(AvatarClass c) 
+    public const string FastestLvl1Time= "fastest_lvl1";
+    public const string FastestClassTime = "fastest_any";
+    public static string PrefTime(AvatarClass c, string category)
     {
-        return BwudalingNetworkManager.Instance.currMaps.name + c;
+        return PrefTime(BwudalingNetworkManager.Instance.currMaps.name, c, category);
+    }
+    public static string PrefTime(string packName, AvatarClass c, string category)
+    {
+        return packName + c + category;
     }
     #endregion
 
@@ -104,14 +112,14 @@ public class AchievmentController : MonoBehaviour
         }
     }
 
-    public static float FastestWuva1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Wuva) + FastestLvl1Time); } }
-    public static float FastestWuvaAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Wuva) + FastestClassTime); } }
-    public static float FastestDogie1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Dogie) + FastestLvl1Time); } }
-    public static float FastestDogieAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Dogie) + FastestClassTime); } }
-    public static float FastestPiest1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Piest) + FastestLvl1Time); } }
-    public static float FastestPiestAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Piest) + FastestClassTime); } }
-    public static float FastestBwuda1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Bwuda) + FastestLvl1Time); } }
-    public static float FastestBwudaAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Bwuda) + FastestClassTime); } }
+    public static float FastestWuva1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Wuva, FastestLvl1Time)); } }
+    public static float FastestWuvaAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Wuva, FastestClassTime)); } }
+    public static float FastestDogie1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Dogie, FastestLvl1Time)); } }
+    public static float FastestDogieAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Dogie, FastestClassTime)); } }
+    public static float FastestPiest1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Piest, FastestLvl1Time)); } }
+    public static float FastestPiestAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Piest, FastestClassTime)); } }
+    public static float FastestBwuda1 { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Bwuda, FastestLvl1Time)); } }
+    public static float FastestBwudaAny { get { return SpeedrunData.GetTime(PrefTime(AvatarClass.Bwuda, FastestClassTime)); } }
     #endregion
 
     public static AchievmentController Instance { get; private set; }
@@ -128,12 +136,12 @@ public class AchievmentController : MonoBehaviour
     public static Dictionary<string, DanceData> Dances = new Dictionary<string, DanceData>();
     private Dictionary<string, string> AchievementDances = new Dictionary<string, string>();
 
+    public static bool SteamStatsLoaded = false;
     protected Callback<UserStatsReceived_t> StatsReceived;
     protected Callback<UserAchievementStored_t> AchievementStored;
 
     private void Awake()
     {
-        SpeedrunData.LoadData();
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -201,6 +209,8 @@ public class AchievmentController : MonoBehaviour
             s.unlocked = unlocked;
             Shirts[AchievementShirts[a]] = s;
         }
+
+        SteamStatsLoaded = true;
     }
 
     private void OnAchievementStored(UserAchievementStored_t callback)
@@ -353,37 +363,12 @@ public class AchievmentController : MonoBehaviour
         }
     }
 
-    public void AddStat(PlayerStatType stat, int amount)
+    public void AddStat(string stat, int amount)
     {
         if (!SteamManager.Initialized) return;
 
-        int n;
-        switch (stat)
-        {
-            case PlayerStatType.Deaths:
-                SteamUserStats.GetStat(TotalDeaths, out n);
-                SteamUserStats.SetStat(TotalDeaths, n + amount);
-                break;
-            case PlayerStatType.Heals:
-                SteamUserStats.GetStat(TotalRevives, out n);
-                SteamUserStats.SetStat(TotalRevives, n + amount);
-                break;
-            case PlayerStatType.Haiws:
-                SteamUserStats.GetStat(TotalHaiws, out n);
-                SteamUserStats.SetStat(TotalHaiws, n + amount);
-                break;
-            case PlayerStatType.Distance:
-                SteamUserStats.GetStat(TotalDistance, out n);
-                SteamUserStats.SetStat(TotalDistance, n + amount);
-                break;
-            case PlayerStatType.Best:
-                SteamUserStats.GetStat(TotalFavwit, out n);
-                SteamUserStats.SetStat(TotalFavwit, n + amount);
-                break;
-            default:
-                Debug.LogWarning($"Stat {stat} is not currently tracked");
-                break;
-        }
+        SteamUserStats.GetStat(stat, out int n);
+        SteamUserStats.SetStat(stat, n + amount);
 
         SaveStats();
     }
@@ -442,9 +427,9 @@ public class AchievmentController : MonoBehaviour
     {
         if (GameController.Instance.mapType == MapType.Boss)
         {
-            UpdateSavedTimeIfLower(PrefTime(BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass) + FastestClassTime, BasicGameController.ElapsedTime);
+            UpdateSavedTimeIfLower(PrefTime(BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass, FastestClassTime), BasicGameController.ElapsedTime);
             if (BwudalingNetworkManager.Instance.ActivePlayer.startedLevel1)
-                UpdateSavedTimeIfLower(PrefTime(BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass) + FastestLvl1Time, BasicGameController.ElapsedTime);
+                UpdateSavedTimeIfLower(PrefTime(BwudalingNetworkManager.Instance.ActivePlayer.gameAvatarClass, FastestLvl1Time), BasicGameController.ElapsedTime);
         }
 
         if (!SteamManager.Initialized) return;

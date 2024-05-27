@@ -122,7 +122,7 @@ public class StatsUI : GameUI
             speedMod = .125f;
 
             if (winnerName == BwudalingNetworkManager.Instance.ActivePlayer.displayName)
-                AchievmentController.Instance.AddStat(PlayerStatType.Best, 1);
+                AchievmentController.Instance.AddStat(AchievmentController.TotalFavwit, 1);
         }
         smackAudio.gameObject.SetActive(speedMod == 1);
 
