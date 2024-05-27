@@ -215,7 +215,7 @@ public class MainMenu : GameUI
 
     public void ToggleStatsMenu()
     {
-        MainMenuStats.Instance.gameObject.SetActive(!MainMenuStats.Instance.gameObject.activeSelf);
+        MainMenuStats.Instance.SetStats(!MainMenuStats.Instance.transform.GetChild(0).gameObject.activeSelf);
     }
 
     public void PressQuit()

@@ -8,7 +8,8 @@ public enum KeybindType
     fire, altfire,
     boost, special1, special2, special3,
     dance1,
-    resetCamOffset, resetCamZoom
+    resetCamOffset, resetCamZoom,
+    toggleUpgrades
 }
 public class InputController : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class InputController : MonoBehaviour
 
     public Key resetCamOffset = new Key("Input_ResetCam", KeyCode.Space);
     public Key resetCamZoom = new Key("Input_ResetZoom", KeyCode.LeftControl);
+
+    public Key upgrades = new Key("Input_ToggleUpgrades", KeyCode.Tab);
     
 
     [HideInInspector] public bool UsingTargetKeys = true;
@@ -74,6 +77,7 @@ public class InputController : MonoBehaviour
             case KeybindType.dance1: return dance1;
             case KeybindType.resetCamOffset: return resetCamOffset;
             case KeybindType.resetCamZoom: return resetCamZoom;
+            case KeybindType.toggleUpgrades: return upgrades;
             default:
                 Debug.LogError("Don't know what " + key + " corresponds to");
                 return null;

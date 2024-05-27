@@ -33,7 +33,7 @@ public class MainMenuStats : MonoBehaviour
         // Make sure button is lowered on start
         SetPanel(2);
         SetPanel(1);
-        gameObject.SetActive(false);
+        SetStats(false);
 
         StatsReceived = Callback<UserStatsReceived_t>.Create(OnStatsReceived);
 
@@ -101,6 +101,13 @@ public class MainMenuStats : MonoBehaviour
                 Debug.LogError("Could not swap to Stats menu " + panel);
                 break;
         }
+    }
+
+    public void SetStats(bool show)
+    {
+        transform.GetChild(0).gameObject.SetActive(show);
+        transform.GetChild(1).gameObject.SetActive(show);
+        transform.GetChild(2).gameObject.SetActive(show);
     }
 }
 

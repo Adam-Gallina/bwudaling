@@ -1100,7 +1100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &75931063
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7621,7 +7621,7 @@ MonoBehaviour:
   networkManager: {fileID: 1144509071}
   kcpTransport: {fileID: 1812445703}
   steamTransport: {fileID: 1071394223}
-  DEBUG_useKcpManager: 1
+  DEBUG_useKcpManager: 0
 --- !u!4 &610880383
 Transform:
   m_ObjectHideFlags: 0
@@ -14393,7 +14393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1086366909
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15514,12 +15514,12 @@ MonoBehaviour:
   currLevel: 0
   sceneChanging: 0
   minPlayers: 1
-  DEBUG_AllowMapSkip: 1
-  DEBUG_AllowKeyCheats: 1
-  DEBUG_IgnoreCooldown: 1
-  DEBUG_TpWalls: 1
+  DEBUG_AllowMapSkip: 0
+  DEBUG_AllowKeyCheats: 0
+  DEBUG_IgnoreCooldown: 0
+  DEBUG_TpWalls: 0
   DEBUG_ForceBossAttack: 0
-  DEBUG_ForceBossHealth: 1
+  DEBUG_ForceBossHealth: 0
   DEBUG_ResetAchievements: 0
   DEBUG_UnlockAllShirts: 0
   DEBUG_SkipStatsAnim: 0
@@ -28661,7 +28661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &824431327458520566
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -28804,9 +28804,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 824431328664279285}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 824431328664279292}
+        m_TargetAssemblyTypeName: MainMenuStats, Assembly-CSharp
+        m_MethodName: SetStats
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

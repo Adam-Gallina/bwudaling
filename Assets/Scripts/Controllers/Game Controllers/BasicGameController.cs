@@ -41,7 +41,7 @@ public class BasicGameController : GameController
                 bool allDead = true;
                 foreach (NetworkPlayer p in BwudalingNetworkManager.Instance.Players)
                 {
-                    if (!p.avatar.dead)
+                    if (p.avatar && !p.avatar.dead)
                         allDead = false;
                 }
 

@@ -4418,6 +4418,7 @@ MonoBehaviour:
     levelText: {fileID: 3813469667097798218}
     cooldown: {fileID: 9113404269576747202}
     tooltip: {fileID: 3318789314905033033}
+  upgradePanelAnim: {fileID: 2022289720752617505}
   tooltipObj: {fileID: 8514317084420878888}
   tooltipText: {fileID: 2587289393205248313}
   tooltipUpgradesObj: {fileID: 5107570337307000515}

@@ -22,7 +22,9 @@ public class LevelUI : GameUI
     public AbilityUI ability1;
     public AbilityUI ability2;
     public AbilityUI ability3;
+    [SerializeField] private Animator upgradePanelAnim;
 
+    [Header("Banner")]
     [SerializeField] private RectTransform tooltipObj;
     [SerializeField] private TMPro.TMP_Text tooltipText;
     [SerializeField] private GameObject tooltipUpgradesObj;
@@ -129,6 +131,11 @@ public class LevelUI : GameUI
                 ability1.cooldown.UpdateKeySet(lastTarget);
                 ability2.cooldown.UpdateKeySet(lastTarget);
                 ability3.cooldown.UpdateKeySet(lastTarget);
+            }
+
+            if (InputController.Instance.upgrades.down)
+            {
+                upgradePanelAnim.SetTrigger("ToggleUpgrades");
             }
         }
 
