@@ -48,6 +48,7 @@ public class AchievmentController : MonoBehaviour
     private const string FastStwing = "BOSS_FAST_RAINBOWSTWING";
 
     private const string BwudaBirthday = "BWUDA_BIRTHDAY";
+    private const string PiestSoloStwing = "BOSS_RAINBOWSTWING_AS_PIEST";
     #endregion
     #region UserPref names
     public const string FastestLvl1Time= "fastest_lvl1";
@@ -453,6 +454,10 @@ public class AchievmentController : MonoBehaviour
                 case Constants.RainbowName:
                     UpdateTimeStatIfLower(StwingTime, GameController.ElapsedTime);
                     SteamUserStats.SetAchievement(Stwing);
+
+                    if (BwudalingNetworkManager.Instance.Players.Count == 1 && BwudalingNetworkManager.Instance.Players[0].gameAvatarClass == AvatarClass.Piest)
+                        SteamUserStats.SetAchievement(PiestSoloStwing);
+
                     break;
                 default:
                     Debug.LogWarning("Can't update achievement for current boss " + ((BossMapController)MapController.Instance).bossPrefab.bossName);
