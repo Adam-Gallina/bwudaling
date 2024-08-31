@@ -276,10 +276,7 @@ public class BwudalingNetworkManager : NetworkManager
 
         foreach (NetworkPlayer p in Players)
             p.RpcResetPlayerStats();
-
-        if (GameController.Instance)
-            GameController.Instance.RpcResetTimer();
-
+        
         currMaps = mapSet;
         currEndScene = endScene;
         ChangeToLevel(level);

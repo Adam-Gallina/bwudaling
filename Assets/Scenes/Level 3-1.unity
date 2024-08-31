@@ -1867,6 +1867,7 @@ MonoBehaviour:
   canControlAvatars: 1
   maxFriendlyReward: 3
   friendlyXpMod: 0.2
+  resetTimerOnStart: 1
 --- !u!4 &373380049
 Transform:
   m_ObjectHideFlags: 0

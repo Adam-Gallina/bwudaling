@@ -25,6 +25,7 @@ public class MapController : MonoBehaviour
     public bool canControlAvatars = true;
     public int maxFriendlyReward = 3;
     public float friendlyXpMod = .2f;
+    public bool resetTimerOnStart = false;
 
     private void OnDrawGizmos()
     {

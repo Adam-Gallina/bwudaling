@@ -28,6 +28,9 @@ public class BasicGameController : GameController
         base.Awake();
 
         source = GetComponent<AudioSource>();
+
+        if (MapController.Instance.resetTimerOnStart)
+            OnMapStarted += ResetTimer;
     }
 
     protected virtual void Update()

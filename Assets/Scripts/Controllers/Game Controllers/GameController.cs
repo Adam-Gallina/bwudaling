@@ -13,7 +13,7 @@ public abstract class GameController : NetworkBehaviour
 
     protected int spawnedPlayers = 0;
 
-    public bool playing = false;
+    [HideInInspector] public bool playing = false;
 
     public MapType mapType;
 
@@ -72,8 +72,7 @@ public abstract class GameController : NetworkBehaviour
         spawnedPlayers += 1;
     }
 
-    [ClientRpc]
-    public void RpcResetTimer()
+    public static void ResetTimer()
     {
         ElapsedTime = 0;
     }
