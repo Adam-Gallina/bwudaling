@@ -31,6 +31,8 @@ public class BasicGameController : GameController
 
         if (MapController.Instance.resetTimerOnStart)
             OnMapStarted += ResetTimer;
+        else
+            OnMapStarted -= ResetTimer;
     }
 
     protected virtual void Update()
