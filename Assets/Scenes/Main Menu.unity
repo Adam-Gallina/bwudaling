@@ -15514,7 +15514,7 @@ MonoBehaviour:
   currLevel: 0
   sceneChanging: 0
   minPlayers: 1
-  DEBUG_AllowMapSkip: 0
+  DEBUG_AllowMapSkip: 1
   DEBUG_AllowKeyCheats: 0
   DEBUG_IgnoreCooldown: 1
   DEBUG_TpWalls: 1
@@ -16679,6 +16679,27 @@ MonoBehaviour:
   - name: Milkin' da Cow
     id: milkin_cow
     animId: 3
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
+  - name: Big Schnoz
+    id: big_schnoz
+    animId: 5
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
+  - name: Jorkin' It
+    id: jorkin_it
+    animId: 4
+    startUnlocked: 1
+    achievementName: 
+    previewImg: {fileID: 0}
+    unlocked: 0
+  - name: YEOWCH
+    id: yeowch
+    animId: 6
     startUnlocked: 1
     achievementName: 
     previewImg: {fileID: 0}
