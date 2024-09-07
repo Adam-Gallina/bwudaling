@@ -89,10 +89,22 @@ public class Constants
         " has no skibidi toilet rizz :(",
         " really doesn't know how to play this game",
         " eats doodoo",
-        " made a basic spelling error",
+        " made a basic speling error",
         " snots'd all over",
         " is tootin' up a STORM",
-        " bought too much avocado toast"
+        " bought too much avocado toast",
+        " absolutely biffed it",
+        " stopped to smell the roses",
+        " got counterspelled",
+        " couldn't hear you. They had airpods in :(",
+        " stepped on a lego",
+        " died? Why tho? Game isn't that hard...",
+        " is a fake Belieber",
+        " has no excuse",
+        " cheated on their times tables",
+        " is unbelievably bad",
+        " left a bad review",
+        " broke their controller"
     };
     public static float DeathBannerDuration = 2;
 
