@@ -15514,10 +15514,10 @@ MonoBehaviour:
   currLevel: 0
   sceneChanging: 0
   minPlayers: 1
-  DEBUG_AllowMapSkip: 1
+  DEBUG_AllowMapSkip: 0
   DEBUG_AllowKeyCheats: 0
-  DEBUG_IgnoreCooldown: 1
-  DEBUG_TpWalls: 1
+  DEBUG_IgnoreCooldown: 0
+  DEBUG_TpWalls: 0
   DEBUG_ForceBossAttack: 0
   DEBUG_ForceBossHealth: 0
   DEBUG_ResetAchievements: 0
