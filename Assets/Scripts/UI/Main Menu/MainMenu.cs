@@ -237,7 +237,20 @@ public class MainMenu : GameUI
 
         PlayerPrefs.SetString(Constants.LastIpPref, ipAddressField.text);
         PlayerPrefs.SetString(Constants.PlayerNamePref, DisplayName);
-    }
+
+        switch (BwudalingNetworkManager.Instance.mode)
+        {
+            case Mirror.NetworkManagerMode.ClientOnly:
+                mapPackSelect.GetComponent<AudioSource>().mute = true;
+                break;
+            case Mirror.NetworkManagerMode.Host:
+                mapPackSelect.GetComponent<AudioSource>().mute = false;
+                break;
+            default:
+                Debug.LogWarning("How should map pack mute be handled on " + BwudalingNetworkManager.Instance.mode);
+                break;
+        }
+        }
 
     private void HandleClientDisconnected()
     {
